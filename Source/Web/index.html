@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>Project Money Saver.</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -30,7 +30,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Money Saver</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -45,27 +45,94 @@
     <div class="container starter-template">
 		<div class="row">
 			<div class="col-md-8">
+				
 				<div class="panel panel-default">
 					<div class="panel-body">
-						Here will be table
+						Here will be adding controls.
 					</div>
+				</div>
+				
+				<div class="panel panel-primary">
+					<table class="table table-bordered table-condensed text-center">
+						<thead>
+							<tr>
+								<th class="text-center">Date</th>
+								<th class="text-center">Summary</th>
+								<th class="text-center">Expenses</th>
+								<th class="text-center">Rest</th>
+								<th class="text-center">Balance</th>
+								<th class="text-center">Daily balance</th>
+								<th class="text-center">Expectations</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							<tr class="success">
+								<td>10.02.2015.</td><td>564.97€</td><td>12.00€</td><td>560.97€</td><td></td><td></td><td></td></tr>
+							<tr class="success">
+								<td>11.02.2015.</td><td>560.97€</td><td>1.00€</td><td>559.97€</td><td></td><td></td><td></td></tr>
+							<tr class="success">
+								<td>12.02.2015.</td><td>559.97€</td><td>5.00€</td><td>551.97€</td><td></td><td></td><td></td></tr>
+							<tr class="success">
+								<td>13.02.2015.</td><td>551.97€</td><td>8.00€</td><td>547.97€</td><td></td><td></td><td></td></tr>
+							<tr class="info">
+								<td>14.02.2015.</td><td>547.97€</td><td>17.00€</td><td>547.97€</td><td></td><td></td><td></td></tr>
+							<tr><td>15.02.2015.</td><td>547.97€</td><td>0.00€</td><td>547.97€</td><td></td><td></td><td></td></tr>
+							<tr><td>16.02.2015.</td><td>547.97€</td><td>0.00€</td><td>547.97€</td><td></td><td></td><td></td></tr>
+							<tr><td>17.02.2015.</td><td>547.97€</td><td>0.00€</td><td>547.97€</td><td></td><td></td><td></td></tr>
+							<tr><td>18.02.2015.</td><td>547.97€</td><td>0.00€</td><td>547.97€</td><td></td><td></td><td></td></tr>
+							<tr><td>19.02.2015.</td><td>547.97€</td><td>0.00€</td><td>547.97€</td><td></td><td></td><td></td></tr>
+							<tr><td>20.02.2015.</td><td>547.97€</td><td>0.00€</td><td>547.97€</td><td></td><td></td><td></td></tr>
+							<tr><td>21.02.2015.</td><td>547.97€</td><td>0.00€</td><td>547.97€</td><td></td><td></td><td></td></tr>
+							<tr><td>22.02.2015.</td><td>547.97€</td><td>0.00€</td><td>547.97€</td><td></td><td></td><td></td></tr>
+							<tr><td>23.02.2015.</td><td>547.97€</td><td>0.00€</td><td>547.97€</td><td></td><td></td><td></td></tr>
+							<tr><td>24.02.2015.</td><td>547.97€</td><td>0.00€</td><td>547.97€</td><td></td><td></td><td></td></tr>
+							<tr><td>25.02.2015.</td><td>547.97€</td><td>0.00€</td><td>547.97€</td><td></td><td></td><td></td></tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 			
 			<div class="col-md-4">
-				<div class="panel panel-default">
-					<div class="panel-body">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<strong>01/05/2015 — 25/05/2015</strong>
+					</div>
+					<div class="panel-body">						
 						<div class="input-group">
-							<span>01/05/2015</span> - <span>25/05/2015</span>
+							<button class="btn btn-default" type="submit">Start new period.</button>
 						</div>
 					</div>
 				</div>
-				<div class="panel panel-default">
-					<div class="panel-body">
-						Here will be controls
+				
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<strong>Statistics</strong>
+					</div>
+					<table class="table table-condensed">
+						<tr><td>Number of days:</td><td colspan="2">15</td></tr>
+						<tr><td>Current day:</td><td>12</td><td>78%</td></tr>
+						<tr><td>Starting capital:</td><td colspan="2">532.27€</td></tr>
+						<tr><td>Expenses:</td><td>175.12€</td><td>37%</td></tr>
+						<tr><td>Average incomes:</td><td colspan="2">25€</td></tr>
+						<tr><td>Average expenses:</td><td colspan="2">12€</td></tr>
+						<tr><td>Ballance:</td><td>325.12€</td><td>63%</td></tr>
+						<tr><td>Expected ballance:</td><td>180.12€</td><td>47%</td></tr>
+					</table>
+				</div>
+				
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<strong>Graph</strong>
+					</div>
+					
+					<div class="panel-body">						
+						Here will be graph
 					</div>
 				</div>
-			</div>
+				
+				
+			</div>	
 		</div>
     </div><!-- /.container -->
 
