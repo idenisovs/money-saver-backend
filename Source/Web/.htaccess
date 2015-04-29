@@ -1,0 +1,6 @@
+AuthType Basic
+AuthName "Development in progress..."
+AuthBasicProvider file
+AuthUserFile "/chroot/edreams/money.passwd"
+Require user demo
+
