@@ -1,6 +1,24 @@
-var app = angular.module('MoneySaverApp', ['ui.bootstrap']);
+var app = angular.module('MoneySaverApp', ['ngRoute', 'ui.bootstrap']);
 
-app.controller('messageCtrl', ['$scope', '$modal', '$log', 
+app.config(['$routeProvider', 
+	function($routeProvider){
+		$routeProvider.when('/daily', {
+			templateUrl: 'app/daily.html',
+			controller: 'DailyCtrl'
+		});
+		
+		$routeProvider.when('/monthly', {
+			templateUrl: 'app/monthly.html',
+			controller: 'MonthlyCtrl'
+		});
+		
+		$routeProvider.otherwise({
+			redirectTo: '/daily'
+		});
+	}
+]);
+
+app.controller('DailyCtrl', ['$scope', '$modal', '$log', 
 	function($scope, $modal, $log){
 
 		$scope.show = function() {
@@ -12,6 +30,19 @@ app.controller('messageCtrl', ['$scope', '$modal', '$log',
 			});
 		};
 	}
+]);
+
+app.controller('MonthlyCtrl', ['$scope', '$modal', '$log', 
+
+	function($scope, $modal, $log){
+		
+		$scope.message = {
+			header: 'Hello, there!',
+			body: 'It`s your monthly spendings page!'
+		};
+
+	}
+	
 ]);
 
 app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', '$log', 
