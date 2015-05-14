@@ -4,12 +4,12 @@ app.config(['$routeProvider',
 	function($routeProvider){
 			
 		$routeProvider.when('/daily', {
-			templateUrl: 'app/controllers/daily/daily.tpl.html',
+			templateUrl: 'app/view/daily/daily.tpl.html',
 			controller: 'DailyCtrl'
 		});
 		
 		$routeProvider.when('/monthly', {
-			templateUrl: 'app/controllers/monthly/monthly.tpl.html',
+			templateUrl: 'app/view/monthly/monthly.tpl.html',
 			controller: 'MonthlyCtrl'
 		});
 		

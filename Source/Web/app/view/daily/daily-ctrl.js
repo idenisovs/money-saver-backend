@@ -2,14 +2,12 @@ var app = angular.module('MoneySaverApp');
 
 app.controller('DailyCtrl', ['$scope', '$modal', '$log', 
 	function($scope, $modal, $log){
-		
-		$scope.show = function() { console.log('ok'); };
-		
+
 		$scope.show = function() {
-			var modalInstance = $modal.open({
+			$modal.open({
 				animation: true,
 				size: 'lg',
-				templateUrl: 'app/modal.html',
+				templateUrl: 'app/view/daily/modal.html',
 				controller: 'ModalInstanceCtrl'
 			});
 		};
