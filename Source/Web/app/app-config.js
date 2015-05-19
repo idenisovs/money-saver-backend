@@ -4,7 +4,7 @@ app.config(['$routeProvider',
 	function($routeProvider){
 			
 		$routeProvider.when('/daily', {
-			templateUrl: 'app/view/daily/daily.tpl.html',
+			templateUrl: 'app/view/daily/templates/daily.tpl.html',
 			controller: 'DailyCtrl'
 		});
 		

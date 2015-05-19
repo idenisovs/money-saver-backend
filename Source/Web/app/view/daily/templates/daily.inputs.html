@@ -1,0 +1,41 @@
+<div class="panel-body">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-addon">Date</span>
+                <input type="text" class="form-control" aria-label="Current date"
+                       placeholder="dd.mm.yyyy." value="29.04.2015.">
+								<span class="input-group-btn">
+									<!-- It may be replaced by Bootstrap Datepicker! -->
+									<!-- https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+									<button class="btn btn-default" type="button">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </button>
+								</span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-addon">€</span>
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                       placeholder="0.00">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button" ng-click="show();">Add</button>
+								</span>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="input-group">
+                <span class="input-group-addon">Description</span>
+                <input type="text" class="form-control" aria-label="You may place some text here.">
+            </div>
+        </div>
+    </div>
+
+</div>
