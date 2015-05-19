@@ -5,6 +5,8 @@
  */
 package lv.edreams.testapp;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -29,7 +31,22 @@ public class Services
         user.setName(name);
         
         user.setMessage("Hello, " + name + "!");
+        
+        List<User> users = generateUsers();
+        
+        users.add(user);
        
-        return Response.ok(user).build();
+        return Response.ok(users).build();
+    }
+    
+    private List<User> generateUsers()
+    {
+        List<User> users = new ArrayList();
+        
+        users.add(new User("M"));
+        
+        users.add(new User("Q"));
+        
+        return users;
     }
 }

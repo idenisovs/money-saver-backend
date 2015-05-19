@@ -23,6 +23,13 @@ public class User
     {
         id = ++Counter;
     }
+    
+    public User(String name)
+    {
+        this();
+        
+        this.name = name;
+    }
 
     public int getId()
     {
