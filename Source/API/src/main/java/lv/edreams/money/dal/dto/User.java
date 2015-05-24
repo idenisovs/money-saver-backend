@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lv.edreams.testapp.dto;
+package lv.edreams.money.dal.dto;
 
 /**
  *

@@ -1,4 +1,4 @@
-package lv.edreams.config;
+package lv.edreams.money.config;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
@@ -36,7 +36,8 @@ public class ApplicationConfig extends Application
      */
     private void addRestResourceClasses(Set<Class<?>> resources)
     {
-        resources.add(lv.edreams.testapp.Services.class);
+        resources.add(lv.edreams.money.services.Daily.class);
+        resources.add(lv.edreams.money.services.Services.class);
     }
     
 }

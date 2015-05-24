@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>lv.edreams</groupId>
-    <artifactId>TestApp</artifactId>
+    <artifactId>MoneySaverAPI</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>TestApp</name>
+    <name>MoneySaver API</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
