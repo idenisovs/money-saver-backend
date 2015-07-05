@@ -1,0 +1,47 @@
+<div class="modal-header">
+	<button class="close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+	<h3 class="modal-title">Create new interval!</h3>
+</div>
+
+<div class="modal-body">
+	<div class = "container">
+		<div class = "row">
+			<div class = "col-md-3">
+				<div class="input-group">
+					<span class="input-group-addon">From</span>
+					<input type="text" class="form-control" aria-label="From" placeholder="dd.mm.yyyy." value="24.04.2015.">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							<span class="glyphicon glyphicon-calendar"></span>
+						</button>
+					</span>
+				</div>
+			</div>
+			<div class = "col-md-3">
+				<div class="input-group">
+					<span class="input-group-addon">Till</span>
+					<input type="text" class="form-control" aria-label="Till" placeholder="dd.mm.yyyy." value="10.05.2015.">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							<span class="glyphicon glyphicon-calendar"></span>
+						</button>
+					</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class = "row top15">
+			<div class = "col-md-6">
+				<div class="input-group">
+					<span class="input-group-addon">Initial total</span>
+					<input type="text" class="form-control" aria-label="Till" placeholder="100.00€" value="">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="ok()">OK</button>
+	<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

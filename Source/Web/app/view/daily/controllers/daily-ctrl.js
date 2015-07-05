@@ -3,18 +3,18 @@ var app = angular.module('MoneySaverApp');
 app.controller('DailyCtrl', ['$scope', '$modal', '$log', 
 	function($scope, $modal, $log){
 
-		$scope.show = function() {
+		$scope.viewNewIntervalModal = function() {
 			$modal.open({
 				animation: true,
-				size: 'lg',
-				templateUrl: 'app/view/daily/modal.html',
-				controller: 'ModalInstanceCtrl'
+				size: 'md',
+				templateUrl: 'app/view/daily/templates/interval.modal.html',
+				controller: 'IntervalModalCtrl'
 			});
 		};
 	}
 ]);
 
-app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', '$log', 
+app.controller('IntervalModalCtrl', ['$scope', '$modalInstance', '$log', 
 	function($scope, $modalInstance, $log){
 		//$log.info('Kkk');
 		$scope.selected = { item: 'Hello, world!' };
