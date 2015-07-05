@@ -1,0 +1,8 @@
+{
+	"index": "index.html",
+	"content": {
+		"public": "./public"
+	},
+	"host": "http://localhost",
+	"port": 9001
+}
