@@ -4,12 +4,11 @@
         <div class="col-md-6">
             <div class="input-group">
                 <span class="input-group-addon">Date</span>
-                <input type="text" class="form-control" aria-label="Current date" placeholder="dd.mm.yyyy." value="29.04.2015.">
-                      
+                <input type="text" class="form-control" datepicker-popup="{{datePicker.format}}" ng-model="dt"
+                       is-open="datePicker.opened" datepicker-options="datePicker.options" close-text="Close" format>
+
 				<span class="input-group-btn">
-					<!-- It may be replaced by Bootstrap Datepicker! -->
-					<!-- https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-					<button class="btn btn-default" type="button">
+					<button class="btn btn-default" type="button" ng-click="datePicker.open($event);">
 						<span class="glyphicon glyphicon-calendar"></span>
 					</button>
 				</span>
