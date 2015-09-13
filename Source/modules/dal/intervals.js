@@ -6,4 +6,24 @@ var db = require('./db');
 
 var intervals = {};
 
+intervals.getLatest = getLatest;
+
 module.exports = intervals;
+
+function getLatest(callback, errorCallback)
+{
+    var sql = 'SELECT id, start, end, sum FROM intervals ORDER BY id DESC LIMIT 1';
+
+    db.get(sql, onDone);
+
+    function onDone(err, row)
+    {
+        if (err)
+        {
+            errorCallback(err);
+            return;
+        }
+
+        callback(row);
+    }
+}
