@@ -4,7 +4,7 @@
   "description": "Personal Cash manager",
   "main": "daemon.js",
   "scripts": {
-	"start": "node daemon.js",
+    "start": "node daemon.js",
     "test": "test"
   },
   "private": true,
@@ -21,10 +21,11 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.13.2",
+    "chai": "^3.2.0",
     "express": "^4.13.1",
-    "mocha": "^2.2.5",
+    "mocha": "^2.3.2",
     "promise": "^7.0.4",
-    "request": "^2.60.0",
+    "sinon": "^1.16.1",
     "sqlite3": "^3.0.9"
   }
 }
