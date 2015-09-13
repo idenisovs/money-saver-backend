@@ -4,5 +4,6 @@
 		"public": "./public"
 	},
 	"host": "http://localhost",
-	"port": 9001
+	"port": 9001,
+    "db": "finance.db"
 }
