@@ -2,7 +2,7 @@ var router = require('express').Router();
 
 router.use('/payments', require('./payments'));
 
-router.use('/intervals', require('./intervals'));
+router.use('/intervals', require('./intervals/intervals'));
 
 module.exports = router;
 

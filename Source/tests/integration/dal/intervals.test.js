@@ -3,7 +3,7 @@
  */
 var assert = require('chai').assert;
 var sinon = require('sinon');
-var intervals = require('../../../modules/dal/intervals');
+var intervals = require('../../../modules/dal/intervals/intervals');
 
 describe('Intervals module', function()
 {

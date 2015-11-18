@@ -4,8 +4,8 @@
   */
 
 var router = require('express').Router();
-var bl = require('../bl/bl');
-var states = require('../util/http.states');
+var bl = require('../../bl/bl');
+var states = require('../../util/http.states.js');
 
 router.get('/', getLatestInterval);
 
@@ -13,7 +13,7 @@ module.exports = router;
 
 function getLatestInterval(req, res)
 {
-	bl.intervals.latest(success, error);
+	bl.intervals.getLatest(success, error);
 	
 	function success(interval)
 	{

@@ -1,15 +1,10 @@
 /**
- * This module contains data operations for table Payments
- * Created by Ga5Xz2 on 13.09.2015..
+ * This module returns the daily spendings, taken by it`s interval`s id.
+ * Created by Ga5Xz2 on 18.11.2015..
  */
-var db = require('./db');
+var db = require('./../db');
 
-var payments = {};
-
-payments.byIntervalId = getByIntervalId;
-
-module.exports = payments;
-
+module.exports = getByIntervalId;
 
 function getByIntervalId(id, success, error)
 {

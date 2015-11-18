@@ -4,8 +4,8 @@
  */
 var dal =  {};
 
-dal.intervals = require('./intervals');
+dal.intervals = require('./intervals/intervals');
 
-dal.payments = require('./payments');
+dal.payments = require('./payments/payments');
 
 module.exports = dal;

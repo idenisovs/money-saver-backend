@@ -1,14 +1,10 @@
 /**
- * This module contains data operations for table Intervals
- * Created by Ga5Xz2 on 13.09.2015..
+ * This module returns the latest interval.
+ * Created by Ga5Xz2 on 17.11.2015..
  */
-var db = require('./db');
+var db = require('./../db');
 
-var intervals = {};
-
-intervals.getLatest = getLatest;
-
-module.exports = intervals;
+module.exports = getLatest;
 
 function getLatest(success, error)
 {

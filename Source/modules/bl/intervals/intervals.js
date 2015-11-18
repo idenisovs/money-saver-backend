@@ -1,5 +1,5 @@
 var intervals = {};
 
-intervals.latest = require('./get_latest');
+intervals.getLatest = require('./get_latest');
 
 module.exports = intervals;
