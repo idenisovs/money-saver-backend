@@ -1,19 +1,27 @@
 /**
   * Intervals REST API endpoint
+  * Sample call: http://localhost:9001/api/intervals
   */
 
 var router = require('express').Router();
+var bl = require('../bl/bl');
+var states = require('../util/http.states');
 
-router.get('/', hello);
+router.get('/', getLatestInterval);
 
 module.exports = router;
 
-function hello(req, res)
+function getLatestInterval(req, res)
 {
-	var response = { 
-		message1: 'Hello, world!',
-		message2: 'I`m Intervals API'
-	};
-
-	res.json(response);
+	bl.intervals.latest(success, error);
+	
+	function success(interval)
+	{
+		res.json(interval);
+	}
+	
+	function error(err)
+	{
+		res.status(states.InternalError).json(err);
+	}
 }

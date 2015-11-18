@@ -10,7 +10,7 @@ intervals.getLatest = getLatest;
 
 module.exports = intervals;
 
-function getLatest(callback, errorCallback)
+function getLatest(success, error)
 {
     var sql = 'SELECT id, start, end, sum FROM intervals ORDER BY id DESC LIMIT 1';
 
@@ -20,10 +20,10 @@ function getLatest(callback, errorCallback)
     {
         if (err)
         {
-            errorCallback(err);
+            error(err);
             return;
         }
 
-        callback(row);
+        success(row);
     }
 }
