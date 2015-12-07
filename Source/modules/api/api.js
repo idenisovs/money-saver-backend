@@ -1,6 +1,6 @@
 var router = require('express').Router();
 
-router.use('/payments', require('./payments'));
+router.use('/payments', require('./payments/payments'));
 
 router.use('/intervals', require('./intervals/intervals'));
 
