@@ -14,20 +14,23 @@ var db = new SQLite(config.db);
 
 module.exports = db;
 
-console.log('%s connected!', config.db);
+console.log('%s connected!\n', config.db);
 
-db.run('PRAGMA foreign_keys = ON', function(error) {
-    if (error) {
+db.run('PRAGMA foreign_keys = ON', done);
+
+process.on('exit', exitHandler);
+process.on('SIGINT', exitHandler);
+
+function done(error)
+{
+    if (error)
+    {
         console.log(error);
         return;
     }
 
-    console.log('Foreign key support shall be enabled now!');
-});
-
-
-process.on('exit', exitHandler);
-process.on('SIGINT', exitHandler);
+    console.log('Foreign key support shall be enabled now!\n');
+}
 
 function exitHandler()
 {
