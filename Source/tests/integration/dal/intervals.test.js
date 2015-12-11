@@ -11,20 +11,20 @@ describe('Intervals module', function()
     //    console.log('This should init the database!');
     //});
 
-    it('getLatest function', function(done) {
-
-        intervals.getLatest(onSuccess, onError);
-
-        function onSuccess(data)
-        {
-            assert.isObject(data);
-            done();
-        }
-
-        function onError(error)
-        {
-            assert.fail(error);
-            done();
-        }
-    });
+    //it('getLatest function', function(done) {
+    //
+    //    intervals.getLatest(onSuccess, onError);
+    //
+    //    function onSuccess(data)
+    //    {
+    //        assert.isObject(data);
+    //        done();
+    //    }
+    //
+    //    function onError(error)
+    //    {
+    //        assert.fail(error);
+    //        done();
+    //    }
+    //});
 });
