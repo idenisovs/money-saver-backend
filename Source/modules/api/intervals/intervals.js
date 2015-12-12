@@ -4,24 +4,14 @@
   */
 
 var router = require('express').Router();
-var bl = require('../../bl/bl');
 var states = require('../../util/http.states.js');
 
-router.get('/', getLatestInterval);
+router.get('/', require('./get-intervals'));
+
+router.post('/', require('./create-interval'));
+
+router.get('/latest', require('./get-latest-interval'));
+
+router.get('/:id', require('./get-interval-by-id'));
 
 module.exports = router;
-
-function getLatestInterval(req, res)
-{
-	bl.intervals.getLatest(success, error);
-	
-	function success(interval)
-	{
-		res.json(interval);
-	}
-	
-	function error(err)
-	{
-		res.status(states.InternalError).json(err);
-	}
-}

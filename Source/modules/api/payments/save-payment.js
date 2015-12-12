@@ -4,7 +4,7 @@
 
 function savePayment(req, res)
 {
-    res.send({ method: 'savePayment', message: 'Not implemented yet!' });
+    res.json({ method: 'savePayment', message: 'Not implemented yet!' });
 }
 
 module.exports = savePayment;
