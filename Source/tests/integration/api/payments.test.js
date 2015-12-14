@@ -12,7 +12,8 @@ describe('Payments REST API', paymentsRestTests);
 function paymentsRestTests()
 {
     before(setRequestDefaults);
-    it('Get latest payment', stub);
+    it('Get payments', getPayments);
+    it('Get payment by date', getPaymentsByDate);
 }
 
 function setRequestDefaults()
@@ -20,7 +21,26 @@ function setRequestDefaults()
     request = request.defaults({json: true});
 }
 
-function stub()
+function getPayments(done)
 {
-    assert.equal(true, true);
+    request(host, function(err, res, body) {
+        assert.isNull(err);
+        assert.notEqual(res.statusCode, 404);
+        assert.equal(body.message, 'getPayments');
+        done();
+    });
+}
+
+function getPaymentsByDate(done)
+{
+    var expectedDate = '2015-05-23';
+    var endpoint = host + expectedDate;
+
+    request(endpoint, function(err, res, body) {
+        assert.isNull(err);
+        assert.notEqual(res.statusCode, 404);
+        assert.equal(body.message, 'getPaymentsByDate');
+        assert.equal(body.date, expectedDate);
+        done();
+    });
 }
