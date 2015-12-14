@@ -15,7 +15,7 @@ function intervalsRestTests()
     it('Create interval', createInterval);
     it('Get intervals', getIntervals);
     it('Get latest interval', getLatestInterval);
-    it('Get specific interval', getIntervalById);
+    it('Get interval by id', getIntervalById);
 }
 
 function setRequestDefaults()
@@ -32,7 +32,8 @@ function createInterval(done)
 
     request.post(options, function(err, res, body) {
         assert.isNull(err);
-        assert.equal(body.message, 'createInterval called!');
+        assert.notEqual(res.statusCode, 404);
+        assert.equal(body.message, 'createInterval');
         done();
     });
 }
@@ -41,7 +42,7 @@ function getIntervals(done)
 {
     request.get(host, function(err, res, body) {
         assert.isNull(err);
-        assert.equal(body.message, 'getIntervals called!');
+        assert.equal(body.message, 'getIntervals');
         done();
     });
 }
@@ -51,30 +52,22 @@ function getLatestInterval(done)
     var endpoint = host + 'latest';
 
     request.get(endpoint, function(err, res, body) {
-        console.log(body);
-
         assert.isNull(err);
-
-        assert.property(body, 'id');
-        assert.property(body, 'start');
-        assert.property(body, 'end');
-        assert.property(body, 'start');
-        assert.property(body, 'payments');
-
-        assert.isAbove(body.start, 0);
-        assert.isAbove(body.end, body.start);
-
+        assert.notEqual(res.statusCode, 404);
+        assert.equal(body.message, 'getLatestInterval');
         done();
     });
 }
 
 function getIntervalById(done)
 {
-    var endpoint = host + '/12345';
+    var expectedId = 12345;
+    var endpoint = host + '/' + expectedId;
 
     request.get(endpoint, function(err, res, body) {
         assert.isNull(err);
-        assert.equal(body.message, 'getIntervalById called!');
+        assert.equal(body.message, 'getIntervalById');
+        assert.equal(body.intervalId, expectedId);
         done();
     });
 }
