@@ -5,15 +5,17 @@ var request = require('request');
 var chai = require('chai');
 var assert = chai.assert;
 
-var host = 'http://localhost:9001/api/intervals/';
+var host = require('./host.json').host.intervals;
 
 describe('Intervals REST API', intervalsRestTests);
 
 function intervalsRestTests()
 {
     before(setRequestDefaults);
+
+    describe('getIntervalsAvailable', require('./getIntervals'));
+
     it('Create interval', createInterval);
-    it('Get intervals', getIntervals);
     it('Get latest interval', getLatestInterval);
     it('Get interval by id', getIntervalById);
 }
@@ -38,23 +40,22 @@ function createInterval(done)
     });
 }
 
-function getIntervals(done)
-{
-    request.get(host, function(err, res, body) {
-        assert.isNull(err);
-        assert.equal(body.message, 'getIntervals');
-        done();
-    });
-}
-
 function getLatestInterval(done)
 {
-    var endpoint = host + 'latest';
+    var endpoint = host + '/latest';
 
     request.get(endpoint, function(err, res, body) {
         assert.isNull(err);
         assert.notEqual(res.statusCode, 404);
-        assert.equal(body.message, 'getLatestInterval');
+
+        assert.property(body, 'id');
+        assert.property(body, 'start');
+        assert.property(body, 'end');
+        assert.property(body, 'sum');
+
+        assert.isAbove(body.start, 0);
+        assert.isAbove(body.end, body.start);
+
         done();
     });
 }

@@ -1,0 +1,6 @@
+{
+  "host": {
+    "intervals" : "http://localhost:9001/api/intervals",
+    "payments" : "http://localhost:9001/api/payments"
+  }
+}

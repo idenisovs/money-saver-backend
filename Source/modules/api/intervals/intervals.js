@@ -5,6 +5,7 @@
 
 var router = require('express').Router();
 var states = require('../../util/http.states.js');
+var bl = require('../../bl/bl');
 
 router.get('/', getIntervals);
 router.post('/', createInterval);
@@ -16,12 +17,25 @@ module.exports = router;
 
 function getIntervals(req, res)
 {
-    res.json({ message: 'getIntervals' });
+    var from = req.query.from ? req.query.from : null;
+    var till = req.query.till ? req.query.till : null;
+
+    res.json({ message: 'getIntervalsAvailable', from: from, till: till });
 }
 
 function getLatestInterval(req, res)
 {
-    res.json({ message: 'getLatestInterval' });
+    bl.intervals.getLatest(success, error);
+
+    function success(interval)
+    {
+        res.json(interval);
+    }
+
+    function error(err)
+    {
+        res.status(states.InternalError).json({ err: err });
+    }
 }
 
 function getIntervalById(req, res)
