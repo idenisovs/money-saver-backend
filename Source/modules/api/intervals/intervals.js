@@ -40,7 +40,17 @@ function getLatestInterval(req, res)
 
 function getIntervalById(req, res)
 {
-    res.json({ message: 'getIntervalById', intervalId: req.params.id });
+    bl.intervals.getById(req.params.id, success, error);
+
+    function success(interval)
+    {
+        res.json(interval);
+    }
+
+    function error(err)
+    {
+        res.status(states.InternalError).json({ err: err });
+    }
 }
 
 function getPaymentsByInterval(req, res)
