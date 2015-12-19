@@ -10,6 +10,7 @@ var bl = require('../../bl/bl');
 router.get('/', getIntervals);
 router.post('/', createInterval);
 router.get('/latest', getLatestInterval);
+router.get('/latest/summary', getLatestIntervalSummary);
 router.get('/:id', getIntervalById);
 router.get('/:id/payments', getPaymentsByInterval);
 
@@ -26,6 +27,21 @@ function getIntervals(req, res)
 function getLatestInterval(req, res)
 {
     bl.intervals.getLatest(success, error);
+
+    function success(interval)
+    {
+        res.json(interval);
+    }
+
+    function error(err)
+    {
+        res.status(states.InternalError).json({ err: err });
+    }
+}
+
+function getLatestIntervalSummary(req, res)
+{
+    bl.intervals.getLatestSummary(success, error);
 
     function success(interval)
     {

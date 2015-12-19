@@ -1,4 +1,3 @@
-var moment = require('moment');
 var dal = require('../../dal/dal');
 
 module.exports = getLatestInterval;
