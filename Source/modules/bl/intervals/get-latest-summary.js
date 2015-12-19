@@ -14,6 +14,7 @@ function getLatestIntervalSummary(success, error)
     {
         interval: null,
         spendings: null,
+        schedule: null,
         totals: null
     };
 
