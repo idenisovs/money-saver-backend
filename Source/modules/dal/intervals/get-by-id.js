@@ -9,10 +9,10 @@ var db = require('./../db');
 
 module.exports = getIntervalById;
 
+var sql = 'SELECT id, start, end, sum FROM intervals WHERE id = $id';
+
 function getIntervalById(id, callback)
 {
-    var sql = 'SELECT id, start, end, sum FROM intervals WHERE id = $id';
-
     var params = { $id: id };
 
     db.get(sql, params, callback);
