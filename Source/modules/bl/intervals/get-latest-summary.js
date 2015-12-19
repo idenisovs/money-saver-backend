@@ -3,6 +3,8 @@
  */
 
 var dal = require('../../dal/dal');
+var calculateSchedule = require('../../calculators/calculate-schedule');
+var calculateTotals = require('../../calculators/calculate-totals');
 
 module.exports = getLatestIntervalSummary;
 
@@ -40,11 +42,15 @@ function getLatestIntervalSummary(success, error)
 
         result.spendings = dailySpendings;
 
-        calculateTotals();
+        calculate();
     }
 
-    function calculateTotals()
+    function calculate()
     {
+        result.schedule = calculateSchedule(result);
+
+        result.totals = calculateTotals(result);
+
         success(result);
     }
 }
