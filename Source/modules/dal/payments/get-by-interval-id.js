@@ -14,22 +14,10 @@ sql += 'LEFT OUTER JOIN payments p ON p.time > i.start AND p.time < i.end\n';
 sql += 'WHERE i.id = $id\n';
 sql += 'GROUP BY date';
 
-function getByIntervalId(id, success, error)
+function getByIntervalId(id, callback)
 {
 	var params = { '$id': id };
 	
-	db.all(sql, params, done);
-	
-	function done(err, rows)
-	{
-		if (err)
-		{
-			log.error(err);
-			error(err);
-			return;
-		}
-		
-		success(rows);
-	}
+	db.all(sql, params, callback);
 }
 

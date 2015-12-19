@@ -15,10 +15,16 @@ function getLatestIntervalSummary(success, error)
         totals: null
     };
 
-    dal.intervals.getLatest(latestInterval, error);
+    dal.intervals.getLatest(latestInterval);
 
-    function latestInterval(interval)
+    function latestInterval(err, interval)
     {
+        if (err)
+        {
+            error(err);
+            return;
+        }
+
         result.interval = interval;
 
         dal.payments.getDailySpendings(interval.id, dailySpendings);

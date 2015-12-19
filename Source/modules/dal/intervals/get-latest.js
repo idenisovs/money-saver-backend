@@ -8,18 +8,7 @@ module.exports = getLatest;
 
 var sql = 'SELECT id, start, end, sum FROM intervals ORDER BY id DESC LIMIT 1';
 
-function getLatest(success, error)
+function getLatest(callback)
 {
-    db.get(sql, onDone);
-
-    function onDone(err, row)
-    {
-        if (err)
-        {
-            error(err);
-            return;
-        }
-
-        success(row);
-    }
+    db.get(sql, callback);
 }

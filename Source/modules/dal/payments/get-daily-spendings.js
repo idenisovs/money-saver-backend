@@ -13,9 +13,9 @@ sql += "LEFT OUTER JOIN payments p ON p.time > i.start AND p.time < i.end\n";
 sql += "WHERE i.id = $id\n";
 sql += "GROUP BY date\n";
 
-function getDailySpendings(intervalId, onDone)
+function getDailySpendings(intervalId, callback)
 {
     var params = { '$id': intervalId };
 
-    db.all(sql, params, onDone);
+    db.all(sql, params, callback);
 }
