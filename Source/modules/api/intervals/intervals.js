@@ -4,7 +4,7 @@
   */
 
 var router = require('express').Router();
-var states = require('../../util/http.states.js');
+var states = require('../http.states.js');
 var bl = require('../../bl/bl');
 
 router.get('/', getIntervals);
