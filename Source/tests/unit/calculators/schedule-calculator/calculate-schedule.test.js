@@ -7,4 +7,5 @@ describe('CalculateSchedule tests', scheduleCalculatorTests);
 function scheduleCalculatorTests()
 {
     describe('Properties and structure tests', require('./properties-and-structure'));
+    describe('Calculation tests', require('./calculations'));
 }
