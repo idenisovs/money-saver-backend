@@ -16,7 +16,7 @@ function savePayment(payment)
 
         db.test();
 
-        setTimeout(done, 1000);
+        setTimeout(done, 10);
     }
 
     function done(err)
