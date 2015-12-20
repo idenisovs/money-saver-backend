@@ -4,8 +4,6 @@
 
 var chai = require('chai');
 var assert = chai.assert;
-var sinon = require('sinon');
-var proxyquire = require('proxyquire').noCallThru();
 var prepareData = require('./prepare-data');
 
 // Testable module
@@ -17,7 +15,7 @@ module.exports = propertiesAndStructureTests;
 
 function propertiesAndStructureTests()
 {
-    before(prepare);
+    beforeEach(prepare);
     it('CalculateSchedule should return array', shouldReturnArray);
     it('Returned array should have 10 records', arrayShouldHaveTenRecords);
     it('First and last dates of Schedule should belong to interval', firstAndLastItemDatesInInterval);
