@@ -62,13 +62,15 @@ function getLatestInterval(done)
 
 function getIntervalById(done)
 {
-    var expectedId = 12345;
+    var expectedId = 1;
     var endpoint = host + '/' + expectedId;
 
     request.get(endpoint, function(err, res, body) {
         assert.isNull(err);
-        assert.equal(body.message, 'getIntervalById');
-        assert.equal(body.intervalId, expectedId);
+        assert.property(body, 'id');
+        assert.property(body, 'start');
+        assert.property(body, 'end');
+        assert.property(body, 'sum');
         done();
     });
 }

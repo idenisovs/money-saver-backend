@@ -22,7 +22,7 @@ function calculateSchedule(summary)
 
     var endingDay = moment(summary.interval.end);
 
-    var daysCount = endingDay.diff(startingDay, 'days') + 2;
+    var daysCount = endingDay.diff(startingDay, 'days', true) + 1;
 
     var dailySum = summary.interval.sum / daysCount;
 
