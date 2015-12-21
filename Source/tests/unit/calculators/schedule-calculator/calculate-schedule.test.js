@@ -2,7 +2,7 @@
  * Created by Ga5Xz2 on 20.12.2015..
  */
 
-describe('CalculateSchedule tests', scheduleCalculatorTests);
+describe('Schedule Calculator', scheduleCalculatorTests);
 
 function scheduleCalculatorTests()
 {
