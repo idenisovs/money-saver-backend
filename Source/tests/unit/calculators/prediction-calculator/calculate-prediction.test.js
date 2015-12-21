@@ -21,7 +21,11 @@ function predictionCalculatorTests()
 
 function initData()
 {
-    summary = require('./summary.json');
+    summary = require('./../summary.json');
+
+    summary.schedule.forEach(function(item){
+        delete item.prediction;
+    });
 
     calculatePrediction(summary);
 

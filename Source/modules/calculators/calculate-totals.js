@@ -12,7 +12,7 @@ function calculateTotals(summary)
     var totals =
     {
         days: schedule.length,
-        currentDay: getDaysDiff(summary.interval.start),
+        currentDay: getDaysDiff(summary.interval.start, schedule.length),
         currentDayPercents: 0,
         startingSum: summary.interval.sum,
         expenses: 0
@@ -46,9 +46,14 @@ function calculateTotals(summary)
     return totals;
 }
 
-function getDaysDiff(startingPoint)
+function getDaysDiff(startingPoint, totalDays)
 {
     var days = moment().diff(startingPoint, 'days', true);
 
-    return Math.ceil(days);
+    if (days <= totalDays)
+    {
+        return Math.ceil(days);
+    }
+
+    return totalDays;
 }
