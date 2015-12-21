@@ -39,5 +39,5 @@ function calculateAverageSpending(schedule, days)
         totalSpent += schedule[d].spent;
     }
 
-    return totalSpent / days;
+    return totalSpent / finalDay;
 }
