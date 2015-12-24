@@ -76,5 +76,24 @@ function getPaymentsByInterval(req, res)
 
 function createInterval(req, res)
 {
-    res.json({ message: 'createInterval' });
+    bl.intervals.create(req.body, success, error);
+
+    function success(interval)
+    {
+        res.json(interval);
+    }
+
+    function error(err)
+    {
+        if (err.reason === 'param')
+        {
+            res.status(states.BadRequest);
+        }
+        else
+        {
+            res.status(states.InternalError);
+        }
+
+        res.json(err);
+    }
 }

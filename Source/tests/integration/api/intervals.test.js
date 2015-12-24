@@ -14,8 +14,8 @@ function intervalsRestTests()
     before(setRequestDefaults);
 
     describe('getIntervalsAvailable', require('./getIntervals'));
+    describe('createInterval', require('./createInterval'));
 
-    it('Create interval', createInterval);
     it('Get latest interval', getLatestInterval);
     it('Get interval by id', getIntervalById);
 }
@@ -23,21 +23,6 @@ function intervalsRestTests()
 function setRequestDefaults()
 {
     request = request.defaults({json: true});
-}
-
-function createInterval(done)
-{
-    var options = {
-        url: host,
-        body: { payment: '#00001' }
-    };
-
-    request.post(options, function(err, res, body) {
-        assert.isNull(err);
-        assert.notEqual(res.statusCode, 404);
-        assert.equal(body.message, 'createInterval');
-        done();
-    });
 }
 
 function getLatestInterval(done)
