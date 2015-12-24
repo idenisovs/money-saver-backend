@@ -1,14 +1,17 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 
 var config = require('./config.json');
 
 var app = express();
 
-var static = express.static(config.content.public, { index: config.index });
-
 console.info('Launching daemon...');
 
+var static = express.static(config.content.public, { index: config.index });
+
 app.use(static);
+
+app.use(bodyParser.json());
 
 app.use('/api', require('./modules/api/api.js'));
 
