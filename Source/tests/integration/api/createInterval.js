@@ -2,9 +2,11 @@
  * Created by Ga5Xz2 on 24.12.2015..
  */
 
+var moment = require('moment');
 var request = require('request');
 var chai = require('chai');
 var assert = chai.assert;
+
 
 var host = require('./host.json').host.intervals;
 
@@ -22,6 +24,9 @@ function createIntervalTests()
     it("Interval is not defined", sendingWithoutBody);
     it('End not set', endFieldNotSet);
     it('Check sum', sumFieldNotSet);
+    it('Latest interval presented', latestIntervalPresented);
+    it('Start and End fields delta set wrong', startEndDeltaIsNotDay);
+    it('Start and End fields delta', startEndDeltaCorrect);
 }
 
 function setRequestDefaults()
@@ -78,4 +83,39 @@ function sumFieldNotSet(done)
         assert.equal(res.statusCode, 400);
         done();
     });
+}
+
+function startEndDeltaIsNotDay(done)
+{
+    interval.start = interval.end;
+
+    var options = { url: host, body: interval };
+
+    request.post(options, function(err, res, body) {
+        assert.equal(res.statusCode, 400);
+        done();
+    });
+}
+
+function startEndDeltaCorrect(done)
+{
+    interval.start = moment(interval.end).subtract(1, 'days');
+
+    var options = { url: host, body: interval };
+
+    request.post(options, function(err, res, body) {
+        assert.equal(res.statusCode, 200);
+        done();
+    });
+}
+
+function latestIntervalPresented(done)
+{
+    var options = { url: host, body: interval };
+
+    request.post(options, function(err, res, body) {
+        assert.isDefined(body.latestInterval);
+        assert.isDefined(body.latestInterval.sum);
+        done();
+    })
 }
