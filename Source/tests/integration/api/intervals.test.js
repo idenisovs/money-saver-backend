@@ -15,6 +15,7 @@ function intervalsRestTests()
 
     describe('getIntervalsAvailable', require('./getIntervals'));
     describe('createInterval', require('./createInterval'));
+    describe('deleteInterval', require('./delete-interval'));
 
     it('Get latest interval', getLatestInterval);
     it('Get interval by id', getIntervalById);

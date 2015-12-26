@@ -12,6 +12,7 @@ router.post('/', createInterval);
 router.get('/latest', getLatestInterval);
 router.get('/latest/summary', getLatestIntervalSummary);
 router.get('/:id', getIntervalById);
+router.delete('/:id', deleteInterval);
 router.get('/:id/payments', getPaymentsByInterval);
 
 module.exports = router;
@@ -95,5 +96,20 @@ function createInterval(req, res)
         }
 
         res.json(err);
+    }
+}
+
+function deleteInterval(req, res)
+{
+    bl.intervals.delete(req.params.id, success, error);
+
+    function success()
+    {
+        res.send();
+    }
+
+    function error(err)
+    {
+        res.status(states.InternalError).json(err);
     }
 }

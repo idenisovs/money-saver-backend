@@ -12,4 +12,6 @@ intervals.getById = require('./get-by-id');
 
 intervals.create = require('./create');
 
+intervals.delete = require('./delete');
+
 module.exports = intervals;
