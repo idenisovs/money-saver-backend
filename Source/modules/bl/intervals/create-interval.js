@@ -21,6 +21,24 @@ function createInterval(interval, success, error)
 
     function checkInterlaceValidity(latestInterval)
     {
+        if (util.isUndefined(interval.start))
+        {
+            interval.start = moment(latestInterval.end).add(1, 'days').format('YYYY-MM-DD');
+        }
+
+        var end = moment(latestInterval.end).startOf('day');
+
+        var nextStart = moment(interval.start).startOf('day');
+
+        var delta = nextStart.diff(end, 'days', true);
+
+        if (delta < 1)
+        {
+            var message = 'Interval should not interlace!';
+            error({ reason: 'params', message: message });
+            return;
+        }
+
         success({ message: 'createInterval', latestInterval: latestInterval, newInterval: interval });
     }
 }
