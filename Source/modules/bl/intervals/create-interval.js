@@ -4,6 +4,7 @@
 var util = require('util');
 var moment = require('moment');
 var getLatestInterval = require('./get-latest');
+var dal = require('../../dal/dal');
 
 module.exports = createInterval;
 
@@ -27,13 +28,8 @@ function createInterval(interval, success, error)
         }
 
         var end = moment(latestInterval.end).startOf('day');
-        console.log('End: %s', end.format('YYYY-MM-DD'));
-
         var nextStart = moment(interval.start).startOf('day');
-        console.log('Start: %s', nextStart.format('YYYY-MM-DD'));
-
         var delta = nextStart.diff(end, 'days', true);
-        console.log('Delta: %d', delta);
 
         if (delta < 1)
         {
@@ -42,7 +38,28 @@ function createInterval(interval, success, error)
             return;
         }
 
-        success({ message: 'createInterval', latestInterval: latestInterval, newInterval: interval });
+        saveInterval();
+    }
+
+    function saveInterval()
+    {
+        interval.start = moment(interval.start).valueOf();
+        interval.end = moment(interval.end).valueOf();
+
+        dal.intervals.create(interval, done);
+    }
+
+    function done(err, intervalId)
+    {
+        if (err)
+        {
+            error(err);
+            return;
+        }
+
+        interval.id = intervalId;
+
+        success({ message: 'createInterval', newInterval: interval });
     }
 }
 

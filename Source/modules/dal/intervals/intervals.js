@@ -10,4 +10,6 @@ intervals.getLatest = require('./get-latest');
 
 intervals.getById = require('./get-by-id');
 
+intervals.create = require('./create');
+
 module.exports = intervals;
