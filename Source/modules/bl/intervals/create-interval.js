@@ -49,7 +49,7 @@ function createInterval(interval, success, error)
         dal.intervals.create(interval, done);
     }
 
-    function done(err, intervalId)
+    function done(err)
     {
         if (err)
         {
@@ -57,7 +57,7 @@ function createInterval(interval, success, error)
             return;
         }
 
-        interval.id = intervalId;
+        interval.id = done.lastID;
 
         success({ message: 'createInterval', newInterval: interval });
     }

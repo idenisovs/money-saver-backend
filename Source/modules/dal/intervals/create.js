@@ -16,13 +16,8 @@ function createInterval(interval, callback)
 
     function done(err)
     {
-        if (err)
-        {
-            callback(err, null);
-        }
-        else
-        {
-            callback(err, this.lastID);
-        }
+        callback.lastID = this.lastID;
+
+        callback(err);
     }
 }
