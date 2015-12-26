@@ -34,7 +34,7 @@ function createIntervalTests()
 
 function getLatestInterval(done)
 {
-    var options = { url: host + '/latest' };
+    var options = { url: host + '/latest', json: true };
 
     request.get(options, function(err, req, body) {
         latestInterval = body;
@@ -66,6 +66,11 @@ function createIntervalWoutStart(done)
 
 function createIntervalWithStart(done)
 {
+    var end = moment(latestInterval.end);
+
+    interval.start = end.add(1, 'days').format('YYYY-MM-DD');
+    interval.end = end.add(15, 'days').format('YYYY-MM-DD');
+
     var options = { url: host, body: interval };
 
     request.post(options, function(err, res, body) {

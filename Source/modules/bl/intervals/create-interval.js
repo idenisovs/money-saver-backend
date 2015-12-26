@@ -27,14 +27,17 @@ function createInterval(interval, success, error)
         }
 
         var end = moment(latestInterval.end).startOf('day');
+        console.log('End: %s', end.format('YYYY-MM-DD'));
 
         var nextStart = moment(interval.start).startOf('day');
+        console.log('Start: %s', nextStart.format('YYYY-MM-DD'));
 
         var delta = nextStart.diff(end, 'days', true);
+        console.log('Delta: %d', delta);
 
         if (delta < 1)
         {
-            var message = 'Interval should not interlace!';
+            var message = 'Intervals should not interlace!';
             error({ reason: 'params', message: message });
             return;
         }
