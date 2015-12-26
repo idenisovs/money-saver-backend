@@ -63,10 +63,21 @@ function createIntervalWoutStart(done)
     function validate(err, res, body)
     {
         assert.isNull(err);
-        assert.notEqual(res.statusCode, 404);
-        assert.equal(body.message, 'createInterval');
+        assert.equal(res.statusCode, 200);
 
-        options = { url: host + '/' + body.newInterval.id };
+        assert.property(body, 'id');
+        assert.isNumber(body.id);
+
+        assert.property(body, 'start');
+        assert.isNumber(body.start);
+
+        assert.property(body, 'end');
+        assert.isNumber(body.end);
+
+        assert.property(body, 'sum');
+        assert.isNumber(body.sum);
+
+        options = { url: host + '/' + body.id };
 
         request.del(options, complete);
     }
@@ -94,10 +105,21 @@ function createIntervalWithStart(done)
     function validate(err, res, body)
     {
         assert.isNull(err);
-        assert.notEqual(res.statusCode, 404);
-        assert.equal(body.message, 'createInterval');
+        assert.equal(res.statusCode, 200);
 
-        options = { url: host + '/' + body.newInterval.id };
+        assert.property(body, 'id');
+        assert.isNumber(body.id);
+
+        assert.property(body, 'start');
+        assert.isNumber(body.start);
+
+        assert.property(body, 'end');
+        assert.isNumber(body.end);
+
+        assert.property(body, 'sum');
+        assert.isNumber(body.sum);
+
+        options = { url: host + '/' + body.id };
 
         request.del(options, complete);
     }

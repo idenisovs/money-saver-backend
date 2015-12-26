@@ -61,10 +61,9 @@ function deleteInterval(done)
         assert.isNull(err);
         assert.equal(res.statusCode, 200);
 
-        options = { url: host + '/' + body.newInterval.id };
+        options = { url: host + '/' + body.id };
 
         request.del(options, runChecks);
-
     }
 
     function runChecks(err, res, body)

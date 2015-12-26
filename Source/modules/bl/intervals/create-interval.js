@@ -59,7 +59,7 @@ function createInterval(interval, success, error)
 
         interval.id = done.lastID;
 
-        success({ message: 'createInterval', newInterval: interval });
+        success(interval);
     }
 }
 
