@@ -110,6 +110,15 @@ function deleteInterval(req, res)
 
     function error(err)
     {
-        res.status(states.InternalError).json(err);
+        if (err.reason === 'param')
+        {
+            res.status(states.NotFound);
+        }
+        else
+        {
+            res.status(states.InternalError);
+        }
+
+        res.json(err);
     }
 }

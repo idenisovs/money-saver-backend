@@ -12,5 +12,12 @@ function deleteInterval(id, callback)
 {
     var params = { $id: id };
 
-    db.run(sql, params, callback);
+    db.run(sql, params, done);
+
+    function done(err)
+    {
+        callback.lastID = this.changes > 0 ? this.lastID : null;
+
+        callback(err);
+    }
 }

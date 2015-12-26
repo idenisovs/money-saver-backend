@@ -80,7 +80,7 @@ function deleteUnexisting(done)
 
     request.del(options, function(err, res, body) {
         assert.isNull(err);
-        assert.equal(res.statusCode, 200);
+        assert.equal(res.statusCode, 404);
         done();
     });
 }
