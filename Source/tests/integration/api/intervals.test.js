@@ -13,8 +13,8 @@ function intervalsRestTests()
 {
     before(setRequestDefaults);
 
-    describe('getIntervalsAvailable', require('./getIntervals'));
-    describe('createInterval', require('./createInterval'));
+    describe('getIntervalsAvailable', require('./get-intervals'));
+    describe('createInterval', require('./create-interval'));
     describe('deleteInterval', require('./delete-interval'));
 
     it('Get latest interval', getLatestInterval);
