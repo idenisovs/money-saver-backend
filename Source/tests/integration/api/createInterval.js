@@ -49,19 +49,35 @@ function setRequestDefaults()
 
 function setIntervalFields()
 {
-    interval = { end: '2016-01-01', sum: 220.99 };
+    var end = moment(latestInterval.end).add(16, 'days').format('YYYY-MM-DD');
+
+    interval = { end: end, sum: 543.21 };
 }
 
 function createIntervalWoutStart(done)
 {
     var options = { url: host, body: interval };
 
-    request.post(options, function(err, res, body) {
+    request.post(options, validate);
+
+    function validate(err, res, body)
+    {
         assert.isNull(err);
         assert.notEqual(res.statusCode, 404);
         assert.equal(body.message, 'createInterval');
+
+        options = { url: host + '/' + body.newInterval.id };
+
+        request.del(options, complete);
+    }
+
+    function complete(err, res, body)
+    {
+        assert.isNull(err);
+        assert.equal(res.statusCode, 200);
+
         done();
-    });
+    }
 }
 
 function createIntervalWithStart(done)
@@ -73,12 +89,25 @@ function createIntervalWithStart(done)
 
     var options = { url: host, body: interval };
 
-    request.post(options, function(err, res, body) {
+    request.post(options, validate);
+
+    function validate(err, res, body)
+    {
         assert.isNull(err);
         assert.notEqual(res.statusCode, 404);
         assert.equal(body.message, 'createInterval');
+
+        options = { url: host + '/' + body.newInterval.id };
+
+        request.del(options, complete);
+    }
+
+    function complete(err, res, body)
+    {
+        assert.isNull(err);
+        assert.equal(res.statusCode, 200);
         done();
-    });
+    }
 }
 
 function sendingWithoutBody(done)
@@ -131,9 +160,9 @@ function twoIntervalsDeltaIsFuckingSmall(done)
 {
     var options = { url: host + '/latest' };
 
-    request.get(options, runTest);
+    request.get(options, validate);
 
-    function runTest(err, res, latestInterval)
+    function validate(err, res, latestInterval)
     {
         assert.equal(res.statusCode, 200);
         interval.start = latestInterval.end;

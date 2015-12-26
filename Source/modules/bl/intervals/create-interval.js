@@ -34,7 +34,7 @@ function createInterval(interval, success, error)
         if (delta < 1)
         {
             var message = 'Intervals should not interlace!';
-            error({ reason: 'params', message: message });
+            error({ reason: 'param', message: message });
             return;
         }
 
