@@ -6,4 +6,6 @@ var payments = {};
 
 payments.get = require('./get-payments');
 
+payments.save = require('./save-payments');
+
 module.exports = payments;
