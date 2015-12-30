@@ -21,8 +21,28 @@ function getIntervals(req, res)
 {
     var from = req.query.from ? req.query.from : null;
     var till = req.query.till ? req.query.till : null;
+    var time = req.query.timestamp ? req.query.timestamp : null;
 
-    res.json({ message: 'getIntervalsAvailable', from: from, till: till });
+    console.log(req.query);
+
+    if (time)
+    {
+        bl.intervals.getByTime(time, success, error);
+    }
+    else
+    {
+        res.json({ message: 'getIntervalsAvailable', from: from, till: till });
+    }
+
+    function success(interval)
+    {
+        res.json(interval);
+    }
+
+    function error(err)
+    {
+        res.status(states.InternalError).json({ err: err });
+    }
 }
 
 function getLatestInterval(req, res)

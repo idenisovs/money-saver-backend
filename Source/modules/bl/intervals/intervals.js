@@ -4,6 +4,8 @@ intervals.getLatest = require('./get-latest');
 
 intervals.getById = require('./get-by-id');
 
+intervals.getByTime = require('./get-by-time');
+
 intervals.getLatestSummary = require('./get-latest-summary');
 
 intervals.create = require('./create-interval');
