@@ -6,7 +6,7 @@ var payments = {};
 
 payments.getByIntervalId = require('./get-by-interval-id');
 
-payments.savePayment = require('./save-payment');
+payments.save = require('./save-payment');
 
 payments.getDailySpendings = require('./get-daily-spendings');
 
