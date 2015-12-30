@@ -1,7 +1,7 @@
 var Promise = require('promise');
 var db = require('./../db');
 
-var sql = "INSERT INTO payments (time, date, sum) VALUES ($time, $date, $sum)"
+var sql = "INSERT INTO payments (time, date, sum) VALUES ($time, $date, $sum)";
 
 function savePayment(payment)
 {
@@ -16,7 +16,7 @@ function savePayment(payment)
 		resolve = _resolve;
 		
 		reject = _reject;
-		
+
 		db.run(sql, params, done);
 	}
 	

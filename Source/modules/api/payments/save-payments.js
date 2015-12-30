@@ -10,20 +10,15 @@ module.exports = savePayments;
 
 function savePayments(req, res)
 {
-    var payments = [];
-
-    var q = bl.payments.save(payments);
-
-    Promise.all(q).then(success, error);
+    bl.payments.save(req.body, success, error);
 
     function success()
     {
-        res.json({ message: 'ok' });
+        res.send();
     }
 
-    function error()
+    function error(reason)
     {
-        res.status(http.InternalError).send();
+        res.status(http.InternalError).json(reason);
     }
-
 }
