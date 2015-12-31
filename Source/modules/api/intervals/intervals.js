@@ -123,9 +123,9 @@ function deleteInterval(req, res)
 {
     bl.intervals.delete(req.params.id, success, error);
 
-    function success()
+    function success(result)
     {
-        res.send();
+        res.json(result);
     }
 
     function error(err)

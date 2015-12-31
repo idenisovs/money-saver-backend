@@ -8,7 +8,40 @@ module.exports = deleteInterval;
 
 function deleteInterval(id, success, error)
 {
-    dal.intervals.delete(id, done);
+    var result = { intervalsRemoved: 0, paymentsRemoved: 0 };
+
+    dal.intervals.getById(id, intervalRequestDone);
+
+    function intervalRequestDone(err, interval)
+    {
+        if (err)
+        {
+            error(err);
+            return;
+        }
+
+        if (util.isUndefined(interval))
+        {
+            var message = util.format('There is no Interval with such id: %d!', id);
+            error({ reason: 'param', message:  message });
+            return;
+        }
+
+        dal.payments.deleteByInterval(interval, paymentsRemovalDone);
+    }
+
+    function paymentsRemovalDone(err, removed)
+    {
+        if (err)
+        {
+            error(err);
+            return;
+        }
+
+        result.paymentsRemoved = removed;
+
+        dal.intervals.delete(id, done);
+    }
 
     function done(err)
     {
@@ -18,13 +51,8 @@ function deleteInterval(id, success, error)
             return;
         }
 
-        if (done.lastID === null)
-        {
-            var message = 'There is no record with such id: ' + id;
-            error({ reason: 'param', message:  message });
-            return;
-        }
+        result.intervalsRemoved = 1;
 
-        success();
+        success(result);
     }
 }
