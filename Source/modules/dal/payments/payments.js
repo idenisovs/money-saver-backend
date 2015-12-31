@@ -10,4 +10,8 @@ payments.save = require('./save-payment');
 
 payments.getDailySpendings = require('./get-daily-spendings');
 
+payments.deleteByInterval = require('./delete-by-interval');
+
+payments.deleteById = require('./delete-by-id');
+
 module.exports = payments;

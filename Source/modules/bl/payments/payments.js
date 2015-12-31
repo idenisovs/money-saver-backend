@@ -8,4 +8,6 @@ payments.get = require('./get-payments');
 
 payments.save = require('./save-payments');
 
+payments.delete = require('./delete');
+
 module.exports = payments;
