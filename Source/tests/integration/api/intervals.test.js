@@ -15,9 +15,9 @@ function intervalsRestTests()
     before(setRequestDefaults);
     before(createInterval);
 
-    describe('Get intervals', require('./get-intervals'));
-    describe('Create intervals', require('./create-interval'));
-    describe('Delete intervals', require('./delete-interval'));
+    describe('Get intervals', require('./intervals/get-intervals'));
+    describe('Create intervals', require('./intervals/create-interval'));
+    describe('Delete intervals', require('./intervals/delete-interval'));
 
     after(removeInterval);
 }

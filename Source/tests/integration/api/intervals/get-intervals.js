@@ -16,7 +16,7 @@ function getIntervalsTests()
 
 module.exports = getIntervalsTests;
 
-var host = require('./host.json').host.intervals;
+var host = require('./../host.json').host.intervals;
 
 function getLatestInterval(done)
 {

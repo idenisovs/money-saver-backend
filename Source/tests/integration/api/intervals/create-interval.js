@@ -7,7 +7,7 @@ var request = require('request');
 var chai = require('chai');
 var assert = chai.assert;
 
-var host = require('./host.json').host.intervals;
+var host = require('./../host.json').host.intervals;
 
 var interval;
 
