@@ -4,9 +4,15 @@
  *
  * Created by Ga5Xz2 on 13.09.2015..
  */
-
+var util = require('util');
+var argv = require('../../argv');
 var config = require('../../config.json');
 var SQLite = require('sqlite3').Database;
+
+if (!util.isUndefined(argv.database))
+{
+    config.db = argv.database;
+}
 
 console.log('Connecting to %s...', config.db);
 
