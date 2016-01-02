@@ -1,46 +1,68 @@
 /**
  * Created by Ga5Xz2 on 11.12.2015..
  */
-var request = require('request');
+var util = require('util');
+var request = require('request').defaults({ json: true });
 var chai = require('chai');
 var assert = chai.assert;
-
-var host = 'http://localhost:9001/api/payments/';
+var host = require('./host.json').host;
 
 describe('Payments REST API', paymentsRestTests);
 
 function paymentsRestTests()
 {
-    before(setRequestDefaults);
-    it('Get payments', getPayments);
-    //it('Get payment by date', getPaymentsByDate);
+    before(createInterval);
+
+    describe('Get Payments', require('./payments/get-payments'));
+
+    after(removeInterval);
 }
 
-function setRequestDefaults()
+function createInterval(done)
 {
-    request = request.defaults({json: true});
-}
+    var interval = {
+        start: '2015-12-01',
+        end: '2015-12-31',
+        sum: 123.45
+    };
 
-function getPayments(done)
-{
-    request(host, function(err, res, body) {
-        assert.isNull(err);
-        assert.notEqual(res.statusCode, 404);
-        assert.equal(body.message, 'getPayments');
+    var options = {
+        url: host.intervals,
+        body: interval
+    };
+
+    request.post(options, function(err, res, body) {
+        defaultValidation(err, res, body);
         done();
     });
 }
 
-function getPaymentsByDate(done)
+function removeInterval(done)
 {
-    var expectedDate = '2015-12-21';
-    var endpoint = host + expectedDate;
+    var endpoint = util.format('%s/latest', host.intervals);
 
-    request(endpoint, function(err, res, body) {
-        assert.isNull(err);
-        assert.notEqual(res.statusCode, 404);
-        assert.equal(body.message, 'getPaymentsByDate');
-        assert.equal(body.date, expectedDate);
+    request.get(endpoint, onLatestReceived);
+
+    function onLatestReceived(err, res, body)
+    {
+        defaultValidation(err, res, body);
+
+        endpoint = util.format('%s/%d', host.intervals, body.id);
+
+        request.del(endpoint, onDeleteDone);
+    }
+
+    function onDeleteDone(err, res, body)
+    {
+        defaultValidation(err, res, body);
         done();
-    });
+    }
 }
+
+function defaultValidation(err, res, body)
+{
+    assert.isNull(err);
+    assert.equal(res.statusCode, 200);
+}
+
+
