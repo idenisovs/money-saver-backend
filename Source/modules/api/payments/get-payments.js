@@ -9,15 +9,11 @@ module.exports = getPayments;
 
 function getPayments(req, res)
 {
-    var result = { message: 'getPayments' };
-
     bl.payments.get(req.query, success, error);
 
     function success(payments)
     {
-        result.payments = payments;
-
-        res.json(result);
+        res.json(payments);
     }
 
     function error(err)

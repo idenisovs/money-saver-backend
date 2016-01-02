@@ -6,9 +6,15 @@ var payments = {};
 
 payments.getByIntervalId = require('./get-by-interval-id');
 
-payments.save = require('./save-payment');
-
 payments.getDailySpendings = require('./get-daily-spendings');
+
+payments.getByDate = require('./get-by-date');
+
+payments.getByDateRange = require('./get-by-date-range');
+
+payments.getById = require('./get-by-id');
+
+payments.save = require('./save-payment');
 
 payments.deleteByInterval = require('./delete-by-interval');
 
