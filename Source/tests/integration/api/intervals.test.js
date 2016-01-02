@@ -15,16 +15,16 @@ function intervalsRestTests()
     before(setRequestDefaults);
     before(createInterval);
 
-    describe('Get Intervals', require('./get-intervals'));
-    //describe('createInterval', require('./create-interval'));
-    //describe('deleteInterval', require('./delete-interval'));
+    describe('Get intervals', require('./get-intervals'));
+    describe('Create intervals', require('./create-interval'));
+    describe('Delete intervals', require('./delete-interval'));
 
     after(removeInterval);
 }
 
 function setRequestDefaults()
 {
-    request = request.defaults({json: true});
+    request = request.defaults({ json: true });
 }
 
 function createInterval(done)
