@@ -59,5 +59,11 @@ function setFields(payment)
         payment.time = moment(payment.date).valueOf();
         return;
     }
+
+    if (!timeUndefined && dateUndefined)
+    {
+        payment.date = moment(payment.time).format('YYYY-MM-DD');
+        return;
+    }
 }
 
