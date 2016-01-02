@@ -16,6 +16,7 @@ var payments = [
     { time: moment('2015-12-03T16:40').valueOf(), sum: 12.0 },
     { time: moment('2015-12-04T18:17').valueOf(), sum: 3.65 },
     { time: moment('2015-12-05T10:01').valueOf(), sum: 7.32 },
+    { time: moment('2015-12-05T23:55').valueOf(), sum: 9.76 },
     { time: moment('2015-12-06T02:55').valueOf(), sum: 6.99 },
     { time: moment('2015-12-07T11:30').valueOf(), sum: 1.01 },
     { time: moment('2015-12-08T12:36').valueOf(), sum: 32.15 },
