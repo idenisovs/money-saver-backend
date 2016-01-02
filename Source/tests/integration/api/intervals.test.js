@@ -4,21 +4,22 @@
 var request = require('request');
 var chai = require('chai');
 var assert = chai.assert;
+var util = require('util');
 
-var host = require('./host.json').host.intervals;
+var host = require('./host.json').host;
 
 describe('Intervals REST API', intervalsRestTests);
 
 function intervalsRestTests()
 {
     before(setRequestDefaults);
+    before(createInterval);
 
-    describe('getIntervalsAvailable', require('./get-intervals'));
-    describe('createInterval', require('./create-interval'));
-    describe('deleteInterval', require('./delete-interval'));
+    describe('Get Intervals', require('./get-intervals'));
+    //describe('createInterval', require('./create-interval'));
+    //describe('deleteInterval', require('./delete-interval'));
 
-    it('Get latest interval', getLatestInterval);
-    it('Get interval by id', getIntervalById);
+    after(removeInterval);
 }
 
 function setRequestDefaults()
@@ -26,37 +27,45 @@ function setRequestDefaults()
     request = request.defaults({json: true});
 }
 
-function getLatestInterval(done)
+function createInterval(done)
 {
-    var endpoint = host + '/latest';
+    var interval = {
+        start: '2015-12-01',
+        end: '2015-12-31',
+        sum: 123.45
+    };
 
-    request.get(endpoint, function(err, res, body) {
-        assert.isNull(err);
-        assert.notEqual(res.statusCode, 404);
+    var options = {
+        url: host.intervals,
+        body: interval
+    };
 
-        assert.property(body, 'id');
-        assert.property(body, 'start');
-        assert.property(body, 'end');
-        assert.property(body, 'sum');
-
-        assert.isAbove(body.start, 0);
-        assert.isAbove(body.end, body.start);
-
+    request.post(options, function() {
         done();
     });
 }
 
-function getIntervalById(done)
+function removeInterval(done)
 {
-    var expectedId = 1;
-    var endpoint = host + '/' + expectedId;
+    var endpoint = util.format('%s/latest', host.intervals);
 
-    request.get(endpoint, function(err, res, body) {
-        assert.isNull(err);
-        assert.property(body, 'id');
-        assert.property(body, 'start');
-        assert.property(body, 'end');
-        assert.property(body, 'sum');
+    request.get(endpoint, onLatestReceived);
+
+    function onLatestReceived(err, res, body)
+    {
+        endpoint = util.format('%s/%d', host.intervals, body.id);
+
+        request.del(endpoint, onDeleteDone);
+    }
+
+    function onDeleteDone(err, res, body)
+    {
+        if (err)
+        {
+            assert.fail('There is an error occured during interval removal!');
+        }
+
         done();
-    });
+    }
 }
+
