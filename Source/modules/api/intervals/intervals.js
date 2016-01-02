@@ -23,8 +23,6 @@ function getIntervals(req, res)
     var till = req.query.till ? req.query.till : null;
     var time = req.query.timestamp ? req.query.timestamp : null;
 
-    console.log(req.query);
-
     if (time)
     {
         bl.intervals.getByTime(time, success, error);
