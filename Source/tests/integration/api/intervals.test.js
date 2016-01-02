@@ -1,18 +1,16 @@
 /**
  * Created by Ga5Xz2 on 12.12.2015..
  */
-var request = require('request');
+var request = require('request').defaults({ json: true });
 var chai = require('chai');
 var assert = chai.assert;
 var util = require('util');
-
 var host = require('./host.json').host;
 
 describe('Intervals REST API', intervalsRestTests);
 
 function intervalsRestTests()
 {
-    before(setRequestDefaults);
     before(createInterval);
 
     describe('Get intervals', require('./intervals/get-intervals'));
@@ -22,10 +20,6 @@ function intervalsRestTests()
     after(removeInterval);
 }
 
-function setRequestDefaults()
-{
-    request = request.defaults({ json: true });
-}
 
 function createInterval(done)
 {
