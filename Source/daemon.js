@@ -1,6 +1,7 @@
+var util = require('util');
 var express = require('express');
 var bodyParser = require('body-parser');
-
+var argv = require('./argv');
 var config = require('./config.json');
 
 var app = express();
@@ -14,6 +15,11 @@ app.use(static);
 app.use(bodyParser.json());
 
 app.use('/api', require('./modules/api/api.js'));
+
+if (!util.isUndefined(argv.port) && util.isNumber(argv.port))
+{
+    config.port = argv.port;
+}
 
 app.listen(config.port);
 
