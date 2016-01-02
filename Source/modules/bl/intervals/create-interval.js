@@ -22,6 +22,12 @@ function createInterval(interval, success, error)
 
     function checkInterlaceValidity(latestInterval)
     {
+        if (util.isUndefined(latestInterval))
+        {
+            saveInterval();
+            return;
+        }
+
         if (util.isUndefined(interval.start))
         {
             interval.start = moment(latestInterval.end).add(1, 'days').format('YYYY-MM-DD');
@@ -95,7 +101,6 @@ function checkFields(interval)
     {
         throw new Error('Sum is not set! Please, set `sum` field properly!');
     }
-
 
     if (isUndefined(interval.start))
     {
