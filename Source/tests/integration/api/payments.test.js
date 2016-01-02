@@ -13,6 +13,8 @@ function paymentsRestTests()
 {
     before(helper.createInterval);
 
+    before(helper.createPayments);
+
     describe('Get Payments', require('./payments/get-payments'));
 
     after(helper.deleteInterval);
