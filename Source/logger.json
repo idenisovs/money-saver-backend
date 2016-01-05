@@ -1,0 +1,10 @@
+{
+	"appenders":
+	[
+		{ 
+			"type": "logLevelFilter", 
+			"level": "WARN", 
+			"appender": { "type": "file", "filename": "daemon.log", "maxLogSize": 20480 }
+		}
+	]
+}
