@@ -7,6 +7,7 @@
 var util = require('util');
 var argv = require('../../argv');
 var config = require('../../config.json');
+var log = require('../support/logger').get('db');
 var SQLite = require('sqlite3').Database;
 
 if (!util.isUndefined(argv.database))
@@ -14,13 +15,13 @@ if (!util.isUndefined(argv.database))
     config.db = argv.database;
 }
 
-console.log('Connecting to %s...', config.db);
+log.info('Connecting to %s...', config.db);
 
 var db = new SQLite(config.db);
 
 module.exports = db;
 
-console.log('%s connected!\n', config.db);
+log.info('%s connected!', config.db);
 
 db.run('PRAGMA foreign_keys = ON', done);
 
@@ -31,21 +32,24 @@ function done(error)
 {
     if (error)
     {
-        console.log(error);
+        log.error(error);
         return;
     }
 
-    console.log('Foreign key support shall be enabled now!\n');
+    log.info('Foreign key support shall be enabled now!\n');
 }
 
 function exitHandler()
 {
     removeExitListener();
 
-    console.log('Closing database...');
+    log.info('Closing database...');
 
     db.close(function(err) {
-        if (!err) { console.log('Done!'); }
+        if (!err) 
+		{ 
+			log.info('Done!'); 
+		}
 
         process.exit(0);
     });
