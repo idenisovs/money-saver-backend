@@ -5,9 +5,12 @@ var util = require('util');
 var request = require('request').defaults({json: true});
 var assert = require('chai').assert;
 var host = require('../host.json').host;
+var helper = require('../helper/helper');
 
 function getPaymentsTests()
 {
+    before(helper.createPayments);
+
     it('Request wout params', getPaymentsWoutParams);
     it('Get Payment by Id', getPaymentById);
     it('Get Payments by Date', getPaymentsByDate);

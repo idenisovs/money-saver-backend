@@ -9,8 +9,6 @@ function paymentsRestTests()
 {
     before(helper.createInterval);
 
-    before(helper.createPayments);
-
     describe('Get Payments', require('./payments/get-payments'));
     describe('Save Payments', require('./payments/save-payments'));
     describe('Delete Payments', require('./payments/delete-payment'));
