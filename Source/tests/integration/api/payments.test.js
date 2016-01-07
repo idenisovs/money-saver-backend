@@ -1,10 +1,6 @@
 /**
  * Created by Ga5Xz2 on 11.12.2015..
  */
-var util = require('util');
-var request = require('request').defaults({ json: true });
-var assert = require('chai').assert;
-var host = require('./host.json').host;
 var helper = require('./helper/helper');
 
 describe('Payments REST API', paymentsRestTests);
@@ -16,6 +12,8 @@ function paymentsRestTests()
     before(helper.createPayments);
 
     describe('Get Payments', require('./payments/get-payments'));
+    describe('Save Payments', require('./payments/save-payments'));
+    describe('Delete Payments', require('./payments/delete-payment'));
 
     after(helper.deleteInterval);
 }
