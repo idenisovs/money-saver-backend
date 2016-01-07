@@ -3,7 +3,7 @@
 	[
 		{ 
 			"type": "logLevelFilter", 
-			"level": "WARN", 
+			"level": "INFO",
 			"appender": { "type": "file", "filename": "daemon.log", "maxLogSize": 20480 }
 		}
 	]
