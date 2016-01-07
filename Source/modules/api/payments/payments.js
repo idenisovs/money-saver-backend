@@ -8,9 +8,9 @@ router.get('/', require('./get-payments'));
 
 router.post('/', require('./save-payments'));
 
-router.delete('/', require('./delete'));
+router.delete('/', require('./delete-payment'));
 
-router.delete('/:id', require('./delete'));
+router.delete('/:id', require('./delete-payment'));
 
 module.exports = router;
 
