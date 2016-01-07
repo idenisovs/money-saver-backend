@@ -12,6 +12,11 @@ function savePayments(payments, success, error)
 {
     var q = [];
 
+    if (!util.isArray(payments))
+    {
+        payments = [ payments ];
+    }
+
     try
     {
         payments.forEach(savePayment);
@@ -35,7 +40,7 @@ function savePayments(payments, success, error)
 
 function validate(payment)
 {
-    if (util.isUndefined(payment.sum) || !util.isNumber(payment.sum))
+    if (!util.isNumber(payment.sum))
     {
         var message = 'Sum field shall be properly defined in Payment object!';
         throw new Error(message);
