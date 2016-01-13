@@ -15,6 +15,8 @@ function getPaymentsTests()
     it('Get Payment by Id', getPaymentById);
     it('Get Payments by Date', getPaymentsByDate);
     it('Get Payments by From and Till params', getPaymentsByDateRange);
+	
+	after(helper.deletePayments);
 }
 
 module.exports = getPaymentsTests;
