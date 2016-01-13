@@ -10,4 +10,6 @@ helper.deleteInterval = require('./delete-interval');
 
 helper.createPayments = require('./create-payments');
 
+helper.deletePayments = require('./delete-payments');
+
 module.exports = helper;
