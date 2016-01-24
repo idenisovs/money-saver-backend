@@ -1,5 +1,3 @@
-var log = require('../support/logger').get('api');
-
 var router = require('express').Router();
 
 router.use('/payments', require('./payments/payments'));
@@ -10,4 +8,4 @@ router.use('/authentication', require('./authentication/authentication'));
 
 module.exports = router;
 
-log.info('API is up!');
+require('log4js').getLogger('api').info('API is up!');

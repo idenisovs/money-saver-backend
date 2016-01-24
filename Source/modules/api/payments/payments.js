@@ -1,7 +1,6 @@
 /**
   * Payments REST API endpoint
   */
-var log = require('../../support/logger').get('api');
 var router = require('express').Router();
 
 router.get('/', require('./get-payments'));
@@ -14,4 +13,4 @@ router.delete('/:id', require('./delete-payment'));
 
 module.exports = router;
 
-log.debug('Payments module is up!');
+require('log4js').getLogger('api').debug('Payments module is up!');

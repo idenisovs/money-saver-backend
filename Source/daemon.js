@@ -3,7 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var argv = require('./argv');
 var config = require('./config.json');
-var log = require('./modules/support/logger').get('daemon');
+var log = require('./modules/support/logger').getLogger('daemon');
 
 var app = express();
 

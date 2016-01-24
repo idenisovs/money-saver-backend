@@ -7,7 +7,7 @@
 var util = require('util');
 var argv = require('../../argv');
 var config = require('../../config.json');
-var log = require('../support/logger').get('db');
+var log = require('log4js').getLogger('db');
 var SQLite = require('sqlite3').Database;
 
 if (!util.isUndefined(argv.database))

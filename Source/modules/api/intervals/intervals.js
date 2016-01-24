@@ -3,7 +3,6 @@
   * Sample call: http://localhost:9001/api/intervals
   */
 
-var log = require('../../support/logger').get('api');
 var router = require('express').Router();
 
 router.get('/', require('./get-intervals'));
@@ -16,4 +15,4 @@ router.get('/:id/payments', require('./get-payments-by-interval'));
 
 module.exports = router;
 
-log.debug('Intervals module is up!');
+require('log4js').getLogger('api').debug('Intervals module is up!');

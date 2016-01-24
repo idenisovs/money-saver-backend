@@ -21,15 +21,4 @@ if (argv.v > 1)
 	log4js.addAppender(traceAppender);
 }
 
-
-function getLogger(category)
-{
-	if (!category)
-	{
-		category = 'default';
-	}
-	
-	return log4js.getLogger(category);
-}
-
-module.exports = { get: getLogger };
+module.exports = log4js;
