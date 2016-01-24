@@ -2,7 +2,7 @@
  * Created by Ga5Xz2 on 28.12.2015..
  */
 
-var http = require('../http.states');
+var http = require('../http.states.js');
 var bl = require('../../bl/bl');
 
 module.exports = getPayments;

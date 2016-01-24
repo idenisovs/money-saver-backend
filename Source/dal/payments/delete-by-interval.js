@@ -2,7 +2,7 @@
  * Created by Ga5Xz2 on 31.12.2015..
  */
 
-var db = require('../../dal/db');
+var db = require('../db');
 
 var sql = 'DELETE FROM payments WHERE time BETWEEN $start AND $end';
 

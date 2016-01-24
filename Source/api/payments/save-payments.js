@@ -2,9 +2,8 @@
  * Created by Ga5Xz2 on 28.12.2015..
  */
 
-var Promise = require('promise');
 var bl = require('../../bl/bl');
-var http = require('../http.states');
+var http = require('../http.states.js');
 
 module.exports = savePayments;
 

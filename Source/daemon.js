@@ -1,9 +1,9 @@
 var util = require('util');
 var express = require('express');
 var bodyParser = require('body-parser');
-var argv = require('./modules/support/argv');
+var argv = require('./support/argv');
 var config = require('./config.json');
-var log = require('./modules/support/logger').getLogger('daemon');
+var log = require('./support/logger').getLogger('daemon');
 
 var app = express();
 
@@ -15,7 +15,7 @@ app.use(static);
 
 app.use(bodyParser.json());
 
-app.use('/api', require('./modules/api/api.js'));
+app.use('/api', require('./api/api.js'));
 
 if (util.isNumber(argv.port))
 {

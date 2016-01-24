@@ -9,7 +9,7 @@ var sinon = require('sinon');
 var proxyquire = require('proxyquire').noCallThru();
 
 // Dependencies
-var db = require('../../../../modules/dal/db');
+var db = require('../../.././db');
 
 // Testable module
 var savePayment;
