@@ -4,7 +4,7 @@
 var util = require('util');
 var log = require('log4js').getLogger('delete-payment');
 var bl = require('../../bl/bl');
-var http = require('../http.states.js');
+var http = require('http-status');
 
 function deletePayments(req, res)
 {
@@ -22,7 +22,7 @@ function deletePayments(req, res)
     function error(err)
     {
         log.error(err);
-        res.status(http.InternalError).json(err);
+        res.status(http.INTERNAL_SERVER_ERROR).json(err);
     }
 }
 

@@ -3,7 +3,7 @@
  */
 
 var bl = require('../../bl/bl');
-var http = require('../http.states.js');
+var http = require('http-status');
 
 module.exports = savePayments;
 
@@ -18,6 +18,6 @@ function savePayments(req, res)
 
     function error(reason)
     {
-        res.status(http.InternalError).json(reason);
+        res.status(http.INTERNAL_SERVER_ERROR).json(reason);
     }
 }

@@ -2,7 +2,7 @@
  * Created by Ga5Xz2 on 28.12.2015..
  */
 
-var http = require('../http.states.js');
+var http = require('http-status');
 var bl = require('../../bl/bl');
 
 module.exports = getPayments;
@@ -18,7 +18,7 @@ function getPayments(req, res)
 
     function error(err)
     {
-        res.status(http.InternalError).json(err);
+        res.status(http.INTERNAL_SERVER_ERROR).json(err);
     }
 
 }

@@ -3,7 +3,7 @@
   * Sample call: http://localhost:9001/api/intervals
   */
 
-var states = require('../http.states.js');
+var states = require('http-status');
 var bl = require('../../bl/bl');
 
 function deleteInterval(req, res)
@@ -19,11 +19,11 @@ function deleteInterval(req, res)
     {
         if (err.reason === 'param')
         {
-            res.status(states.NotFound);
+            res.status(states.NOT_FOUND);
         }
         else
         {
-            res.status(states.InternalError);
+            res.status(states.INTERNAL_SERVER_ERROR);
         }
 
         res.json(err);

@@ -3,7 +3,7 @@
   * Sample call: http://localhost:9001/api/intervals
   */
 
-var states = require('../http.states.js');
+var states = require('http-status');
 var bl = require('../../bl/bl');
 
 function createInterval(req, res)
@@ -19,11 +19,11 @@ function createInterval(req, res)
     {
         if (err.reason === 'param')
         {
-            res.status(states.BadRequest);
+            res.status(states.BAD_REQUEST);
         }
         else
         {
-            res.status(states.InternalError);
+            res.status(states.INTERNAL_SERVER_ERROR);
         }
 
         res.json(err);
