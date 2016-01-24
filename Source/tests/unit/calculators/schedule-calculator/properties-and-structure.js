@@ -7,7 +7,7 @@ var assert = chai.assert;
 var prepareData = require('./prepare-data');
 
 // Testable module
-var calculateSchedule = require('../../../../modules/calculators/calculate-schedule');
+var calculateSchedule = require('../../../../modules/bl/intervals/calc/calculate-schedule');
 var summary;
 var schedule;
 

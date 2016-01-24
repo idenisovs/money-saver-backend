@@ -7,7 +7,7 @@ var assert = chai.assert;
 
 var summary, schedule;
 
-var calculatePrediction = require('../../../../modules/calculators/calculate-prediction');
+var calculatePrediction = require('../../../../modules/bl/intervals/calc/calculate-prediction');
 
 describe('Prediction Calculator', predictionCalculatorTests);
 

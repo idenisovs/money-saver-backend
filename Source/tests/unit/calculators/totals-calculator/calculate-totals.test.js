@@ -7,7 +7,7 @@ var assert = chai.assert;
 
 var totals;
 
-var calculateTotals = require('../../../../modules/calculators/calculate-totals');
+var calculateTotals = require('../../../../modules/bl/intervals/calc/calculate-totals');
 
 describe('Totals Calculator', totalsCalculatorTests);
 

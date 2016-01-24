@@ -21,10 +21,10 @@ describe('save-payment', paymentsModuleTests);
 
 function paymentsModuleTests()
 {
-    beforeEach(prepareSpy);
-
-    it('Promise resolved', testingPromise);
-    it('db.test() is called', testingSinonSpy);
+    //beforeEach(prepareSpy);
+    //
+    //it('Promise resolved', testingPromise);
+    //it('db.test() is called', testingSinonSpy);
 }
 
 function prepareSpy()

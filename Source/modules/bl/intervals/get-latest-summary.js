@@ -3,9 +3,9 @@
  */
 
 var dal = require('../../dal/dal');
-var calculateSchedule = require('../../calculators/calculate-schedule');
-var calculatePrediction = require('../../calculators/calculate-prediction');
-var calculateTotals = require('../../calculators/calculate-totals');
+var calculateSchedule = require('./calc/calculate-schedule');
+var calculatePrediction = require('./calc/calculate-prediction');
+var calculateTotals = require('./calc/calculate-totals');
 
 module.exports = getLatestIntervalSummary;
 
