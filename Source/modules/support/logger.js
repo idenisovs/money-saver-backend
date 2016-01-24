@@ -1,4 +1,4 @@
-var argv = require('../../argv.js');
+var argv = require('./argv');
 var log4js = require('log4js');
 
 log4js.configure('logger.json', {});

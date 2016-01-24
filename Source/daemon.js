@@ -1,7 +1,7 @@
 var util = require('util');
 var express = require('express');
 var bodyParser = require('body-parser');
-var argv = require('./argv');
+var argv = require('./modules/support/argv');
 var config = require('./config.json');
 var log = require('./modules/support/logger').getLogger('daemon');
 
