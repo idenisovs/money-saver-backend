@@ -6,12 +6,15 @@ var request = require('request').defaults({json: true});
 var chai = require('chai');
 var assert = chai.assert;
 
+var helper = require('../helper/helper');
+
 function getIntervalsTests()
 {
     it('Get latest interval', getLatestInterval);
     it('Get interval by ID', getIntervalById);
     it('getIntervals endpoint available', getIntervalsAvailable);
     it('Setting From and Till query params', getIntervalsFromAndTill);
+	it('Get latest interval if no intervals in base', getUndefinedInterval);
 }
 
 module.exports = getIntervalsTests;
@@ -89,4 +92,35 @@ function getIntervalsFromAndTill()
         assert.equal(body.from, expected.from);
         assert.equal(body.till, expected.till);
     });
+}
+
+function getUndefinedInterval(done)
+{
+	request.get(host + '/latest', deleteInterval);
+	
+	function deleteInterval(err, res, interval)
+	{
+		assert.isNull(err);
+        assert.notEqual(res.statusCode, 404);
+		assert.isNumber(interval.id)
+			
+		request.del(host + '/' + interval.id, tryToGetLatest);
+	}
+	
+	function tryToGetLatest(err, res, body)
+	{
+		assert.isNull(err);
+        assert.notEqual(res.statusCode, 404);
+		assert.equal(body.intervalsRemoved, 1);
+		
+		request.get(host + '/latest', validate);
+	}
+	
+	function validate(err, res, body)
+	{
+		assert.isNull(err);
+        assert.notEqual(res.statusCode, 404);
+		
+		helper.createInterval(done);
+	}
 }
