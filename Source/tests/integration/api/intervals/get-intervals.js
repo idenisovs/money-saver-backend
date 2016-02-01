@@ -3,6 +3,7 @@
  */
 var util = require('util');
 var request = require('request').defaults({json: true});
+var moment = require('moment');
 var chai = require('chai');
 var assert = chai.assert;
 
@@ -70,28 +71,44 @@ function getIntervalById(done)
 
 function getIntervalsAvailable(done)
 {
-    request.get(host, function(err, res, body) {
-        assert.isNull(err);
-        assert.equal(body.message, 'getIntervalsAvailable');
+    request.get(host, validate);
+	
+	function validate(err, res, body)
+	{
+		assert.isNull(err);
+        assert.equal(res.statusCode, 200);
         done();
-    });
+	}
 }
 
-function getIntervalsFromAndTill()
+function getIntervalsFromAndTill(done)
 {
-    var expected = {
+    var expected = 
+	{
         from: '2001-01-01',
         till: '2016-01-01'
     };
 
     var endpoint = util.format('%s/?from=%s&till=%s', host, expected.from, expected.till);
 
-    request.get(endpoint, function(err, res, body) {
-        assert.isNull(err);
+    request.get(endpoint, validate);
+	
+	function validate(err, res, intervals)
+	{
+		assert.isNull(err);
         assert.notEqual(res.statusCode, 404);
-        assert.equal(body.from, expected.from);
-        assert.equal(body.till, expected.till);
-    });
+        
+		assert.isArray(intervals);
+		
+		var interval = intervals[0];
+		
+		assert.property(interval, 'id');
+		assert.property(interval, 'start');
+		assert.property(interval, 'end');
+		assert.property(interval, 'sum');
+		
+		done();
+	}
 }
 
 function getUndefinedInterval(done)

@@ -12,6 +12,8 @@ intervals.getById = require('./get-by-id');
 
 intervals.getByTime = require('./get-by-time');
 
+intervals.getByBoundary = require('./get-by-boundary');
+
 intervals.create = require('./create');
 
 intervals.delete = require('./delete');
