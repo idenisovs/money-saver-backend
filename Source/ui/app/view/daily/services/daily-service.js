@@ -5,9 +5,13 @@
  */
 var app = angular.module('MoneySaverApp');
 
-app.factory('DailyDataFactory', function(){
+app.factory('DailyDataFactory', dailyDataFactory);
 
-    function getDailyData()
+dailyDataFactory.$inject = [ '$resource' ];
+
+function dailyDataFactory($resource)
+{
+	function getDailyData()
     {
         var o = [
             { id: 1, price: 286.32, spent: 71.48 },
@@ -17,9 +21,6 @@ app.factory('DailyDataFactory', function(){
 
         return o;
     }
-
-    return {
-        getDailyData: getDailyData
-    };
-
-});
+	
+    return { getDailyData: getDailyData };
+}

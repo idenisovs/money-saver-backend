@@ -2,7 +2,7 @@ var app = angular.module('MoneySaverApp');
 
 app.controller('DailyCtrl', dailyController);
 
-dailyController.$inject = [ '$scope', '$modal', '$log' ];
+dailyController.$inject = [ '$scope', '$modal', '$log', 'DailyDataFactory' ];
 
 function dailyController($scope, $modal, $log)
 {
