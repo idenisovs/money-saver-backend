@@ -22,6 +22,7 @@ function savePaymentsTests()
     it('Missed Time field', missedTimeTest);
     it('Missed Date and Time fields', missedDateAndTimeTest);
     it('Missed Sum field', missedSumTest);
+	it('Saving Date in incorrect format', invalidDateTest);
 
     afterEach(clearPayments);
 }
@@ -209,6 +210,27 @@ function missedSumTest(done)
         assert.match(body.message, /^Error: Sum field/);
         done();
     }
+}
+
+function invalidDateTest(done)
+{
+	options.body.date += 'T12:12:12';
+
+	request.post(options, getSavedPayment);
+
+	function getSavedPayment(err, res, body)
+	{
+        var endpoint = util.format('%s?from=%s&till=%s', host.payments, '2015-12-13', '2015-12-13');
+
+		request.get(endpoint, validate);
+	}
+
+	function validate(err, res, body)
+	{
+		assert.equal(body.pop().date, '2015-12-13');
+	
+		done();
+	}
 }
 
 function defaultValidation(err, res, body)
