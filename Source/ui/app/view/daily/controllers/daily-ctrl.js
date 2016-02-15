@@ -2,9 +2,9 @@ var app = angular.module('MoneySaverApp');
 
 app.controller('DailyCtrl', dailyController);
 
-dailyController.$inject = [ '$scope', '$modal', '$log', 'DailyDataFactory' ];
+dailyController.$inject = [ '$scope', '$modal', '$log', 'DailyDataFactory', 'usSpinnerService', '$timeout' ];
 
-function dailyController($scope, $modal, $log)
+function dailyController($scope, $modal, $log, dailyData, spinnerService, $timeout)
 {
 	$scope.datePicker = {
 		opened: false,
@@ -20,6 +20,10 @@ function dailyController($scope, $modal, $log)
 	$scope.viewNewIntervalModal = viewNewIntervalModal;
 	$scope.today = today;
 
+	$scope.showSpinner = true;
+	
+	$timeout(function() { $scope.showSpinner = false; }, 3000);
+	
 	today();
 	
 	function today()

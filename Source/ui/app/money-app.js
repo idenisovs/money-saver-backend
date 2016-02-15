@@ -1,1 +1,1 @@
-var app = angular.module('MoneySaverApp', ['ngRoute', 'ngResource', 'ui.bootstrap']);
+var app = angular.module('MoneySaverApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'angularSpinner']);
