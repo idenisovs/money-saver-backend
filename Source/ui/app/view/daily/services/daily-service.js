@@ -11,16 +11,10 @@ dailyDataFactory.$inject = [ '$resource' ];
 
 function dailyDataFactory($resource)
 {
-	function getDailyData()
-    {
-        var o = [
-            { id: 1, price: 286.32, spent: 71.48 },
-            { id: 2, price: 226.17, spent: 13.52 },
-            { id: 3, price: 205.66, spent: 5.12 }
-        ];
-
-        return o;
-    }
+	var api = 
+	{
+		getSummary: $resource('/api/intervals/latest/summary').get
+	};
 	
-    return { getDailyData: getDailyData };
+	return api;
 }

@@ -4,9 +4,10 @@ app.controller('DailyCtrl', dailyController);
 
 dailyController.$inject = [ '$scope', '$modal', '$log', 'DailyDataFactory', 'usSpinnerService', '$timeout' ];
 
-function dailyController($scope, $modal, $log, dailyData, spinnerService, $timeout)
+function dailyController($scope, $modal, $log, dailyDataFactory, spinnerService, $timeout)
 {
-	$scope.datePicker = {
+	$scope.datePicker = 
+	{
 		opened: false,
 		format: 'dd.MM.yyyy.',
 		options: {
@@ -19,12 +20,17 @@ function dailyController($scope, $modal, $log, dailyData, spinnerService, $timeo
 
 	$scope.viewNewIntervalModal = viewNewIntervalModal;
 	$scope.today = today;
-
 	$scope.showSpinner = true;
+	$scope.summary = dailyDataFactory.getSummary(stopSpinner);
 	
-	$timeout(function() { $scope.showSpinner = false; }, 3000);
-	
-	today();
+	function stopSpinner()
+	{
+		$log.info('Summary data received!');
+		
+		$scope.showSpinner = false;
+		
+		today();
+	}
 	
 	function today()
 	{
