@@ -22,16 +22,14 @@ function dailyController($scope, $modal, $log, dailyDataFactory, spinnerService,
 	$scope.viewNewIntervalModal = viewNewIntervalModal;
 	$scope.today = today;
 	$scope.showSpinner = true;
-	$scope.summary = dailyDataFactory.getSummary(stopSpinner);
+	$scope.summary = dailyDataFactory.getSummary(onSummaryReceived);
 	$scope.compareDates = compareDates;
 
-	function stopSpinner()
+	function onSummaryReceived()
 	{
 		$scope.showSpinner = false;
 		
 		today();
-
-		compareDates();
 	}
 	
 	function today()
