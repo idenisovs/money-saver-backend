@@ -22,49 +22,7 @@
 		</div>
 
 		<!-- Statistics panel -->
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<strong>Statistics</strong>
-			</div>
-			<table class="table table-condensed">
-				<tr>
-					<td>Number of days:</td>
-					<td colspan="2">15</td>
-				</tr>
-				<tr>
-					<td>Current day:</td>
-					<td>12</td>
-					<td>78%</td>
-				</tr>
-				<tr>
-					<td>Starting capital:</td>
-					<td colspan="2">532.27€</td>
-				</tr>
-				<tr>
-					<td>Expenses:</td>
-					<td>175.12€</td>
-					<td>37%</td>
-				</tr>
-				<tr>
-					<td>Average incomes:</td>
-					<td colspan="2">25€</td>
-				</tr>
-				<tr>
-					<td>Average expenses:</td>
-					<td colspan="2">12€</td>
-				</tr>
-				<tr>
-					<td>Ballance:</td>
-					<td>325.12€</td>
-					<td>63%</td>
-				</tr>
-				<tr>
-					<td>Expected ballance:</td>
-					<td>180.12€</td>
-					<td>47%</td>
-				</tr>
-			</table>
-		</div>
+		<div class="panel panel-info" ng-include="'app/view/daily/templates/daily.statistics.html'"></div>
 
 		<!-- Graph panel -->
 		<div class="panel panel-info">
