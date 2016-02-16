@@ -6,7 +6,7 @@ dailyController.$inject = [ '$scope', '$modal', '$log', 'DailyDataFactory', 'usS
 
 function dailyController($scope, $modal, $log, dailyDataFactory, spinnerService, $timeout)
 {
-	$scope.datePicker = 
+	var datePicker =
 	{
 		opened: false,
 		format: 'dd.MM.yyyy.',
@@ -18,18 +18,20 @@ function dailyController($scope, $modal, $log, dailyDataFactory, spinnerService,
 		open: datePickerOpen
 	};
 
+	$scope.datePicker = datePicker;
 	$scope.viewNewIntervalModal = viewNewIntervalModal;
 	$scope.today = today;
 	$scope.showSpinner = true;
 	$scope.summary = dailyDataFactory.getSummary(stopSpinner);
-	
+	$scope.compareDates = compareDates;
+
 	function stopSpinner()
 	{
-		$log.info('Summary data received!');
-		
 		$scope.showSpinner = false;
 		
 		today();
+
+		compareDates();
 	}
 	
 	function today()
@@ -54,5 +56,24 @@ function dailyController($scope, $modal, $log, dailyDataFactory, spinnerService,
 		};
 		
 		$modal.open(options);
+	}
+
+	var todayTimestamp = moment().startOf('day').valueOf();
+
+	function compareDates(date)
+	{
+		var compareTimestamp = moment(date).startOf('day').valueOf();
+
+		if (todayTimestamp > compareTimestamp)
+		{
+			return 'success';
+		}
+
+		if (todayTimestamp < compareTimestamp)
+		{
+			return;
+		}
+
+		return 'info';
 	}
 }

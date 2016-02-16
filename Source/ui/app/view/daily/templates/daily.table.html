@@ -12,7 +12,7 @@
     </thead>
 
     <tbody>
-		<tr class="success" ng-repeat="item in summary.schedule">
+		<tr ng-class="compareDates(item.date)" ng-repeat="item in summary.schedule">
 			<td>{{item.date|date:'dd.MM.yyyy.'}}</td>
 			<td>{{item.sum|currency:'€':2}}</td>
 			<td>{{item.spent|currency:'€':2}}</td>
