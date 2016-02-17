@@ -4,7 +4,7 @@ app.controller('DailyCtrl', dailyController);
 
 dailyController.$inject = [ '$scope', '$modal', '$log', 'DailyDataFactory', 'usSpinnerService', '$timeout' ];
 
-function dailyController($scope, $modal, $log, dailyDataFactory, spinnerService, $timeout)
+function dailyController($scope, $modal, $log, dailyResource, spinnerService, $timeout)
 {
 	var datePicker =
 	{
@@ -18,20 +18,19 @@ function dailyController($scope, $modal, $log, dailyDataFactory, spinnerService,
 		open: datePickerOpen
 	};
 
+	$scope.payment = { sum: null };
 	$scope.datePicker = datePicker;
+	$scope.showSpinner = true;
+	$scope.summary;
+	$scope.valid = false;
 	$scope.viewNewIntervalModal = viewNewIntervalModal;
 	$scope.today = today;
-	$scope.showSpinner = true;
-	$scope.summary = dailyDataFactory.getSummary(onSummaryReceived);
 	$scope.compareDates = compareDates;
+	$scope.savePayment = savePayment;
+	$scope.$watch('payment.sum', checkValidity);
 
-	function onSummaryReceived()
-	{
-		$scope.showSpinner = false;
-		
-		today();
-	}
-	
+	reloadSummary();
+
 	function today()
 	{
 		$scope.dt = new Date();
@@ -56,7 +55,35 @@ function dailyController($scope, $modal, $log, dailyDataFactory, spinnerService,
 		$modal.open(options);
 	}
 
+	function savePayment()
+	{
+		$log.log('Saving payment ' + $scope.payment.sum);
+
+		$scope.showSpinner = true;
+
+		dailyResource.savePayment($scope.payment).then(reloadSummary);
+	}
+
+	function reloadSummary()
+	{
+		$scope.payment = { sum: null };
+
+		$scope.summary = dailyResource.getSummary(onSummaryReceived);
+	}
+
+	function onSummaryReceived()
+	{
+		$scope.showSpinner = false;
+
+		today();
+	}
+
 	var todayTimestamp = moment().startOf('day').valueOf();
+
+	function checkValidity()
+	{
+		$scope.valid = !isNaN($scope.payment.sum) && $scope.payment.sum !== null;
+	}
 
 	function compareDates(date)
 	{

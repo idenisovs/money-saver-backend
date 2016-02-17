@@ -11,10 +11,28 @@ dailyDataFactory.$inject = [ '$resource' ];
 
 function dailyDataFactory($resource)
 {
+	var paymentsResource = $resource('/api/payments');
+	var intervalResource = $resource('/api/intervals/latest/summary');
+
 	var api = 
 	{
-		getSummary: $resource('/api/intervals/latest/summary').get
+		getSummary: getSummary,
+		savePayment: savePayment
 	};
-	
+
 	return api;
+
+	function getSummary(callback)
+	{
+		return intervalResource.get(callback);
+	}
+
+	function savePayment(payment)
+	{
+		payment.sum = parseFloat(payment.sum);
+
+		return paymentsResource.save(payment).$promise;
+	}
+	
+
 }

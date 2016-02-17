@@ -1,40 +1,27 @@
 <div class="panel-body">
 
     <div class="row">
-        <div class="col-md-6">
-            <div class="input-group">
-                <span class="input-group-addon">Date</span>
-                <input type="text" class="form-control" datepicker-popup="{{datePicker.format}}" ng-model="dt"
-                       is-open="datePicker.opened" datepicker-options="datePicker.options" close-text="Close" format>
-
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="button" ng-click="datePicker.open($event);">
-						<span class="glyphicon glyphicon-calendar"></span>
-					</button>
-				</span>
-            </div>
-        </div>
 
         <div class="col-md-6">
-            <div class="input-group">
+            <div class="input-group" ng-form="paymentForm">
                 <span class="input-group-addon">€</span>
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0.00">
+
+                <input type="text"
+                       class="form-control"
+                       aria-label="Amount (to the nearest dollar)"
+                       placeholder="0.00"
+                       ng-model="payment.sum"
+                       required
+                       double
+                       min="0"
+                >
 
 				<span class="input-group-btn">
-					<button class="btn btn-default" type="button" ng-click="show();">Add</button>
+					<button class="btn btn-default" type="button" ng-click="savePayment()" ng-disabled="!valid">Add</button>
 				</span>
             </div>
         </div>
-    </div>
-    <br>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="input-group">
-                <span class="input-group-addon">Description</span>
-                <input type="text" class="form-control" aria-label="You may place some text here.">
-            </div>
-        </div>
     </div>
 
 </div>
