@@ -5,11 +5,11 @@
  */
 var app = angular.module('MoneySaverApp');
 
-app.factory('DailyDataFactory', dailyDataFactory);
+app.factory('DailyResource', dailyResource);
 
-dailyDataFactory.$inject = [ '$resource' ];
+dailyResource.$inject = [ '$resource' ];
 
-function dailyDataFactory($resource)
+function dailyResource($resource)
 {
 	var paymentsResource = $resource('/api/payments');
 	var intervalResource = $resource('/api/intervals/latest/summary');

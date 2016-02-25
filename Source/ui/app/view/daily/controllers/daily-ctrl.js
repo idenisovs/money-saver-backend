@@ -2,28 +2,18 @@ var app = angular.module('MoneySaverApp');
 
 app.controller('DailyCtrl', dailyController);
 
-dailyController.$inject = [ '$scope', '$modal', '$log', 'DailyDataFactory', 'usSpinnerService', '$timeout' ];
+dailyController.$inject = [ '$scope', '$log', 'DailyResource', 'IntervalModal' ];
 
-function dailyController($scope, $modal, $log, dailyResource, spinnerService, $timeout)
+function dailyController($scope, $log, dailyResource, intervalModal)
 {
-	var datePicker =
-	{
-		opened: false,
-		format: 'dd.MM.yyyy.',
-		options: {
-			formatYear: 'yyyy',
-			startingDay: 1
-		},
-		minDate: new Date(2015, 0, 1),
-		open: datePickerOpen
-	};
-
 	$scope.payment = { sum: null };
-	$scope.datePicker = datePicker;
+
+	$scope.datePicker = intervalModal.datePicker;
+	$scope.viewNewIntervalModal = intervalModal.viewNewIntervalModal;
+
 	$scope.showSpinner = true;
 	$scope.summary;
 	$scope.valid = false;
-	$scope.viewNewIntervalModal = viewNewIntervalModal;
 	$scope.today = today;
 	$scope.compareDates = compareDates;
 	$scope.savePayment = savePayment;
@@ -34,25 +24,6 @@ function dailyController($scope, $modal, $log, dailyResource, spinnerService, $t
 	function today()
 	{
 		$scope.dt = new Date();
-	}
-	
-	function datePickerOpen($event)
-	{
-		$event.preventDefault();
-		$event.stopPropagation();
-		$scope.datePicker.opened = true;
-	}
-	
-	function viewNewIntervalModal()
-	{
-		var options = {
-			animation: true,
-			size: 'md',
-			templateUrl: 'app/view/daily/templates/interval.modal.html',
-			controller: 'IntervalModalCtrl'
-		};
-		
-		$modal.open(options);
 	}
 
 	function savePayment()
