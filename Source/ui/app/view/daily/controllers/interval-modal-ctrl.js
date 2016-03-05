@@ -2,7 +2,7 @@ var app = angular.module('MoneySaverApp');
 
 app.controller('IntervalModalCtrl', intervalModalController);
 
-intervalModalController.$inject = [ '$scope', '$modalInstance', '$log' ];
+intervalModalController.$inject = [ '$scope', '$uibModalInstance', '$log' ];
 
 function intervalModalController($scope, $modalInstance, $log)
 {

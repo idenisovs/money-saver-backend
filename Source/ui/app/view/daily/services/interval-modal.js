@@ -6,7 +6,7 @@ var app = angular.module('MoneySaverApp');
 
 app.factory('IntervalModal', intervalModal);
 
-intervalModal.$inject = [ '$modal' ];
+intervalModal.$inject = [ '$uibModal' ];
 
 function intervalModal($modal)
 {
