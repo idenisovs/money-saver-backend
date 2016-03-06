@@ -12,11 +12,13 @@ dailyResource.$inject = [ '$resource' ];
 function dailyResource($resource)
 {
 	var paymentsResource = $resource('/api/payments');
-	var intervalResource = $resource('/api/intervals/latest/summary');
+	var summaryResource = $resource('/api/intervals/latest/summary');
+	var latestIntervalResource = $resource('/api/intervals/latest');
 
-	var api = 
+	var api =
 	{
 		getSummary: getSummary,
+		getLatestInterval: getLatestInterval,
 		savePayment: savePayment
 	};
 
@@ -24,7 +26,12 @@ function dailyResource($resource)
 
 	function getSummary(callback)
 	{
-		return intervalResource.get(callback);
+		return summaryResource.get(callback);
+	}
+
+	function getLatestInterval()
+	{
+		return latestIntervalResource.get().$promise;
 	}
 
 	function savePayment(payment)
