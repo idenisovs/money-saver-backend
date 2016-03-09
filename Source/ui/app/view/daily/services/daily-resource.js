@@ -7,19 +7,21 @@ var app = angular.module('MoneySaverApp');
 
 app.factory('DailyResource', dailyResource);
 
-dailyResource.$inject = [ '$resource' ];
+dailyResource.$inject = [ '$resource', '$log' ];
 
-function dailyResource($resource)
+function dailyResource($resource, $log)
 {
 	var paymentsResource = $resource('/api/payments');
 	var summaryResource = $resource('/api/intervals/latest/summary');
 	var latestIntervalResource = $resource('/api/intervals/latest');
+	var intervalsResource = $resource('/api/intervals');
 
 	var api =
 	{
 		getSummary: getSummary,
 		getLatestInterval: getLatestInterval,
-		savePayment: savePayment
+		savePayment: savePayment,
+		saveInterval: saveInterval
 	};
 
 	return api;
@@ -40,6 +42,9 @@ function dailyResource($resource)
 
 		return paymentsResource.save(payment).$promise;
 	}
-	
 
+	function saveInterval(interval)
+	{
+		return intervalsResource.save(interval).$promise;
+	}
 }

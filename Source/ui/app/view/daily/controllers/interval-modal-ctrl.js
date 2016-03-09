@@ -22,6 +22,7 @@ function intervalModalController($scope, $modalInstance, $log, dailyResource)
 	$scope.datepickerFrom = { show: false, open: openDatePickerFrom };
 	$scope.datepickerTill = { show: false, open: openDatePickerTill };
 	$scope.selected = { item: 'Hello, world!' };
+	$scope.totals;
 
 	$scope.ok = saveInterval;
 	$scope.cancel = cancel;
@@ -39,14 +40,18 @@ function intervalModalController($scope, $modalInstance, $log, dailyResource)
 
 	function saveInterval()
 	{
-		$log.log($scope.from);
-		$log.log($scope.till);
-		$modalInstance.close();
+		var interval =
+		{
+			start: moment($scope.from).format('YYYY-MM-DD'),
+			end: moment($scope.till).format('YYYY-MM-DD'),
+			sum: $scope.totals
+		};
+
+		dailyResource.saveInterval(interval).then(close);
 	}
 
 	function cancel()
 	{
-		//$log.info('cancel');
 		$modalInstance.dismiss('cancel');
 	}
 
@@ -60,5 +65,10 @@ function intervalModalController($scope, $modalInstance, $log, dailyResource)
 	{
 		$scope.dateOptions.minDate = moment($scope.from).add(1, 'd');
 		$scope.datepickerTill.show = true;
+	}
+
+	function close()
+	{
+		$modalInstance.close();
 	}
 }
