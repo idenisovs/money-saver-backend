@@ -23,14 +23,18 @@ function intervalModalController($scope, $modalInstance, $log, dailyResource)
 	$scope.datepickerTill = { show: false, open: openDatePickerTill };
 	$scope.selected = { item: 'Hello, world!' };
 	$scope.totals;
+	$scope.valid = false;
 
 	$scope.ok = saveInterval;
 	$scope.cancel = cancel;
 	$scope.openDatePickerFrom = openDatePickerFrom;
 	$scope.openDatePickerTill = openDatePickerTill;
 
+	$scope.$watch('totals', checkValidity);
+
 
 	dailyResource.getLatestInterval().then(updateLatestInterval);
+
 
 	function updateLatestInterval(receivedInterval)
 	{
@@ -70,5 +74,10 @@ function intervalModalController($scope, $modalInstance, $log, dailyResource)
 	function close()
 	{
 		$modalInstance.close();
+	}
+
+	function checkValidity()
+	{
+		$scope.valid = !isNaN($scope.totals) && $scope.totals !== null;
 	}
 }
