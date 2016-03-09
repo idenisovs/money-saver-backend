@@ -25,8 +25,12 @@ function getLatestIntervalSummary(success, error)
     {
         if (err)
         {
-            error(err);
-            return;
+            return error(err);
+        }
+
+        if (!interval)
+        {
+            return success({});
         }
 
         result.interval = interval;
