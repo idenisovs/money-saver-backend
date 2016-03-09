@@ -25,7 +25,7 @@ function intervalModal($modal)
     var api  =
     {
         datePicker: datePicker,
-        viewNewIntervalModal: viewNewIntervalModal
+        open: openIntervalModal
     };
 
     return api;
@@ -37,7 +37,7 @@ function intervalModal($modal)
         $scope.datePicker.opened = true;
     }
 
-    function viewNewIntervalModal()
+    function openIntervalModal()
     {
         var options = {
             animation: true,
@@ -46,6 +46,6 @@ function intervalModal($modal)
             controller: 'IntervalModalCtrl'
         };
 
-        $modal.open(options);
+        return $modal.open(options);
     }
 }

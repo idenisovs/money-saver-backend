@@ -9,7 +9,7 @@ function dailyController($scope, $log, dailyResource, intervalModal)
 	$scope.payment = { sum: null };
 
 	$scope.datePicker = intervalModal.datePicker;
-	$scope.viewNewIntervalModal = intervalModal.viewNewIntervalModal;
+	$scope.openIntervalModal = openIntervalModal;
 
 	$scope.showSpinner = true;
 	$scope.summary;
@@ -71,5 +71,12 @@ function dailyController($scope, $log, dailyResource, intervalModal)
 		}
 
 		return 'info';
+	}
+
+	function openIntervalModal()
+	{
+		var q = intervalModal.open().result;
+
+		q.then(reloadSummary);
 	}
 }
