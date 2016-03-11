@@ -16,6 +16,10 @@ function paymentsModalCtrl($scope, $log, $modalInstance, date, dailyResource)
 
     $scope.save = save;
     $scope.cancel = cancel;
+    $scope.remove = remove;
+    $scope.cancelRemove = cancelRemove;
+    $scope.add = add;
+    $scope.reset = reset;
 
     dailyResource.getPayments(date).then(viewPayments);
 
@@ -33,5 +37,31 @@ function paymentsModalCtrl($scope, $log, $modalInstance, date, dailyResource)
     function cancel()
     {
         $modalInstance.dismiss('cancel');
+    }
+
+    function remove(payment)
+    {
+        payment.remove = true;
+    }
+
+    function cancelRemove(payment)
+    {
+        delete payment.remove;
+    }
+
+    function add()
+    {
+        var payment =
+        {
+            add: true,
+            time: Date.now()
+        };
+
+        $scope.payments.push(payment);
+    }
+
+    function reset()
+    {
+        $log.log('Reset payments!');
     }
 }

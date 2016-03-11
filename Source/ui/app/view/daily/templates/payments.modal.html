@@ -12,7 +12,7 @@
 			<th>Actions</th>
 		</tr>
 
-		<tr ng-repeat="payment in payments track by $index"  >
+		<tr ng-repeat="payment in payments track by $index" ng-class="{ danger: payment.remove }">
 			<td>{{$index+1}}</td>
 			<td>{{payment.time|date:'HH:mm:ss'}}</td>
 			<td>
@@ -20,12 +20,16 @@
 					<div class="input-group-addon">
 						€
 					</div>
-					<input type="text" class="form-control" placeholder="0.00" ng-model="payment.sum">
+					<input type="text" class="form-control" placeholder="0.00" ng-model="payment.sum" ng-disabled="payment.remove">
 				</div>
 			</td>
 			<td>
-				<button type="button" class="btn btn-danger btn-sm">
+				<button type="button" class="btn btn-danger btn-sm" ng-click="remove(payment)" ng-show="!payment.remove">
 					<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+				</button>
+
+				<button type="button" class="btn btn-info btn-sm" ng-click="cancelRemove(payment)" ng-show="payment.remove">
+					<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
 				</button>
 			</td>
 		</tr>
@@ -33,18 +37,16 @@
 
 	<h4 class="text-center" ng-show="payments.length === 0">Nothing to show yet!</h4>
 
-	<button type="button" class="btn btn-primary btn-sm">
-		<span class="glyphicon glyphicon-plus"></span>
-		Add
+	<button type="button" class="btn btn-primary btn-sm" ng-click="add()">
+		<span class="glyphicon glyphicon-plus"></span>Add
 	</button>
 
-	<button type="button" class="btn btn-warning btn-sm">
-		<span class="glyphicon glyphicon-repeat"></span>
-		Reset
+	<button type="button" class="btn btn-warning btn-sm" ng-click="reset()">
+		<span class="glyphicon glyphicon-repeat"></span>Reset
 	</button>
 </div>
 
 <div class="modal-footer">
-	<button class="btn btn-primary" ng-click="save()">OK</button>
+	<button class="btn btn-primary" ng-click="save()" ng-disable="saveBlocked">OK</button>
 	<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
 </div>
