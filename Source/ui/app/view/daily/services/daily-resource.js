@@ -11,7 +11,8 @@ dailyResource.$inject = [ '$resource', '$log' ];
 
 function dailyResource($resource, $log)
 {
-	var paymentsResource = $resource('/api/payments');
+	var paymentsConfig = { 'get': { method: 'GET', isArray: true } };
+	var paymentsResource = $resource('/api/payments', {}, paymentsConfig);
 	var summaryResource = $resource('/api/intervals/latest/summary');
 	var latestIntervalResource = $resource('/api/intervals/latest');
 	var intervalsResource = $resource('/api/intervals');
@@ -20,6 +21,7 @@ function dailyResource($resource, $log)
 	{
 		getSummary: getSummary,
 		getLatestInterval: getLatestInterval,
+		getPayments: getPayments,
 		savePayment: savePayment,
 		saveInterval: saveInterval
 	};
@@ -34,6 +36,18 @@ function dailyResource($resource, $log)
 	function getLatestInterval()
 	{
 		return latestIntervalResource.get().$promise;
+	}
+
+	function getPayments(date)
+	{
+		$log.log('Trying to retrieve payments...');
+
+		if (!date)
+		{
+			return paymentsResource.get().$promise;
+		}
+
+		return paymentsResource.get({ date: date }).$promise;
 	}
 
 	function savePayment(payment)
