@@ -2,14 +2,15 @@ var app = angular.module('MoneySaverApp');
 
 app.controller('DailyCtrl', dailyController);
 
-dailyController.$inject = [ '$scope', '$log', 'DailyResource', 'IntervalModal' ];
+dailyController.$inject = [ '$scope', '$log', 'DailyResource', 'IntervalModal', 'PaymentsModal' ];
 
-function dailyController($scope, $log, dailyResource, intervalModal)
+function dailyController($scope, $log, dailyResource, intervalModal, paymentsModal)
 {
 	$scope.payment = { sum: null };
 
 	$scope.datePicker = intervalModal.datePicker;
 	$scope.openIntervalModal = openIntervalModal;
+	$scope.openPaymentsModal = openPaymentsModal;
 
 	$scope.showSpinner = true;
 	$scope.summary;
@@ -76,6 +77,13 @@ function dailyController($scope, $log, dailyResource, intervalModal)
 	function openIntervalModal()
 	{
 		var q = intervalModal.open().result;
+
+		q.then(reloadSummary);
+	}
+
+	function openPaymentsModal(date)
+	{
+		var q = paymentsModal.open(date).result;
 
 		q.then(reloadSummary);
 	}
