@@ -4,9 +4,44 @@
 </div>
 
 <div class="modal-body">
-	<div class = "container">
-		{{message}}
-	</div>
+	<table id="payments-table" class="table table-bordered table-condensed text-center" ng-show="payments.length > 0">
+		<tr>
+			<th>Nr</th>
+			<th>Time</th>
+			<th style="text-align: left">Sum</th>
+			<th>Actions</th>
+		</tr>
+
+		<tr ng-repeat="payment in payments track by $index"  >
+			<td>{{$index+1}}</td>
+			<td>{{payment.time|date:'HH:mm:ss'}}</td>
+			<td>
+				<div class="input-group">
+					<div class="input-group-addon">
+						€
+					</div>
+					<input type="text" class="form-control" placeholder="0.00" ng-model="payment.sum">
+				</div>
+			</td>
+			<td>
+				<button type="button" class="btn btn-danger btn-sm">
+					<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+				</button>
+			</td>
+		</tr>
+	</table>
+
+	<h4 class="text-center" ng-show="payments.length === 0">Nothing to show yet!</h4>
+
+	<button type="button" class="btn btn-primary btn-sm">
+		<span class="glyphicon glyphicon-plus"></span>
+		Add
+	</button>
+
+	<button type="button" class="btn btn-warning btn-sm">
+		<span class="glyphicon glyphicon-repeat"></span>
+		Reset
+	</button>
 </div>
 
 <div class="modal-footer">
