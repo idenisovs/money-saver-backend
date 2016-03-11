@@ -12,7 +12,6 @@ function paymentsModalCtrl($scope, $log, $modalInstance, date, dailyResource)
 {
     $scope.saveBlocked = true;
     $scope.date = date;
-    $scope.message = 'Hello, world!';
     $scope.payments = [];
 
     $scope.save = save;
@@ -33,6 +32,6 @@ function paymentsModalCtrl($scope, $log, $modalInstance, date, dailyResource)
 
     function cancel()
     {
-        $modalInstance.close();
+        $modalInstance.dismiss('cancel');
     }
 }

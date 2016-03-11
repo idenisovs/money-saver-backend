@@ -40,8 +40,6 @@ function dailyResource($resource, $log)
 
 	function getPayments(date)
 	{
-		$log.log('Trying to retrieve payments...');
-
 		if (!date)
 		{
 			return paymentsResource.get().$promise;

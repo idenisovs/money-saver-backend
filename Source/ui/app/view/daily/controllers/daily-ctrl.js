@@ -29,8 +29,6 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 
 	function savePayment()
 	{
-		$log.log('Saving payment ' + $scope.payment.sum);
-
 		$scope.showSpinner = true;
 
 		dailyResource.savePayment($scope.payment).then(reloadSummary);
