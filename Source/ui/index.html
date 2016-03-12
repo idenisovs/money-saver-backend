@@ -38,6 +38,8 @@
 	<script src="app/view/daily/controllers/payments-modal-ctrl.js" type="text/javascript"></script>
 	<script src="app/view/daily/services/payments-modal.js" type="text/javascript"></script>
 	<script src="app/view/monthly/monthly-ctrl.js" type="text/javascript"></script>
+	<script src="app/health-controller.js" type="text/javascript"></script>
+	<script src="app/health-resource.js" type="text/javascript"></script>
 
 </head>
 
@@ -61,6 +63,10 @@
 					<li><a href="#about">About</a></li>
 					<li><a href="#contact">Contact</a></li>
 				</ul>
+
+				<p class="navbar-text navbar-right" ng-controller="HealthController">
+					<span id="health-check">Health: {{health}}</span>
+				</p>
 			</div>
 		</div>
 	</nav>
