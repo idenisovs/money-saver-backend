@@ -10,6 +10,7 @@ var sql = "";
 sql += "SELECT id, date, time, sum\n";
 sql += "FROM payments\n";
 sql += "WHERE date = $date\n";
+sql += "ORDER BY time ASC\n";
 
 function getByDate(date, callback)
 {
