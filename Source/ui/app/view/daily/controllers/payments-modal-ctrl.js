@@ -11,6 +11,7 @@ paymentsModalCtrl.$inject = [ '$scope', '$log', '$uibModalInstance', 'date', 'Da
 function paymentsModalCtrl($scope, $log, $modalInstance, date, dailyResource)
 {
     $scope.saveBlocked = true;
+    $scope.controlsDisabled = false;
     $scope.date = date;
     $scope.payments = [];
 
@@ -35,6 +36,13 @@ function paymentsModalCtrl($scope, $log, $modalInstance, date, dailyResource)
     }
 
     function save()
+    {
+        $scope.controlsDisabled = true;
+
+        dailyResource.updatePayments($scope.payments).then(close);
+    }
+
+    function close()
     {
         $modalInstance.close();
     }

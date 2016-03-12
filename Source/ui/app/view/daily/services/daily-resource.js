@@ -11,7 +11,12 @@ dailyResource.$inject = [ '$resource', '$log' ];
 
 function dailyResource($resource, $log)
 {
-	var paymentsConfig = { 'get': { method: 'GET', isArray: true } };
+	var paymentsConfig =
+	{
+		'get': { method: 'GET', isArray: true },
+		'update': { method: 'PUT', isArray: false }
+	};
+
 	var paymentsResource = $resource('/api/payments', {}, paymentsConfig);
 	var summaryResource = $resource('/api/intervals/latest/summary');
 	var latestIntervalResource = $resource('/api/intervals/latest');
@@ -23,6 +28,7 @@ function dailyResource($resource, $log)
 		getLatestInterval: getLatestInterval,
 		getPayments: getPayments,
 		savePayment: savePayment,
+		updatePayments: updatePayments,
 		saveInterval: saveInterval
 	};
 
@@ -53,6 +59,25 @@ function dailyResource($resource, $log)
 		payment.sum = parseFloat(payment.sum);
 
 		return paymentsResource.save(payment).$promise;
+	}
+
+	function updatePayments(payments)
+	{
+		var goodPayments = [];
+
+		payments.forEach(filter);
+
+		function filter(payment)
+		{
+			if (payment.add && payment.remove)
+			{
+				return;
+			}
+
+			goodPayments.push(payment);
+		}
+
+		return paymentsResource.update(goodPayments).$promise;
 	}
 
 	function saveInterval(interval)
