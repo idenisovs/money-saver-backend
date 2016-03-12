@@ -23,9 +23,14 @@ function paymentsModalCtrl($scope, $log, $modalInstance, date, dailyResource)
 
     dailyResource.getPayments(date).then(viewPayments);
 
+    var backup;
+
     function viewPayments(payments)
     {
-        $scope.payments = payments;
+        backup = payments;
+
+        angular.copy(backup, $scope.payments);
+
         $scope.saveBlocked = false;
     }
 
@@ -62,6 +67,6 @@ function paymentsModalCtrl($scope, $log, $modalInstance, date, dailyResource)
 
     function reset()
     {
-        $log.log('Reset payments!');
+        angular.copy(backup, $scope.payments);
     }
 }
