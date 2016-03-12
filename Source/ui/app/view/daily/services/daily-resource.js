@@ -74,6 +74,8 @@ function dailyResource($resource, $log)
 				return;
 			}
 
+			payment.sum = parseFloat(payment.sum);
+
 			goodPayments.push(payment);
 		}
 
