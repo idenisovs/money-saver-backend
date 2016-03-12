@@ -16,6 +16,8 @@ payments.getById = require('./get-by-id');
 
 payments.save = require('./save-payment');
 
+payments.update = require('./update-payment');
+
 payments.deleteByInterval = require('./delete-by-interval');
 
 payments.deleteById = require('./delete-by-id');

@@ -9,13 +9,19 @@ var bl = require('../../bl/bl');
 
 function updatePayments(req, res)
 {
-    log.info('API called!');
+    log.debug('api called!');
 
-    log.info(req.body);
+    bl.payments.update(req.body, success, fail);
 
-    setTimeout(function(){
-        res.json({ message: 'Hello, world!' });
-    }, 3000);
+    function success(result)
+    {
+        res.json(result);
+    }
+
+    function fail(err)
+    {
+        res.statusCode(http.INTERNAL_SERVER_ERROR).json(err);
+    }
 }
 
 module.exports = updatePayments;
