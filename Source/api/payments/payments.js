@@ -7,6 +7,8 @@ router.get('/', require('./get-payments'));
 
 router.post('/', require('./save-payments'));
 
+router.put('/', require('./update-payments'));
+
 router.delete('/', require('./delete-payment'));
 
 router.delete('/:id', require('./delete-payment'));
