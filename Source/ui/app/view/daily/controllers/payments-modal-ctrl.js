@@ -64,10 +64,16 @@ function paymentsModalCtrl($scope, $log, $modalInstance, date, dailyResource)
 
     function add()
     {
+        var time = new Date();
+
+        var hh = time.getHours();
+        var mm = time.getMinutes();
+        var ss = time.getSeconds();
+
         var payment =
         {
             add: true,
-            time: Date.now()
+            time: moment($scope.date).hour(hh).minute(mm).second(ss).valueOf()
         };
 
         $scope.payments.push(payment);

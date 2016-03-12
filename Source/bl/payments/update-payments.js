@@ -40,6 +40,8 @@ function updatePayments(paymentList, success)
             resolve = res;
         }
 
+        log.trace(payment);
+
         if (payment.add || !('id' in payment))
         {
             save(payment);
