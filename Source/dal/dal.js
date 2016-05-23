@@ -8,4 +8,6 @@ dal.intervals = require('./intervals/intervals');
 
 dal.payments = require('./payments/payments');
 
+dal.users = require('./users/users');
+
 module.exports = dal;

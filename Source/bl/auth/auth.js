@@ -4,7 +4,7 @@
 
 var auth =
 {
-    authenticate: require('./authenticate')
+    local: require('./auth-local')
 };
 
 module.exports = auth;

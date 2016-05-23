@@ -4,6 +4,10 @@
 
 var router = require('express').Router();
 
-router.post('/', require('./authenticate'));
+router.post('/', require('./local'));
+router.get('/success', require('./success'));
+router.get('/failure', require('./failure'));
 
 module.exports = router;
+
+require('log4js').getLogger('api').debug('Auth module is up!');

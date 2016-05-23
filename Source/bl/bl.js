@@ -1,9 +1,9 @@
-var bl = {};
-
-bl.intervals = require('./intervals/intervals');
-
-bl.payments = require('./payments/payments');
-
-bl.auth = require('./auth/auth');
+var bl =
+{
+    intervals: require('./intervals/intervals'),
+    payments: require('./payments/payments'),
+    auth: require('./auth/auth'),
+    users: require('./users/users')
+};
 
 module.exports = bl;
