@@ -1,8 +1,9 @@
 var router = require('express').Router();
+var auth = require('./auth-middleware');
 
-router.use('/payments', require('./payments/payments'));
+router.use('/payments', auth, require('./payments/payments'));
 
-router.use('/intervals', require('./intervals/intervals'));
+router.use('/intervals', auth, require('./intervals/intervals'));
 
 router.use('/health', require('./health/health'));
 
