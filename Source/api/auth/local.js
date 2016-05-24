@@ -1,4 +1,5 @@
 /**
+ * Local authentication strategy.
  * Created by I.Denisovs on 16.23.5.
  */
 

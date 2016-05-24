@@ -23,12 +23,12 @@ function auth(username, password, done)
             return fail(error);
         }
 
-        user = userRecord;
-
-        if (user === null)
+        if (!userRecord)
         {
             return reject();
         }
+
+        user = userRecord;
 
         bcrypt.compare(password, user.password, validatePassword);
     }
