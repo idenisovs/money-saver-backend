@@ -3,8 +3,6 @@
  */
 var db = require('./../db');
 
-module.exports = getById;
-
 var sql = "";
 
 sql += "SELECT id, date, time, sum\n";
@@ -17,3 +15,5 @@ function getById(id, callback)
 
     db.get(sql, params, callback);
 }
+
+module.exports = getById;

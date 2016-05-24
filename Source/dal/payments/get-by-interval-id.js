@@ -4,8 +4,6 @@
  */
 var db = require('./../db');
 
-module.exports = getByIntervalId;
-
 var sql = '';
 
 sql += 'SELECT p.date, sum(p.sum) AS sum\n';
@@ -20,4 +18,6 @@ function getByIntervalId(id, callback)
 	
 	db.all(sql, params, callback);
 }
+
+module.exports = getByIntervalId;
 

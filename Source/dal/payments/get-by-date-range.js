@@ -3,8 +3,6 @@
  */
 var db = require('./../db');
 
-module.exports = getByDateRange;
-
 var sql = "";
 
 sql += "SELECT id, date, time, sum\n";
@@ -18,3 +16,5 @@ function getByDateRange(from, till, callback)
 
     db.all(sql, params, callback);
 }
+
+module.exports = getByDateRange;

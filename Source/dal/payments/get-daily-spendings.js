@@ -3,8 +3,6 @@
  */
 var db = require('./../db');
 
-module.exports = getDailySpendings;
-
 var sql = "";
 
 sql += "SELECT p.date, sum(p.sum) AS sum\n";
@@ -19,3 +17,5 @@ function getDailySpendings(intervalId, callback)
 
     db.all(sql, params, callback);
 }
+
+module.exports = getDailySpendings;
