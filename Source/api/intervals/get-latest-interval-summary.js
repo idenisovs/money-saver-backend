@@ -8,7 +8,7 @@ var bl = require('../../bl/bl');
 
 function getLatestIntervalSummary(req, res)
 {
-    bl.intervals.getLatestSummary(success, error);
+    bl.intervals.getLatestSummary(req.user, success, error);
 
     function success(interval)
     {

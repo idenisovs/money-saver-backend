@@ -3,13 +3,13 @@ var Promise = require('promise');
 var db = require('./../db');
 var getByTime = require('../intervals/get-by-time');
 
-var sql = "INSERT INTO payments (time, date, sum) VALUES ($time, $date, $sum)";
+var sql = "INSERT INTO payments (time, date, sum, userId) VALUES ($time, $date, $sum, $userId)";
 
-function savePayment(payment)
+function savePayment(payment, userId)
 {
 	var resolve, reject; 
 
-    var params = { $time: payment.time, $date: payment.date, $sum: payment.sum };
+    var params = { $time: payment.time, $date: payment.date, $sum: payment.sum, $userId: userId };
 	
 	return new Promise(resolver);
 	
@@ -18,7 +18,7 @@ function savePayment(payment)
 		resolve = _resolve;
 		reject = _reject;
 
-		getByTime(payment.time, checkInterval);
+		getByTime(payment.time, userId, checkInterval);
 	}
 
 	function checkInterval(err, interval)

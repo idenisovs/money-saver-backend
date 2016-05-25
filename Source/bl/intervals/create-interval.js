@@ -8,7 +8,7 @@ var dal = require('../../dal/dal');
 
 module.exports = createInterval;
 
-function createInterval(interval, success, error)
+function createInterval(interval, user, success, error)
 {
     var invalidInterval = checkValidity(interval);
 
@@ -52,7 +52,7 @@ function createInterval(interval, success, error)
         interval.start = moment(interval.start).valueOf();
         interval.end = moment(interval.end).valueOf();
 
-        dal.intervals.create(interval, done);
+        dal.intervals.create(interval, user.id, done);
     }
 
     function done(err)

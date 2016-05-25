@@ -14,7 +14,7 @@ var payments =
 };
 
 
-function updatePayments(paymentList, success)
+function updatePayments(paymentList, user, success)
 {
     var q = [];
     var stat = { added: 0, updated: 0, deleted: 0, failed: 0 };
@@ -59,7 +59,7 @@ function updatePayments(paymentList, success)
         {
             payment.date = moment(payment.time).format('YYYY-MM-DD');
             log.debug('Saving payment on %s for %s...', payment.date, payment.sum);
-            payments.save(payment, onSaveSuccess, onFail);
+            payments.save(payment, user, onSaveSuccess, onFail);
         }
 
         function remove(payment)
@@ -70,14 +70,14 @@ function updatePayments(paymentList, success)
 
             log.debug('Deleting payment #%d...', payment.id);
 
-            payments.delete(req, onDeleteSuccess, onFail);
+            payments.delete(req, user, onDeleteSuccess, onFail);
         }
 
         function update(payment)
         {
             log.debug('Updating payment #%d...', payment.id);
 
-            dal.payments.update(payment, onUpdateDone);
+            dal.payments.update(payment, user.id, onUpdateDone);
         }
 
         function onUpdateDone(err)

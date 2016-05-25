@@ -4,9 +4,9 @@
 
 var dal = require('../../dal/dal');
 
-function getByTime(timestamp, success, error)
+function getByTime(timestamp, user, success, error)
 {
-    dal.intervals.getByTime(timestamp, done);
+    dal.intervals.getByTime(timestamp, user.id, done);
 
     function done(err, interval)
     {

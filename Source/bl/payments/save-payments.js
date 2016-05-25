@@ -8,7 +8,7 @@ var dal = require('../../dal/dal');
 
 module.exports = savePayments;
 
-function savePayments(payments, success, error)
+function savePayments(payments, user, success, error)
 {
     var q = [];
 
@@ -34,7 +34,7 @@ function savePayments(payments, success, error)
 
         setFields(payment);
 
-        q.push(dal.payments.save(payment));
+        q.push(dal.payments.save(user.id, payment));
     }
 }
 

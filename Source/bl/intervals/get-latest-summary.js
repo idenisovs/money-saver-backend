@@ -9,7 +9,7 @@ var calculateTotals = require('./calc/calculate-totals');
 
 module.exports = getLatestIntervalSummary;
 
-function getLatestIntervalSummary(success, error)
+function getLatestIntervalSummary(user, success, error)
 {
     var result =
     {
@@ -19,7 +19,7 @@ function getLatestIntervalSummary(success, error)
         totals: null
     };
 
-    dal.intervals.getLatest(latestInterval);
+    dal.intervals.getLatest(user.id, latestInterval);
 
     function latestInterval(err, interval)
     {
@@ -35,7 +35,7 @@ function getLatestIntervalSummary(success, error)
 
         result.interval = interval;
 
-        dal.payments.getDailySpendings(interval.id, dailySpendings);
+        dal.payments.getDailySpendings(interval.id, user.id, dailySpendings);
     }
 
     function dailySpendings(err, dailySpendings)

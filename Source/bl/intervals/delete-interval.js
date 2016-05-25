@@ -6,11 +6,11 @@ var dal = require('../../dal/dal');
 
 module.exports = deleteInterval;
 
-function deleteInterval(id, success, error)
+function deleteInterval(id, user, success, error)
 {
     var result = { intervalsRemoved: 0, paymentsRemoved: 0 };
 
-    dal.intervals.getById(id, intervalRequestDone);
+    dal.intervals.getById(id, user.id, intervalRequestDone);
 
     function intervalRequestDone(err, interval)
     {
@@ -27,7 +27,7 @@ function deleteInterval(id, success, error)
             return;
         }
 
-        dal.payments.deleteByInterval(interval, paymentsRemovalDone);
+        dal.payments.deleteByInterval(interval, user.id, paymentsRemovalDone);
     }
 
     function paymentsRemovalDone(err, removed)
@@ -40,7 +40,7 @@ function deleteInterval(id, success, error)
 
         result.paymentsRemoved = removed;
 
-        dal.intervals.delete(id, done);
+        dal.intervals.delete(id, user.id, done);
     }
 
     function done(err)

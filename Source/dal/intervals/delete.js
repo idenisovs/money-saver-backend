@@ -1,16 +1,16 @@
 /**
- * Created by Ga5Xz2 on 26.12.2015..
+ * Created by I.Denisovs on 26.12.2015..
  */
 
 var db = require('../db');
 
 module.exports = deleteInterval;
 
-var sql = 'DELETE FROM intervals WHERE id = $id';
+var sql = 'DELETE FROM intervals WHERE id = $id AND userId = $userId';
 
-function deleteInterval(id, callback)
+function deleteInterval(id, userId, callback)
 {
-    var params = { $id: id };
+    var params = { $id: id, $userId: userId };
 
     db.run(sql, params, done);
 

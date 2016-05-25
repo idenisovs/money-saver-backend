@@ -1,5 +1,5 @@
 /**
- * Created by Ga5Xz2 on 02.01.2016..
+ * Created by I.Denisovs on 02.01.2016..
  */
 var db = require('./../db');
 
@@ -7,12 +7,12 @@ var sql = "";
 
 sql += "SELECT id, date, time, sum\n";
 sql += "FROM payments\n";
-sql += "WHERE time BETWEEN $from AND $till\n";
+sql += "WHERE time BETWEEN $from AND $till AND userId = $userId\n";
 sql += "ORDER BY time ASC";
 
-function getByDateRange(from, till, callback)
+function getByDateRange(from, till, userId, callback)
 {
-    var params = { '$from': from, '$till': till };
+    var params = { '$from': from, '$till': till, '$userId': userId };
 
     db.all(sql, params, callback);
 }

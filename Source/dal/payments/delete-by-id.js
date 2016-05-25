@@ -1,14 +1,14 @@
 /**
- * Created by Ga5Xz2 on 31.12.2015..
+ * Created by I.Denisovs on 31.12.2015..
  */
 
 var db = require('../db');
 
-var sql = 'DELETE FROM payments WHERE id = $id';
+var sql = 'DELETE FROM payments WHERE id = $id AND userId = $userId';
 
-function deleteById(id, callback)
+function deleteById(id, userId, callback)
 {
-    var params = { $id: id };
+    var params = { $id: id, $userId: userId };
 
     db.run(sql, params, done);
 

@@ -31,7 +31,7 @@ function getIntervals(req, res)
 	log.debug('No query params defined, returning latest interval...');
 	log.warn('This call shall return the list of intervals instead of latest interval!');
 	
-	bl.intervals.getLatest(success, error);
+	bl.intervals.getLatest(req.user, success, error);
 
     function success(interval)
     {

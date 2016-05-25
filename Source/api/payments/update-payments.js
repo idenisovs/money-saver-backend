@@ -11,7 +11,7 @@ function updatePayments(req, res)
 {
     log.debug('api called!');
 
-    bl.payments.update(req.body, success, fail);
+    bl.payments.update(req.body, req.user, success, fail);
 
     function success(result)
     {

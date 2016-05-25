@@ -1,14 +1,20 @@
 /**
  * This module returns the latest interval.
- * Created by Ga5Xz2 on 17.11.2015..
+ * Created by I.Denisovs on 17.11.2015..
  */
 var db = require('./../db');
 
 module.exports = getLatest;
 
-var sql = 'SELECT id, start, end, sum FROM intervals ORDER BY id DESC LIMIT 1';
+var sql = '';
+sql += 'SELECT id, start, end, sum\n';
+sql += 'FROM intervals\n';
+sql += 'WHERE userId = $userId\n';
+sql += 'ORDER BY id DESC LIMIT 1';
 
-function getLatest(callback)
+function getLatest(userId, callback)
 {
-    db.get(sql, callback);
+    var params = { $userId: userId };
+
+    db.get(sql, params, callback);
 }

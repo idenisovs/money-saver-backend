@@ -7,7 +7,7 @@ var util = require('util');
 var log = require('log4js').getLogger('delete-payment');
 var dal = require('../../dal/dal');
 
-function deletePayments(req, success, error)
+function deletePayments(req, user, success, error)
 {
     var fromDefined = !util.isUndefined(req.query.from);
     var tillDefined = !util.isUndefined(req.query.till);
@@ -21,7 +21,7 @@ function deletePayments(req, success, error)
 
         var interval = { start: start, end: end };
 
-        dal.payments.deleteByInterval(interval, done);
+        dal.payments.deleteByInterval(interval, user.id, done);
 		
         return;
     }
@@ -31,7 +31,7 @@ function deletePayments(req, success, error)
     if (idDefined)
     {
 		log.debug('Removing payments by id!');
-        dal.payments.deleteById(req.query.id, done);
+        dal.payments.deleteById(req.query.id, user.id, done);
         return;
     }
 
@@ -40,7 +40,7 @@ function deletePayments(req, success, error)
     if (intervalIdDefined)
     {
 		log.debug('Removing payments by interval id!');
-        dal.intervals.getById(req.query.intervalId, intervalRequestDone);
+        dal.intervals.getById(req.query.intervalId, user.id, intervalRequestDone);
         return;
     }
 
@@ -63,7 +63,7 @@ function deletePayments(req, success, error)
             return;
         }
 
-        dal.payments.deleteByInterval(interval, done);
+        dal.payments.deleteByInterval(interval, user.id, done);
     }
 
     function done(err, removed)

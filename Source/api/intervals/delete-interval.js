@@ -8,7 +8,7 @@ var bl = require('../../bl/bl');
 
 function deleteInterval(req, res)
 {
-    bl.intervals.delete(req.params.id, success, error);
+    bl.intervals.delete(req.params.id, req.user, success, error);
 
     function success(result)
     {

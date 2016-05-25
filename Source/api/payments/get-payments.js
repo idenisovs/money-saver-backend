@@ -9,7 +9,7 @@ module.exports = getPayments;
 
 function getPayments(req, res)
 {
-    bl.payments.get(req.query, success, error);
+    bl.payments.get(req.query, req.user, success, error);
 
     function success(payments)
     {

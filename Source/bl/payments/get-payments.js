@@ -8,17 +8,17 @@ var dal = require('../../dal/dal');
 
 module.exports = getPayments;
 
-function getPayments(request, success, error)
+function getPayments(request, user, success, error)
 {
     if ('id' in request)
     {
-        dal.payments.getById(request.id, done);
+        dal.payments.getById(request.id, user.id, done);
         return;
     }
 
     if ('date' in request)
     {
-        dal.payments.getByDate(request.date, done);
+        dal.payments.getByDate(request.date, user.id, done);
         return;
     }
 
@@ -26,11 +26,11 @@ function getPayments(request, success, error)
     {
         var from = moment(request.from).startOf('day').valueOf();
         var till = moment(request.till).endOf('day').valueOf();
-        dal.payments.getByDateRange(from, till, done);
+        dal.payments.getByDateRange(from, user.id, till, done);
         return;
     }
 
-    dal.intervals.getLatest(getLatestDone);
+    dal.intervals.getLatest(user.id, getLatestDone);
 
     function getLatestDone(err, latestInterval)
     {
@@ -40,7 +40,7 @@ function getPayments(request, success, error)
             return;
         }
 
-        dal.payments.getByIntervalId(latestInterval.id, done);
+        dal.payments.getByIntervalId(latestInterval.id, user.id, done);
     }
 
     function done(err, payments)

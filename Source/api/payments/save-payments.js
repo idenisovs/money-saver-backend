@@ -9,7 +9,7 @@ module.exports = savePayments;
 
 function savePayments(req, res)
 {
-    bl.payments.save(req.body, success, error);
+    bl.payments.save(req.body, req.user, success, error);
 
     function success()
     {
