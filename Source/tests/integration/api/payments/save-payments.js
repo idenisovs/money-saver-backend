@@ -9,8 +9,6 @@ var host = require('../host.json').host;
 
 var date, payment, nextDate, secondPayment;
 
-
-
 function savePaymentsTests()
 {
     beforeEach(defineOptions);

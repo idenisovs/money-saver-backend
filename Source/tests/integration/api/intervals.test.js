@@ -1,9 +1,7 @@
 /**
  * Created by Ga5Xz2 on 12.12.2015..
  */
-var request = require('request').defaults({ json: true });
 var chai = require('chai');
-var assert = chai.assert;
 var util = require('util');
 var host = require('./host.json').host;
 var helper = require('./helper/helper');
