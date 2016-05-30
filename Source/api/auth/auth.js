@@ -3,8 +3,10 @@
  */
 
 var router = require('express').Router();
+var auth = require('../auth-middleware');
 
 router.post('/', require('./local'));
+router.get('/logout', auth, require('./logout'));
 router.get('/success', require('./success'));
 router.get('/failure', require('./failure'));
 
