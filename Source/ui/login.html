@@ -1,12 +1,84 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="MoneySaverApp">
+<html lang="en" ng-app="MoneySaverAppLogin">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
 
     <title>Project Money Saver.</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="styles/bootstrap.css">
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="styles/starter-template.css">
+
+    <!-- app.min.js is compressed version of Money Saver Angular.js application. -->
+    <!-- build:js app/app.min.js -->
+    <script src="libs/moment.js" type="application/javascript"></script>
+    <script src="libs/spin.js" type="text/javascript"></script>
+
+    <!-- AngularJS -->
+    <script src="libs/angular.js" type="text/javascript"></script>
+    <script src="libs/angular-route.js" type="text/javascript"></script>
+    <script src="libs/angular-resource.js" type="text/javascript"></script>
+    <script src="libs/angular-cookies.js" type="text/javascript"></script>
+    <script src="libs/angular-spinner.js" type="text/javascript"></script>
+    <script src="libs/ui-bootstrap-tpls-1.2.2.js" type="text/javascript"></script>
+
+    <script src="app/login-app.js" type="text/javascript"></script>
 </head>
 
-<body>
+<body ng-controller="login-ctrl" class="container starter-template">
+    <div class="page-header">
+        <h1>
+            All hail to MoneySaver 3000.
+            <small>
+                Application where you can successfully lost all of your dreams.
+            </small>
+        </h1>
+    </div>
 
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Proceed or die.
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="login" class="col-sm-2 control-label">Login:</label>
+                    <div class="col-sm-10">
+                        <input type="login" class="form-control" id="login" placeholder="login">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Password:</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="password" placeholder="password">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button class="btn btn-default" type="submit">Submit</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+
+    <div class="alert alert-danger" ng-show="showWarning">
+        No <u>guarantee</u>, no <u>satisfaction</u>, no <u>returns</u>. You are warned!
+    </div>
 </body>
+
 </html>

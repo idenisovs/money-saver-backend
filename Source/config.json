@@ -1,5 +1,5 @@
 {
-	"index": "index.html",
+	"index": "login.html",
 	"content": {
 		"public": "./ui"
 	},
