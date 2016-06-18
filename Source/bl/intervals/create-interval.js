@@ -3,6 +3,7 @@
  */
 var util = require('util');
 var moment = require('moment');
+var log = require('log4js').getLogger('create-interval');
 var getLatestInterval = require('./get-latest');
 var dal = require('../../dal/dal');
 
@@ -10,22 +11,29 @@ module.exports = createInterval;
 
 function createInterval(interval, user, success, error)
 {
+    log.debug('Trying to create interval...');
+
     var invalidInterval = checkValidity(interval);
 
     if (invalidInterval)
     {
-        error(invalidInterval);
-        return;
+        log.error('Interval invalid, breaking!');
+        return error(invalidInterval);
     }
 
-    getLatestInterval(checkInterlaceValidity, error);
+    log.debug('Taking latest interval...');
+
+    getLatestInterval(user, checkInterlaceValidity, error);
 
     function checkInterlaceValidity(latestInterval)
     {
+        log.debug('Checking interval interlace validity...');
+
         if (util.isUndefined(latestInterval))
         {
-            saveInterval();
-            return;
+            log.warn('There is no previously entered interval!');
+
+            return saveInterval();
         }
 
         if (util.isUndefined(interval.start))
@@ -49,6 +57,8 @@ function createInterval(interval, user, success, error)
 
     function saveInterval()
     {
+        log.debug('Saving interval!');
+
         interval.start = moment(interval.start).valueOf();
         interval.end = moment(interval.end).valueOf();
 
@@ -59,11 +69,14 @@ function createInterval(interval, user, success, error)
     {
         if (err)
         {
-            error(err);
-            return;
+            log.error('Save failed!');
+
+            return error(err);
         }
 
         interval.id = done.lastID;
+
+        log.debug('Interval successfully saved under %d id!', interval.id);
 
         success(interval);
     }
@@ -71,7 +84,7 @@ function createInterval(interval, user, success, error)
 
 function checkValidity(interval)
 {
-    var result;
+    var result = null;
 
     try
     {
@@ -80,7 +93,11 @@ function checkValidity(interval)
     catch (err)
     {
         result = { reason: 'param', message: err.toString() };
+
+        log.error('Interval has invalid fields! %s', result.message);
     }
+
+    log.debug('New interval is valid!');
 
     return result;
 }
@@ -104,6 +121,8 @@ function checkFields(interval)
 
     if (isUndefined(interval.start))
     {
+        log.warn('interval.start is undefined!');
+
         return;
     }
 

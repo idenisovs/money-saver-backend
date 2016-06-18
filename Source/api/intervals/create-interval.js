@@ -4,6 +4,7 @@
   */
 
 var states = require('http-status');
+var log = require('log4js').getLogger('create-interval');
 var bl = require('../../bl/bl');
 
 function createInterval(req, res)
@@ -17,6 +18,8 @@ function createInterval(req, res)
 
     function error(err)
     {
+        log.error(err);
+
         if (err.reason === 'param')
         {
             res.status(states.BAD_REQUEST);
