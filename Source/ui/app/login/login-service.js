@@ -10,5 +10,24 @@ loginService.$inject = ['$resource', '$log'];
 
 function loginService($resource, $log)
 {
-    return {};
+    var authResourceConfig =
+    {
+        'post': { method: 'POST', isArray: false }
+    };
+
+    var authResource = $resource('/api/auth', {}, authResourceConfig);
+
+    var api =
+    {
+        auth: authorization
+    };
+
+    return api;
+
+    function authorization(login, password)
+    {
+        var credentials = { username: login, password: password };
+
+        return authResource.post(credentials).$promise;
+    }
 }
