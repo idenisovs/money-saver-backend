@@ -11,4 +11,4 @@ router.use('/auth', require('./auth/auth'));
 
 module.exports = router;
 
-require('log4js').getLogger('api').info('API is up!');
+require('log4js').getLogger('api').debug('API module is up!');

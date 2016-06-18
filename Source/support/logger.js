@@ -14,11 +14,11 @@ if (argv.v === 1)
 
 if (argv.v > 1)
 {
-	console.log('extra verbose level');
-	
 	var traceAppender = log4js.appenders.logLevelFilter("TRACE", "FATAL", consoleAppender);
 
 	log4js.addAppender(traceAppender);
+
+	log4js.getLogger('log').info('Extra verbose level!');
 }
 
 module.exports = log4js;

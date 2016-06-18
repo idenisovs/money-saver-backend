@@ -14,4 +14,4 @@ passport.deserializeUser(require('./passport/deserialize'));
 
 module.exports = passport;
 
-log.info('Configured!');
+log.debug('Configured!');

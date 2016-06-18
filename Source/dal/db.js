@@ -15,15 +15,15 @@ if (!util.isUndefined(argv.database))
     config.db = argv.database;
 }
 
-log.info('Connecting to %s...', config.db);
+log.debug('Connecting to %s...', config.db);
 
 var db = new SQLite(config.db);
 
+db.run('PRAGMA foreign_keys = ON', done);
+
 module.exports = db;
 
-log.info('%s connected!', config.db);
-
-db.run('PRAGMA foreign_keys = ON', done);
+log.debug('%s connected!', config.db);
 
 process.on('exit', exitHandler);
 process.on('SIGINT', exitHandler);
@@ -32,11 +32,10 @@ function done(error)
 {
     if (error)
     {
-        log.error(error);
-        return;
+        return log.error(error);
     }
 
-    log.info('Foreign key support shall be enabled now!\n');
+    log.debug('Foreign key support shall be enabled now!\n');
 }
 
 function exitHandler()
