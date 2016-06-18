@@ -6,9 +6,9 @@ function routeProviderConfig($routeProvider)
 {
 	var routes =
 	{
-		daily: { templateUrl: 'app/view/daily/templates/daily.tpl.html', controller: 'DailyCtrl' },
+		daily: { templateUrl: 'app/money/view/daily/templates/daily.tpl.html', controller: 'DailyCtrl' },
 
-		monthly: { templateUrl: 'app/view/monthly/monthly.tpl.html', controller: 'MonthlyCtrl' },
+		monthly: { templateUrl: 'app/money/view/monthly/monthly.tpl.html', controller: 'MonthlyCtrl' },
 
 		default: { redirectTo: '/daily' }
 	};
