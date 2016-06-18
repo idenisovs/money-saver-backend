@@ -1,24 +1,36 @@
-var argv = require('./argv');
 var log4js = require('log4js');
+var appRoot = require('app-root-path');
+var argv = require('./argv');
 
-log4js.configure('logger.json', {});
-
-var consoleAppender = log4js.appenders.console();
-
-if (argv.v === 1)
+var config =
 {
-	var infoAppender = log4js.appenders.logLevelFilter("INFO", "FATAL", consoleAppender);
+	levels: { '[all]': 'INFO' },
+	appenders:
+	[
+		{ type: 'file', filename: appRoot + '/daemon.log', maxLogSize: 20480, backups: 5 }
+	]
+};
 
-	log4js.addAppender(infoAppender);
+if (argv.verbose)
+{
+	config.appenders.push({ type: 'console' });
 }
 
-if (argv.v > 1)
+if (argv.debug)
 {
-	var traceAppender = log4js.appenders.logLevelFilter("TRACE", "FATAL", consoleAppender);
+	config.levels['[all]'] = 'DEBUG';
+}
 
-	log4js.addAppender(traceAppender);
+if (argv.trace)
+{
+	config.levels['[all]'] = 'TRACE';
+}
 
-	log4js.getLogger('log').info('Extra verbose level!');
+log4js.configure(config);
+
+if (argv.trace)
+{
+	log4js.getLogger('log').warn('Running in extra verbosity level!');
 }
 
 module.exports = log4js;

@@ -3,10 +3,11 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var log = require('./support/logger').getLogger('daemon');
 var passport = require('./support/passport');
 var argv = require('./support/argv');
 var config = require('./config.json');
-var log = require('./support/logger').getLogger('daemon');
+
 
 var app = express();
 

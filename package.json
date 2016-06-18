@@ -20,6 +20,7 @@
   "author": "Ilya Denisov",
   "license": "ISC",
   "dependencies": {
+    "app-root-path": "^1.2.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.13.2",
     "chai": "^3.2.0",
