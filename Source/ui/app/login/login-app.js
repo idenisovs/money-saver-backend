@@ -27,22 +27,19 @@ function loginCtrl($scope, $timeout, loginService, $log, $window)
     function performLogin()
     {
         loginService.auth($scope.login, $scope.password).then(onLoginSuccess, onLoginFailed);
+
+        $scope.login = '';
+        $scope.password = '';
     }
 
     function onLoginSuccess(response)
     {
-        $scope.login = '';
-        $scope.password = '';
-
         $window.location.href = 'index.html';
     }
 
     function onLoginFailed(response)
     {
         $log.error('%d: %s', response.status, response.data.message);
-
-        $scope.login = '';
-        $scope.password = '';
 
         $scope.showLoginFailed = true;
     }
