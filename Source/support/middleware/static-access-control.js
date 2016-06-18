@@ -5,17 +5,23 @@
  *
  * Created by I.Denisovs on 16.18.6.
  */
+
 var path = require('path');
 var log = require('log4js').getLogger('static-access-control');
 
 function staticAccessControl(req, res, next)
 {
+    var fileName = path.basename(req.path);
+
     if (req.isAuthenticated())
     {
+        if (isLoginPage(fileName))
+        {
+            return res.redirect('index.html');
+        }
+
         return next();
     }
-
-    var fileName = path.basename(req.path);
 
     if (!isHtmlFile(fileName))
     {
