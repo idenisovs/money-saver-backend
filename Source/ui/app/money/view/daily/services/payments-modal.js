@@ -23,7 +23,7 @@ function paymentsModalFactory($modal)
         {
             animation: true,
             size: 'md',
-            templateUrl: 'app/view/daily/templates/payments.modal.html',
+            templateUrl: 'app/money/view/daily/templates/payments.modal.html',
             controller: 'PaymentsModalCtrl',
             resolve: { date: function() { return date } }
         };

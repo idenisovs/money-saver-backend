@@ -42,7 +42,7 @@ function intervalModal($modal)
         var options = {
             animation: true,
             size: 'md',
-            templateUrl: 'app/view/daily/templates/interval.modal.html',
+            templateUrl: 'app/money/view/daily/templates/interval.modal.html',
             controller: 'IntervalModalCtrl'
         };
 
