@@ -45,6 +45,8 @@ function auth(username, password, done)
             return reject();
         }
 
+        log.info('%s successfully authenticated!', username);
+
         done(null, user)
     }
 
