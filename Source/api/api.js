@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var auth = require('./../middleware/auth-middleware');
+var auth = require('../support/middleware/auth-middleware');
 
 router.use('/payments', auth, require('./payments/payments'));
 

@@ -41,7 +41,7 @@ function enable3dPartyMiddleware()
 
 function enableStaticContent()
 {
-    var staticAccessControl = require('./middleware/static-access-control');
+    var staticAccessControl = require('./support/middleware/static-access-control');
     var static = express.static(config.content.public, { index: config.index });
     app.use(staticAccessControl, static);
 
