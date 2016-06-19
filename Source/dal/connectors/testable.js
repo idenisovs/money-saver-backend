@@ -16,9 +16,6 @@ db.run('PRAGMA foreign_keys = ON', foreignKeysOn);
 
 module.exports = db;
 
-process.on('exit', exitHandler);
-process.on('SIGINT', exitHandler);
-
 function foreignKeysOn(error)
 {
     if (error)
@@ -27,26 +24,4 @@ function foreignKeysOn(error)
     }
 
     log.debug('Foreign key support shall be enabled now!\n');
-}
-
-function exitHandler()
-{
-    process.removeListener('exit', exitHandler);
-    process.removeListener('SIGINT', exitHandler);
-
-    log.info('Closing database...');
-
-    db.close(closeDone);
-
-    function closeDone(err)
-    {
-        if (err)
-        {
-            log.error(err);
-        }
-
-        log.info('Done!');
-
-        process.exit(0);
-    }
 }

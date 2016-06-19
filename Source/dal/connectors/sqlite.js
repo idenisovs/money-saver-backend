@@ -23,9 +23,6 @@ module.exports = db;
 
 log.debug('%s connected!', config.db);
 
-process.on('exit', exitHandler);
-process.on('SIGINT', exitHandler);
-
 function done(error)
 {
     if (error)
@@ -34,26 +31,4 @@ function done(error)
     }
 
     log.debug('Foreign key support shall be enabled now!\n');
-}
-
-function exitHandler()
-{
-    removeExitListener();
-
-    log.info('Closing database...');
-
-    db.close(function(err) {
-        if (!err)
-        {
-            log.info('Done!');
-        }
-
-        process.exit(0);
-    });
-}
-
-function removeExitListener()
-{
-    process.removeListener('exit', exitHandler);
-    process.removeListener('SIGINT', exitHandler);
 }
