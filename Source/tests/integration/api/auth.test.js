@@ -8,5 +8,6 @@ function authenticationTests()
 {
     describe('Login', require('./auth/login'));
     describe('Logout', require('./auth/logout'));
+    describe('Access', require('./auth/access'));
 }
 

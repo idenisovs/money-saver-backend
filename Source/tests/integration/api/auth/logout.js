@@ -25,13 +25,13 @@ function setAll()
     options = { url: login, body: user };
 }
 
-function loginTests()
+function logoutTests()
 {
     it('Logout as anonymous user, should be rejected!', anonymousLogout);
-    it('Logout as authenticated user, should be rejected!', authenticatedLogout);
+    it('Logout as authenticated user, should be accepted!', authenticatedLogout);
 }
 
-module.exports = loginTests;
+module.exports = logoutTests;
 
 function anonymousLogout(done)
 {
