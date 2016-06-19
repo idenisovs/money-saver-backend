@@ -28,6 +28,7 @@ function setAll()
 function loginTests()
 {
     it('Logout as anonymous user, should be rejected!', anonymousLogout);
+    it('Logout as authenticated user, should be rejected!', authenticatedLogout);
 }
 
 module.exports = loginTests;
@@ -39,6 +40,27 @@ function anonymousLogout(done)
     function check(err, res, body)
     {
         assert.equal(res.statusCode, 401);
+        done();
+    }
+}
+
+function authenticatedLogout(done)
+{
+    request.post(options, onLogin);
+
+    function onLogin(err, res, body)
+    {
+        assert.isNull(err);
+        assert.equal(res.statusCode, 200);
+
+        request.get(logout, check);
+    }
+
+    function check(err, res, body)
+    {
+        assert.isNull(err);
+        assert.equal(res.statusCode, 200);
+
         done();
     }
 }
