@@ -8,7 +8,8 @@ var http = require('http-status');
 
 function deletePayments(req, res)
 {
-    log.debug(req.query);
+    log.trace(req.query);
+    
     bl.payments.delete(req, success, error);
 
     function success(removed)

@@ -7,8 +7,12 @@ var util = require('util');
 var log = require('log4js').getLogger('delete-payment');
 var dal = require('../../dal/dal');
 
-function deletePayments(req, user, success, error)
+function deletePayments(req, success, error)
 {
+    var user = req.user;
+
+    log.trace(user);
+
     var fromDefined = !util.isUndefined(req.query.from);
     var tillDefined = !util.isUndefined(req.query.till);
 

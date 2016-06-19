@@ -4,13 +4,15 @@
 
 var util = require('util');
 var moment = require('moment');
-var log = require('log4js').getLogger('payments');
+var log = require('log4js').getLogger('get-payments');
 var dal = require('../../dal/dal');
 
 module.exports = getPayments;
 
 function getPayments(request, user, success, error)
 {
+    log.trace(user);
+
     if ('id' in request)
     {
         log.debug('Taking payments by Id!');
@@ -30,7 +32,7 @@ function getPayments(request, user, success, error)
         log.debug('Taking payments by date range!');
         var from = moment(request.from).startOf('day').valueOf();
         var till = moment(request.till).endOf('day').valueOf();
-        dal.payments.getByDateRange(from, user.id, till, done);
+        dal.payments.getByDateRange(from, till, user.id, done);
         return;
     }
 
