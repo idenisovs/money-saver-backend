@@ -10,6 +10,7 @@ describe('Intervals REST API', intervalsRestTests);
 
 function intervalsRestTests()
 {
+    before(helper.login);
     before(helper.createInterval);
 
     describe('Get intervals', require('./intervals/get-intervals'));
@@ -17,4 +18,5 @@ function intervalsRestTests()
     describe('Delete intervals', require('./intervals/delete-interval'));
 
     after(helper.deleteInterval);
+    after(helper.logout);
 }

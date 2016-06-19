@@ -7,6 +7,7 @@ describe('Payments REST API', paymentsRestTests);
 
 function paymentsRestTests()
 {
+    before(helper.login);
     before(helper.createInterval);
 
     describe('Get Payments', require('./payments/get-payments'));
@@ -14,4 +15,5 @@ function paymentsRestTests()
     describe('Delete Payments', require('./payments/delete-payment'));
 
     after(helper.deleteInterval);
+    after(helper.logout);
 }

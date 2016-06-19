@@ -4,6 +4,8 @@
 
 var helper = {};
 
+helper.login = require('./login');
+
 helper.createInterval = require('./create-interval');
 
 helper.deleteInterval = require('./delete-interval');
@@ -11,5 +13,7 @@ helper.deleteInterval = require('./delete-interval');
 helper.createPayments = require('./create-payments');
 
 helper.deletePayments = require('./delete-payments');
+
+helper.logout = require('./logout');
 
 module.exports = helper;
