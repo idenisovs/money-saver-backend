@@ -3,18 +3,33 @@
  */
 
 var util = require('util');
-var argv = require('../../support/argv');
-var config = require('../../config.json');
 var log = require('log4js').getLogger('db');
 var SQLite = require('sqlite3').Database;
+var argv = require('../../support/argv');
+var config = require('../../config.json');
+var createTestableSchema = require('./create-testable-schema');
+
 
 log.warn('Launching testable database!');
 
 var db = new SQLite(':memory:');
 
-db.run('PRAGMA foreign_keys = ON', foreignKeysOn);
+createTestableSchema(db, schemaCreateDone);
 
 module.exports = db;
+
+function schemaCreateDone(err)
+{
+    log.debug('Schemas created!');
+    
+    if (err)
+    {
+        log.error(err);
+        process.exit(1);
+    }
+
+    db.run('PRAGMA foreign_keys = ON', foreignKeysOn);
+}
 
 function foreignKeysOn(error)
 {
