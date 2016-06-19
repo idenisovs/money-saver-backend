@@ -10,7 +10,7 @@ if [[ $1 == "-s" ]]; then
 fi
 
 if [[ $STANDALONE == "true" ]]; then
-	node daemon.js -b testable.db &
+	node daemon.js --testable &
 	TESTABLE_NODE_PID=$!
 	echo Daemon launched with PID: $TESTABLE_NODE_PID
 else
@@ -19,7 +19,7 @@ fi
 
 MOCHA_BIN=../node_modules/mocha/bin/mocha
 
-./$MOCHA_BIN -c -r chai -R spec --recursive "tests/integration/**/*.test.js"
+./$MOCHA_BIN -c -r chai -R spec --recursive "tests/integration/**/*.test.js" --timeout 5000
 
 if [[ $STANDALONE == "true" ]]; then
 	kill -9 $TESTABLE_NODE_PID
