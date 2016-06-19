@@ -20,8 +20,6 @@ module.exports = db;
 
 function schemaCreateDone(err)
 {
-    log.debug('Schemas created!');
-    
     if (err)
     {
         log.error(err);
