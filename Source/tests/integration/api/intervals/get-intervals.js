@@ -2,7 +2,7 @@
  * Created by Ga5Xz2 on 15.12.2015..
  */
 var util = require('util');
-var request = require('request').defaults({json: true});
+var request = require('../request');
 var moment = require('moment');
 var chai = require('chai');
 var assert = chai.assert;
@@ -119,7 +119,7 @@ function getUndefinedInterval(done)
 	{
 		assert.isNull(err);
         assert.notEqual(res.statusCode, 404);
-		assert.isNumber(interval.id)
+		assert.isNumber(interval.id);
 			
 		request.del(host + '/' + interval.id, tryToGetLatest);
 	}

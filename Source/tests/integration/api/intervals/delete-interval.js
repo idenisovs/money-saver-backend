@@ -3,7 +3,7 @@
  */
 
 var moment = require('moment');
-var request = require('request');
+var request = require('../request');
 var chai = require('chai');
 var assert = chai.assert;
 
