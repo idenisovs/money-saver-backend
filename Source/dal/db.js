@@ -1,61 +1,40 @@
-/**
- * This module encapsulates the basic methods of opening and closing DB connections
- * and provides initialized DB connector.
- *
- * Created by Ga5Xz2 on 13.09.2015..
- */
-var util = require('util');
-var argv = require('../support/argv');
-var config = require('../config.json');
+var argv = require('yargs').argv;
 var log = require('log4js').getLogger('db');
-var SQLite = require('sqlite3').Database;
+var config = require('../config.json');
 
-if (!util.isUndefined(argv.database))
+module.exports = getConnector();
+
+function getConnector()
 {
-    config.db = argv.database;
-}
+    var databaseType = determineDatabaseType();
 
-log.debug('Connecting to %s...', config.db);
+    log.debug('Determined database type: %s!', databaseType);
 
-var db = new SQLite(config.db);
+    var connector;
 
-db.run('PRAGMA foreign_keys = ON', done);
-
-module.exports = db;
-
-log.debug('%s connected!', config.db);
-
-process.on('exit', exitHandler);
-process.on('SIGINT', exitHandler);
-
-function done(error)
-{
-    if (error)
+    switch (databaseType)
     {
-        return log.error(error);
+        case 'testable':
+            log.debug('Switching to testable connector!');
+            connector = require('./connectors/testable');
+            break;
+        default:
+            log.debug('Switching to default (SQLite3) connector!');
+            connector = require('./connectors/sqlite');
     }
 
-    log.debug('Foreign key support shall be enabled now!\n');
+    return connector;
 }
 
-function exitHandler()
+function determineDatabaseType()
 {
-    removeExitListener();
+    log.debug('argv.testable = %s', argv.testable);
 
-    log.info('Closing database...');
+    if (argv.testable)
+    {
+        return 'testable';
+    }
 
-    db.close(function(err) {
-        if (!err) 
-		{ 
-			log.info('Done!'); 
-		}
-
-        process.exit(0);
-    });
+    return 'sqlite';
 }
 
-function removeExitListener()
-{
-    process.removeListener('exit', exitHandler);
-    process.removeListener('SIGINT', exitHandler);
-}

@@ -18,6 +18,8 @@ var argv = require('yargs')
 	.boolean('t')
 	.alias('t', 'trace')
 	.describe('t', 'Set log level to TRACE, extra verbosity level.')
+	.boolean('testable')
+	.describe('testable', 'Running application in testable mode (for integration tests only)!')
     .help('h')
     .alias('h', 'help')
     .argv;
