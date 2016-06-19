@@ -1,5 +1,6 @@
 var util = require('util');
 var Promise = require('promise');
+var log = require('log4js').getLogger('save-payment');
 var db = require('./../db');
 var getByTime = require('../intervals/get-by-time');
 
@@ -10,7 +11,10 @@ function savePayment(payment, userId)
 	var resolve, reject; 
 
     var params = { $time: payment.time, $date: payment.date, $sum: payment.sum, $userId: userId };
-	
+
+	log.debug('Saving payment with sum: %s and user id %s', payment.sum, userId);
+	log.trace(payment);
+
 	return new Promise(resolver);
 	
 	function resolver(_resolve, _reject)

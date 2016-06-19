@@ -4,6 +4,7 @@
 var util = require('util');
 var Promise = require('promise');
 var moment = require('moment');
+var log = require('log4js').getLogger('save-payments');
 var dal = require('../../dal/dal');
 
 module.exports = savePayments;
@@ -34,17 +35,24 @@ function savePayments(payments, user, success, error)
 
         setFields(payment);
 
-        q.push(dal.payments.save(user.id, payment));
+        q.push(dal.payments.save(payment, user.id));
     }
 }
 
 function validate(payment)
 {
-    if (!util.isNumber(payment.sum))
+    if (util.isNumber(payment.sum))
     {
-        var message = 'Sum field shall be properly defined in Payment object!';
-        throw new Error(message);
+        return;
     }
+
+    var template = 'Sum field (%s) shall be properly defined in Payment object!';
+    var message = util.format(template, payment.sum);
+
+    log.error(message);
+    log.trace(payment);
+
+    throw new Error(message);
 }
 
 function setFields(payment)

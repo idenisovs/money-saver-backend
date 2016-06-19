@@ -44,14 +44,20 @@ function updatePayments(paymentList, user, success)
 
         if (payment.add || !('id' in payment))
         {
+            log.debug('Saving payment %d', payment.sum);
+
             save(payment);
         }
         else if (payment.remove)
         {
+            log.debug('Removing payment %d', payment.sum);
+
             remove(payment);
         }
         else
         {
+            log.debug('updating payment %d', payment.sum);
+
             update(payment);
         }
 
@@ -114,7 +120,7 @@ function updatePayments(paymentList, user, success)
 
         function onFail(err)
         {
-            log.error('Payment #%d (%d) failed!', payment.id || -1, payment.sum);
+            log.error('Payment #%d (%d) failed!', payment.id || 'new', payment.sum);
 
             if (err)
             {
