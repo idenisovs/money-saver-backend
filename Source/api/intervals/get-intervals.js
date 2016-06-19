@@ -14,7 +14,7 @@ function getIntervals(req, res)
     if (time)
     {
 		log.debug('Taking interval by time: %s', time);
-        bl.intervals.getByTime(time, success, error);
+        bl.intervals.getByTime(time, req.user, success, error);
 		return;
     }
 	
@@ -24,7 +24,7 @@ function getIntervals(req, res)
     if (from || till)
     {
 		log.debug('Taking interval by boundary: from %s to %s', from, till);
-        bl.intervals.getByBoundary(from, till, success, error);
+        bl.intervals.getByBoundary(from, till, req.user, success, error);
 		return;
     }
 	

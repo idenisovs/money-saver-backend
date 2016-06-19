@@ -4,8 +4,7 @@
 var util = require('util');
 var request = require('../request');
 var moment = require('moment');
-var chai = require('chai');
-var assert = chai.assert;
+var assert = require('chai').assert;
 
 var helper = require('../helper/helper');
 
@@ -100,7 +99,7 @@ function getIntervalsFromAndTill(done)
         
 		assert.isArray(intervals);
 		
-		var interval = intervals[0];
+		var interval = intervals.pop();
 		
 		assert.property(interval, 'id');
 		assert.property(interval, 'start');
