@@ -2,14 +2,15 @@
  * Created by I.Denisovs on 16.19.6.
  */
 
-var request = require('request').defaults({ json: true });
+var assert = require('chai').assert;
+var request = require('../request');
 var host = require('../host.json').host;
 
 function login(done)
 {
     var user =
     {
-        login: 'user1',
+        username: 'user1',
         password: 'test1'
     };
 
@@ -19,7 +20,14 @@ function login(done)
         body: user
     };
 
-    request.post(options, done);
+    request.post(options, check);
+
+    function check(err, res)
+    {
+        assert.isNull(err);
+        assert.equal(res.statusCode, 200);
+        done();
+    }
 }
 
 module.exports = login;

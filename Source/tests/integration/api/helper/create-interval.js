@@ -2,7 +2,7 @@
  * Created by Ga5Xz2 on 02.01.2016..
  */
 var assert = require('chai').assert;
-var request = require('request').defaults({ json: true });
+var request = require('../request');
 var host = require('../host.json').host;
 
 function createInterval(done)
