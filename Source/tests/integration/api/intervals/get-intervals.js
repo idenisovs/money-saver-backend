@@ -86,7 +86,7 @@ function getIntervalsFromAndTill(done)
     var expected = 
 	{
         from: '2001-01-01',
-        till: '2016-01-01'
+        till: '2017-01-01'
     };
 
     var endpoint = util.format('%s/?from=%s&till=%s', host, expected.from, expected.till);

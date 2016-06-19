@@ -3,7 +3,7 @@
  */
 
 var util = require('util');
-var request = require('request').defaults({ json: true });
+var request = require('../request');
 var host = require('../host.json').host;
 var assert = require('chai').assert;
 var moment = require('moment');
