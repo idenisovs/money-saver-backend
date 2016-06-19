@@ -5,6 +5,6 @@
 function success(req, res)
 {
     res.send();
-};
+}
 
 module.exports = success;
