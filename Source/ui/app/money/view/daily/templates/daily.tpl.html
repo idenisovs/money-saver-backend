@@ -10,11 +10,8 @@
 
 	<div class="col-md-8" ng-show="noIntervalsYet">
 		<div class="alert alert-info" role="alert">
-			<strong>
-				No intervals yet!
-			</strong>
+			<strong>No intervals yet!</strong>
 			Please, add new interval before proceed!
-			<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
 		</div>
 	</div>
 
@@ -23,17 +20,14 @@
 		<div class="panel panel-info" ng-include="'app/money/view/daily/templates/daily.interval.html'"></div>
 
 		<!-- Statistics panel -->
-		<div class="panel panel-info" ng-include="'app/money/view/daily/templates/daily.statistics.html'"></div>
+		<div class="panel panel-info"
+			 ng-include="'app/money/view/daily/templates/daily.statistics.html'"
+			 ng-show="showIntervalsTable">
+		</div>
 
 		<!-- Graph panel -->
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<strong>Graph</strong>
-			</div>
-
-			<div class="panel-body">
-				<img src="screenshot.37.png"></img>
-			</div>
-		</div>
+		<div class="panel panel-info"
+			 ng-include="'app/money/view/daily/templates/daily.graph.html'"
+			 ng-show="showIntervalsTable"></div>
 	</div>
 </div>

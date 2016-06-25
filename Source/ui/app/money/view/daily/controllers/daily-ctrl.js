@@ -49,7 +49,7 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 
 		$scope.summary = response;
 
-		$scope.noIntervalsYet = !($scope.summary);
+		$scope.noIntervalsYet = !($scope.summary.schedule);
 
 		$scope.showIntervalsTable = !$scope.noIntervalsYet;
 
