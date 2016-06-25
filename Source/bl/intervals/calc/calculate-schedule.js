@@ -1,5 +1,5 @@
 /**
- * Created by Ga5Xz2 on 19.12.2015..
+ * Created by I. Denisovs on 19.12.2015.
  */
 var moment = require('moment');
 
@@ -18,7 +18,7 @@ function calculateSchedule(summary)
         throw new Error(message);
     }
 
-    var startingDay = moment(summary.interval.start);
+    var startingDay = moment(summary.interval.start).subtract(1, 'days');
 
     var endingDay = moment(summary.interval.end);
 
@@ -56,6 +56,8 @@ function calculateSchedule(summary)
 
         schedule.push(dailyValues);
     }
+
+    schedule.shift();
 
     return schedule;
 }
