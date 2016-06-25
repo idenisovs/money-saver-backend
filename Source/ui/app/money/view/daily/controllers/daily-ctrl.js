@@ -19,6 +19,8 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 	$scope.compareDates = compareDates;
 	$scope.savePayment = savePayment;
 	$scope.$watch('payment.sum', checkValidity);
+	$scope.noIntervalsYet = false;
+	$scope.showIntervalsTable = false;
 
 	reloadSummary();
 
@@ -38,12 +40,18 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 	{
 		$scope.payment = { sum: null };
 
-		$scope.summary = dailyResource.getSummary(onSummaryReceived);
+		dailyResource.getSummary(onSummaryReceived);
 	}
 
-	function onSummaryReceived()
+	function onSummaryReceived(response)
 	{
 		$scope.showSpinner = false;
+
+		$scope.summary = response;
+
+		$scope.noIntervalsYet = !($scope.summary);
+
+		$scope.showIntervalsTable = !$scope.noIntervalsYet;
 
 		today();
 	}
