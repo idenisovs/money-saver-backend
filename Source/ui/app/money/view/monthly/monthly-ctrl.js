@@ -1,14 +1,12 @@
-var app = angular.module('MoneySaverApp');
+angular.module('MoneySaverApp').controller('MonthlyCtrl', monthlyCtrl);
 
-app.controller('MonthlyCtrl', ['$scope', '$modal', '$log', 
+monthlyCtrl.$inject = ['$scope'];
 
-	function($scope, $modal, $log){
-		
-		$scope.message = {
-			header: 'Hello, there!',
-			body: 'It`s your monthly spendings page!'
-		};
-	}
-	
-]);
-
+function monthlyCtrl($scope)
+{
+	$scope.message =
+	{
+		header: 'Sorry!',
+		body: 'Not implemented yet!'
+	};
+}
