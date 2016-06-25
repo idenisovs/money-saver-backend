@@ -72,11 +72,11 @@ function updatePayments(paymentList, user, success)
         {
             var query = { id: payment.id };
 
-            var req = { query: query };
+            var req = { query: query, user: user };
 
             log.debug('Deleting payment #%d...', payment.id);
 
-            payments.delete(req, user, onDeleteSuccess, onFail);
+            payments.delete(req, onDeleteSuccess, onFail);
         }
 
         function update(payment)
