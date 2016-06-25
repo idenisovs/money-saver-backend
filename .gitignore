@@ -5,4 +5,4 @@ node_modules
 .~lock.*
 *.pid
 app.min.js
-version
+/Source/version

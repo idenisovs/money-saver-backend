@@ -5,9 +5,11 @@ router.use('/payments', auth, require('./payments/payments'));
 
 router.use('/intervals', auth, require('./intervals/intervals'));
 
+router.use('/auth', require('./auth/auth'));
+
 router.use('/health', require('./health/health'));
 
-router.use('/auth', require('./auth/auth'));
+router.use('/version', require('./version/version'));
 
 module.exports = router;
 
