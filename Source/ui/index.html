@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="MoneySaverApp" ng-controller="TitleCtrl">
+<html lang="en" ng-app="MoneySaverApp" ng-controller="AppCtrl">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,7 +33,7 @@
 	<!-- App -->
 	<script src="app/money/money-app.js" type="text/javascript"></script>
 	<script src="app/money/money-app-config.js" type="text/javascript"></script>
-	<script src="app/money/title-ctrl.js" type="text/javascript"></script>
+	<script src="app/money/money-app-ctrl.js" type="text/javascript"></script>
 	<script src="app/money/view/daily/controllers/daily-ctrl.js" type="text/javascript"></script>
 	<script src="app/money/view/daily/services/daily-resource.js" type="text/javascript"></script>
 	<script src="app/money/view/daily/controllers/interval-modal-ctrl.js" type="text/javascript"></script>
@@ -67,9 +67,13 @@
 				<li><a href="#contact">Contact</a></li>
 			</ul>
 
-			<p class="navbar-text navbar-right">
-				<health-led></health-led>
-			</p>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a role="button" ng-click="logout()">
+						Logout <span class="glyphicon glyphicon-log-out"></span>
+					</a>
+				</li>
+			</ul>
 		</div>
 	</div>
 </nav>

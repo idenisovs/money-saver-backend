@@ -8,22 +8,19 @@ loginCtrl.$inject = ['$scope', '$resource', 'login-service', '$log', '$window'];
 
 function loginCtrl($scope, $resource, loginService, $log, $window)
 {
+    var queryParams = getQueryString();
+
     $scope.login = '';
     $scope.password = '';
     $scope.showWarning = false;
     $scope.showLoginFailed = false;
-    $scope.showLoginRequierd = false;
+    $scope.showLoginRequierd = ('not-authorized' in queryParams);
+    $scope.showLogoutSuccess = ('logout' in queryParams);
     $scope.message = 'Hello, world!';
     $scope.version = '';
+
     $scope.performLogin = performLogin;
     $scope.emptyCredentials = isCredentialsEmpty;
-
-    var queryParams = getQueryString();
-
-    if ('not-authorized' in queryParams)
-    {
-        $scope.showLoginRequierd = true;
-    }
 
     $resource('/api/version').get(setVersion);
 
