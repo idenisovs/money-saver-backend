@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="MoneySaverApp">
+<html lang="en" ng-app="MoneySaverApp" ng-controller="TitleCtrl">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
 	<meta name="author" content="">
 	<link rel="icon" href="favicon.ico">
 
-	<title>Project Money Saver.</title>
+	<title>Money Saver v.{{version}}</title>
 
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="styles/bootstrap.css">
@@ -33,6 +33,7 @@
 	<!-- App -->
 	<script src="app/money/money-app.js" type="text/javascript"></script>
 	<script src="app/money/money-app-config.js" type="text/javascript"></script>
+	<script src="app/money/title-ctrl.js" type="text/javascript"></script>
 	<script src="app/money/view/daily/controllers/daily-ctrl.js" type="text/javascript"></script>
 	<script src="app/money/view/daily/services/daily-resource.js" type="text/javascript"></script>
 	<script src="app/money/view/daily/controllers/interval-modal-ctrl.js" type="text/javascript"></script>
