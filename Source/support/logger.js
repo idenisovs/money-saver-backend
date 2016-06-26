@@ -7,7 +7,7 @@ var config =
 	levels: { '[all]': 'INFO' },
 	appenders:
 	[
-		{ type: 'file', filename: appRoot + '/daemon.log', maxLogSize: 102400, backups: 5 }
+		{ type: 'file', filename: appRoot + '/daemon.log', maxLogSize: 1048576, backups: 5 }
 	]
 };
 
