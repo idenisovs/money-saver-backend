@@ -48,11 +48,11 @@ function updatePayments(paymentList, success)
 
         if (!payment.user)
         {
-            payment.user = payments.user;
+            payment.user = paymentList.user;
         }
 
         log.debug('Updating payment...');
-        log.trace(payment);
+        log.trace(JSON.stringify(payment));
 
         if (payment.add || !('id' in payment))
         {
@@ -82,9 +82,7 @@ function updatePayments(paymentList, success)
 
         function remove(payment)
         {
-            var query = { id: payment.id };
-
-            var req = { query: query, user: user };
+            var req = { query: payment, user: payment.user };
 
             log.debug('Deleting payment #%d...', payment.id);
 

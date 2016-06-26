@@ -37,7 +37,9 @@ function getLatestIntervalSummary(user, success, error)
 
         result.interval = interval;
 
-        dal.payments.getDailySpendings(interval.id, user.id, dailySpendings);
+        interval.user = user;
+
+        dal.payments.getDailySpendings(interval, dailySpendings);
     }
 
     function dailySpendings(err, dailySpendings)
