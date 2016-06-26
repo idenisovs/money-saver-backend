@@ -13,6 +13,7 @@ function paymentsRestTests()
     describe('Get Payments', require('./payments/get-payments'));
     describe('Save Payments', require('./payments/save-payments'));
     describe('Delete Payments', require('./payments/delete-payment'));
+    describe('Update Payments', require('./payments/update-payments'));
 
     after(helper.deleteInterval);
     after(helper.logout);
