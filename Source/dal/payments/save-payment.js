@@ -11,7 +11,7 @@ function savePayment(payment)
 	var resolve, reject; 
 
 	log.debug('Saving payment with sum: %s and user id %s', payment.sum, payment.user.id);
-	log.trace(payment);
+	log.trace(JSON.stringify(payment));
 
 	var params = { $time: payment.time, $date: payment.date, $sum: payment.sum, $userId: payment.user.id };
 

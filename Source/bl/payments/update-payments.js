@@ -4,6 +4,7 @@
 
 var Promise = require('promise');
 var moment = require('moment');
+var util = require('util');
 var log = require('log4js').getLogger('update-payments');
 var dal = require('../../dal/dal');
 
@@ -13,13 +14,19 @@ var payments =
     'delete': require('./delete-payment')
 };
 
-function updatePayments(payments, success)
+function updatePayments(paymentList, success)
 {
     var q = [];
     var stat = { added: 0, updated: 0, deleted: 0, failed: 0 };
     var failed = [];
 
-    payments.forEach(applyAction);
+    if (!util.isArray(paymentList))
+    {
+        paymentList = [ paymentList ];
+        paymentList.user = paymentList[0].user;
+    }
+
+    paymentList.forEach(applyAction);
 
     Promise.all(q).then(done);
 
@@ -39,7 +46,10 @@ function updatePayments(payments, success)
             resolve = res;
         }
 
-        payment.user = payments.user;
+        if (!payment.user)
+        {
+            payment.user = payments.user;
+        }
 
         log.debug('Updating payment...');
         log.trace(payment);
@@ -58,7 +68,7 @@ function updatePayments(payments, success)
         }
         else
         {
-            log.debug('updating payment %d', payment.sum);
+            log.debug('Updating payment %d', payment.sum);
 
             update(payment);
         }
@@ -85,15 +95,14 @@ function updatePayments(payments, success)
         {
             log.debug('Updating payment #%d...', payment.id);
 
-            dal.payments.update(payment, user.id, onUpdateDone);
+            dal.payments.update(payment, onUpdateDone);
         }
 
         function onUpdateDone(err)
         {
             if (err)
             {
-                onFail(err);
-                return;
+                return onFail(err);
             }
 
             onUpdateSuccess();
