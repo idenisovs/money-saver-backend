@@ -1,5 +1,5 @@
 /**
- * Created by Ga5Xz2 on 11.12.2015..
+ * Created by I. Denisovs on 11.12.2015..
  */
 var helper = require('./helper/helper');
 

@@ -1,5 +1,5 @@
 /**
- * Created by Ga5Xz2 on 02.01.2016..
+ * Created by I. Denisovs on 02.01.2016..
  */
 var assert = require('chai').assert;
 var request = require('../request');

@@ -4,15 +4,19 @@ var dal = require('../../dal/dal');
 
 module.exports = getIntervalByBoundary;
 
-function getIntervalByBoundary(from, till, user, success, error)
+function getIntervalByBoundary(interval, success, error)
 {
-	from = (from === null) ? 0 : moment(from).valueOf();
-	
-	till = (till === null) ? Date.now() : moment(till).valueOf();
+	var from = interval.from;
+
+	interval.from = (from === null) ? 0 : moment(from).valueOf();
+
+	var till = interval.till;
+
+	interval.till = (till === null) ? Date.now() : moment(till).valueOf();
 	
 	log.debug('Taking all intervals from %d till %d', from ,till);
 	
-	dal.intervals.getByBoundary(from, till, user.id, done);
+	dal.intervals.getByBoundary(interval, done);
 	
 	function done(err, intervals)
 	{

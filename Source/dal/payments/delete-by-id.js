@@ -6,9 +6,9 @@ var db = require('../db');
 
 var sql = 'DELETE FROM payments WHERE id = $id AND userId = $userId';
 
-function deleteById(id, userId, callback)
+function deleteById(payment, callback)
 {
-    var params = { $id: id, $userId: userId };
+    var params = { $id: payment.id, $userId: payment.user.id };
 
     db.run(sql, params, done);
 

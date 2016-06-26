@@ -1,6 +1,6 @@
 /**
  * This method helps to clean predefined Payments table.
- * Created by Ga5Xz2 on 02.01.2016..
+ * Created by I. Denisovs on 02.01.2016..
  */
 var util = require('util');
 var request = require('../request');

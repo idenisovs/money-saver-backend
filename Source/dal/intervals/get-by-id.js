@@ -1,7 +1,4 @@
 /**
- * Created by I.Denisovs on 15.12.2015..
- */
-/**
  * This module returns the latest interval.
  * Created by I.Denisovs on 17.11.2015..
  */
@@ -11,9 +8,9 @@ module.exports = getIntervalById;
 
 var sql = 'SELECT id, start, end, sum FROM intervals WHERE id = $id AND userId = $userId';
 
-function getIntervalById(id, userId, callback)
+function getIntervalById(interval, callback)
 {
-    var params = { $id: id, $userId: userId };
+    var params = { $id: interval.id, $userId: interval.user.id };
 
     db.get(sql, params, callback);
 }

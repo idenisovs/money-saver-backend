@@ -12,9 +12,9 @@ sql += 'FROM intervals\n';
 sql += 'WHERE userId = $userId\n';
 sql += 'ORDER BY id DESC LIMIT 1';
 
-function getLatest(userId, callback)
+function getLatest(interval, callback)
 {
-    var params = { $userId: userId };
+    var params = { $userId: interval.user.id };
 
     db.get(sql, params, callback);
 }

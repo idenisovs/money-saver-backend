@@ -10,9 +10,9 @@ sql += "FROM payments\n";
 sql += "WHERE id = $id\n";
 sql += "AND userId = $userId\n";
 
-function getById(id, userId, callback)
+function getById(payment, callback)
 {
-    var params = { '$id': id, '$userId': userId };
+    var params = { '$id': payment.id, '$userId': payment.user.id };
 
     db.get(sql, params, callback);
 }

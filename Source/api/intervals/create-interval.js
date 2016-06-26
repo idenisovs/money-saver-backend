@@ -9,7 +9,9 @@ var bl = require('../../bl/bl');
 
 function createInterval(req, res)
 {
-    bl.intervals.create(req.body, req.user, success, error);
+    req.body.user = req.user;
+
+    bl.intervals.create(req.body, success, error);
 
     function success(interval)
     {

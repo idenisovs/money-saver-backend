@@ -3,11 +3,11 @@ var dal = require('../../dal/dal');
 
 module.exports = getIntervalById;
 
-function getIntervalById(id, user, success, error)
+function getIntervalById(interval, success, error)
 {
-	dal.intervals.getById(id, user.id, onDone);
+	dal.intervals.getById(interval, onDone);
 
-	function onDone(err, interval)
+	function onDone(err, result)
 	{
 		if (err)
 		{
@@ -15,12 +15,12 @@ function getIntervalById(id, user, success, error)
 			return;
 		}
 
-		if(!interval)
+		if(!result)
 		{
 			error('No interval with such id: ' + id + '!');
 			return;
 		}
 
-		success(interval);
+		success(result);
 	}
 }

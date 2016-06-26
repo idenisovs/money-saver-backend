@@ -1,5 +1,5 @@
 /**
- * Created by Ga5Xz2 on 15.12.2015..
+ * Created by I. Denisovs on 15.12.2015..
  */
 var util = require('util');
 var request = require('../request');

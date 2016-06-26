@@ -8,14 +8,14 @@ var sql = 'INSERT INTO intervals (start, end, sum, userId) VALUES ($start, $end,
 
 module.exports = createInterval;
 
-function createInterval(interval, userId, callback)
+function createInterval(interval, callback)
 {
     var params =
     {
         $start: interval.start,
         $end: interval.end,
         $sum: interval.sum,
-        $userId: userId
+        $userId: interval.user.id
     };
 
     db.run(sql, params, done);

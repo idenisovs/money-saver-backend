@@ -10,9 +10,9 @@ sql += "FROM payments\n";
 sql += "WHERE time BETWEEN $from AND $till AND userId = $userId\n";
 sql += "ORDER BY time ASC";
 
-function getByDateRange(from, till, userId, callback)
+function getByDateRange(payment, callback)
 {
-    var params = { '$from': from, '$till': till, '$userId': userId };
+    var params = { '$from': payment.from, '$till': payment.till, '$userId': payment.user.id };
 
     db.all(sql, params, callback);
 }

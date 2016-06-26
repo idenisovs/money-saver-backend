@@ -1,5 +1,5 @@
 /**
- * Created by Ga5Xz2 on 19.12.2015..
+ * Created by I. Denisovs on 19.12.2015..
  */
 
 var dal = require('../../dal/dal');
@@ -19,7 +19,9 @@ function getLatestIntervalSummary(user, success, error)
         totals: null
     };
 
-    dal.intervals.getLatest(user.id, latestInterval);
+    var interval = { user: user };
+
+    dal.intervals.getLatest(interval, latestInterval);
 
     function latestInterval(err, interval)
     {

@@ -1,5 +1,5 @@
 /**
- * Created by Ga5Xz2 on 24.12.2015..
+ * Created by I. Denisovs on 24.12.2015..
  */
 var util = require('util');
 var moment = require('moment');
@@ -9,7 +9,7 @@ var dal = require('../../dal/dal');
 
 module.exports = createInterval;
 
-function createInterval(interval, user, success, error)
+function createInterval(interval, success, error)
 {
     log.debug('Trying to create interval...');
 
@@ -23,7 +23,7 @@ function createInterval(interval, user, success, error)
 
     log.debug('Taking latest interval...');
 
-    getLatestInterval(user, checkInterlaceValidity, error);
+    getLatestInterval(interval, checkInterlaceValidity, error);
 
     function checkInterlaceValidity(latestInterval)
     {
@@ -62,7 +62,7 @@ function createInterval(interval, user, success, error)
         interval.start = moment(interval.start).valueOf();
         interval.end = moment(interval.end).valueOf();
 
-        dal.intervals.create(interval, user.id, done);
+        dal.intervals.create(interval, done);
     }
 
     function done(err)

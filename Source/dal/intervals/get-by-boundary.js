@@ -13,11 +13,11 @@ sql += 'start >= $from\n';
 sql += 'AND end <= $till\n';
 sql += 'AND userId = $userId';
 
-function getByBoundary(from, till, userId, callback)
+function getByBoundary(interval, callback)
 {
-    log.trace('From: %s, Till: %s, UserID: %s', from, till, userId);
+    log.trace(JSON.stringify(interval));
 
-    var params = { $from: from, $till: till, $userId: userId };
+    var params = { $from: interval.from, $till: interval.till, $userId: interval.user.id };
 
     db.all(sql, params, callback);
 }

@@ -10,9 +10,9 @@ sql += "FROM payments\n";
 sql += "WHERE date = $date AND userId = $userId\n";
 sql += "ORDER BY time ASC\n";
 
-function getByDate(date, userId, callback)
+function getByDate(payment, callback)
 {
-    var params = { '$date': date, '$userId': userId };
+    var params = { '$date': payment.date, '$userId': payment.user.id };
 
     db.all(sql, params, callback);
 }

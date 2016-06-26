@@ -1,18 +1,18 @@
 /**
- * Created by Ga5Xz2 on 26.12.2015..
+ * Created by I. Denisovs on 26.12.2015..
  */
 var util = require('util');
 var dal = require('../../dal/dal');
 
 module.exports = deleteInterval;
 
-function deleteInterval(id, user, success, error)
+function deleteInterval(interval, success, error)
 {
     var result = { intervalsRemoved: 0, paymentsRemoved: 0 };
 
-    dal.intervals.getById(id, user.id, intervalRequestDone);
+    dal.intervals.getById(interval, intervalRequestDone);
 
-    function intervalRequestDone(err, interval)
+    function intervalRequestDone(err, result)
     {
         if (err)
         {
@@ -20,14 +20,16 @@ function deleteInterval(id, user, success, error)
             return;
         }
 
-        if (util.isUndefined(interval))
+        if (util.isUndefined(result))
         {
-            var message = util.format('There is no Interval with such id: %d!', id);
+            var message = util.format('There is no Interval with such id: %d!', interval.id);
             error({ reason: 'param', message:  message });
             return;
         }
 
-        dal.payments.deleteByInterval(interval, user.id, paymentsRemovalDone);
+        result.user = interval.user;
+
+        dal.payments.deleteByInterval(result, paymentsRemovalDone);
     }
 
     function paymentsRemovalDone(err, removed)
@@ -40,7 +42,7 @@ function deleteInterval(id, user, success, error)
 
         result.paymentsRemoved = removed;
 
-        dal.intervals.delete(id, user.id, done);
+        dal.intervals.delete(interval, done);
     }
 
     function done(err)

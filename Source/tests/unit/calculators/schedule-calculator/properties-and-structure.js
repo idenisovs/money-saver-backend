@@ -1,5 +1,5 @@
 /**
- * Created by Ga5Xz2 on 20.12.2015..
+ * Created by I. Denisovs on 20.12.2015..
  */
 
 var chai = require('chai');

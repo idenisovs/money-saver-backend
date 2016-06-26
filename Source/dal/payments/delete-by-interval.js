@@ -6,9 +6,9 @@ var db = require('../db');
 
 var sql = 'DELETE FROM payments WHERE time BETWEEN $start AND $end AND userId = $userId';
 
-function deleteByInterval(interval, userId, callback)
+function deleteByInterval(interval, callback)
 {
-    var params = { $start: interval.start, $end: interval.end, $userId: userId };
+    var params = { $start: interval.start, $end: interval.end, $userId: interval.user.id };
 
     db.run(sql, params, done);
 

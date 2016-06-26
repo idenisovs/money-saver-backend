@@ -1,12 +1,12 @@
 /**
- * Created by Ga5Xz2 on 30.12.2015..
+ * Created by I. Denisovs on 30.12.2015..
  */
 
 var dal = require('../../dal/dal');
 
-function getByTime(timestamp, user, success, error)
+function getByTime(interval, success, error)
 {
-    dal.intervals.getByTime(timestamp, user.id, done);
+    dal.intervals.getByTime(interval, done);
 
     function done(err, interval)
     {

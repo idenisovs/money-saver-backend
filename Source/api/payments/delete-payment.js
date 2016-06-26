@@ -1,5 +1,5 @@
 /**
- * Created by Ga5Xz2 on 31.12.2015..
+ * Created by I. Denisovs on 31.12.2015..
  */
 var util = require('util');
 var log = require('log4js').getLogger('delete-payment');

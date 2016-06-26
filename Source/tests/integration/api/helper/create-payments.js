@@ -1,5 +1,5 @@
 /**
- * Created by Ga5Xz2 on 02.01.2016..
+ * Created by I. Denisovs on 02.01.2016..
  */
 
 var util = require('util');
@@ -8,7 +8,8 @@ var host = require('../host.json').host;
 var assert = require('chai').assert;
 var moment = require('moment');
 
-var payments = [
+var payments =
+[
     { time: moment('2015-12-01T09:30').valueOf(), sum: 12.15 },
     { time: moment('2015-12-01T12:17').valueOf(), sum: 1.22 },
     { time: moment('2015-12-02T21:45').valueOf(), sum: 2.34 },

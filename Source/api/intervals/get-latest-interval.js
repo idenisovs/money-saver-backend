@@ -10,7 +10,9 @@ module.exports = getLatestInterval;
 
 function getLatestInterval(req, res)
 {
-    bl.intervals.getLatest(req.user, success, error);
+    var interval = { user: req.user };
+
+    bl.intervals.getLatest(interval, success, error);
 
     function success(interval)
     {

@@ -2,18 +2,17 @@ var dal = require('../../dal/dal');
 
 module.exports = getLatestInterval;
 
-function getLatestInterval(user, success, error)
+function getLatestInterval(interval, success, error)
 {
-	dal.intervals.getLatest(user.id, onDone);
+	dal.intervals.getLatest(interval, onDone);
 
-	function onDone(err, interval)
+	function onDone(err, result)
 	{
 		if (err)
 		{
-			error(err);
-			return;
+			return error(err);
 		}
 
-		success(interval);
+		success(result);
 	}
 }

@@ -1,5 +1,5 @@
 /**
- * Created by Ga5Xz2 on 28.12.2015..
+ * Created by I. Denisovs on 28.12.2015..
  */
 
 var http = require('http-status');
@@ -9,7 +9,9 @@ module.exports = getPayments;
 
 function getPayments(req, res)
 {
-    bl.payments.get(req.query, req.user, success, error);
+    req.query.user = req.user;
+
+    bl.payments.get(req.query, success, error);
 
     function success(payments)
     {

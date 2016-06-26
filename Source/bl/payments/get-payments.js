@@ -1,5 +1,5 @@
 /**
- * Created by Ga5Xz2 on 28.12.2015..
+ * Created by I. Denisovs on 28.12.2015..
  */
 
 var util = require('util');
@@ -9,21 +9,22 @@ var dal = require('../../dal/dal');
 
 module.exports = getPayments;
 
-function getPayments(request, user, success, error)
+function getPayments(request, success, error)
 {
-    log.trace(user);
+    log.trace(request.user);
 
     if ('id' in request)
     {
-        log.debug('Taking payments by Id!');
-        dal.payments.getById(request.id, user.id, done);
+        log.debug('Taking payment by Id!');
+        var payment = { id: request.id, user: request.user };
+        dal.payments.getById(request, done);
         return;
     }
 
     if ('date' in request)
     {
         log.debug('Taking payments by date!');
-        dal.payments.getByDate(request.date, user.id, done);
+        dal.payments.getByDate(request, done);
         return;
     }
 
@@ -32,12 +33,14 @@ function getPayments(request, user, success, error)
         log.debug('Taking payments by date range!');
         var from = moment(request.from).startOf('day').valueOf();
         var till = moment(request.till).endOf('day').valueOf();
-        dal.payments.getByDateRange(from, till, user.id, done);
+        var interval = { from: from, till: till, user: request.user };
+        dal.payments.getByDateRange(interval, done);
         return;
     }
 
     log.debug('Taking payments by latest interval!');
-    dal.intervals.getLatest(user.id, getLatestDone);
+    var interval = { user: request.user };
+    dal.intervals.getLatest(interval, getLatestDone);
 
     function getLatestDone(err, latestInterval)
     {
@@ -46,7 +49,12 @@ function getPayments(request, user, success, error)
             return error(err);
         }
 
-        dal.payments.getByIntervalId(latestInterval.id, user.id, done);
+        latestInterval.user = request.user;
+
+        log.debug('Latest interval taken!');
+        log.trace(latestInterval);
+
+        dal.payments.getByIntervalId(latestInterval, done);
     }
 
     function done(err, payments)

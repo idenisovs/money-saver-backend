@@ -1,15 +1,19 @@
 /**
- * Created by Ga5Xz2 on 28.12.2015..
+ * Created by I. Denisovs on 28.12.2015..
  */
 
-var bl = require('../../bl/bl');
+var log = require('log4js').getLogger('save-payments');
 var http = require('http-status');
+var bl = require('../../bl/bl');
+
 
 module.exports = savePayments;
 
 function savePayments(req, res)
 {
-    bl.payments.save(req.body, req.user, success, error);
+    req.body.user = req.user;
+
+    bl.payments.save(req.body, success, error);
 
     function success()
     {
@@ -18,6 +22,7 @@ function savePayments(req, res)
 
     function error(reason)
     {
+        log.error(reason);
         res.status(http.INTERNAL_SERVER_ERROR).json(reason);
     }
 }

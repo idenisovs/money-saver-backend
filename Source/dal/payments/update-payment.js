@@ -6,9 +6,9 @@ var db = require('../db');
 
 var sql = 'UPDATE payments SET sum = $sum WHERE id = $id AND userId = $userId';
 
-function updatePayment(payment, userId, done)
+function updatePayment(payment, done)
 {
-    var params = { $id: payment.id, $sum: payment.sum, $userId: userId };
+    var params = { $id: payment.id, $sum: payment.sum, $userId: payment.user.id };
 
     db.run(sql, params, done);
 }

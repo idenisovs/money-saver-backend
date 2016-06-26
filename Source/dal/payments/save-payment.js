@@ -2,18 +2,18 @@ var util = require('util');
 var Promise = require('promise');
 var log = require('log4js').getLogger('save-payment');
 var db = require('./../db');
-var getByTime = require('../intervals/get-by-time');
+var getIntervalByTime = require('../intervals/get-by-time');
 
 var sql = "INSERT INTO payments (time, date, sum, userId) VALUES ($time, $date, $sum, $userId)";
 
-function savePayment(payment, userId)
+function savePayment(payment)
 {
 	var resolve, reject; 
 
-    var params = { $time: payment.time, $date: payment.date, $sum: payment.sum, $userId: userId };
-
-	log.debug('Saving payment with sum: %s and user id %s', payment.sum, userId);
+	log.debug('Saving payment with sum: %s and user id %s', payment.sum, payment.user.id);
 	log.trace(payment);
+
+	var params = { $time: payment.time, $date: payment.date, $sum: payment.sum, $userId: payment.user.id };
 
 	return new Promise(resolver);
 	
@@ -22,7 +22,9 @@ function savePayment(payment, userId)
 		resolve = _resolve;
 		reject = _reject;
 
-		getByTime(payment.time, userId, checkInterval);
+		var interval = { time: payment.time, user: payment.user };
+
+		getIntervalByTime(interval, checkInterval);
 	}
 
 	function checkInterval(err, interval)
@@ -38,6 +40,7 @@ function savePayment(payment, userId)
 			var message = '';
 			message += 'Given payment does not belong to any of intervals!\n';
 			message += 'Please, set the correct value to Time field!';
+			delete payment.user;
 			reject({ message: message, payment: payment });
 			return;
 		}
@@ -49,8 +52,7 @@ function savePayment(payment, userId)
 	{
 		if (err)
 		{
-			reject(err);
-			return;
+			return reject(err);
 		}
 		
 		resolve();

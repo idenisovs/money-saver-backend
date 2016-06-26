@@ -1,7 +1,7 @@
 /**
  * DailyDataFactory.
  * This factory is used to work with remote Daily financial data.
- * Created by Ga5Xz2 on 14.05.2015.
+ * Created by I. Denisovs on 14.05.2015.
  */
 var app = angular.module('MoneySaverApp');
 

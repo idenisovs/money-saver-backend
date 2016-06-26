@@ -8,11 +8,13 @@ var bl = require('../../bl/bl');
 
 function getIntervalById(req, res)
 {
-    bl.intervals.getById(req.params.id, req.user, success, error);
+    var interval = { id: req.params.id, user: req.user };
 
-    function success(interval)
+    bl.intervals.getById(interval, success, error);
+
+    function success(result)
     {
-        res.json(interval);
+        res.json(result);
     }
 
     function error(err)

@@ -14,7 +14,8 @@ function getIntervals(req, res)
     if (time)
     {
 		log.debug('Taking interval by time: %s', time);
-        bl.intervals.getByTime(time, req.user, success, error);
+        var interval = { time: time, user: req.user };
+        bl.intervals.getByTime(interval, success, error);
 		return;
     }
 	
@@ -23,19 +24,23 @@ function getIntervals(req, res)
 	
     if (from || till)
     {
-		log.debug('Taking interval by boundary: from %s to %s', from, till);
-        bl.intervals.getByBoundary(from, till, req.user, success, error);
+        log.debug('Taking interval by boundary: from %s to %s', from, till);
+        var interval = { from: from, till: till, user: req.user };
+        bl.intervals.getByBoundary(interval, success, error);
 		return;
     }
 	
 	log.debug('No query params defined, returning latest interval...');
 	log.warn('This call shall return the list of intervals instead of latest interval!');
-	
-	bl.intervals.getLatest(req.user, success, error);
 
-    function success(interval)
+    var interval = { user: req.user };
+
+	bl.intervals.getLatest(interval, success, error);
+
+    function success(result)
     {
-        res.json(interval);
+        log.trace(result);
+        res.json(result);
     }
 
     function error(err)

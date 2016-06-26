@@ -1,5 +1,5 @@
 /**
- * Created by Ga5Xz2 on 28.12.2015..
+ * Created by I. Denisovs on 28.12.2015..
  */
 var util = require('util');
 var Promise = require('promise');
@@ -9,13 +9,17 @@ var dal = require('../../dal/dal');
 
 module.exports = savePayments;
 
-function savePayments(payments, user, success, error)
+function savePayments(payments, success, error)
 {
     var q = [];
 
     if (!util.isArray(payments))
     {
         payments = [ payments ];
+
+        payments.user = payments[0].user;
+
+        delete payments[0].user;
     }
 
     try
@@ -35,7 +39,11 @@ function savePayments(payments, user, success, error)
 
         setFields(payment);
 
-        q.push(dal.payments.save(payment, user.id));
+        payment.user = payments.user;
+
+        log.trace(JSON.stringify(payment));
+
+        q.push(dal.payments.save(payment));
     }
 }
 

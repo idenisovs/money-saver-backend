@@ -12,9 +12,9 @@ sql += 'LEFT OUTER JOIN payments p ON p.time > i.start AND p.time < i.end\n';
 sql += 'WHERE i.id = $id AND p.userId = $userId\n';
 sql += 'GROUP BY date';
 
-function getByIntervalId(id, userId, callback)
+function getByIntervalId(interval, callback)
 {
-	var params = { '$id': id, '$userId': userId };
+	var params = { '$id': interval.id, '$userId': interval.user.id };
 	
 	db.all(sql, params, callback);
 }

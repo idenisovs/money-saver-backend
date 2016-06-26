@@ -8,9 +8,9 @@ module.exports = deleteInterval;
 
 var sql = 'DELETE FROM intervals WHERE id = $id AND userId = $userId';
 
-function deleteInterval(id, userId, callback)
+function deleteInterval(interval, callback)
 {
-    var params = { $id: id, $userId: userId };
+    var params = { $id: interval.id, $userId: interval.user.id };
 
     db.run(sql, params, done);
 

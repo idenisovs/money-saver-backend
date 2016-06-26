@@ -12,9 +12,9 @@ sql += 'start <= $stamp\n';
 sql += 'AND end >= $stamp\n';
 sql += 'AND userId = $userId';
 
-function getByTime(timestamp, userId, callback)
+function getByTime(interval, callback)
 {
-    var params = { $stamp: timestamp, $userId: userId };
+    var params = { $stamp: interval.time, $userId: interval.user.id };
 
     db.get(sql, params, callback);
 }

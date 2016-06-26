@@ -13,14 +13,13 @@ var payments =
     'delete': require('./delete-payment')
 };
 
-
-function updatePayments(paymentList, user, success)
+function updatePayments(payments, success)
 {
     var q = [];
     var stat = { added: 0, updated: 0, deleted: 0, failed: 0 };
     var failed = [];
 
-    paymentList.forEach(applyAction);
+    payments.forEach(applyAction);
 
     Promise.all(q).then(done);
 
@@ -40,6 +39,9 @@ function updatePayments(paymentList, user, success)
             resolve = res;
         }
 
+        payment.user = payments.user;
+
+        log.debug('Updating payment...');
         log.trace(payment);
 
         if (payment.add || !('id' in payment))
@@ -65,7 +67,7 @@ function updatePayments(paymentList, user, success)
         {
             payment.date = moment(payment.time).format('YYYY-MM-DD');
             log.debug('Saving payment on %s for %s...', payment.date, payment.sum);
-            payments.save(payment, user, onSaveSuccess, onFail);
+            payments.save(payment, onSaveSuccess, onFail);
         }
 
         function remove(payment)

@@ -1,5 +1,5 @@
 /**
- * Created by Ga5Xz2 on 28.12.2015..
+ * Created by I. Denisovs on 28.12.2015..
  */
 
 var payments = {};

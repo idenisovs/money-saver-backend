@@ -1,5 +1,5 @@
 /**
- * Created by Ga5Xz2 on 31.12.2015..
+ * Created by I. Denisovs on 31.12.2015..
  */
 
 var moment = require('moment');
@@ -23,9 +23,9 @@ function deletePayments(req, success, error)
         var start = moment(req.query.from).startOf('day').valueOf();
         var end = moment(req.query.till).endOf('day').valueOf();
 
-        var interval = { start: start, end: end };
+        var interval = { start: start, end: end, user: user };
 
-        dal.payments.deleteByInterval(interval, user.id, done);
+        dal.payments.deleteByInterval(interval, done);
 		
         return;
     }
@@ -35,7 +35,8 @@ function deletePayments(req, success, error)
     if (idDefined)
     {
 		log.debug('Removing payments by id!');
-        dal.payments.deleteById(req.query.id, user.id, done);
+        var payment = { id: req.query.id, user: user };
+        dal.payments.deleteById(payment, done);
         return;
     }
 
@@ -44,7 +45,8 @@ function deletePayments(req, success, error)
     if (intervalIdDefined)
     {
 		log.debug('Removing payments by interval id!');
-        dal.intervals.getById(req.query.intervalId, user.id, intervalRequestDone);
+        var interval = { id: req.query.intervalId, user: user };
+        dal.intervals.getById(interval, intervalRequestDone);
         return;
     }
 
@@ -67,15 +69,16 @@ function deletePayments(req, success, error)
             return;
         }
 
-        dal.payments.deleteByInterval(interval, user.id, done);
+        interval.user = user;
+
+        dal.payments.deleteByInterval(interval, done);
     }
 
     function done(err, removed)
     {
         if (err)
         {
-            error(err);
-            return;
+            return error(err);
         }
 
         success(removed);
