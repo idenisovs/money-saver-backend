@@ -60,6 +60,16 @@ function run(grunt)
         {
             'pre-build': [ './Source/ui/app/app.js', './Source/ui/app/app.min.js' ],
             'post-build': [ './Source/ui/app/app.js' ]
+        },
+
+        replace:
+        {
+            version: 
+            {
+                src: [ './Source/ui/*.html' ],
+                overwrite: true,
+                replacements: [ { from: '{{version}}', to: grunt.file.read('./Source/version')  } ]
+            }
         }
     };
 
@@ -69,15 +79,20 @@ function run(grunt)
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-processhtml');
+    grunt.loadNpmTasks('grunt-text-replace');
 
     var defaultTask =
         [
             'clean:pre-build',
+            'replace:version',
             'concat',
             'uglify',
             'processhtml',
             'clean:post-build'
         ];
 
+    var updateVersion = [ 'replace:version' ];
+
     grunt.registerTask('default', defaultTask);
+    grunt.registerTask('version', updateVersion);
 }
