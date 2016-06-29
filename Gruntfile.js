@@ -6,6 +6,10 @@ module.exports = run;
 
 function run(grunt)
 {
+    var projectVersion = grunt.file.read('./Source/version');
+
+    projectVersion = projectVersion.replace(/[\r\n]/, '');
+
     var config =
     {
         pkg: grunt.file.readJSON('package.json'),
@@ -68,12 +72,15 @@ function run(grunt)
             {
                 src: [ './Source/ui/*.html' ],
                 overwrite: true,
-                replacements: [ { from: '{{version}}', to: grunt.file.read('./Source/version')  } ]
+                replacements: [ { from: '{{version}}', to: projectVersion  } ]
             }
         }
     };
 
     grunt.initConfig(config);
+
+    grunt.file.defaultEncoding = 'utf8';
+    grunt.file.preserveBOM = false;
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
