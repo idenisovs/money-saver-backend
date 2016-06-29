@@ -1,5 +1,6 @@
 /**
- * Created by Ilya Denisov on 12.03.2016..
+ * Created by Ilya Denisov on 12.03.2016.
+ * TODO: Please, process Login and Main applications separately!
  */
 
 module.exports = run;
@@ -55,7 +56,8 @@ function run(grunt)
             {
                 files:
                 {
-                    './Source/ui/index.html': ['./Source/ui/index.html']
+                    './Source/ui/index.html': [ './Source/ui/index.html' ],
+                    './Source/ui/login.html': [ './Source/ui/login.html' ]
                 }
             }
         },
