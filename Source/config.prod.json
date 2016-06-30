@@ -1,0 +1,9 @@
+{
+	"index": "login.html",
+	"content": {
+		"public": "./ui"
+	},
+	"host": "http://localhost",
+	"port": 9002,
+    "db": "/var/money/finance.db"
+}
