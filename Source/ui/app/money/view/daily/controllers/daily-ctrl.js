@@ -117,7 +117,7 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 					xAxes: [{ display: false }],
 					yAxes: [{
 						ticks: {
-							min: 0, max: 0,
+							max: 0,
 							beginAtZero: true
 						}
 					}]
@@ -163,7 +163,7 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 		}
 
 		$scope.chart.data[0][idx] = Math.round(scheduleItem.sum * 100) / 100;
-		
+
 		$scope.chart.data[1][idx] = scheduleItem.residual;
 	}
 }
