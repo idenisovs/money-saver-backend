@@ -1,14 +1,15 @@
 <div class="panel-heading">
     <strong>Graph</strong>
 </div>
-
-<div class="panel-body" ng-controller="chart-ctrl">
+<!--ng-controller="chart-ctrl"-->
+<div class="panel-body" >
     <!--<img src="screenshot.37.png"></img>-->
     <canvas id="base"
             class="chart chart-bar"
-            chart-data="data"
-            chart-labels="labels"
-            chart-colors="colors"
-            chart-dataset-override="datasetOverride" >
+            chart-options="chart.options"
+            chart-data="chart.data"
+            chart-labels="chart.labels"
+            chart-colors="chart.colors"
+            chart-dataset-override="chart.datasetOverride" >
     </canvas>
 </div>
