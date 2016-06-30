@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="AngularChartTest">
+<head>
+    <meta charset="utf-8">
+
+    <title>
+        Testing Angular-Chart
+    </title>
+	
+	<link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
+	
+	<script src="lib/Chart.js"></script>
+	<script src="lib/angular.min.js"></script>
+	<script src="lib/angular-chart.js"></script>
+	
+	<script src="app.js"></script>
+</head>
+
+<body ng-controller="ChartCtrl">
+	<h1>{{message}}</h1>
+	
+	<canvas id="base" 
+			class="chart chart-bar" 
+			chart-data="data" 
+			chart-labels="labels"
+			chart-colors="colors"
+			chart-legend="true"
+			chart-series="series"
+			chart-dataset-override="datasetOverride">
+	</canvas>
+	
+</body>
+
+
+
+</html>
