@@ -18,7 +18,22 @@ function run(grunt)
         concat:
         {
             options: { separator: ';' },
-            dist:
+			
+			login:
+			{
+				src: 
+				[
+					'./Source/ui/libs/moment.js',
+                    './Source/ui/libs/spin.js',
+                    './Source/ui/libs/angular.js',
+                    './Source/ui/libs/angular-*.js',
+                    './Source/ui/libs/ui-bootstrap*',
+					'./Source/ui/app/login/*.js'
+				],
+				dest: './Source/ui/app/login.app.js'
+			},
+            
+			main:
             {
                 src:
                 [
@@ -43,11 +58,18 @@ function run(grunt)
             {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
-            build:
-            {
-                src: ['./Source/ui/app/app.js' ],
-                dest: './Source/ui/app/app.min.js'
-            }
+
+            main:
+			{
+				src: ['./Source/ui/app/app.js' ],
+				dest: './Source/ui/app/app.min.js'
+			},
+			
+			login:
+			{
+				src: ['./Source/ui/app/login.app.js' ],
+				dest: './Source/ui/app/login.app.min.js'
+			}
         },
 
         processhtml:
@@ -64,8 +86,8 @@ function run(grunt)
 
         clean:
         {
-            'pre-build': [ './Source/ui/app/app.js', './Source/ui/app/app.min.js' ],
-            'post-build': [ './Source/ui/app/app.js' ]
+            'pre-build': [ './Source/ui/app/*.js' ],
+            'post-build': [ './Source/ui/app/*app.js' ]
         },
 
         replace:
@@ -94,8 +116,14 @@ function run(grunt)
         [
             'clean:pre-build',
             'replace:version',
-            'concat',
-            'uglify',
+            
+			'concat:login',
+			'uglify:login',
+			
+			'concat:main',
+			'concat:login',
+            
+			'uglify',
             'processhtml',
             'clean:post-build'
         ];
