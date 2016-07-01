@@ -4,5 +4,5 @@ node_modules
 *.log.*
 .~lock.*
 *.pid
-app.min.js
+*app.min.js
 /Source/version
