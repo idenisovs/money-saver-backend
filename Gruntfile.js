@@ -26,9 +26,12 @@ function run(grunt)
 					'./Source/ui/libs/moment.js',
                     './Source/ui/libs/spin.js',
                     './Source/ui/libs/angular.js',
-                    './Source/ui/libs/angular-*.js',
+                    './Source/ui/libs/angular-resource.js',
+					'./Source/ui/libs/angular-route.js',
+					'./Source/ui/libs/angular-spinner.js',
+					'./Source/ui/libs/angular-cookies.js',
                     './Source/ui/libs/ui-bootstrap*',
-					'./Source/ui/app/login/*.js'
+					'./Source/ui/app/login/**/*.js'
 				],
 				dest: './Source/ui/app/login.app.js'
 			},
@@ -37,16 +40,17 @@ function run(grunt)
             {
                 src:
                 [
-                    './Source/ui/libs/moment.js',
-                    './Source/ui/libs/spin.js',
-                    './Source/ui/libs/angular.js',
+					'./Source/ui/libs/Chart.js',
+					'./Source/ui/libs/moment.js',
+					'./Source/ui/libs/spin.js',
+
+					'./Source/ui/libs/angular.js',
+					'./Source/ui/libs/ui-bootstrap-tpls-1.2.2.js',
+
                     './Source/ui/libs/angular-*.js',
-                    './Source/ui/libs/ui-bootstrap*',
-                    './Source/ui/app/money-app.js',
-                    './Source/ui/app/money-app-config.js',
-                    './Source/ui/app/health-resource.js',
-                    './Source/ui/app/health-led-directive.js',
-                    './Source/ui/app/view/**/*.js'
+					
+					'./Source/ui/app/money/money-app.js',
+                    './Source/ui/app/money/**/*.js'
                 ],
                 dest: './Source/ui/app/app.js'
             }
@@ -116,14 +120,13 @@ function run(grunt)
         [
             'clean:pre-build',
             'replace:version',
-            
+			
 			'concat:login',
 			'uglify:login',
 			
 			'concat:main',
-			'concat:login',
-            
-			'uglify',
+			'uglify:main',
+			
             'processhtml',
             'clean:post-build'
         ];
