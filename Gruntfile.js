@@ -119,6 +119,7 @@ function run(grunt)
     var defaultTask =
         [
             'clean:pre-build',
+			
             'replace:version',
 			
 			'concat:login',
@@ -128,6 +129,7 @@ function run(grunt)
 			'uglify:main',
 			
             'processhtml',
+			
             'clean:post-build'
         ];
 
