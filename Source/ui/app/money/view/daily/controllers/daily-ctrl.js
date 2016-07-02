@@ -130,8 +130,6 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 
 	function updateChart()
 	{
-		$log.info($scope.summary.schedule);
-
 		var schedule = $scope.summary.schedule;
 
 		if ($scope.chart.labels.length === 0)
@@ -162,8 +160,13 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 			$scope.chart.options.scales.yAxes[0].ticks.max = max;
 		}
 
-		$scope.chart.data[0][idx] = Math.round(scheduleItem.sum * 100) / 100;
+		$scope.chart.data[0][idx] = currency(scheduleItem.sum);
 
-		$scope.chart.data[1][idx] = scheduleItem.residual;
+		$scope.chart.data[1][idx] = currency(scheduleItem.residual);
+	}
+
+	function currency(value)
+	{
+		return Math.round(value * 100) / 100;
 	}
 }
