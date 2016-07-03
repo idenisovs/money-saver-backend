@@ -68,7 +68,7 @@ function authenticatedIntervalsAccepted(done)
     function check(err, res, body)
     {
         assert.isNull(err);
-        assert.equal(res.statusCode, 200);
+        assert.equal(res.statusCode, 204);
         done();
     }
 }
@@ -88,7 +88,7 @@ function afterLogoutRejected(done)
     function takeIntervals(err, res, body)
     {
         assert.isNull(err);
-        assert.equal(res.statusCode, 200);
+        assert.equal(res.statusCode, 204);
 
         request.get(logout, onLogout);
     }
