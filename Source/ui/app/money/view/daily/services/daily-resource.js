@@ -34,9 +34,9 @@ function dailyResource($resource, $log)
 
 	return api;
 
-	function getSummary(callback)
+	function getSummary()
 	{
-		return summaryResource.get(callback);
+		return summaryResource.get().$promise;
 	}
 
 	function getLatestInterval()

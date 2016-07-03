@@ -42,10 +42,10 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 	{
 		$scope.payment = { sum: null };
 
-		dailyResource.getSummary(onSummaryReceived);
+		dailyResource.getSummary().then(updateSummaryData);
 	}
 
-	function onSummaryReceived(response)
+	function updateSummaryData(response)
 	{
 		$scope.showSpinner = false;
 
@@ -55,7 +55,10 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 
 		$scope.showIntervalsTable = !$scope.noIntervalsYet;
 
-		updateChart();
+		if (!$scope.noIntervalsYet)
+		{
+			updateChart();
+		}
 
 		today();
 	}
