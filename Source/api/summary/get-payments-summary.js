@@ -33,8 +33,9 @@ function getPaymentsSummary(req, res)
         switch(err)
         {
             case 'Interval not found!':
-            case 'There is no payments yet!':
                 status = statusCode.NOT_FOUND;
+                err = { err: err };
+                break;
             default:
                 status = statusCode.INTERNAL_SERVER_ERROR;
         }

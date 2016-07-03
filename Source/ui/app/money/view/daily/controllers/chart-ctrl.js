@@ -31,7 +31,7 @@ function chartCtrl($scope, $log)
             stopWatchSummary = null;
         }
 
-        if ($scope.noIntervalsYet)
+        if ($scope.noIntervalsYet || !$scope.summary.schedule)
         {
             return;
         }

@@ -38,7 +38,15 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 	{
 		$scope.payment = { sum: null };
 
-		dailyResource.getSummary().then(updateSummaryData);
+		dailyResource.getSummary().then(updateSummaryData, summaryUpdateFail);
+	}
+
+	function summaryUpdateFail(response)
+	{
+		if (response.status === 404)
+		{
+			updateSummaryData({});
+		}
 	}
 
 	function updateSummaryData(response)
@@ -55,6 +63,8 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 
 		today();
 	}
+
+
 
 	var todayTimestamp = moment().startOf('day').valueOf();
 
