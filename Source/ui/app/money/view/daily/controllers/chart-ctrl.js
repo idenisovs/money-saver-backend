@@ -66,10 +66,15 @@ function chartCtrl($scope, $log)
             $scope.chart.options.scales.yAxes[0].ticks.max = max;
         }
 
-        $scope.chart.data[0][idx] = Math.round(scheduleItem.sum * 100) / 100;
+        $scope.chart.data[0][idx] = round(scheduleItem.sum);
 
-        $scope.chart.data[1][idx] = scheduleItem.residual;
+        $scope.chart.data[1][idx] = rount(scheduleItem.residual);
     }
+	
+	function round(value)
+	{
+		return Math.round(value * 100) / 100;
+	}
 
     function makeChartDataObject()
     {
