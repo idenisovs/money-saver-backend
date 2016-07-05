@@ -140,7 +140,7 @@ function run(grunt)
 			
             'processhtml',
 
-            'clean:removeFiles',
+            'clean:remove-files',
 
             'copy:config',
 			
