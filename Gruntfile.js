@@ -91,8 +91,7 @@ function run(grunt)
         clean:
         {
             'pre-build': [ './Source/ui/app/*.js' ],
-            'post-build': [ './Source/ui/app/*app.js' ],
-            'remove-files': [ './Source/finance.db', './Source/config.json' ]
+            'post-build': [ './Source/ui/app/*app.js', './Source/finance.db', './Source/config.prod.json' ]
         },
 
         replace:
@@ -139,8 +138,6 @@ function run(grunt)
 			'uglify:main',
 			
             'processhtml',
-
-            'clean:remove-files',
 
             'copy:config',
 			
