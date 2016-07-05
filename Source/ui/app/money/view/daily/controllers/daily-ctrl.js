@@ -1,6 +1,4 @@
-var app = angular.module('MoneySaverApp');
-
-app.controller('DailyCtrl', dailyController);
+angular.module('MoneySaverApp').controller('DailyCtrl', dailyController);
 
 dailyController.$inject = [ '$scope', '$log', 'DailyResource', 'IntervalModal', 'PaymentsModal' ];
 
@@ -13,7 +11,7 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 	$scope.openPaymentsModal = openPaymentsModal;
 
 	$scope.showSpinner = true;
-	$scope.summary;
+	$scope.summary = {};
 	$scope.valid = false;
 	$scope.today = today;
 	$scope.compareDates = compareDates;
@@ -21,8 +19,6 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 	$scope.$watch('payment.sum', checkValidity);
 	$scope.noIntervalsYet = false;
 	$scope.showIntervalsTable = false;
-
-	$scope.chart = makeChartDataObject();
 
 	reloadSummary();
 
@@ -42,10 +38,18 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 	{
 		$scope.payment = { sum: null };
 
-		dailyResource.getSummary(onSummaryReceived);
+		dailyResource.getSummary().then(updateSummaryData, summaryUpdateFail);
 	}
 
-	function onSummaryReceived(response)
+	function summaryUpdateFail(response)
+	{
+		if (response.status === 404)
+		{
+			updateSummaryData({});
+		}
+	}
+
+	function updateSummaryData(response)
 	{
 		$scope.showSpinner = false;
 
@@ -55,10 +59,12 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 
 		$scope.showIntervalsTable = !$scope.noIntervalsYet;
 
-		updateChart();
+		$scope.$broadcast('SummaryData');
 
 		today();
 	}
+
+
 
 	var todayTimestamp = moment().startOf('day').valueOf();
 
@@ -96,77 +102,5 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 		var q = paymentsModal.open(date).result;
 
 		q.then(reloadSummary);
-	}
-
-	function makeChartDataObject()
-	{
-		var chart =
-		{
-			labels: [],
-			colors: [ '#FF8811', '#97BBCD' ],
-			series: [ 'Expected', 'Actual' ],
-			data: [ [], [] ],
-			datasetOverride:
-			[
-				{ label: 'Expected', type: 'line', backgroundColor: 'rgba(255, 255, 255, 0)' },
-				{ label: 'Actual', type: 'bar' }
-			],
-			options:
-			{
-				scales: {
-					xAxes: [{ display: false }],
-					yAxes: [{
-						ticks: {
-							max: 0,
-							beginAtZero: true
-						}
-					}]
-				}
-			}
-		};
-
-		return chart;
-	}
-
-	function updateChart()
-	{
-		var schedule = $scope.summary.schedule;
-
-		if ($scope.chart.labels.length === 0)
-		{
-			schedule.forEach(fillChartObject);
-		}
-
-		schedule.forEach(updateChartItems);
-	}
-
-	function fillChartObject(scheduleItem)
-	{
-		var date = scheduleItem.date.split('-');
-
-		var label = date[2] + '.' + date[1];
-
-		$scope.chart.labels.push(label);
-		$scope.chart.data[0].push(0);
-		$scope.chart.data[1].push(0);
-	}
-
-	function updateChartItems(scheduleItem, idx)
-	{
-		if (idx === 0 && $scope.chart.options.scales.yAxes[0].ticks.max === 0)
-		{
-			var max = Math.round(scheduleItem.sum) + 10;
-
-			$scope.chart.options.scales.yAxes[0].ticks.max = max;
-		}
-
-		$scope.chart.data[0][idx] = currency(scheduleItem.sum);
-
-		$scope.chart.data[1][idx] = currency(scheduleItem.residual);
-	}
-
-	function currency(value)
-	{
-		return Math.round(value * 100) / 100;
 	}
 }

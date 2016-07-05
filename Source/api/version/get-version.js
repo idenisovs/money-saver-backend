@@ -17,6 +17,8 @@ function getVersion(req, res)
             return res.status(statusCodes.INTERNAL_SERVER_ERROR).json({ version: '0.0.0.0' });
         }
 
+		version = version.replace(/[\r\n]/g, '');
+
         res.json({ version: version });
     }
 }

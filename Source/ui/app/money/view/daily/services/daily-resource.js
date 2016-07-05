@@ -18,7 +18,7 @@ function dailyResource($resource, $log)
 	};
 
 	var paymentsResource = $resource('/api/payments', {}, paymentsConfig);
-	var summaryResource = $resource('/api/intervals/latest/summary');
+	var summaryResource = $resource('/api/summary/payments', {});
 	var latestIntervalResource = $resource('/api/intervals/latest');
 	var intervalsResource = $resource('/api/intervals');
 
@@ -34,9 +34,16 @@ function dailyResource($resource, $log)
 
 	return api;
 
-	function getSummary(callback)
+	function getSummary(intervalId)
 	{
-		return summaryResource.get(callback);
+		var query;
+
+		if (intervalId)
+		{
+			query = { intervalid: intervalId };
+		}
+
+		return summaryResource.get(query).$promise;
 	}
 
 	function getLatestInterval()

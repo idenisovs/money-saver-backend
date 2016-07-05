@@ -14,7 +14,10 @@ function auth(req, res, next)
     }
 
     log.warn('Unauthorized access try to %s from %s!', req.originalUrl, req.ip);
-    res.status(HttpStatus.UNAUTHORIZED).send();
+
+    var message = 'Hello, %username%! Please, authenticate yourself first!';
+
+    res.status(HttpStatus.UNAUTHORIZED).send(message);
 }
 
 module.exports = auth;
