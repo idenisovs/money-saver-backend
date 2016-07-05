@@ -91,7 +91,8 @@ function run(grunt)
         clean:
         {
             'pre-build': [ './Source/ui/app/*.js' ],
-            'post-build': [ './Source/ui/app/*app.js' ]
+            'post-build': [ './Source/ui/app/*app.js' ],
+            'remove-files': [ './Source/finance.db', './Source/config.json' ]
         },
 
         replace:
@@ -101,6 +102,14 @@ function run(grunt)
                 src: [ './Source/ui/*.html' ],
                 overwrite: true,
                 replacements: [ { from: '{{version}}', to: projectVersion  } ]
+            }
+        },
+
+        copy: 
+        {
+            config:
+            {
+                files: [ { src: './Source/config.prod.json', dest: './Source/config.json' } ]
             }
         }
     };
@@ -112,6 +121,7 @@ function run(grunt)
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-text-replace');
@@ -129,12 +139,16 @@ function run(grunt)
 			'uglify:main',
 			
             'processhtml',
+
+            'clean:removeFiles',
+
+            'copy:config',
 			
             'clean:post-build'
         ];
 
     var updateVersion = [ 'replace:version' ];
 
-    grunt.registerTask('default', defaultTask);
+    grunt.registerTask('build', defaultTask);
     grunt.registerTask('version', updateVersion);
 }
