@@ -68,7 +68,7 @@ function chartCtrl($scope, $log)
 
         $scope.chart.data[0][idx] = round(scheduleItem.sum);
 
-        $scope.chart.data[1][idx] = rount(scheduleItem.residual);
+        $scope.chart.data[1][idx] = round(scheduleItem.residual);
     }
 	
 	function round(value)
