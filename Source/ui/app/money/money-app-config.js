@@ -10,12 +10,16 @@ function routeProviderConfig($routeProvider)
 
 		monthly: { templateUrl: 'app/money/view/monthly/monthly.tpl.html', controller: 'MonthlyCtrl' },
 
+		intervals: { templateUrl: 'app/money/view/intervals/templates/intervals.tpl.html', controller: 'IntervalsCtrl' },
+
 		default: { redirectTo: '/daily' }
 	};
 
 	$routeProvider.when('/daily', routes.daily);
 
 	$routeProvider.when('/monthly', routes.monthly);
+
+	$routeProvider.when('/intervals/:year?', routes.intervals);
 
 	$routeProvider.otherwise(routes.default);
 }
