@@ -4,9 +4,9 @@
 
 angular.module('MoneySaverApp').controller('IntervalsCtrl', intervalsCtrl);
 
-intervalsCtrl.$inject = [ '$scope', '$routeParams', 'IntervalsResource', '$log' ];
+intervalsCtrl.$inject = [ '$scope', '$routeParams', 'IntervalsResource', '$log', '$filter' ];
 
-function intervalsCtrl($scope, $routeParams, intervalsResource, $log)
+function intervalsCtrl($scope, $routeParams, intervalsResource, $log, $filter)
 {
     $scope.selectedYear = $routeParams.year ? $routeParams.year : 'all';
     $scope.mode = $scope.selectedYear === 'all' ? 'YEARS' : 'INTERVALS';
@@ -38,17 +38,46 @@ function intervalsCtrl($scope, $routeParams, intervalsResource, $log)
     {
         $log.debug('Showing intervals!');
 
-        intervalsResource.getByYear(2016);
+        intervalsResource.getByYear(2016).then(formatIntervals);
     }
 
-    // $scope.intervals = intervalsResource.getByYear(2016);
-    //
-    // $scope.intervals.then(done);
-
-    function done(response)
+    function formatIntervals(intervals)
     {
-        $log.debug('Fucking done!');
+        var result = [];
 
-        $log.log(response);
+        for (var i = 0; i < intervals.length; i++)
+        {
+            if (i % 4 === 0)
+            {
+                result.push([]);
+            }
+
+            var interval = intervals[i];
+
+            interval.nr = i + 1;
+
+            interval.name = getIntervalName(interval);
+
+            var row = result.length - 1;
+
+            result[row].push(interval);
+        }
+
+        $scope.intervals = result;
+    }
+
+    function getIntervalName(interval)
+    {
+        if (interval.name)
+        {
+            return interval.name;
+        }
+
+        var date = $filter('date');
+
+        var start = date(interval.start, 'dd.MM.yyyy.');
+        var end = date(interval.end, 'dd.MM.yyyy.');
+
+        return start + ' — ' + end;
     }
 }

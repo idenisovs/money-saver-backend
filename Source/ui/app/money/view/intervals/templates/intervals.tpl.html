@@ -1,9 +1,30 @@
-<div class="panel panel-info">
-    <div class="panel-heading">
-        <strong>Intervals</strong>
-    </div>
+<div class="row" ng-repeat="row in intervals">
+    <div class="col-md-3" ng-repeat="interval in row | orderBy: 'start':true">
 
-    <div class="panel-body">
-        Fucking body with fucking message: {{message}}
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <strong>
+                    {{interval.nr}}.
+                </strong>
+                <a href="#/daily/{{interval.id}}">{{interval.name}}</a>
+            </div>
+
+            <table class="table">
+                <tr>
+                    <td>From:</td>
+                    <td>{{interval.start|date:'dd.MM.yyyy.'}}</td>
+                </tr>
+                <tr>
+                    <td>Till:</td>
+                    <td>{{interval.end|date:'dd.MM.yyyy.'}}</td>
+                </tr>
+                <tr>
+                    <td>Beginning:</td>
+                    <td>{{interval.sum|currency:'€'}}</td>
+                </tr>
+            </table>
+        </div>
+
     </div>
 </div>
+
