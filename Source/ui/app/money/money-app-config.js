@@ -10,7 +10,7 @@ function routeProviderConfig($routeProvider)
 
 		monthly: { templateUrl: 'app/money/view/monthly/monthly.tpl.html', controller: 'MonthlyCtrl' },
 
-		intervals: { templateUrl: 'app/money/view/intervals/templates/intervals.tpl.html', controller: 'IntervalsCtrl' },
+		intervals: { templateUrl: 'app/money/view/intervals/templates/view.tpl.html', controller: 'IntervalsCtrl' },
 
 		default: { redirectTo: '/daily' }
 	};

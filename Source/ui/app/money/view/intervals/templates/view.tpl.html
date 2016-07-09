@@ -1,0 +1,16 @@
+<div class="row" us-spinner="{radius:20, width:8, length: 16}" spinner-key="spinner-1" spinner-on="showSpinner">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li><a href="#/intervals">All</a></li>
+            <li ng-show="mode === 'INTERVALS'">{{selectedYear}}</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row" ng-show="mode === 'YEARS'">
+    <div class="col-md-12" ng-include="'app/money/view/intervals/templates/years.tpl.html'"></div>
+</div>
+
+<div class="row" ng-show="mode === 'INTERVALS'">
+    <div class="col-md-12" ng-include="'app/money/view/intervals/templates/intervals.tpl.html'"></div>
+</div>

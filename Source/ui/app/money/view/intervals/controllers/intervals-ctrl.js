@@ -9,10 +9,35 @@ intervalsCtrl.$inject = [ '$scope', '$routeParams', 'IntervalsResource', '$log' 
 function intervalsCtrl($scope, $routeParams, intervalsResource, $log)
 {
     $scope.selectedYear = $routeParams.year ? $routeParams.year : 'all';
+    $scope.mode = $scope.selectedYear === 'all' ? 'YEARS' : 'INTERVALS';
+    $scope.message = 'Fuck you!';
 
-    $scope.intervals = intervalsResource.getByYear(2016);
+    if ($scope.mode === 'YEARS')
+    {
+        showYears();
+    }
+    else
+    {
+        showIntervals();
+    }
 
-    $scope.intervals.then(done);
+    function showYears()
+    {
+        $log.debug('Showing years!');
+
+        intervalsResource.getYears();
+    }
+
+    function showIntervals()
+    {
+        $log.debug('Showing intervals!');
+
+        intervalsResource.getByYear(2016);
+    }
+
+    // $scope.intervals = intervalsResource.getByYear(2016);
+    //
+    // $scope.intervals.then(done);
 
     function done(response)
     {

@@ -16,29 +16,35 @@ function intervalsResource($resource, $log)
     };
 
     var intervalsService = $resource('/api/intervals', {}, config);
+    var yearsService = $resource('/api/intervals/years', {}, config);
 
     var api =
     {
         getAll: getIntervalList,
 
-        getByYear: getIntervalsByYear
+        getByYear: getIntervalsByYear,
+
+        getYears: getAvailableYears
     };
 
-    function getIntervalList()
-    {
+    function getIntervalList() {
         $log.debug('Taking intervals list!');
 
         return intervalsService.get().$promise;
     }
 
-    function getIntervalsByYear(year)
-    {
+    function getIntervalsByYear(year) {
         var from = year + '-01-01';
         var till = year + '-12-31';
 
-        var query = { from: from, till: till };
+        var query = {from: from, till: till};
 
         return intervalsService.get(query).$promise;
+    }
+
+    function getAvailableYears()
+    {
+        return yearsService.get().$promise;
     }
 
     return api;
