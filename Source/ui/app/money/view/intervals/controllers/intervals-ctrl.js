@@ -10,6 +10,7 @@ function intervalsCtrl($scope, $routeParams, intervalsResource, $log)
 {
     $scope.selectedYear = $routeParams.year ? $routeParams.year : 'all';
     $scope.mode = $scope.selectedYear === 'all' ? 'YEARS' : 'INTERVALS';
+    $scope.years = [];
     $scope.message = 'Fuck you!';
 
     if ($scope.mode === 'YEARS')
@@ -25,7 +26,12 @@ function intervalsCtrl($scope, $routeParams, intervalsResource, $log)
     {
         $log.debug('Showing years!');
 
-        intervalsResource.getYears();
+        intervalsResource.getYears().then(updateYears);
+    }
+
+    function updateYears(response)
+    {
+        $scope.years = response;
     }
 
     function showIntervals()
