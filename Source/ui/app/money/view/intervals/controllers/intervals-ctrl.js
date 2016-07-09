@@ -4,11 +4,20 @@
 
 angular.module('MoneySaverApp').controller('IntervalsCtrl', intervalsCtrl);
 
-intervalsCtrl.$inject = [ '$scope', '$routeParams' ];
+intervalsCtrl.$inject = [ '$scope', '$routeParams', 'IntervalsResource', '$log' ];
 
-function intervalsCtrl($scope, $routeParams)
+function intervalsCtrl($scope, $routeParams, intervalsResource, $log)
 {
-    $scope.message = 'Fuck you!!!';
-
     $scope.selectedYear = $routeParams.year ? $routeParams.year : 'all';
+
+    $scope.intervals = intervalsResource.getByYear(2016);
+
+    $scope.intervals.then(done);
+
+    function done(response)
+    {
+        $log.debug('Fucking done!');
+
+        $log.log(response);
+    }
 }
