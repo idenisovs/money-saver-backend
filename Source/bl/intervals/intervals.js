@@ -12,6 +12,8 @@ intervals.getLatestSummary = require('./get-latest-summary');
 
 intervals.getAll = require('./get-all');
 
+intervals.getYears = require('./get-years');
+
 intervals.create = require('./create-interval');
 
 intervals.delete = require('./delete-interval');
