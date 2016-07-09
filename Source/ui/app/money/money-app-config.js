@@ -15,7 +15,7 @@ function routeProviderConfig($routeProvider)
 		default: { redirectTo: '/daily' }
 	};
 
-	$routeProvider.when('/daily', routes.daily);
+	$routeProvider.when('/daily/:intervalId?', routes.daily);
 
 	$routeProvider.when('/monthly', routes.monthly);
 

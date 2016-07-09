@@ -1,8 +1,9 @@
 angular.module('MoneySaverApp').controller('DailyCtrl', dailyController);
 
-dailyController.$inject = [ '$scope', '$log', 'DailyResource', 'IntervalModal', 'PaymentsModal', '$filter' ];
+dailyController.$inject = [ '$scope', '$log', 'DailyResource', 'IntervalModal', 'PaymentsModal', '$filter',
+'$routeParams' ];
 
-function dailyController($scope, $log, dailyResource, intervalModal, paymentsModal, $filter)
+function dailyController($scope, $log, dailyResource, intervalModal, paymentsModal, $filter, $routeParams)
 {
 	$scope.payment = { sum: null };
 
@@ -39,7 +40,9 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 	{
 		$scope.payment = { sum: null };
 
-		dailyResource.getSummary().then(updateSummaryData, summaryUpdateFail);
+		var intervalId = $routeParams.intervalId ? $routeParams.intervalId : null;
+
+		dailyResource.getSummary(intervalId).then(updateSummaryData, summaryUpdateFail);
 	}
 
 	function summaryUpdateFail(response)
