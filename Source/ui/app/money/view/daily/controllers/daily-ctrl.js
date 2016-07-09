@@ -1,8 +1,8 @@
 angular.module('MoneySaverApp').controller('DailyCtrl', dailyController);
 
-dailyController.$inject = [ '$scope', '$log', 'DailyResource', 'IntervalModal', 'PaymentsModal' ];
+dailyController.$inject = [ '$scope', '$log', 'DailyResource', 'IntervalModal', 'PaymentsModal', '$filter' ];
 
-function dailyController($scope, $log, dailyResource, intervalModal, paymentsModal)
+function dailyController($scope, $log, dailyResource, intervalModal, paymentsModal, $filter)
 {
 	$scope.payment = { sum: null };
 
@@ -19,6 +19,7 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 	$scope.$watch('payment.sum', checkValidity);
 	$scope.noIntervalsYet = false;
 	$scope.showIntervalsTable = false;
+	$scope.selectedYear = 0;
 
 	reloadSummary();
 
@@ -55,16 +56,23 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 
 		$scope.summary = response;
 
-		$scope.noIntervalsYet = !($scope.summary.schedule);
+		var interval = $scope.summary.interval;
+
+		$scope.noIntervalsYet = !(interval);
 
 		$scope.showIntervalsTable = !$scope.noIntervalsYet;
+
+		if ($scope.showIntervalsTable)
+		{
+			$scope.selectedYear = $filter('date')(interval.end, 'yyyy');
+
+			interval.name = setIntervalName(interval);
+		}
 
 		$scope.$broadcast('SummaryData');
 
 		today();
 	}
-
-
 
 	var todayTimestamp = moment().startOf('day').valueOf();
 
@@ -102,5 +110,20 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 		var q = paymentsModal.open(date).result;
 
 		q.then(reloadSummary);
+	}
+
+	function setIntervalName(interval)
+	{
+		if (interval.name)
+		{
+			return interval.name
+		}
+
+		var date = $filter('date');
+
+		var start = date(interval.start, 'dd.MM.yyyy.');
+		var end = date(interval.end, 'dd.MM.yyyy.');
+
+		return start + ' — ' + end;
 	}
 }
