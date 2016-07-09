@@ -14,7 +14,8 @@ function getIntervalByBoundary(interval, success, error)
 
 	interval.till = (till === null) ? Date.now() : moment(till).valueOf();
 	
-	log.debug('Taking all intervals from %d till %d', from ,till);
+	log.debug('Taking all intervals from %d till %d', interval.from ,interval.till);
+	log.trace(interval);
 	
 	dal.intervals.getByBoundary(interval, done);
 	
