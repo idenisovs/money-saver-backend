@@ -30,12 +30,11 @@ function getIntervals(req, res)
 		return;
     }
 	
-	log.debug('No query params defined, returning latest interval...');
-	log.warn('This call shall return the list of intervals instead of latest interval!');
+	log.debug('No query params defined, returning list of all intervals...');
 
     var interval = { user: req.user };
 
-	bl.intervals.getLatest(interval, success, error);
+    bl.intervals.getAll(req.user, success, error);
 
     function success(result)
     {

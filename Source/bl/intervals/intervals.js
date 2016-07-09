@@ -10,6 +10,8 @@ intervals.getByBoundary = require('./get-by-boundary');
 
 intervals.getLatestSummary = require('./get-latest-summary');
 
+intervals.getAll = require('./get-all');
+
 intervals.create = require('./create-interval');
 
 intervals.delete = require('./delete-interval');
