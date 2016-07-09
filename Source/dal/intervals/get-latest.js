@@ -10,7 +10,7 @@ var sql = '';
 sql += 'SELECT id, start, end, sum\n';
 sql += 'FROM intervals\n';
 sql += 'WHERE userId = $userId\n';
-sql += 'ORDER BY id DESC LIMIT 1';
+sql += 'ORDER BY start DESC LIMIT 1';
 
 function getLatest(interval, callback)
 {
