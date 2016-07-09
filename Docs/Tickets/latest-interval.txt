@@ -1,0 +1,6 @@
+17:58 09.07.2016.
+Set the "latest interval" marker to the latest interval. 
+Marker shall be stored in the base.
+Actions:
+1. Update intervals table where user id = <current uset id> set latest = false;
+2. Insert into intervals table record with latest = true;
