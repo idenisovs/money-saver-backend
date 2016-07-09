@@ -1,0 +1,2 @@
+18:02 09.07.2016.
+"Start new interval" button shall be blocked if current selected interval is not the latest.

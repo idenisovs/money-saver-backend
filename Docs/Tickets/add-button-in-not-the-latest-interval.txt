@@ -1,0 +1,2 @@
+18:22 09.07.2016.
+"Add" button of "Daily Payments" view shall be disabled in case, if currently selected interval is no the latest.

@@ -1,0 +1,2 @@
+18:20 09.07.2016.
+In case if there is unused days, and user want to start new interval, "end" field of old interval shall be updated, and it`s day shall be taken by new interval.
