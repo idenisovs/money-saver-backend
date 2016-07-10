@@ -4,7 +4,7 @@
 
 var db = require('../db');
 
-var sql = 'SELECT id, start, end, sum FROM intervals WHERE userId = $userId ORDER BY start DESC';
+var sql = 'SELECT id, start, end, sum, latest FROM intervals WHERE userId = $userId ORDER BY start DESC';
 
 function getAllIntervals(user, callback)
 {

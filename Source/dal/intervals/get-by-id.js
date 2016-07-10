@@ -6,7 +6,7 @@ var db = require('./../db');
 
 module.exports = getIntervalById;
 
-var sql = 'SELECT id, start, end, sum FROM intervals WHERE id = $id AND userId = $userId';
+var sql = 'SELECT id, start, end, sum, latest FROM intervals WHERE id = $id AND userId = $userId';
 
 function getIntervalById(interval, callback)
 {

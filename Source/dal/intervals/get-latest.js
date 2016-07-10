@@ -7,7 +7,7 @@ var db = require('./../db');
 module.exports = getLatest;
 
 var sql = '';
-sql += 'SELECT id, start, end, sum\n';
+sql += 'SELECT id, start, end, sum, latest\n';
 sql += 'FROM intervals\n';
 sql += 'WHERE userId = $userId\n';
 sql += 'ORDER BY start DESC LIMIT 1';

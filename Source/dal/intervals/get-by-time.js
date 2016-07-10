@@ -5,7 +5,7 @@
 var db = require('../db');
 
 var sql = '';
-sql += 'SELECT id, start, end, sum\n';
+sql += 'SELECT id, start, end, sum, latest\n';
 sql += 'FROM intervals\n ';
 sql += 'WHERE\n';
 sql += 'start <= $stamp\n';
