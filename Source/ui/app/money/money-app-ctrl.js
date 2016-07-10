@@ -4,12 +4,13 @@
 
 angular.module('MoneySaverApp').controller('AppCtrl', appCtrl);
 
-appCtrl.$inject = [ '$scope', '$resource', '$log', '$window' ];
+appCtrl.$inject = [ '$scope', '$resource', '$log', '$window', '$location' ];
 
-function appCtrl($scope, $resource, $log, $window)
+function appCtrl($scope, $resource, $log, $window, $location)
 {
     $scope.version = '';
     $scope.logout = logout;
+    $scope.isActive = isActive;
 
     $resource('/api/version').get(updateVersion);
 
@@ -26,5 +27,12 @@ function appCtrl($scope, $resource, $log, $window)
     function logoutDone()
     {
         $window.location.href = 'login.html?logout=true';
+    }
+
+    function isActive(page)
+    {
+        var path = $location.path().substr(1, page.length);
+
+        return (path === page);
     }
 }
