@@ -38,10 +38,18 @@ function chartCtrl($scope, $log)
 
         var schedule = $scope.summary.schedule;
 
-        if ($scope.chart.labels.length === 0)
+        var labelsLength = $scope.chart.labels.length;
+
+        if (labelsLength === 0 || labelsLength !== schedule.length)
         {
+            $scope.chart = makeChartDataObject();
+
             schedule.forEach(fillChartObject);
         }
+
+        var max = Math.round($scope.summary.interval.sum) + 10;
+
+        $scope.chart.options.scales.yAxes[0].ticks.max = max;
 
         schedule.forEach(updateChartItems);
     }
@@ -59,13 +67,6 @@ function chartCtrl($scope, $log)
 
     function updateChartItems(scheduleItem, idx)
     {
-        if (idx === 0 && $scope.chart.options.scales.yAxes[0].ticks.max === 0)
-        {
-            var max = Math.round(scheduleItem.sum) + 10;
-
-            $scope.chart.options.scales.yAxes[0].ticks.max = max;
-        }
-
         $scope.chart.data[0][idx] = round(scheduleItem.sum);
 
         $scope.chart.data[1][idx] = round(scheduleItem.residual);
