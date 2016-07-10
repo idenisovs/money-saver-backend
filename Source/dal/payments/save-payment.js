@@ -31,8 +31,7 @@ function savePayment(payment)
 	{
 		if (err)
 		{
-			reject(err);
-			return;
+			return reject(err);
 		}
 
 		if (util.isUndefined(interval))

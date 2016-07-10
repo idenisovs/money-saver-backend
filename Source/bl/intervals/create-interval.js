@@ -48,8 +48,7 @@ function createInterval(interval, success, error)
         if (delta < 1)
         {
             var message = 'Intervals should not interlace!';
-            error({ reason: 'param', message: message });
-            return;
+            return error({ reason: 'param', message: message });
         }
 
         saveInterval();
@@ -60,7 +59,7 @@ function createInterval(interval, success, error)
         log.debug('Saving interval!');
 
         interval.start = moment(interval.start).valueOf();
-        interval.end = moment(interval.end).valueOf();
+        interval.end = moment(interval.end).endOf('day').valueOf();
 
         dal.intervals.create(interval, done);
     }
