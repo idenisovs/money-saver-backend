@@ -18,4 +18,6 @@ intervals.create = require('./create-interval');
 
 intervals.delete = require('./delete-interval');
 
+intervals.update = require('./update-interval');
+
 module.exports = intervals;
