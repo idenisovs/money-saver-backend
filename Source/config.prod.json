@@ -1,7 +1,7 @@
 {
 	"index": "login.html",
 	"content": {
-		"public": "./ui"
+		"public": "ui"
 	},
 	"host": "http://localhost",
 	"port": 9002,

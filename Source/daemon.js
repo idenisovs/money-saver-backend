@@ -8,7 +8,6 @@ var passport = require('./support/passport');
 var argv = require('./support/argv');
 var config = require('./config.json');
 
-
 var app = express();
 
 log.info('Launching daemon...');
@@ -42,7 +41,13 @@ function enable3dPartyMiddleware()
 function enableStaticContent()
 {
     var staticAccessControl = require('./support/middleware/static-access-control');
-    var static = express.static(config.content.public, { index: config.index });
+
+    var webAppDir = __dirname + '/' + config.content.public;
+    log.debug('Loading static content from %s ...', webAppDir);
+
+    var options = { index: config.index };
+    var static = express.static(webAppDir, options);
+
     app.use(staticAccessControl, static);
 
     log.debug('Static content enabled!');

@@ -1,22 +1,26 @@
 {
   "name": "MoneySaver",
   "version": "1.0.0",
-  "description": "Personal Cash manager",
+  "description": "Personal cash manager",
   "main": "daemon.js",
   "scripts": {
-    "start": "node daemon.js",
+    "start": "node Source/daemon.js -b Source/finance.db -v",
     "test": "test"
   },
   "private": true,
   "repository": {
     "type": "git",
-    "url": "ssh://ga5xz2@e-dreams.lv/repo/money.git"
+    "url": "git@github.com:idenisovs/money-saver.git"
   },
   "keywords": [
     "Money",
     "Cash",
     "Manager"
   ],
+  "bugs": {
+    "url" : "https://github.com/idenisovs/money-saver/issues",
+    "email" : "i.denisovs@gmail.com"
+  },
   "author": "Ilya Denisov",
   "license": "ISC",
   "dependencies": {
