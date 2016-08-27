@@ -100,12 +100,10 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 
 		return 'info';
 	}
-
-	function openIntervalModal()
+	
+	function openIntervalModal(editMode)
 	{
-		var q = intervalModal.open().result;
-
-		q.then(reloadSummary);
+		intervalModal.open(editMode, $scope.summary.interval).result.then(reloadSummary);
 	}
 
 	function openPaymentsModal(date)

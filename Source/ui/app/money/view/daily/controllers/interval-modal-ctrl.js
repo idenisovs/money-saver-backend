@@ -2,9 +2,12 @@ var app = angular.module('MoneySaverApp');
 
 app.controller('IntervalModalCtrl', intervalModalController);
 
-intervalModalController.$inject = [ '$scope', '$uibModalInstance', '$log', 'DailyResource' ];
+intervalModalController.$inject =
+[ 
+	'$scope', '$uibModalInstance', '$log', 'DailyResource', 'editMode', 'interval' 
+];
 
-function intervalModalController($scope, $modalInstance, $log, dailyResource)
+function intervalModalController($scope, $modalInstance, $log, dailyResource, editMode, interval)
 {
 	var latestInterval = {};
 
@@ -17,13 +20,27 @@ function intervalModalController($scope, $modalInstance, $log, dailyResource)
 
 	$scope.controlsDisabled = true;
 	$scope.dateOptions = dateOptions;
-	$scope.from = new Date();
-	$scope.till = moment().endOf('month').toDate();
+	
+	if (editMode)
+	{
+		$log.debug(interval);
+		
+		$scope.from = interval.start;
+		$scope.till = interval.end;
+		$scope.totals = interval.sum;
+	}
+	else
+	{
+		$scope.from = new Date();
+		$scope.till = moment().endOf('month').toDate();
+	}
+	
 	$scope.datepickerFrom = { show: false, open: openDatePickerFrom };
 	$scope.datepickerTill = { show: false, open: openDatePickerTill };
 	$scope.selected = { item: 'Hello, world!' };
-	$scope.totals;
 	$scope.valid = false;
+	$scope.createMode = !editMode;
+	$scope.editMode = editMode;
 
 	$scope.ok = saveInterval;
 	$scope.cancel = cancel;
@@ -44,14 +61,21 @@ function intervalModalController($scope, $modalInstance, $log, dailyResource)
 
 	function saveInterval()
 	{
-		var interval =
+		var request =
 		{
 			start: moment($scope.from).format('YYYY-MM-DD'),
 			end: moment($scope.till).format('YYYY-MM-DD'),
 			sum: $scope.totals
 		};
 
-		dailyResource.saveInterval(interval).then(close);
+		if ($scope.createMode)
+		{
+			return dailyResource.saveInterval(request).then(close);
+		}
+
+		request.id = interval.id;
+
+		dailyResource.updateInterval(request).then(close);
 	}
 
 	function cancel()

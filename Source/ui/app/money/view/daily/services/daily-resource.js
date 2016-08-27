@@ -20,7 +20,14 @@ function dailyResource($resource, $log)
 	var paymentsResource = $resource('/api/payments', {}, paymentsConfig);
 	var summaryResource = $resource('/api/summary/payments', {});
 	var latestIntervalResource = $resource('/api/intervals/latest');
-	var intervalsResource = $resource('/api/intervals');
+
+	var intervalsConfig =
+	{
+		'create': { method: 'POST', isArray: false },
+		'update': { method: 'PUT', isArray: false }
+	};
+
+	var intervalsResource = $resource('/api/intervals/:id', {}, intervalsConfig);
 
 	var api =
 	{
@@ -29,7 +36,8 @@ function dailyResource($resource, $log)
 		getPayments: getPayments,
 		savePayment: savePayment,
 		updatePayments: updatePayments,
-		saveInterval: saveInterval
+		saveInterval: saveInterval,
+		updateInterval: updateInterval
 	};
 
 	return api;
@@ -91,6 +99,13 @@ function dailyResource($resource, $log)
 
 	function saveInterval(interval)
 	{
-		return intervalsResource.save(interval).$promise;
+		return intervalsResource.create(interval).$promise;
+	}
+
+	function updateInterval(interval)
+	{
+		var pathParam = { id: interval.id };
+		
+		return intervalsResource.update(pathParam, interval).$promise;
 	}
 }

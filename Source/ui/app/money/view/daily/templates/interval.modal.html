@@ -1,6 +1,13 @@
 <div class="modal-header">
 	<button class="close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
-	<h3 class="modal-title">Create new interval!</h3>
+
+	<h3 class="modal-title" ng-show="createMode">
+		Create new interval!
+	</h3>
+	
+	<h3 class="modal-title" ng-show="editMode">
+		Edit interval {{from|date:'dd.MM.yyyy.'}}-{{till|date:'dd.MM.yyyy.'}}
+	</h3>
 </div>
 
 <div class="modal-body">
@@ -23,14 +30,14 @@
 							close-text="Close"
 							ng-model="from"
 							is-open="datepickerFrom.show"
-							ng-disabled="controlsDisabled"
+							ng-disabled="controlsDisabled || editMode"
 					>
 
 					<span class="input-group-btn">
 						<button	class="btn btn-default"
 								type="button"
 								ng-click="datepickerFrom.open()"
-								ng-disabled="controlsDisabled">
+								ng-disabled="controlsDisabled || editMode">
 
 							<span class="glyphicon glyphicon-calendar"></span>
 						</button>
@@ -54,7 +61,7 @@
 						   close-text="Close"
 						   ng-model="till"
 						   is-open="datepickerTill.show"
-						   ng-disabled="controlsDisabled"
+						   ng-disabled="controlsDisabled || editMode"
 					>
 
 					<span class="input-group-btn">
@@ -62,7 +69,7 @@
 								class="btn btn-default"
 								type="button"
 								ng-click="datepickerTill.open()"
-								ng-disabled="controlsDisabled">
+								ng-disabled="controlsDisabled || editMode">
 							<span class="glyphicon glyphicon-calendar"></span>
 						</button>
 					</span>

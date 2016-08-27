@@ -6,6 +6,7 @@ var app = angular.module('MoneySaverApp');
 
 app.factory('IntervalModal', intervalModal);
 
+
 intervalModal.$inject = [ '$uibModal' ];
 
 function intervalModal($modal)
@@ -14,7 +15,8 @@ function intervalModal($modal)
     {
         opened: false,
         format: 'dd.MM.yyyy.',
-        options: {
+        options: 
+		{
             formatYear: 'yyyy',
             startingDay: 1
         },
@@ -36,14 +38,20 @@ function intervalModal($modal)
         $event.stopPropagation();
         $scope.datePicker.opened = true;
     }
-
-    function openIntervalModal()
+    
+    function openIntervalModal(editMode, interval)
     {
-        var options = {
+        var options = 
+		{
             animation: true,
             size: 'md',
             templateUrl: 'app/money/view/daily/templates/interval.modal.html',
-            controller: 'IntervalModalCtrl'
+            controller: 'IntervalModalCtrl',
+			resolve: 
+			{ 
+				editMode: function() { return editMode; },
+				interval: function() { return interval; }
+			}
         };
 
         return $modal.open(options);
