@@ -3,7 +3,7 @@
   * Sample call: http://localhost:9001/api/intervals
   */
 
-var bl = require('../../bl/bl');
+var bl = require('../../bl');
 
 module.exports = getPaymentsByInterval;
 

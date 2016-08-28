@@ -4,7 +4,7 @@
 
 var statusCode = require('http-status');
 var log = require('log4js').getLogger('payments-summary');
-var bl = require('../../bl/bl');
+var bl = require('../../bl');
 
 function getPaymentsSummary(req, res)
 {

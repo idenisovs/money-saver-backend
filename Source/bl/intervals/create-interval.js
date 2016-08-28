@@ -5,7 +5,7 @@ var util = require('util');
 var moment = require('moment');
 var log = require('log4js').getLogger('create-interval');
 var getLatestInterval = require('./get-latest');
-var dal = require('../../dal/dal');
+var dal = require('../../dal');
 
 module.exports = createInterval;
 

@@ -4,7 +4,7 @@
   */
 
 var statusCodes = require('http-status');
-var bl = require('../../bl/bl');
+var bl = require('../../bl');
 
 function getLatestIntervalSummary(req, res)
 {

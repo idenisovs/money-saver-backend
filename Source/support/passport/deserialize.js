@@ -2,7 +2,7 @@
  * Created by I.Denisovs on 16.24.5.
  */
 
-var bl = require('../../bl/bl');
+var bl = require('../../bl/index');
 
 function deserialize(id, done)
 {

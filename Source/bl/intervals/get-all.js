@@ -2,7 +2,7 @@
  * Created by Ilya Denisov on 09.07.2016..
  */
 
-var dal = require('../../dal/dal');
+var dal = require('../../dal');
 
 function getAllIntervals(user, success, error)
 {

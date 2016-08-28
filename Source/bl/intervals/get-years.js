@@ -3,7 +3,7 @@
  */
 
 var moment = require('moment');
-var dal = require('../../dal/dal');
+var dal = require('../../dal');
 
 function getYears(user, success, error)
 {

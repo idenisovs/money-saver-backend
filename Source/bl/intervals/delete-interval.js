@@ -2,7 +2,7 @@
  * Created by I. Denisovs on 26.12.2015..
  */
 var util = require('util');
-var dal = require('../../dal/dal');
+var dal = require('../../dal');
 
 module.exports = deleteInterval;
 

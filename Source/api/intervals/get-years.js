@@ -4,7 +4,7 @@
 
 var log = require('log4js').getLogger('get-years');
 var httpCodes = require('http-status');
-var bl = require('../../bl/bl');
+var bl = require('../../bl');
 
 function getAvailableYears(req, res)
 {

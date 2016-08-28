@@ -2,7 +2,7 @@
  * Created by I. Denisovs on 30.12.2015..
  */
 
-var dal = require('../../dal/dal');
+var dal = require('../../dal');
 
 function getByTime(interval, success, error)
 {

@@ -2,7 +2,7 @@
  * Created by I. Denisovs on 19.12.2015..
  */
 
-var dal = require('../../dal/dal');
+var dal = require('../../dal');
 var calculateSchedule = require('../summary/calc/calculate-schedule');
 var calculatePrediction = require('../summary/calc/calculate-prediction');
 var calculateTotals = require('../summary/calc/calculate-totals');

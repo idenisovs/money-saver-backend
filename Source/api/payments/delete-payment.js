@@ -3,7 +3,7 @@
  */
 var util = require('util');
 var log = require('log4js').getLogger('delete-payment');
-var bl = require('../../bl/bl');
+var bl = require('../../bl');
 var http = require('http-status');
 
 function deletePayments(req, res)

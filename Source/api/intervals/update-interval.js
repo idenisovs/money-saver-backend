@@ -5,7 +5,7 @@
 
 var log = require('log4js').getLogger('update-interval');
 var http = require('http-status');
-var bl = require('../../bl/bl');
+var bl = require('../../bl');
 
 function updateInterval(req, res)
 {

@@ -55,7 +55,7 @@ function enableStaticContent()
 
 function enableRestAPI()
 {
-    app.use('/api', require('./api/api.js'));
+    app.use('/api', require('./api'));
 
     log.debug('REST API enabled!');
 }

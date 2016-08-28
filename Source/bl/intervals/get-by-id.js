@@ -1,5 +1,5 @@
 var moment = require('moment');
-var dal = require('../../dal/dal');
+var dal = require('../../dal');
 
 module.exports = getIntervalById;
 

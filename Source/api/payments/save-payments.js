@@ -4,7 +4,7 @@
 
 var log = require('log4js').getLogger('save-payments');
 var http = require('http-status');
-var bl = require('../../bl/bl');
+var bl = require('../../bl');
 
 
 module.exports = savePayments;

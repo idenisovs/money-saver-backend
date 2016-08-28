@@ -4,7 +4,7 @@
   */
 
 var states = require('http-status');
-var bl = require('../../bl/bl');
+var bl = require('../../bl');
 
 function getIntervalById(req, res)
 {

@@ -4,7 +4,7 @@
 
 var bcrypt = require('bcrypt-nodejs');
 var log = require('log4js').getLogger('auth');
-var dal = require('../../dal/dal');
+var dal = require('../../dal');
 
 module.exports = auth;
 

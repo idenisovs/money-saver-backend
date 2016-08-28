@@ -5,7 +5,7 @@
 
 var states = require('http-status');
 var log = require('log4js').getLogger('create-interval');
-var bl = require('../../bl/bl');
+var bl = require('../../bl');
 
 function createInterval(req, res)
 {

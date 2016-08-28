@@ -4,10 +4,10 @@
  */
 var dal =  {};
 
-dal.intervals = require('./intervals/intervals');
+dal.intervals = require('./intervals');
 
-dal.payments = require('./payments/payments');
+dal.payments = require('./payments');
 
-dal.users = require('./users/users');
+dal.users = require('./users');
 
 module.exports = dal;

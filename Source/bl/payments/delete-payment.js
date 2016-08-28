@@ -5,7 +5,7 @@
 var moment = require('moment');
 var util = require('util');
 var log = require('log4js').getLogger('delete-payment');
-var dal = require('../../dal/dal');
+var dal = require('../../dal');
 
 function deletePayments(req, success, error)
 {

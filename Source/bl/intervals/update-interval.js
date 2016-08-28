@@ -4,7 +4,7 @@
  */
 
 var log = require('log4js').getLogger('update-interval');
-var dal = require('../../dal/dal');
+var dal = require('../../dal');
 
 function updateInterval(interval, success, error)
 {

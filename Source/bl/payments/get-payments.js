@@ -5,7 +5,7 @@
 var util = require('util');
 var moment = require('moment');
 var log = require('log4js').getLogger('get-payments');
-var dal = require('../../dal/dal');
+var dal = require('../../dal');
 
 module.exports = getPayments;
 

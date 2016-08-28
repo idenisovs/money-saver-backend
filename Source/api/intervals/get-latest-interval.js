@@ -5,7 +5,7 @@
 
 var log = require('log4js').getLogger('get-latest-interval');
 var states = require('http-status');
-var bl = require('../../bl/bl');
+var bl = require('../../bl');
 
 module.exports = getLatestInterval;
 

@@ -4,7 +4,7 @@
 
 var log = require('log4js').getLogger('payments-summary');
 var format = require('util').format;
-var dal = require('../../dal/dal');
+var dal = require('../../dal');
 
 var calculateSchedule = require('./calc/calculate-schedule');
 var calculatePrediction = require('./calc/calculate-prediction');

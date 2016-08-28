@@ -2,7 +2,7 @@
  * Created by I.Denisovs on 16.23.5.
  */
 
-var dal = require('../../dal/dal');
+var dal = require('../../dal');
 
 function getUserById(id, success, error)
 {

@@ -3,6 +3,6 @@
  */
 
 var LocalStrategy = require('passport-local').Strategy;
-var bl = require('../../../bl/bl');
+var bl = require('../../../bl/index');
 
 module.exports = new LocalStrategy(bl.auth.local);
