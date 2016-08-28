@@ -34,10 +34,13 @@
 	<script src="libs/angular-spinner.js" type="text/javascript"></script>
 	<script src="libs/angular-chart.js" type="text/javascript"></script>
 	<script src="libs/ui-bootstrap-tpls-1.2.2.js" type="text/javascript"></script>
+	<script src="libs/angular-translate.js" type="text/javascript"></script>
+	<script src="libs/angular-translate-loader-static-files.js" type="text/javascript"></script>
 
 	<!-- App -->
 	<script src="app/money/money-app.js" type="text/javascript"></script>
 	<script src="app/money/money-app-config.js" type="text/javascript"></script>
+	<script src="app/money/i18n.js" type="text/javascript"></script>
 	<script src="app/money/money-app-ctrl.js" type="text/javascript"></script>
 
 	<script src="app/money/view/daily/controllers/daily-ctrl.js" type="text/javascript"></script>
@@ -73,23 +76,32 @@
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
 				<li ng-class="{ active: isActive('daily') }">
-					<a href="#daily">Daily payments</a>
+					<a href="#daily">
+						{{'DAILY_PAYMENTS'|translate}}
+					</a>
 				</li>
 				<li ng-class="{ active: isActive('monthly') }">
-					<a href="#monthly">Monthly payments</a>
+					<a href="#monthly">
+						{{'MONTHLY_PAYMENTS'|translate}}
+					</a>
 				</li>
 				<li ng-class="{ active: isActive('about') }">
-					<a href="#about">About</a>
+					<a href="#about">
+						{{'ABOUT'|translate}}
+					</a>
 				</li>
 				<li ng-class="{ active: isActive('contact') }">
-					<a href="#contact">Contact</a>
+					<a href="#contact">
+						{{'CONTACT'|translate}}
+					</a>
 				</li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
 				<li>
 					<a role="button" ng-click="logout()">
-						Logout <span class="glyphicon glyphicon-log-out"></span>
+						{{'LOGOUT'|translate}}
+						<span class="glyphicon glyphicon-log-out"></span>
 					</a>
 				</li>
 			</ul>

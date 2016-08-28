@@ -4,15 +4,25 @@
 
 angular.module('MoneySaverApp').controller('AppCtrl', appCtrl);
 
-appCtrl.$inject = [ '$scope', '$resource', '$log', '$window', '$location' ];
+appCtrl.$inject = [ '$scope', '$resource', '$log', '$window', '$location',
+    '$cookies', '$translate' ];
 
-function appCtrl($scope, $resource, $log, $window, $location)
+function appCtrl($scope, $resource, $log, $window, $location, $cookies, $translate)
 {
     $scope.version = '';
     $scope.logout = logout;
     $scope.isActive = isActive;
 
     $resource('/api/version').get(updateVersion);
+
+    var language = $cookies.get('lang');
+
+    if (language)
+    {
+        $log.log('Selected language: ', language);
+
+        $translate.use(language);
+    }
 
     function updateVersion(response)
     {

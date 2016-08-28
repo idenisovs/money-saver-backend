@@ -8,5 +8,10 @@
   "LOGIN_FAILED_MSG": "No such user or password!",
   "LOGIN_REQUIRED": "Login required",
   "LOGIN_REQUIRED_MSG": "Please, enter your login and password before proceed!",
-  "LOGOUT_SUCCESS": "Thank you for using our application!"
+  "LOGOUT_SUCCESS": "Thank you for using our application!",
+  "DAILY_PAYMENTS": "Daily payments",
+  "MONTHLY_PAYMENTS": "Monthly payments",
+  "ABOUT": "About",
+  "CONTACT": "Contact",
+  "LOGOUT": "Logout"
 }
