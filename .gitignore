@@ -6,3 +6,4 @@ node_modules
 *.pid
 *app.min.js
 /Source/version
+run.sh
