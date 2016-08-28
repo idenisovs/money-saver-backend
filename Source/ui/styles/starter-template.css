@@ -18,3 +18,12 @@ body {
 
 #payments-table th { text-align: center; }
 #payments-table td { vertical-align: middle; }
+
+#login-language-selector img {
+  border: 1px solid silver;
+  width: 42px;
+}
+
+#login-language-selector a {
+  text-decoration: none;
+}

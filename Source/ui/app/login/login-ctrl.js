@@ -4,9 +4,9 @@
 
 angular.module('MoneySaverAppLogin').controller('login-ctrl', loginCtrl);
 
-loginCtrl.$inject = ['$scope', '$resource', 'login-service', '$log', '$window'];
+loginCtrl.$inject = ['$scope', '$resource', 'login-service', '$log', '$window', '$translate'];
 
-function loginCtrl($scope, $resource, loginService, $log, $window)
+function loginCtrl($scope, $resource, loginService, $log, $window, $translate)
 {
     var queryParams = getQueryString();
 
@@ -21,6 +21,7 @@ function loginCtrl($scope, $resource, loginService, $log, $window)
 
     $scope.performLogin = performLogin;
     $scope.emptyCredentials = isCredentialsEmpty;
+    $scope.changeLanguage = changeLanguage;
 
     $resource('/api/version').get(setVersion);
 
@@ -79,5 +80,12 @@ function loginCtrl($scope, $resource, loginService, $log, $window)
         }
 
         return urlParams;
+    }
+
+    function changeLanguage(lang)
+    {
+        $log.info(lang);
+
+        $translate.use(lang);
     }
 }
