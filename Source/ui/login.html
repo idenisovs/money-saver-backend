@@ -45,23 +45,23 @@
 <body class="container starter-template">
     <div class="page-header">
         <h1>
-            MoneySaver application.
+            {{'MONEY_SAVER_APP'|translate}}
             <small>
-                It shall help you to manage your cash.
+                {{'TAGLINE'|translate}}
             </small>
         </h1>
     </div>
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-            Login
+            {{'LOGIN'|translate}}
         </div>
 
         <div class="panel-body">
             <form class="form-horizontal">
                 <div class="form-group">
                     <label for="login" class="col-sm-2 control-label">
-                        {{'LOGIN'|translate}}
+                        {{'LOGIN'|translate}}:
                     </label>
                     <div class="col-sm-10">
                         <input type="login"
@@ -75,7 +75,7 @@
 
                 <div class="form-group">
                     <label for="password" class="col-sm-2 control-label">
-                        {{'PASSWORD'|translate}}
+                        {{'PASSWORD'|translate}}:
                     </label>
                     <div class="col-sm-10">
                         <input type="password"
@@ -103,7 +103,7 @@
                                 type="submit"
                                 ng-click="performLogin()"
                                 ng-disabled="emptyCredentials()">
-                            Submit
+                            {{'SUBMIT'|translate}}
                         </button>
                     </div>
                 </div>
@@ -113,15 +113,17 @@
     </div>
 
     <div class="alert alert-danger" ng-show="showLoginFailed">
-        <strong>Login failed:</strong> No such user or password!
+        <strong>{{'LOGIN_FAILED'|translate}}:</strong>
+        {{'LOGIN_FAILED_MSG'|translate}}
     </div>
 
     <div class="alert alert-warning" ng-show="showLoginRequierd">
-        <strong>Login required:</strong> Please, enter your login and password before proceed!
+        <strong>{{'LOGIN_REQUIRED'|translate}}:</strong>
+        {{'LOGIN_REQUIRED_MSG'|translate}}
     </div>
 
     <div class="alert alert-info" ng-show="showLogoutSuccess">
-        Thank you for using our application!
+        {{'LOGOUT_SUCCESS'|translate}}
     </div>
 </body>
 

@@ -1,4 +1,12 @@
 {
-  "LOGIN": "Login:",
-  "PASSWORD": "Password:"
+  "LOGIN": "Login",
+  "PASSWORD": "Password",
+  "MONEY_SAVER_APP": "MoneySaver application.",
+  "TAGLINE": "It shall help you to manage your cash.",
+  "SUBMIT": "Submit",
+  "LOGIN_FAILED": "Login failed",
+  "LOGIN_FAILED_MSG": "No such user or password!",
+  "LOGIN_REQUIRED": "Login required",
+  "LOGIN_REQUIRED_MSG": "Please, enter your login and password before proceed!",
+  "LOGOUT_SUCCESS": "Thank you for using our application!"
 }
