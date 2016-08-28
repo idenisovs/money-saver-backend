@@ -4,11 +4,13 @@
 
 angular.module('MoneySaverAppLogin').controller('login-ctrl', loginCtrl);
 
-loginCtrl.$inject = ['$scope', '$resource', 'login-service', '$log', '$window', '$translate'];
+loginCtrl.$inject = ['$scope', '$resource', 'login-service', '$log', '$window',
+    '$translate', '$cookies'];
 
-function loginCtrl($scope, $resource, loginService, $log, $window, $translate)
+function loginCtrl($scope, $resource, loginService, $log, $window, $translate, $cookies)
 {
     var queryParams = getQueryString();
+    var language = $cookies.get('lang');
 
     $scope.login = '';
     $scope.password = '';
@@ -24,6 +26,11 @@ function loginCtrl($scope, $resource, loginService, $log, $window, $translate)
     $scope.changeLanguage = changeLanguage;
 
     $resource('/api/version').get(setVersion);
+
+    if (language)
+    {
+        changeLanguage(language);
+    }
 
     function setVersion(response)
     {
@@ -84,8 +91,12 @@ function loginCtrl($scope, $resource, loginService, $log, $window, $translate)
 
     function changeLanguage(lang)
     {
-        $log.info(lang);
+        language = lang;
 
         $translate.use(lang);
+
+        var options = { expires: moment().add(1, 'month').toDate() };
+
+        $cookies.put('lang', lang, options)
     }
 }

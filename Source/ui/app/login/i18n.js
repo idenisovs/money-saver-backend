@@ -10,5 +10,6 @@ function translateConfig($translateProvider)
 
     $translateProvider.useSanitizeValueStrategy('escape');
     $translateProvider.useStaticFilesLoader({ files: files });
+    // $translateProvider.useCookieStorage();
     $translateProvider.preferredLanguage('en');
 }
