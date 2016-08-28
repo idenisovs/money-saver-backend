@@ -30,8 +30,11 @@ function run(grunt)
 					'./Source/ui/libs/angular-route.js',
 					'./Source/ui/libs/angular-spinner.js',
 					'./Source/ui/libs/angular-cookies.js',
+                    './Source/ui/libs/angular-translate.js',
+                    './Source/ui/libs/angular-translate-*.js',
                     './Source/ui/libs/ui-bootstrap*',
-					'./Source/ui/app/login/**/*.js'
+					'./Source/ui/app/login/**/login-*.js',
+                    './Source/ui/app/login/**/i18n.js'
 				],
 				dest: './Source/ui/app/login.app.js'
 			},
@@ -47,8 +50,11 @@ function run(grunt)
 					'./Source/ui/libs/angular.js',
 					'./Source/ui/libs/ui-bootstrap-tpls-1.2.2.js',
 
+                    './Source/ui/libs/angular-translate.js',
+                    './Source/ui/libs/angular-translate-*.js',
+
                     './Source/ui/libs/angular-*.js',
-					
+
 					'./Source/ui/app/money/money-app.js',
                     './Source/ui/app/money/**/*.js'
                 ],
