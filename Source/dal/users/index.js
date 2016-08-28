@@ -5,6 +5,7 @@
 var users =
 {
     getByName: require('./get-by-name'),
+    
     getById: require('./get-by-id')
 };
 

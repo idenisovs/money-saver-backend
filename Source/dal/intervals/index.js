@@ -3,22 +3,23 @@
  * Created by I.Denisovs on 13.09.2015..
  */
 
-var intervals = {};
+var intervals =
+{
+    getLatest: require('./get-latest'), 
 
-intervals.getLatest = require('./get-latest');
-
-intervals.getById = require('./get-by-id');
-
-intervals.getByTime = require('./get-by-time');
-
-intervals.getByBoundary = require('./get-by-boundary');
-
-intervals.getAll = require('./get-all');
-
-intervals.create = require('./create');
-
-intervals.update = require('./update-interval');
-
-intervals.delete = require('./delete');
+    getById: require('./get-by-id'), 
+    
+    getByTime: require('./get-by-time'), 
+    
+    getByBoundary: require('./get-by-boundary'), 
+    
+    getAll: require('./get-all'), 
+    
+    create: require('./create'), 
+    
+    update: require('./update-interval'), 
+    
+    delete: require('./delete')
+};
 
 module.exports = intervals;

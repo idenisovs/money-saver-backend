@@ -1,23 +1,29 @@
-var intervals = {};
+/**
+ * Root module of Intervals BL functions.
+ * Created by I. Denisovs on 28.12.2015.
+ */
 
-intervals.getLatest = require('./get-latest');
+var intervals =
+{
+    getLatest: require('./get-latest'),
 
-intervals.getById = require('./get-by-id');
-
-intervals.getByTime = require('./get-by-time');
-
-intervals.getByBoundary = require('./get-by-boundary');
-
-intervals.getLatestSummary = require('./get-latest-summary');
-
-intervals.getAll = require('./get-all');
-
-intervals.getYears = require('./get-years');
-
-intervals.create = require('./create-interval');
-
-intervals.delete = require('./delete-interval');
-
-intervals.update = require('./update-interval');
+    getById: require('./get-by-id'),
+    
+    getByTime: require('./get-by-time'),
+    
+    getByBoundary: require('./get-by-boundary'),
+    
+    getLatestSummary: require('./get-latest-summary'),
+    
+    getAll: require('./get-all'),
+    
+    getYears: require('./get-years'),
+    
+    create: require('./create-interval'),
+    
+    delete: require('./delete-interval'),
+    
+    update: require('./update-interval')
+};
 
 module.exports = intervals;
