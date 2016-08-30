@@ -7,7 +7,7 @@
 			<button class="btn btn-default" 
 					ng-click="openIntervalModal(false)" 
 					ng-disabled="summary.interval && !summary.interval.latest">
-				Start new interval.
+				{{'START_NEW_INTERVAL'|translate}}
 			</button>
 			
 			<button class="btn btn-default" 
@@ -15,7 +15,7 @@
 					ng-disabled="summary.interval && !summary.interval.latest"
 					ng-if="!noIntervalsYet"
 			>
-				Edit current interval
+				{{'EDIT_CURRENT_INTERVAL'|translate}}
 			</button>
 		</div>
     </div>

@@ -2,11 +2,11 @@
 	<button class="close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
 
 	<h3 class="modal-title" ng-show="createMode">
-		Create new interval!
+		{{'CREATE_INTERVAL'|translate}}
 	</h3>
 	
 	<h3 class="modal-title" ng-show="editMode">
-		Edit interval {{from|date:'dd.MM.yyyy.'}}-{{till|date:'dd.MM.yyyy.'}}
+		{{'EDIT_INTERVAL'|translate}} {{from|date:'dd.MM.yyyy.'}}-{{till|date:'dd.MM.yyyy.'}}
 	</h3>
 </div>
 
@@ -18,7 +18,9 @@
 
 			<div class = "col-md-3">
 				<div class="input-group">
-					<span class="input-group-addon">From</span>
+					<span class="input-group-addon">
+						{{'FROM'|translate}}
+					</span>
 
 					<input  type="text"
 							class="form-control"
@@ -49,7 +51,9 @@
 
 			<div class = "col-md-3">
 				<div class="input-group">
-					<span class="input-group-addon">Till</span>
+					<span class="input-group-addon">
+						{{'TILL'|translate}}
+					</span>
 
 					<input type="text"
 						   class="form-control"
@@ -80,7 +84,9 @@
 		<div class = "row top15">
 			<div class = "col-md-6">
 				<div class="input-group">
-					<span class="input-group-addon">Initial total</span>
+					<span class="input-group-addon">
+						{{'INIT_TOTAL'|translate}}
+					</span>
 
 					<input type="text"
 						   class="form-control"
@@ -97,6 +103,10 @@
 </div>
 
 <div class="modal-footer">
-	<button class="btn btn-primary" ng-click="ok()" ng-disabled="controlsDisabled || !valid">OK</button>
-	<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+	<button class="btn btn-primary" ng-click="ok()" ng-disabled="controlsDisabled || !valid">
+		{{'SAVE'|translate}}
+	</button>
+	<button class="btn btn-warning" ng-click="cancel()">
+		{{'CANCEL'|translate}}
+	</button>
 </div>

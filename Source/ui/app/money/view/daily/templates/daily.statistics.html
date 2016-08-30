@@ -1,40 +1,40 @@
 <div class="panel-heading">
-    <strong>Statistics</strong>
+    <strong>{{'STATISTICS'|translate}}</strong>
 </div>
 <table class="table table-condensed">
     <tr>
-        <td>Number of days:</td>
+        <td>{{'NUMBER_OF_DAYS'|translate}}:</td>
         <td colspan="2">{{summary.totals.days}}</td>
     </tr>
     <tr>
-        <td>Current day:</td>
+        <td>{{'CURRENT_DAY'|translate}}:</td>
         <td>{{summary.totals.currentDay}}</td>
         <td>{{summary.totals.currentDayPercents * 100|number:0}}%</td>
     </tr>
     <tr>
-        <td>Starting capital:</td>
+        <td>{{'STARTING_CAPITAL'|translate}}:</td>
         <td colspan="2">{{summary.totals.startingSum|currency:'€':2}}</td>
     </tr>
     <tr>
-        <td>Expenses:</td>
+        <td>{{'EXPENSES'|translate}}:</td>
         <td>{{summary.totals.expenses|currency:'€':2}}</td>
         <td>{{summary.totals.expensesPercent * 100|number:0}}%</td>
     </tr>
     <tr>
-        <td>Average incomes:</td>
+        <td>{{'AVERAGE_INCOMES'|translate}}:</td>
         <td colspan="2">{{summary.totals.incomesAvg|currency:'€':2}}</td>
     </tr>
     <tr>
-        <td>Average expenses:</td>
+        <td>{{'AVERAGE_EXPENSES'|translate}}:</td>
         <td colspan="2">{{summary.totals.expensesAvg|currency:'€':2}}</td>
     </tr>
     <tr>
-        <td>Balance:</td>
+        <td>{{'BALANCE'|translate}}:</td>
         <td>{{summary.totals.residual|currency:'€':2}}</td>
         <td>{{summary.totals.residualPercents * 100|number:0}}%</td>
     </tr>
     <tr>
-        <td>Expected ballance:</td>
+        <td>{{'EXPECTED_BALLANCE'|translate}}:</td>
         <td>{{summary.totals.expectedResidual|currency:'€':2}}</td>
         <td>{{summary.totals.expectedResidualPercents * 100|number:0}}%</td>
     </tr>
