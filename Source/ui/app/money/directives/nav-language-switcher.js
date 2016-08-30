@@ -4,13 +4,12 @@ languageSwitcher.$inject = [ '$cookies', '$log', '$translate' ];
 
 function languageSwitcher($cookies, $log, $translate)
 {
-	//{ key: 'lv', label: 'lang_lv', flag: 'latvia-flag-icon-64.png' }
-	
 	var languages =
     {
 		'en': { label: 'English', flag: 'gb.png' },
-		'ru': { label: 'Русский', flag: 'ru.png' }
-	}
+		'ru': { label: 'Русский', flag: 'ru.png' },
+		'lv': { label: 'Latviešu', flag: 'lv.png' }
+	};
 	
 	var options =
     {
@@ -40,7 +39,7 @@ function languageSwitcher($cookies, $log, $translate)
 			
 			var options = { expires: moment().add(1, 'month').toDate() };
 
-			$cookies.put('lang', selectedLanguage, options)
+			$cookies.put('lang', selectedLanguage, options);
 			
 			currentLanguage = selectedLanguage;
 		}
