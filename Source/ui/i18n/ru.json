@@ -49,5 +49,8 @@
   "TIME": "Время",
   "SUM": "Сумма",
   "ACTIONS": "Действия",
-  "NOTHING_TO_SHOW": "Ничего нет"
+  "NOTHING_TO_SHOW": "Ничего нет",
+  "BEGINNING": "Начальная сумма",
+  "YEARS": "Годы",
+  "ALL": "Все"
 }

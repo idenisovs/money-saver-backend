@@ -49,5 +49,8 @@
   "TIME": "Time",
   "SUM": "Sum",
   "ACTIONS": "Actions",
-  "NOTHING_TO_SHOW": "Nothing to show yet!"
+  "NOTHING_TO_SHOW": "Nothing to show yet!",
+  "BEGINNING": "Beginning",
+  "YEARS": "Years",
+  "ALL": "All"
 }
