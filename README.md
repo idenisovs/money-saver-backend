@@ -9,7 +9,7 @@ npm start
 ```
 From now, web application should be accessible by passing the following link: [http://localhost:9001] (http://localhost:9001)
 
-Default user login is **demo1** with password **test1**.
+Default user login is **user1** with password **demo1**.
 
 In the case if default listening port (_9001_) is already taken by another application, it can be set in _Source/config.json_ file.
 
