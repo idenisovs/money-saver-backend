@@ -52,5 +52,7 @@
   "NOTHING_TO_SHOW": "Ничего нет",
   "BEGINNING": "Начальная сумма",
   "YEARS": "Годы",
-  "ALL": "Все"
+  "ALL": "Все",
+  "CHART_EXPECTED": "Ожидаемый",
+  "CHART_ACTUAL": "Реальный"
 }

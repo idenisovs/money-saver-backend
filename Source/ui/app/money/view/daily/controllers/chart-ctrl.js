@@ -7,9 +7,9 @@
 
 angular.module('MoneySaverApp').controller('ChartCtrl', chartCtrl);
 
-chartCtrl.$inject = [ '$scope', '$log' ];
+chartCtrl.$inject = [ '$scope', '$log', '$translate' ];
 
-function chartCtrl($scope, $log)
+function chartCtrl($scope, $log, $translate)
 {
     var stopWatchSummary = $scope.$watch('summary', dataArrived);
 
@@ -79,16 +79,19 @@ function chartCtrl($scope, $log)
 
     function makeChartDataObject()
     {
+		var expectedLabel = $translate.instant('CHART_EXPECTED');
+		var actualLabel = $translate.instant('CHART_ACTUAL');
+		
         var chart =
         {
             labels: [],
             colors: [ '#FF8811', '#97BBCD' ],
-            series: [ 'Expected', 'Actual' ],
+            series: [ expectedLabel, actualLabel ],
             data: [ [], [] ],
             datasetOverride:
                 [
-                    { label: 'Expected', type: 'line', backgroundColor: 'rgba(255, 255, 255, 0)' },
-                    { label: 'Actual', type: 'bar' }
+                    { label: expectedLabel, type: 'line', backgroundColor: 'rgba(255, 255, 255, 0)' },
+                    { label: actualLabel, type: 'bar' }
                 ],
             options:
             {

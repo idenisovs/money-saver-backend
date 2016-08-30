@@ -52,5 +52,7 @@
   "NOTHING_TO_SHOW": "Nothing to show yet!",
   "BEGINNING": "Beginning",
   "YEARS": "Years",
-  "ALL": "All"
+  "ALL": "All",
+  "CHART_EXPECTED": "Expected",
+  "CHART_ACTUAL": "Actual"
 }
