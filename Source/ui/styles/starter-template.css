@@ -20,8 +20,8 @@ body {
 #payments-table td { vertical-align: middle; }
 
 #login-language-selector img {
-  border: 1px solid silver;
-  width: 42px;
+  /* border: 1px solid silver; */
+  width: 32px;
 }
 
 #login-language-selector a {
