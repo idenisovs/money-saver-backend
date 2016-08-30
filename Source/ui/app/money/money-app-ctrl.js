@@ -12,16 +12,15 @@ function appCtrl($scope, $resource, $log, $window, $location, $cookies, $transla
     $scope.version = '';
     $scope.logout = logout;
     $scope.isActive = isActive;
+	$scope.lang = $cookies.get('lang');
 
     $resource('/api/version').get(updateVersion);
 
-    var language = $cookies.get('lang');
-
-    if (language)
+    if ($scope.lang)
     {
-        $log.log('Selected language: ', language);
+        $log.log('Selected language: ', $scope.lang);
 
-        $translate.use(language);
+        $translate.use($scope.lang);
     }
 
     function updateVersion(response)
