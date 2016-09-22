@@ -11,7 +11,6 @@ function intervalsCtrl($scope, $routeParams, intervalsResource, $log, $filter)
     $scope.selectedYear = $routeParams.year ? $routeParams.year : 'all';
     $scope.mode = $scope.selectedYear === 'all' ? 'YEARS' : 'INTERVALS';
     $scope.years = [];
-    $scope.message = 'Fuck you!';
 
     if ($scope.mode === 'YEARS')
     {
@@ -43,6 +42,10 @@ function intervalsCtrl($scope, $routeParams, intervalsResource, $log, $filter)
 
     function formatIntervals(intervals)
     {
+        intervals.sort(compareIntervals);
+
+        intervals.forEach(setAdditionalInfo);
+
         var result = [];
 
         for (var i = 0; i < intervals.length; i++)
@@ -52,18 +55,24 @@ function intervalsCtrl($scope, $routeParams, intervalsResource, $log, $filter)
                 result.push([]);
             }
 
-            var interval = intervals[i];
+            var rowIdx = result.length - 1;
 
-            interval.nr = i + 1;
-
-            interval.name = getIntervalName(interval);
-
-            var row = result.length - 1;
-
-            result[row].push(interval);
+            result[rowIdx].push(intervals[i]);
         }
 
         $scope.intervals = result;
+    }
+
+    function setAdditionalInfo(interval, idx, intervals)
+    {
+        interval.nr = intervals.length - idx;
+
+        interval.name = getIntervalName(interval);
+    }
+
+    function compareIntervals(a, b)
+    {
+        return b.id - a.id;
     }
 
     function getIntervalName(interval)
