@@ -65,7 +65,7 @@
 						   close-text="Close"
 						   ng-model="till"
 						   is-open="datepickerTill.show"
-						   ng-disabled="controlsDisabled || editMode"
+						   ng-disabled="controlsDisabled"
 					>
 
 					<span class="input-group-btn">
@@ -73,7 +73,7 @@
 								class="btn btn-default"
 								type="button"
 								ng-click="datepickerTill.open()"
-								ng-disabled="controlsDisabled || editMode">
+								ng-disabled="controlsDisabled">
 							<span class="glyphicon glyphicon-calendar"></span>
 						</button>
 					</span>

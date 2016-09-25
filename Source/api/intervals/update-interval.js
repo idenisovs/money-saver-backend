@@ -24,7 +24,7 @@ function updateInterval(req, res)
     {
         log.error(err);
 
-        res.statusCode(http.INTERNAL_SERVER_ERROR).json(err);
+        res.status(http.INTERNAL_SERVER_ERROR).json(err);
     }
 
 }

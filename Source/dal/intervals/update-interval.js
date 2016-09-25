@@ -5,11 +5,11 @@
 
 var db = require('../db');
 
-var sql = 'UPDATE intervals SET sum = $sum WHERE id = $id AND userId = $userId';
+var sql = 'UPDATE intervals SET sum = $sum, end = $end WHERE id = $id AND userId = $userId';
 
 function updateInterval(interval, done)
 {
-    var params = { $id: interval.id, $userId: interval.user.id, $sum: interval.sum };
+    var params = { $id: interval.id, $userId: interval.user.id, $sum: interval.sum, $end: interval.end };
 
     db.run(sql, params, done);
 }
