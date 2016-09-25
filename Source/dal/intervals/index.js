@@ -5,7 +5,9 @@
 
 var intervals =
 {
-    getLatest: require('./get-latest'), 
+    getLatest: require('./get-latest'),
+
+    getNthLatest: require('./get-nth-latest'),
 
     getById: require('./get-by-id'), 
     
