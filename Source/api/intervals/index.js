@@ -1,9 +1,5 @@
 /**
-<<<<<<< HEAD
-  * Intervals REST API endpoints
-=======
   * Intervals REST API endpoint
->>>>>>> master
   * Sample call: http://localhost:9001/api/intervals
   */
 
