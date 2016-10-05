@@ -4,7 +4,7 @@
 var util = require('util');
 var moment = require('moment');
 var log = require('log4js').getLogger('create-interval');
-var getLatestInterval = require('./get-latest');
+var updateInterval = require('./update-interval');
 var dal = require('../../dal');
 var checkValidity = require('./validity');
 
@@ -16,51 +16,39 @@ function createInterval(interval, success, error)
 
     var invalidInterval = checkValidity(interval);
 
-    if (invalidInterval)
-    {
+    if (invalidInterval) {
         log.error('Interval invalid, breaking!');
         return error(invalidInterval);
     }
 
+    interval.start = moment(interval.start).valueOf();
+    interval.end = moment(interval.end).endOf('day').valueOf();
+
     log.debug('Taking latest interval...');
 
-    getLatestInterval(interval, checkInterlaceValidity, error);
+    dal.intervals.getLatest(interval, checkIntervalPosition);
 
-    function checkInterlaceValidity(latestInterval)
-    {
-        log.debug('Checking interval interlace validity...');
+    function checkIntervalPosition(err, latestInterval) {
+        if (err) {
+            return error(err);
+        }
 
-        if (util.isUndefined(latestInterval))
-        {
-            log.warn('There is no previously entered interval!');
-
+        if (!latestInterval) {
             return saveInterval();
         }
 
-        if (util.isUndefined(interval.start))
-        {
-            interval.start = moment(latestInterval.end).add(1, 'days').format('YYYY-MM-DD');
+        if (interval.start <= latestInterval.start) {
+            return error('New interval should not be set before latest!');
         }
 
-        var end = moment(latestInterval.end).startOf('day');
-        var nextStart = moment(interval.start).startOf('day');
-        var delta = nextStart.diff(end, 'days', true);
+        latestInterval.end = moment(interval.start).subtract(1, 'days').valueOf();
 
-        if (delta < 1)
-        {
-            var message = 'Intervals should not interlace!';
-            return error({ reason: 'param', message: message });
-        }
-
-        saveInterval();
+        updateInterval(latestInterval, saveInterval, error);
     }
 
     function saveInterval()
     {
         log.debug('Saving interval!');
-
-        interval.start = moment(interval.start).valueOf();
-        interval.end = moment(interval.end).endOf('day').valueOf();
 
         dal.intervals.create(interval, done);
     }

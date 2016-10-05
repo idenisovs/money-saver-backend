@@ -4,9 +4,9 @@ module.exports = getLatestInterval;
 
 function getLatestInterval(interval, success, error)
 {
-	dal.intervals.getLatest(interval, onDone);
+	dal.intervals.getLatest(interval, done);
 
-	function onDone(err, result)
+	function done(err, result)
 	{
 		if (err)
 		{
