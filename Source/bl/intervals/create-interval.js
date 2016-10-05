@@ -41,6 +41,8 @@ function createInterval(interval, success, error)
             return error('New interval should not be set before latest!');
         }
 
+        latestInterval.user = interval.user;
+
         latestInterval.end = moment(interval.start).subtract(1, 'days').valueOf();
 
         updateInterval(latestInterval, saveInterval, error);
