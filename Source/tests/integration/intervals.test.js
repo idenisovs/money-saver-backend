@@ -16,6 +16,6 @@ function intervalsRestTests()
     describe('Create intervals', require('./intervals/create'));
     describe('Delete intervals', require('./intervals/delete-interval'));
 
-    after(helper.deleteInterval);
+    after(helper.clearIntervals);
     after(helper.logout);
 }

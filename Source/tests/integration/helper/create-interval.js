@@ -4,26 +4,21 @@
 var assert = require('chai').assert;
 var request = require('../request');
 var host = require('../host.json').host;
-var clearIntervals = require('./clear-intervals');
 
 function createInterval(done)
 {
-    clearIntervals(create);
+    var interval = {
+        start: '2015-12-01',
+        end: '2015-12-31',
+        sum: 123.45
+    };
 
-    function create() {
-        var interval = {
-            start: '2015-12-01',
-            end: '2015-12-31',
-            sum: 123.45
-        };
+    var options = {
+        url: host.intervals,
+        body: interval
+    };
 
-        var options = {
-            url: host.intervals,
-            body: interval
-        };
-
-        request.post(options, validate);
-    }
+    request.post(options, validate);
 
     function validate(err, res, body)
     {
