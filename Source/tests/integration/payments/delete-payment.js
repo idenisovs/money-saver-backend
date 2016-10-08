@@ -7,6 +7,7 @@ var request = require('../request');
 var assert = require('chai').assert;
 var host = require('../host.json').host;
 var helper = require('../helper/helper');
+var defaultValidation = helper.defaultValidatation;
 
 function deletePaymentTests()
 {
@@ -92,16 +93,3 @@ function deletePaymentsByIntervalId(done)
 	}
 }
 
-function defaultValidation(done)
-{
-	function validate(err, res, body) {
-		assert.isNull(err);
-		assert.equal(res.statusCode, 200);
-
-		if (done) {
-			done(body);
-		}
-	}
-
-	return validate;
-}

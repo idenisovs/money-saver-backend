@@ -18,4 +18,6 @@ helper.deletePayments = require('./delete-payments');
 
 helper.logout = require('./logout');
 
+helper.defaultValidatation = require('./default-validation');
+
 module.exports = helper;
