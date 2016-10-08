@@ -10,6 +10,8 @@ helper.createInterval = require('./create-interval');
 
 helper.deleteInterval = require('./delete-interval');
 
+helper.clearIntervals = require('./clear-intervals');
+
 helper.createPayments = require('./create-payments');
 
 helper.deletePayments = require('./delete-payments');
