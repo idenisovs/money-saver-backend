@@ -8,6 +8,7 @@ var assert = require('chai').assert;
 var host = require('../host.json').host;
 var createPayments = require('../helper/create-payments');
 var deletePayments = require('../helper/delete-payments');
+var defaultValidation = require('../helper/default-validation');
 
 function updatePaymentsTests()
 {
@@ -40,12 +41,10 @@ function createPayment(done)
 
     options.body = payment;
 
-    request.put(options, paymentSaved);
+    request.put(options, defaultValidation(paymentSaved));
 
-    function paymentSaved(err, res, body)
+    function paymentSaved()
     {
-        defaultValidation(err, res, body);
-
         var expectedDate = '2015-12-07';
 
         var getByDate = util.format('%s?date=%s', host.payments, expectedDate);
@@ -54,13 +53,11 @@ function createPayment(done)
 
         options.url = getByDate;
 
-        request.get(options, validate);
+        request.get(options, defaultValidation(validate));
     }
 
-    function validate(err, res, payments)
+    function validate(payments)
     {
-        defaultValidation(err, res, payments);
-
         assert.isArray(payments);
         assert.equal(payments.length, 2);
 
@@ -87,12 +84,10 @@ function modifyPayment(done)
 
     options.url = util.format('%s?date=%s', host.payments, expectedDate);
 
-    request.get(options, takePayment);
+    request.get(options, defaultValidation(takePayment));
 
-    function takePayment(err, res, payments)
+    function takePayment(payments)
     {
-        defaultValidation(err, res, payments);
-
         var payment = payments.pop();
 
         payment.sum = 3.21;
@@ -101,26 +96,22 @@ function modifyPayment(done)
 
         options.url = host.payments;
 
-        request.put(options, savePayment);
+        request.put(options, defaultValidation(savePayment));
     }
 
-    function savePayment(err, res, result)
+    function savePayment(result)
     {
-        defaultValidation(err, res, result);
-
         assert.equal(result.stat.updated, 1);
 
         delete options.body;
 
         options.url = util.format('%s?date=%s', host.payments, expectedDate);
 
-        request.get(options, validate);
+        request.get(options, defaultValidation(validate));
     }
 
-    function validate(err, res, payments)
+    function validate(payments)
     {
-        defaultValidation(err, res, payments);
-
         var payment = payments.pop();
 
         assert.equal(payment.sum, 3.21);
@@ -137,10 +128,4 @@ function deletePayment()
 function listOfPayments()
 {
     assert.equal(true, true);
-}
-
-function defaultValidation(err, res, body)
-{
-    assert.isNull(err);
-    assert.equal(res.statusCode, 200, JSON.stringify(body));
 }

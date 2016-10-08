@@ -7,6 +7,8 @@ var assert = require('chai').assert;
 var host = require('../host.json').host;
 var helper = require('../helper/helper');
 
+var defaultValidation = helper.defaultValidatation;
+
 function getPaymentsTests()
 {
     before(helper.createPayments);
@@ -23,12 +25,10 @@ module.exports = getPaymentsTests;
 
 function getPaymentsWoutParams(done)
 {
-    request.get(host.payments, validate);
+    request.get(host.payments, defaultValidation(validate));
 
-    function validate(err, res, payments)
+    function validate(payments)
     {
-        defaultValidation(err, res, payments);
-
         assert.isArray(payments);
         assert.equal(payments.length, 10);
 
@@ -42,25 +42,20 @@ function getPaymentById(done)
     var expectedDate = '2015-12-07';
     var endpoint = util.format('%s?date=%s', host.payments, expectedDate);
 
-    request.get(endpoint, onPaymentReceived);
+    request.get(endpoint, defaultValidation(onPaymentReceived));
 
-    function onPaymentReceived(err, res, payments)
+    function onPaymentReceived(payments)
     {
-        defaultValidation(err, res, payments);
-
         expectedPayment = payments[0];
 
         endpoint = util.format('%s?id=%d', host.payments, expectedPayment.id);
 
-        request.get(endpoint, validate);
+        request.get(endpoint, defaultValidation(validate));
     }
 
-    function validate(err, res, payment)
+    function validate(payment)
     {
-        defaultValidation(err, res, payment);
-
         assert.deepEqual(payment, expectedPayment);
-
         done();
     }
 }
@@ -70,12 +65,10 @@ function getPaymentsByDate(done)
     var expectedDate = '2015-12-08';
     var endpoint = util.format('%s?date=%s', host.payments, expectedDate);
 
-    request.get(endpoint, validate);
+    request.get(endpoint, defaultValidation(validate));
 
-    function validate(err, res, payments)
+    function validate(payments)
     {
-        defaultValidation(err, res, payments);
-
         assert.isArray(payments);
         assert.equal(payments.length, 3);
         assert.equal(payments[0].date, expectedDate);
@@ -91,12 +84,10 @@ function getPaymentsByDateRange(done)
 
     var endpoint = util.format('%s?from=%s&till=%s', host.payments, from ,till);
 
-    request.get(endpoint, validate);
+    request.get(endpoint, defaultValidation(validate));
 
-    function validate(err, res, payments)
+    function validate(payments)
     {
-        defaultValidation(err, res, payments);
-
         assert.isArray(payments);
 
         var paymentCount = payments.length;
@@ -112,10 +103,4 @@ function getPaymentsByDateRange(done)
 
         done();
     }
-}
-
-function defaultValidation(err, res, body)
-{
-    assert.isNull(err);
-    assert.equal(res.statusCode, 200);
 }

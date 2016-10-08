@@ -6,6 +6,7 @@ var moment = require('moment');
 var request = require('../request');
 var assert = require('chai').assert;
 var host = require('../host.json').host;
+var defaultValidation = require('../helper/default-validation');
 
 var date, payment, nextDate, secondPayment;
 
@@ -44,29 +45,22 @@ function clearPayments(done)
 {
     var endpoint = util.format('%s?from=%s&till=%s', host.payments, '2015-12-13', '2015-12-14');
 
-    request.del(endpoint, function(err, res, body){
-        defaultValidation(err, res, body);
-        done();
-    });
+    request.del(endpoint, defaultValidation(done, true));
 }
 
 function singlePaymentTest(done)
 {
-    request.post(options, validate);
+    request.post(options, defaultValidation(validate));
 
-    function validate(err, res, body)
+    function validate()
     {
-        defaultValidation(err, res, body);
-
         var endpoint = util.format('%s?from=%s&till=%s', host.payments, '2015-12-13', '2015-12-13');
 
-        request.get(endpoint, checkSavedPayment);
+        request.get(endpoint, defaultValidation(checkSavedPayment));
     }
 
-    function checkSavedPayment(err, res, payments)
+    function checkSavedPayment(payments)
     {
-        defaultValidation(err, res, payments);
-
         assert.equal(payments.length, 1);
 
         var actualPayment = payments.pop();
@@ -83,23 +77,18 @@ function listOfPaymentsTest(done)
 {
     options.body = [ payment, secondPayment ];
 
-    request.post(options, validate);
+    request.post(options, defaultValidation(validate));
 
-    function validate(err, res, body)
+    function validate()
     {
-        defaultValidation(err, res, body);
-
         var endpoint = util.format('%s?from=%s&till=%s', host.payments, '2015-12-13', '2015-12-14');
 
-        request.get(endpoint, checkSavedPayment);
+        request.get(endpoint, defaultValidation(checkSavedPayment));
     }
 
-    function checkSavedPayment(err, res, payments)
+    function checkSavedPayment(payments)
     {
-        defaultValidation(err, res, payments);
-
         assert.equal(payments.length, 2);
-
         done();
     }
 }
@@ -130,21 +119,17 @@ function missedDateTest(done)
 {
     delete options.body.date;
 
-    request.post(options, validate);
+    request.post(options, defaultValidation(validate));
 
-    function validate(err, res, body)
+    function validate()
     {
-        defaultValidation(err, res, body);
-
         var endpoint = util.format('%s?from=%s&till=%s', host.payments, '2015-12-13', '2015-12-13');
 
-        request.get(endpoint, checkSavedPayment);
+        request.get(endpoint, defaultValidation(checkSavedPayment));
     }
 
-    function checkSavedPayment(err, res, payments)
+    function checkSavedPayment(payments)
     {
-        defaultValidation(err, res, payments);
-
         var actualPayment = payments.pop();
 
         assert.equal(actualPayment.date, '2015-12-13');
@@ -157,21 +142,17 @@ function missedTimeTest(done)
 {
     delete options.body.time;
 
-    request.post(options, validate);
+    request.post(options, defaultValidation(validate));
 
-    function validate(err, res, body)
+    function validate()
     {
-        defaultValidation(err, res, body);
-
         var endpoint = util.format('%s?from=%s&till=%s', host.payments, '2015-12-13', '2015-12-13');
 
-        request.get(endpoint, checkSavedPayment);
+        request.get(endpoint, defaultValidation(checkSavedPayment));
     }
 
-    function checkSavedPayment(err, res, payments)
+    function checkSavedPayment(payments)
     {
-        defaultValidation(err, res, payments);
-
         var actualPayment = payments.pop();
 
         assert.equal(actualPayment.time, moment('2015-12-13').valueOf());
@@ -229,10 +210,4 @@ function invalidDateTest(done)
 	
 		done();
 	}
-}
-
-function defaultValidation(err, res, body)
-{
-    assert.isNull(err);
-    assert.equal(res.statusCode, 200, JSON.stringify(body));
 }
