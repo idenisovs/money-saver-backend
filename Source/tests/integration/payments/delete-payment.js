@@ -25,16 +25,13 @@ function tillAndFromSpecified(done)
 {
 	var from = '2015-12-03';
 	var till = '2015-12-06';
-	var query = util.format('?from=%s&till=%s', from, till);
-    
+
 	var endpoint = util.format('%s?from=%s&till=%s', host.payments, from, till);
 	
-	request.del(endpoint, validate);
+	request.del(endpoint, defaultValidation(validate));
 	
-	function validate(err, res, body)
+	function validate(body)
 	{
-		defaultValidation(err, res, body);
-		
 		assert.equal(body.removed, 6);
 		
 		done();
@@ -47,23 +44,19 @@ function deletePaymentsById(done)
 	
 	var endpoint = util.format('%s?from=%s&till=%s', host.payments, date, date);
 	
-	request.get(endpoint, processPaymentList);
+	request.get(endpoint, defaultValidation(processPaymentList));
 	
-	function processPaymentList(err, res, payments)
+	function processPaymentList(payments)
 	{
-		defaultValidation(err, res, payments);
-		
 		assert.equal(payments.length, 2);
 		
 		endpoint = util.format('%s?id=%s', host.payments, payments[0].id);
 		
-		request.del(endpoint, validate);
+		request.del(endpoint, defaultValidation(validate));
 	}
 	
-	function validate(err, res, body)
+	function validate(body)
 	{
-		defaultValidation(err, res, body);
-		
 		assert.equal(body.removed, 1);
 		
 		done();
@@ -76,25 +69,21 @@ function deletePaymentsByIntervalId(done)
 	
 	var endpoint = host.intervals + '/latest';
 	
-	request.get(endpoint, onIntervalIdReceived);
+	request.get(endpoint, defaultValidation(onIntervalIdReceived));
 	
-	function onIntervalIdReceived(err, res, interval)
+	function onIntervalIdReceived(interval)
 	{
-		defaultValidation(err, res, interval);
-		
 		assert.property(interval, 'id');
 		
 		intervalId = interval.id;
 		
 		endpoint = util.format('%s?intervalId=%d', host.payments, intervalId);
 		
-		request.del(endpoint, validate);
+		request.del(endpoint, defaultValidation(validate));
 	}
 	
-	function validate(err, res, body)
+	function validate(body)
 	{
-		defaultValidation(err, res, body)
-		
 		assert.property(body, 'removed');
 		
 		assert.equal(body.removed, 15);
@@ -103,8 +92,16 @@ function deletePaymentsByIntervalId(done)
 	}
 }
 
-function defaultValidation(err, res, body)
+function defaultValidation(done)
 {
-    assert.isNull(err);
-    assert.equal(res.statusCode, 200);
+	function validate(err, res, body) {
+		assert.isNull(err);
+		assert.equal(res.statusCode, 200);
+
+		if (done) {
+			done(body);
+		}
+	}
+
+	return validate;
 }
