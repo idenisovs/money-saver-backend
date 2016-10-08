@@ -38,7 +38,25 @@ function createInterval(interval, success, error)
         }
 
         if (interval.start <= latestInterval.start) {
-            return error('New interval should not be set before latest!');
+            var newInt = moment(interval.start).format('YYYY-MM-DD');
+            var latInt = moment(latestInterval.start).format('YYYY-MM-DD');
+            var message = util.format('New interval should not be set (%s) before latest (%s)!', newInt, latInt);
+            return error(message);
+        }
+
+        if (interval.start < latestInterval.end) {
+
+            var latestIntervalEnd = moment(latestInterval.end).format('YYYY-MM-DD');
+            var today = moment().format('YYYY-MM-DD');
+            var requested = moment(interval.start).format('YYYY-MM-DD');
+
+            log.warn('Latest interval end: %s, Today: %s, Requested start: %s.', latestIntervalEnd, today, requested);
+
+            var delta = -moment().diff(interval.start, 'days');
+
+            if (delta < 0) {
+                return error('If intervals interlace, then new interval shall be started today or later!');
+            }
         }
 
         latestInterval.user = interval.user;
