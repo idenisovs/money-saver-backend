@@ -5,11 +5,12 @@ var util = require('util');
 var request = require('../request');
 var moment = require('moment');
 var assert = require('chai').assert;
-
 var helper = require('../helper/helper');
 
 function getIntervalsTests()
 {
+    before(helper.createInterval);
+
     it('Get latest interval', getLatestInterval);
     it('Get interval by ID', getIntervalById);
     it('getIntervals endpoint available', getIntervalsAvailable);

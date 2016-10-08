@@ -23,14 +23,22 @@ function createIntervalTests()
 
     beforeEach(setIntervalFields);
 
+    describe('Creation', creationTests);
+    describe('Interlacing', interlacingTests);
+    describe('Validation', validationTests);
+}
+
+function creationTests() {
     it("Create interval without Start date", createIntervalWoutStart);
     it("Create interval with start date", createIntervalWithStart);
+    afterEach(helper.clearIntervals);
+}
+
+function validationTests() {
     it("Interval is not defined", sendingWithoutBody);
     it('End not set', endFieldNotSet);
     it('Check sum', sumFieldNotSet);
     it('Start and End fields delta set wrong', startEndDeltaIsNotDay);
-
-    describe('Interlacing', interlacingTests);
 }
 
 function interlacingTests() {
@@ -83,16 +91,6 @@ function createIntervalWoutStart(done)
         assert.property(body, 'sum');
         assert.isNumber(body.sum);
 
-        options = { url: host + '/' + body.id };
-
-        request.delete(options, complete);
-    }
-
-    function complete(err, res, body)
-    {
-        assert.isNull(err);
-        assert.equal(res.statusCode, 200);
-
         done();
     }
 }
@@ -125,15 +123,6 @@ function createIntervalWithStart(done)
         assert.property(body, 'sum');
         assert.isNumber(body.sum);
 
-        options = { url: host + '/' + body.id };
-
-        request.delete(options, complete);
-    }
-
-    function complete(err, res, body)
-    {
-        assert.isNull(err);
-        assert.equal(res.statusCode, 200);
         done();
     }
 }
