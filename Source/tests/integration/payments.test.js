@@ -1,7 +1,7 @@
 /**
  * Created by I. Denisovs on 11.12.2015..
  */
-var helper = require('./helper/helper');
+var helper = require('./helper');
 
 describe('Payments REST API', paymentsRestTests);
 

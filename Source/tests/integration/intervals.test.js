@@ -3,7 +3,7 @@
  */
 var util = require('util');
 var host = require('./host.json').host;
-var helper = require('./helper/helper');
+var helper = require('./helper');
 
 describe('Intervals REST API', intervalsRestTests);
 

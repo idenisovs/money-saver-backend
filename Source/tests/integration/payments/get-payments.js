@@ -5,7 +5,7 @@ var util = require('util');
 var request = require('../request');
 var assert = require('chai').assert;
 var host = require('../host.json').host;
-var helper = require('../helper/helper');
+var helper = require('../helper');
 
 var defaultValidation = helper.defaultValidatation;
 

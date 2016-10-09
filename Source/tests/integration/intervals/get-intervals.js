@@ -5,7 +5,7 @@ var util = require('util');
 var request = require('../request');
 var moment = require('moment');
 var assert = require('chai').assert;
-var helper = require('../helper/helper');
+var helper = require('../helper');
 
 function getIntervalsTests()
 {
