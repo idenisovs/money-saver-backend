@@ -12,6 +12,8 @@ helper.deleteInterval = require('./delete-interval');
 
 helper.clearIntervals = require('./clear-intervals');
 
+helper.payments = require('./payments');
+
 helper.createPayments = require('./create-payments');
 
 helper.deletePayments = require('./delete-payments');
