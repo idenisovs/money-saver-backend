@@ -6,11 +6,11 @@
 var passport = require('passport');
 var log = require('log4js').getLogger('passport');
 
-passport.use(require('./passport/strategies/local'));
+passport.use(require('./strategies/local'));
 
-passport.serializeUser(require('./passport/serialize'));
+passport.serializeUser(require('./serialize'));
 
-passport.deserializeUser(require('./passport/deserialize'));
+passport.deserializeUser(require('./deserialize'));
 
 module.exports = passport;
 
