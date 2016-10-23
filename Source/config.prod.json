@@ -5,5 +5,10 @@
 	},
 	"host": "http://localhost",
 	"port": 9002,
-    "db": "/var/money/finance.db"
+    "db": "/var/money/finance.db",
+	"memcached": {
+		"enabled": true,
+		"hosts": [ "127.0.0.1:11211" ],
+		"secret": "c47TwL34U4yxdTSN"
+	}
 }

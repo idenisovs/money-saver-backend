@@ -18,8 +18,8 @@
     "Manager"
   ],
   "bugs": {
-    "url" : "https://github.com/idenisovs/money-saver/issues",
-    "email" : "i.denisovs@gmail.com"
+    "url": "https://github.com/idenisovs/money-saver/issues",
+    "email": "i.denisovs@gmail.com"
   },
   "author": "Ilya Denisov",
   "license": "ISC",
@@ -29,6 +29,7 @@
     "body-parser": "^1.13.2",
     "chai": "^3.2.0",
     "chai-as-promised": "^5.1.0",
+    "connect-memcached": "^0.2.0",
     "cookie-parser": "^1.4.2",
     "express": "^4.13.1",
     "express-session": "^1.13.0",

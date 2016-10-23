@@ -31,7 +31,7 @@ function enable3dPartyMiddleware()
 {
     app.use(cookieParser());
     app.use(bodyParser.json());
-    app.use(session({ secret: 'Fb75JGeUyTlEuCMp', resave: false, saveUninitialized: true }));
+    app.use(session(makeSessionConfig()));
     app.use(passport.initialize());
     app.use(passport.session());
 
@@ -58,4 +58,27 @@ function enableRestAPI()
     app.use('/api', require('./api'));
 
     log.debug('REST API enabled!');
+}
+
+function makeSessionConfig() {
+
+    var sessionConfig = {
+        secret: 'Fb75JGeUyTlEuCMp',
+        resave: false,
+        saveUninitialized: true
+    };
+
+    if (config.memcached.enabled) {
+        enableMemcachedSessionStore(sessionConfig);
+    } else {
+        log.warn('Memcached Session Store is not enabled, using MemoryStore instead!');
+    }
+
+    return sessionConfig;
+}
+
+function enableMemcachedSessionStore(sessionConfig) {
+    var MemcachedStore = require('connect-memcached')(session);
+    sessionConfig.store = new MemcachedStore(config.memcached);
+    log.debug('Memcached Session Store support is enabled!');
 }
