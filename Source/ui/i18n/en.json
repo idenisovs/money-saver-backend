@@ -52,5 +52,6 @@
   "YEARS": "Years",
   "ALL": "All",
   "CHART_EXPECTED": "Expected",
-  "CHART_ACTUAL": "Actual"
+  "CHART_ACTUAL": "Actual",
+  "PROPERTIES": "Properties"
 }

@@ -55,6 +55,8 @@
 
 	<script src="app/money/view/intervals/controllers/intervals-ctrl.js" type="text/javascript"></script>
 	<script src="app/money/view/intervals/services/intervals-resource.js" type="text/javascript"></script>
+	
+	<script src="app/money/view/properties/properties-ctrl.js" type="text/javascript"></script>
 
 	<script src="app/money/view/monthly/monthly-ctrl.js" type="text/javascript"></script>
 	<script src="app/money/health-led-directive.js" type="text/javascript"></script>
@@ -85,6 +87,11 @@
 				<li ng-class="{ active: isActive('monthly') }">
 					<a href="#monthly">
 						{{'MONTHLY_PAYMENTS'|translate}}
+					</a>
+				</li>
+				<li ng-class="{ active: isActive('properties') }">
+					<a href="#properties">
+						{{'PROPERTIES'|translate}}
 					</a>
 				</li>
 				<li ng-class="{ active: isActive('about') }">
