@@ -53,5 +53,12 @@
   "ALL": "Viss",
   "CHART_EXPECTED": "Gaidāmais",
   "CHART_ACTUAL": "Aktuālais",
-  "PROPERTIES": "Iestatījumi"
+  "PROPERTIES": "Iestatījumi",
+  "PROPERTIES_OF": "Lietotaja iestatījumi",
+  "EMAIL": "Ievadiet Jūsu elektroniska pasta adresi",
+  "CONFIRM_PASSWORD": "Apstipriniet paroli",
+  "SELECT_TIMEZONE": "Izveleties laikā joslu",
+  "PASSWORD_INFO": "Minimals paroles garums ir 8 simboli. Parolei jabūt vismāz 1 lielai burtai un vienām ciparam.",
+  "EMAIL_INFO": "Sekojošā elektroniska pasta adrese tiks izmantota lai piegadāt aplikaciju zinās.",
+  "TIMEZONE_INFO": "Laikā josla ir nepieciešama lai pareizi attelot laiku un datumu, kā arī citas radijumus."
 }
