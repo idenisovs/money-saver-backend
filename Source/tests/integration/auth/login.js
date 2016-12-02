@@ -20,7 +20,7 @@ beforeEach(setAll);
 
 function setAll()
 {
-    user = { username: 'user1', password: 'test1' };
+    user = { username: 'user1', password: 'demo1' };
     auth = host.auth;
     options = { url: auth, body: user };
 }

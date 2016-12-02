@@ -11,7 +11,7 @@ function login(done)
     var user =
     {
         username: 'user1',
-        password: 'test1'
+        password: 'demo1'
     };
 
     var options =

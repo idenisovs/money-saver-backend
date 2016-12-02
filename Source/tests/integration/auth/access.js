@@ -24,7 +24,7 @@ function setAll()
 {
     clearCookies();
 
-    user = { username: 'user1', password: 'test1' };
+    user = { username: 'user1', password: 'demo1' };
     options = { url: login, body: user };
 }
 
