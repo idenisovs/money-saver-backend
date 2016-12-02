@@ -6,7 +6,7 @@ var request = require('request');
 
 request = request.defaults({ jar: true, json: true });
 
-var options = { followAllRedirects: true, body: { username: 'user1', password: 'test1' } };
+var options = { followAllRedirects: true, body: { username: 'user1', password: 'demo1' } };
 
 request.post('http://rpi2:9001/api/auth', options, loginDone);
 
