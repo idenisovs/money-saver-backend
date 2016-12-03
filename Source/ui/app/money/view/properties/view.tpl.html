@@ -72,7 +72,18 @@
 							
 							<div class="form-group">
 								<label for="timezone">{{'SELECT_TIMEZONE'|translate}}:</label>
-								<input id="timezone" class="form-control" type="text" value="{{user.timezone}}">
+								<div id="timezone" uib-dropdown is-open="status.isopen" dropdown-append-to-body>
+
+									<button type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
+										{{user.timezone.label}} <span class="caret"></span>
+									</button>
+
+									<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+										<li role="menuitem" ng-repeat="timezone in timezones">
+											<a href="" ng-click="selectTimezone(timezone)">{{timezone.label}}</a>
+										</li>
+									</ul>
+								</div>
 							</div>
 							
 						</div>

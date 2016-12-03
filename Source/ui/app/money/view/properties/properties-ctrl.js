@@ -1,8 +1,8 @@
 angular.module('MoneySaverApp').controller('PropertiesCtrl', propertiesCtrl);
 
-propertiesCtrl.$inject = ['$scope'];
+propertiesCtrl.$inject = ['$scope', 'TimezoneResource'];
 
-function propertiesCtrl($scope)
+function propertiesCtrl($scope, timezones)
 {
 	$scope.message =
 	{
@@ -19,6 +19,14 @@ function propertiesCtrl($scope)
 			primary: '', 
 			confirm: '' 
 		},
-		timezone: 0
+		timezone: { "timeZoneId": "30", "gmtAdjustment": "GMT+00:00", "useDaylightTime": "1", "value": "0", "label": "(GMT+00:00) Greenwich Mean Time: Dublin, Edinburgh, Lisbon, London" },
 	};
+
+	$scope.timezones = timezones.getAll();
+
+	$scope.selectTimezone = selectTimezone;
+
+	function selectTimezone(timezone) {
+		$scope.user.timezone = timezone;
+	}
 }
