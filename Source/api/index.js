@@ -13,6 +13,8 @@ router.use('/version', require('./version'));
 
 router.use('/summary', auth, require('./summary'));
 
+router.use('/properties', auth, require('./properties'));
+
 module.exports = router;
 
 require('log4js').getLogger('api').debug('API module is up!');
