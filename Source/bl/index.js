@@ -4,7 +4,8 @@ var bl =
     payments: require('./payments'),
     auth: require('./auth'),
     users: require('./users'),
-    summary: require('./summary')
+    summary: require('./summary'),
+    properties: require('./properties')
 };
 
 module.exports = bl;
