@@ -5,10 +5,9 @@
 var dal =
 {
     intervals: require('./intervals'),
-
     payments: require('./payments'),
-
-    users: require('./users')
+    users: require('./users'),
+    properties: require('./properties')
 };
 
 module.exports = dal;
