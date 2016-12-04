@@ -5,7 +5,8 @@
  */
 
 var properties = {
-    get: require('./get-properties')
+    get: require('./get-properties'),
+    save: require('./save-properties')
 };
 
 module.exports = properties;
