@@ -17,7 +17,7 @@ function propertiesCtrl($scope, timezones)
 		password: 
 		{
 			original: '',
-			new: '', 
+			created: '', 
 			confirm: ''
 		},
 		timezone: { "timeZoneId": "30", "gmtAdjustment": "GMT+00:00", "useDaylightTime": "1", "value": "0", "label": "(GMT+00:00) Greenwich Mean Time: Dublin, Edinburgh, Lisbon, London" },
