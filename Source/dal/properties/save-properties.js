@@ -5,7 +5,9 @@
 var log = require('log4js').getLogger('properties');
 var db = require('../db');
 
-var sql = 'UPDATE users SET password = $hash, email = $email, timezone = $timezone WHERE id = $id';
+var sql = 'UPDATE users ' +
+    'SET password = $hash, email = $email, timezone = $timezone, language = $language ' +
+    'WHERE id = $id';
 
 function saveProperties(request, done) {
 
@@ -13,7 +15,8 @@ function saveProperties(request, done) {
 		$id: request.user.id,
         $hash: request.properties.password.hash,
         $email: request.properties.email,
-        $timezone: request.properties.timezone.timeZoneId
+        $timezone: request.properties.timezone.timeZoneId,
+        $language: request.properties.language
     };
 	
 	log.trace(params);

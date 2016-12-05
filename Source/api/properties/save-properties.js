@@ -20,8 +20,15 @@ function saveProperties(req, res) {
     bl.properties.save(request, success, error);
 
     function success(properties) {
+
+        req.user.password = properties.password.hash;
+        req.user.email = properties.email;
+        req.user.timezone = properties.timezone;
+        req.user.language = properties.language;
+
         log.debug('Success for user %s (%d)!', user.login, user.id);
-        res.json(properties);
+
+        res.json();
     }
 
     function error(err) {

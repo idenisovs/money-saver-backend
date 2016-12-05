@@ -8,14 +8,18 @@ var dal = require('../../dal');
 
 function saveProperties(request, success, error) {
     log.trace(request);
-	
+
 	var password = request.properties.password;
 
 	if (password) {
-		bcrypt.compare(password.original, request.user.password, validatePassword);
-	} else {
-		updateHash(null, request.user.password);
+		return bcrypt.compare(password.original, request.user.password, validatePassword);
 	}
+
+	request.properties.password = {};
+
+	password = request.properties.password;
+
+    updateHash(null, request.user.password);
 
     function validatePassword(err, valid) {
 		
@@ -50,9 +54,9 @@ function saveProperties(request, success, error) {
 		if (err) {
 			return error(err);
 		}
-		
+
 		password.hash = hash;
-		
+
 		dal.properties.save(request, done);
 	}
 
@@ -61,7 +65,7 @@ function saveProperties(request, success, error) {
             return error(err);
         }
 
-        success();
+        success(request.properties);
     }
 }
 
