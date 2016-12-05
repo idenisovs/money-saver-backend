@@ -3,6 +3,7 @@
   {
     "intervals" : "http://localhost:9001/api/intervals",
     "payments" : "http://localhost:9001/api/payments",
-    "auth": "http://localhost:9001/api/auth"
+    "auth": "http://localhost:9001/api/auth",
+    "properties": "http://localhost:9001/api/properties"
   }
 }

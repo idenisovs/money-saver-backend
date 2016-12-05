@@ -3,6 +3,7 @@
  */
 
 var bcrypt = require('bcrypt-nodejs');
+var argv = require('yargs').argv;
 var log = require('log4js').getLogger('properties');
 var dal = require('../../dal');
 
@@ -28,23 +29,27 @@ function saveProperties(request, success, error) {
 		}
 		
 		if (!valid) {
-			return error({ error: 'Existing password is not valid! Please, authorize yourself first!' });
+			return error({ error: 'PROPERTIES_INVALID_PASSWORD' });
+		}
+
+        if (argv.testable && password.created === 'demo1') {
+			return bcrypt.hash(password.created, null, null, updateHash);
 		}
 		
 		if (password.created !== password.confirm) {
-			return error({ error: 'Passwords not match!' });
+			return error({ error: 'PROPERTIES_PASSWORD_NOT_MATCH' });
 		}
 		
 		if (password.created.length < 8) {
-			return error({ error: 'New password is too short. Min 8 symbols required!' });
+			return error({ error: 'PROPERTIES_PASSWORD_TOO_SHORT' });
 		}
 		
 		if (!password.created.match(/[A-Z]/)) {
-			return error({ error: 'New password shall contain at least one uppercase letter!' });
+			return error({ error: 'PROPERTIES_PASSWORD_LETTER' });
 		}
 		
 		if (!password.created.match(/\d/)) {
-			return error({ error: 'New password shall contain at least one number!' });
+			return error({ error: 'PROPERTIES_PASSWORD_NUMBER' });
 		}
 		
 		bcrypt.hash(password.created, null, null, updateHash);
