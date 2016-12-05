@@ -15,9 +15,10 @@ function propertiesCtrl($scope, timezones)
 		login: 'User1',
 		email: 'ga5xz2@gmail.com',
 		password: 
-		{ 
-			primary: '', 
-			confirm: '' 
+		{
+			original: '',
+			new: '', 
+			confirm: ''
 		},
 		timezone: { "timeZoneId": "30", "gmtAdjustment": "GMT+00:00", "useDaylightTime": "1", "value": "0", "label": "(GMT+00:00) Greenwich Mean Time: Dublin, Edinburgh, Lisbon, London" },
 	};

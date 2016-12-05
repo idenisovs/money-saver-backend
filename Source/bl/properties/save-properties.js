@@ -15,8 +15,6 @@ function saveProperties(request, success, error) {
         save(null, request.user.password);
     }
 
-
-
     function save(err, hash) {
         if (err) {
             return error(err);
