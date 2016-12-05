@@ -18,10 +18,6 @@ function saveProperties(request, success, error) {
         return;
     }
 
-    request.properties.password = {};
-
-    password = request.properties.password;
-
     updateHash(null, request.user.password);
 
     function updateHash(err, hash) {
@@ -29,7 +25,9 @@ function saveProperties(request, success, error) {
             return error(err);
         }
 
-        password.hash = hash;
+        request.properties.password = {
+            hash: hash
+        };
 
         dal.properties.save(request, done);
     }
