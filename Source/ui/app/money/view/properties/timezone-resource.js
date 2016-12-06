@@ -12,7 +12,7 @@ function timezoneResource($resource) {
         getAll: { method: 'GET', isArray: true }
     };
 
-    var timezones = $resource('i18n/timezones.json', {}, config);
+    var timezones = $resource('api/timezones', {}, config);
 
     function getAll() {
         return timezones.getAll();

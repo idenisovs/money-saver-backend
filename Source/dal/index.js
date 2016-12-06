@@ -7,7 +7,8 @@ var dal =
     intervals: require('./intervals'),
     payments: require('./payments'),
     users: require('./users'),
-    properties: require('./properties')
+    properties: require('./properties'),
+	timezones: require('./timezones')
 };
 
 module.exports = dal;
