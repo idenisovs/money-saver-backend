@@ -15,7 +15,7 @@ function getAll(req, res)
 	function done(err, timezone) {
 		if (err) {
 			log.error(err);
-			res.status(http.BAD_REQUEST).json(err);
+			res.status(http.NOT_FOUND).json(err);
 			return;
 		}
 		
