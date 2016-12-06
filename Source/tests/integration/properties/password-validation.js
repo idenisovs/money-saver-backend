@@ -44,7 +44,7 @@ function passwordNotValid(done) {
 
     function validate(err, res, body) {
         assert.isNull(err);
-        assert.equal(res.statusCode, http.INTERNAL_SERVER_ERROR);
+        assert.equal(res.statusCode, http.BAD_REQUEST);
         assert.equal(body.error, 'PROPERTIES_INVALID_PASSWORD');
         done();
     }
@@ -59,7 +59,7 @@ function passwordNotMatch(done) {
 
     function validate(err, res, body) {
         assert.isNull(err);
-        assert.equal(res.statusCode, http.INTERNAL_SERVER_ERROR);
+        assert.equal(res.statusCode, http.BAD_REQUEST);
         assert.equal(body.error, 'PROPERTIES_PASSWORD_NOT_MATCH');
         done();
     }
@@ -74,7 +74,7 @@ function passwordIsTooShort(done) {
 
     function validate(err, res, body) {
         assert.isNull(err);
-        assert.equal(res.statusCode, http.INTERNAL_SERVER_ERROR);
+        assert.equal(res.statusCode, http.BAD_REQUEST);
         assert.equal(body.error, 'PROPERTIES_PASSWORD_TOO_SHORT');
         done();
     }
@@ -89,7 +89,7 @@ function uppercaseLetterMissed(done) {
 
     function validate(err, res, body) {
         assert.isNull(err);
-        assert.equal(res.statusCode, http.INTERNAL_SERVER_ERROR);
+        assert.equal(res.statusCode, http.BAD_REQUEST);
         assert.equal(body.error, 'PROPERTIES_PASSWORD_LETTER');
         done();
     }
@@ -104,7 +104,7 @@ function numberMissed(done) {
 
     function validate(err, res, body) {
         assert.isNull(err);
-        assert.equal(res.statusCode, http.INTERNAL_SERVER_ERROR);
+        assert.equal(res.statusCode, http.BAD_REQUEST);
         assert.equal(body.error, 'PROPERTIES_PASSWORD_NUMBER');
         done();
     }

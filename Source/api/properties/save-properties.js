@@ -33,7 +33,13 @@ function saveProperties(req, res) {
 
     function error(err) {
         log.error(err);
-        res.status(http.INTERNAL_SERVER_ERROR).json(err);
+		
+		if (err.error && err.error.match(/^PROPERTIES_/)) {
+			res.status(http.BAD_REQUEST).json(err);
+		} else {
+			res.status(http.INTERNAL_SERVER_ERROR).json(err);
+		}
+        
     }
 }
 
