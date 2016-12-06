@@ -1,8 +1,8 @@
 angular.module('MoneySaverApp').controller('PropertiesCtrl', propertiesCtrl);
 
-propertiesCtrl.$inject = ['$scope', 'TimezoneResource'];
+propertiesCtrl.$inject = [ '$scope', 'TimezoneResource', 'PropertiesResource', '$log' ];
 
-function propertiesCtrl($scope, timezones)
+function propertiesCtrl($scope, timezones, properties, $log)
 {
 	$scope.message =
 	{
@@ -24,6 +24,10 @@ function propertiesCtrl($scope, timezones)
 	};
 
 	$scope.timezones = timezones.getAll();
+	$scope.properties = properties.get();
+	
+	
+	$log.log($scope.properties);
 
 	$scope.selectTimezone = selectTimezone;
 
