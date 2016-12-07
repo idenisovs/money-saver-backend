@@ -4,34 +4,50 @@ propertiesCtrl.$inject = [ '$scope', 'TimezoneResource', 'PropertiesResource', '
 
 function propertiesCtrl($scope, timezones, properties, $log)
 {
-	$scope.message =
-	{
-		header: 'Sorry!',
-		body: 'Not implemented yet!'
-	};
-	
-	$scope.user = 
-	{ 
-		login: 'User1',
-		email: 'ga5xz2@gmail.com',
-		password: 
-		{
-			original: '',
-			created: '', 
-			confirm: ''
-		},
-		timezone: { "timeZoneId": "30", "gmtAdjustment": "GMT+00:00", "useDaylightTime": "1", "value": "0", "label": "(GMT+00:00) Greenwich Mean Time: Dublin, Edinburgh, Lisbon, London" },
-	};
-
-	$scope.timezones = timezones.getAll();
-	$scope.properties = properties.get();
-	
-	
-	$log.log($scope.properties);
+	var original;
 
 	$scope.selectTimezone = selectTimezone;
+	$scope.save = save;
+	$scope.cancel = cancel;
+
+	timezones.getAll().then(receiveTimezones);
+
+	function receiveTimezones(timezones) {
+		$scope.timezones = timezones;
+
+		properties.get().then(receiveProperties);
+    }
+
+    function receiveProperties(properties) {
+		original = properties;
+
+		$scope.properties = angular.copy(properties);
+
+		dismissSpinner();
+	}
+
+	function dismissSpinner() {
+		$log.log('Data load is done!');
+    }
 
 	function selectTimezone(timezone) {
-		$scope.user.timezone = timezone;
+		$scope.properties.timezone = timezone;
+	}
+
+	function save() {
+		$log.log('Saving properties!');
+
+		properties.save($scope.properties).then(dismissSpinner, fail);
+    }
+
+    function fail(obj) {
+		$log.log('FAIL!');
+		$log.log(obj);
+    }
+
+    function cancel() {
+		$log.log('Cancelling changes!');
+
+		$scope.properties = angular.copy(original);
 	}
 }

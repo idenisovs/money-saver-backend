@@ -4,23 +4,23 @@
 
 angular.module('MoneySaverApp').factory('PropertiesResource', propertiesResource);
 
-propertiesResource.$inject = ['$resource'];
+propertiesResource.$inject = [ '$resource', '$log' ];
 
-function propertiesResource($resource) {
+function propertiesResource($resource, $log) {
 
     var config = {
         get: { method: 'GET', isArray: false },
-		save: { method: 'PUT', isArray: false }
+        save: { method: 'PUT', isArray: false }
     };
 
     var properties = $resource('api/properties', {}, config);
 
     function get() {
-        return properties.get();
+        return properties.get().$promise;
     }
 	
-	function save(properties) {
-		return properties.save(properties);
+	function save(data) {
+		return properties.save(data).$promise;
 	}
 
     var api = {

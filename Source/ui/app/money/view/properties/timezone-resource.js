@@ -15,7 +15,7 @@ function timezoneResource($resource) {
     var timezones = $resource('api/timezones', {}, config);
 
     function getAll() {
-        return timezones.getAll();
+        return timezones.getAll().$promise;
     }
 
     var api = {

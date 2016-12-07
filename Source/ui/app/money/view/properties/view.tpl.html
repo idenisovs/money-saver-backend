@@ -20,7 +20,7 @@
 						<div class="panel-body">
 							<div class="form-group">
 								<label for="email">{{'EMAIL'|translate}}:</label>
-								<input id="email" class="form-control" type="text" value="{{user.email}}">
+								<input id="email" class="form-control" type="text" value="{{properties.email}}">
 							</div>
 						</div>
 					</div>
@@ -75,7 +75,7 @@
 								<div id="timezone" uib-dropdown is-open="status.isopen" dropdown-append-to-body>
 
 									<button type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
-										{{user.timezone.label}} <span class="caret"></span>
+										{{properties.timezone.label}} <span class="caret"></span>
 									</button>
 
 									<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
@@ -98,8 +98,8 @@
 				
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<button class="btn btn-default">Save</button>
-							<button class="btn btn-default">Cancel</button>
+							<button class="btn btn-default" ng-click="save()">Save</button>
+							<button class="btn btn-default" ng-click="cancel()">Cancel</button>
 						</div>
 					</div>
 				
