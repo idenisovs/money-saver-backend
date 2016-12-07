@@ -5,7 +5,7 @@
 		</div>
 		
 
-		<form>
+		<form name="propsForm">
 			<div class="row">
 				<div class="col-md-3">
 					<div class="panel panel-info">
@@ -18,9 +18,9 @@
 				<div class="col-md-9">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div class="form-group">
+							<div class="form-group" ng-class="{ 'has-error': propsForm.email.$invalid, 'has-success': propsForm.email.$touched }">
 								<label for="email">{{'EMAIL'|translate}}:</label>
-								<input id="email" class="form-control" type="text" value="{{properties.email}}">
+								<input id="email" name="email" class="form-control" type="text" ng-model="properties.email" required />
 							</div>
 						</div>
 					</div>
@@ -98,7 +98,9 @@
 				
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<button class="btn btn-default" ng-click="save()">Save</button>
+							<button class="btn btn-default" ng-click="save()" ng-disabled="propsForm.$invalid">
+								Save
+							</button>
 							<button class="btn btn-default" ng-click="cancel()">Cancel</button>
 						</div>
 					</div>

@@ -49,5 +49,7 @@ function propertiesCtrl($scope, timezones, properties, $log)
 		$log.log('Cancelling changes!');
 
 		$scope.properties = angular.copy(original);
+
+		$scope.propsForm.$setUntouched();
 	}
 }
