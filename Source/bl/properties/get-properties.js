@@ -11,18 +11,32 @@ function getProperties(user, success, error) {
 
     log.trace(user);
 
-    dal.users.getById(user.id, done);
+    var result;
 
-    function done(err, properties) {
+    dal.users.getById(user.id, getUserTimezone);
+
+    function getUserTimezone(err, properties) {
         if (err) {
             return error(err);
         }
 
-        delete properties.password;
+        result = properties;
 
-        log.trace(properties);
+        dal.timezones.getById(properties.timezone, done);
+    }
 
-        success(properties);
+    function done(err, timezone) {
+        if (err) {
+            return error(err);
+        }
+
+        result.timezone = timezone;
+
+        delete result.password;
+
+        log.trace(result);
+
+        success(result);
     }
 }
 

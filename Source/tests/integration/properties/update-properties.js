@@ -51,7 +51,8 @@ function optionsWithoutPassword(done) {
     function validate(properties) {
         assert.equal(properties.email, options.body.email);
         assert.equal(properties.language, options.body.language);
-        assert.equal(properties.timezone, options.body.timezone.timeZoneId);
+        assert.isObject(properties.timezone);
+        assert.equal(properties.timezone.timeZoneId, options.body.timezone.timeZoneId);
         done();
     }
 }
@@ -74,7 +75,8 @@ function optionsWithPassword(done) {
     function validate(properties) {
         assert.equal(properties.email, options.body.email);
         assert.equal(properties.language, options.body.language);
-        assert.equal(properties.timezone, options.body.timezone.timeZoneId);
+        assert.isObject(properties.timezone);
+        assert.equal(properties.timezone.timeZoneId, options.body.timezone.timeZoneId);
 
         options.body.password.original = 'Qwerty12345';
         options.body.password.created = 'demo1';
