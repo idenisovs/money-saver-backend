@@ -24,7 +24,6 @@ function getYears(user, success, error)
     function processInterval(interval, idx, list)
     {
         processTimestamp(interval.start);
-        processTimestamp(interval.end);
 
         if (idx === (list.length - 1))
         {

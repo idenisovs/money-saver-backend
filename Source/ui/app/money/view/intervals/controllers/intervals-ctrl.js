@@ -37,7 +37,7 @@ function intervalsCtrl($scope, $routeParams, intervalsResource, $log, $filter)
     {
         $log.debug('Showing intervals!');
 
-        intervalsResource.getByYear(2016).then(formatIntervals);
+        intervalsResource.getByYear($scope.selectedYear).then(formatIntervals);
     }
 
     function formatIntervals(intervals)
