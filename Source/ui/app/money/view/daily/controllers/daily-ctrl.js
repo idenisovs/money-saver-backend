@@ -67,7 +67,7 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 
 		if ($scope.showIntervalsTable)
 		{
-			$scope.selectedYear = $filter('date')(interval.end, 'yyyy');
+			$scope.selectedYear = $filter('date')(interval.start, 'yyyy');
 
 			interval.name = setIntervalName(interval);
 		}
