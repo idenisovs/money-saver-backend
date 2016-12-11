@@ -7,6 +7,7 @@ function propertiesCtrl($scope, timezones, properties, $log)
 	var original;
 
 	$scope.ctrlDisabled = true;
+	$scope.timezoneChanged = false;
 	$scope.selectTimezone = selectTimezone;
 	$scope.save = save;
 	$scope.cancel = cancel;
@@ -28,7 +29,15 @@ function propertiesCtrl($scope, timezones, properties, $log)
 	}
 
 	function selectTimezone(timezone) {
-		$scope.properties.timezone = timezone;
+		if ($scope.properties.timezone.timeZoneId === timezone.timeZoneId) {
+            return;
+		}
+
+		$log.log('Timezone changed!');
+
+        $scope.properties.timezone = timezone;
+        $scope.timezoneChanged = true;
+        $scope.propsForm.$setDirty();
 	}
 
 	function save() {
@@ -46,6 +55,7 @@ function propertiesCtrl($scope, timezones, properties, $log)
 
 		$scope.propsForm.$setPristine();
 		$scope.propsForm.$setUntouched();
+        $scope.timezoneChanged = false;
 	}
 
     function fail(obj) {
@@ -60,6 +70,7 @@ function propertiesCtrl($scope, timezones, properties, $log)
 
         $scope.propsForm.$setPristine();
         $scope.propsForm.$setUntouched();
+        $scope.timezoneChanged = false;
 
         $scope.ctrlDisabled = false;
     }

@@ -7,9 +7,13 @@
 </div>
 
 <div class="col-md-9">
-    <div class="panel panel-default">
+    <div class="panel"
+         ng-class="{
+         'panel-default': !propsForm.email.$invalid && !propsForm.email.$touched,
+         'panel-danger': propsForm.email.$invalid,
+         'panel-primary': propsForm.email.$touched }">
         <div class="panel-body">
-            <div class="form-group" ng-class="{ 'has-error': propsForm.email.$invalid, 'has-success': propsForm.email.$touched }">
+            <div class="form-group">
                 <label for="email">{{'EMAIL'|translate}}:</label>
                 <input id="email" name="email" class="form-control" type="text" ng-model="properties.email" required ng-disabled="ctrlDisabled" />
             </div>
