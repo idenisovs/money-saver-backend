@@ -14,7 +14,7 @@ function saveProperties(request, success, error) {
 
     if (password) {
         var validator = validatePassword(password, updateHash, error);
-        bcrypt.compare(password.original, request.user.password, validator);
+        bcrypt.compare(password.current, request.user.password, validator);
         return;
     }
 

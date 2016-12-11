@@ -7,6 +7,7 @@ function propertiesCtrl($scope, timezones, properties, $log)
 	var original;
 	var watchersSet = false;
 
+	$scope.incorrectPassword = false;
 	$scope.ctrlDisabled = true;
 	$scope.timezoneChanged = false;
 	$scope.pass = {
@@ -54,6 +55,8 @@ function propertiesCtrl($scope, timezones, properties, $log)
 
 		$scope.ctrlDisabled = true;
 
+        $scope.incorrectPassword = false;
+
 		properties.save($scope.properties).then(dismissSpinner, fail);
     }
 
@@ -67,9 +70,14 @@ function propertiesCtrl($scope, timezones, properties, $log)
         $scope.timezoneChanged = false;
 	}
 
-    function fail(obj) {
+    function fail(response) {
         $log.log('FAIL!');
-        $log.log(obj);
+
+        $log.log(response);
+
+        if (response.status === 400) {
+        	$scope.incorrectPassword = true;
+		}
 
         dismissSpinner();
     }
@@ -77,11 +85,16 @@ function propertiesCtrl($scope, timezones, properties, $log)
     function dismissSpinner() {
         $log.log('Data load is done!');
 
-        $scope.propsForm.$setPristine();
-        $scope.propsForm.$setUntouched();
-
-        $scope.timezoneChanged = false;
         $scope.ctrlDisabled = false;
+
+        if (!$scope.incorrectPassword) {
+            $scope.propsForm.$setPristine();
+            $scope.propsForm.$setUntouched();
+
+            $scope.timezoneChanged = false;
+
+            delete $scope.properties.password;
+		}
 
         if (!watchersSet) {
             $scope.$watch('properties.password.primary', watchPasswords);

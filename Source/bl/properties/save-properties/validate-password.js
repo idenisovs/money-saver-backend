@@ -1,5 +1,5 @@
 /**
- * Created by I.Denisovs on 05.12.2016
+ * primary by I.Denisovs on 05.12.2016
  */
 
 var argv = require('yargs').argv;
@@ -18,27 +18,27 @@ function validatePassword(password, updateHash, error) {
             return error({ error: 'PROPERTIES_INVALID_PASSWORD' });
         }
 
-        if (argv.testable && password.created === 'demo1') {
-            return bcrypt.hash(password.created, null, null, updateHash);
+        if (argv.testable && password.primary === 'demo1') {
+            return bcrypt.hash(password.primary, null, null, updateHash);
         }
 
-        if (password.created !== password.confirm) {
+        if (password.primary !== password.confirm) {
             return error({ error: 'PROPERTIES_PASSWORD_NOT_MATCH' });
         }
 
-        if (password.created.length < 8) {
+        if (password.primary.length < 8) {
             return error({ error: 'PROPERTIES_PASSWORD_TOO_SHORT' });
         }
 
-        if (!password.created.match(/[A-Z]/)) {
+        if (!password.primary.match(/[A-Z]/)) {
             return error({ error: 'PROPERTIES_PASSWORD_LETTER' });
         }
 
-        if (!password.created.match(/\d/)) {
+        if (!password.primary.match(/\d/)) {
             return error({ error: 'PROPERTIES_PASSWORD_NUMBER' });
         }
 
-        bcrypt.hash(password.created, null, null, updateHash);
+        bcrypt.hash(password.primary, null, null, updateHash);
     }
 }
 

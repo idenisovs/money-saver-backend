@@ -56,9 +56,20 @@
   "PROPERTIES": "Настройки",
   "PROPERTIES_OF": "Настройки пользователя",
   "EMAIL": "Адрес вашей электронной почты",
+  "CURRENT_PASSWORD": "Текущий пароль",
+  "NEW_PASSWORD": "Новый пароль",
   "CONFIRM_PASSWORD": "Подтвердите пароль",
   "SELECT_TIMEZONE": "Укажите вашу временную зону",
   "PASSWORD_INFO": "Минимальная длинна пароля не должна быть меньше 8 символов. Так-же, пароль должен содержать хотя-бы одну заглавную букву и одну цифру.",
   "EMAIL_INFO": "Этот адрес может использоваться нашим приложением для рассылки уведомлений.",
-  "TIMEZONE_INFO": "Временная зона необходима для корректного отображения времени и даты, а так-же других значений, отображаемых приложением."
+  "TIMEZONE_INFO": "Временная зона необходима для корректного отображения времени и даты, а так-же других значений, отображаемых приложением.",
+  "INCORRECT_PASSWORD": "Вы указали неправильный текущий пароль!",
+  "PROPERTIES_INVALID_PASSWORD": "Existing password is not valid! Please, authorize yourself first!",
+  "PROPERTIES_PASSWORD_NOT_MATCH": "Passwords not match!",
+  "PROPERTIES_PASSWORD_TOO_SHORT": "New password is too short. Min 8 symbols required!",
+  "PROPERTIES_PASSWORD_LETTER": "New password shall contain at least one uppercase letter!",
+  "PROPERTIES_PASSWORD_NUMBER": "New password shall contain at least one number!",
+  "SAVE": "Сохранить",
+  "CANCEL": "Отменить"
+
 }

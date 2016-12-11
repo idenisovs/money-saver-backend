@@ -62,8 +62,8 @@ function optionsWithPassword(done) {
     options.body.email = 'qqq@www.org';
     options.body.language = 'ru';
     options.body.timezone.timeZoneId = 21;
-    options.body.password.original = 'demo1';
-    options.body.password.created = 'Qwerty12345';
+    options.body.password.current = 'demo1';
+    options.body.password.primary = 'Qwerty12345';
     options.body.password.confirm = 'Qwerty12345';
 
     request.put(options, defaultValidation(retreive));
@@ -78,8 +78,8 @@ function optionsWithPassword(done) {
         assert.isObject(properties.timezone);
         assert.equal(properties.timezone.timeZoneId, options.body.timezone.timeZoneId);
 
-        options.body.password.original = 'Qwerty12345';
-        options.body.password.created = 'demo1';
+        options.body.password.current = 'Qwerty12345';
+        options.body.password.primary = 'demo1';
 
         request.put(options, resetPassword);
     }

@@ -56,14 +56,19 @@
   "PROPERTIES": "Properties",
   "PROPERTIES_OF": "Properties of user",
   "EMAIL": "Set your email address",
+  "CURRENT_PASSWORD": "Current password",
+  "NEW_PASSWORD": "New password",
   "CONFIRM_PASSWORD": "Confirm your password",
   "SELECT_TIMEZONE": "Select your Time Zone",
   "PASSWORD_INFO": "Minimal length of password shall be not less than 8 characters, ir shall have at least one upper-case letter and one number.",
   "EMAIL_INFO": "This email address will be used as recepient for notifications from our application.",
   "TIMEZONE_INFO": "Timezone set is required to propely display the time and date of payments and other values.",
+  "INCORRECT_PASSWORD": "Current password is not valid!",
   "PROPERTIES_INVALID_PASSWORD": "Existing password is not valid! Please, authorize yourself first!",
   "PROPERTIES_PASSWORD_NOT_MATCH": "Passwords not match!",
   "PROPERTIES_PASSWORD_TOO_SHORT": "New password is too short. Min 8 symbols required!",
   "PROPERTIES_PASSWORD_LETTER": "New password shall contain at least one uppercase letter!",
-  "PROPERTIES_PASSWORD_NUMBER": "New password shall contain at least one number!"
+  "PROPERTIES_PASSWORD_NUMBER": "New password shall contain at least one number!",
+  "SAVE": "Save",
+  "CANCEL": "Cancel"
 }

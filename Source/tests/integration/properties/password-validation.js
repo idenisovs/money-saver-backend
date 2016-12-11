@@ -38,7 +38,7 @@ function defineProperties() {
 }
 
 function passwordNotValid(done) {
-    options.body.password.original = 'invalidPassword';
+    options.body.password.current = 'invalidPassword';
 
     request.put(options, validate);
 
@@ -51,8 +51,8 @@ function passwordNotValid(done) {
 }
 
 function passwordNotMatch(done) {
-    options.body.password.original = 'demo1';
-    options.body.password.created = 'qwerty';
+    options.body.password.current = 'demo1';
+    options.body.password.primary= 'qwerty';
     options.body.password.confirm = 'asdfgh';
 
     request.put(options, validate);
@@ -66,8 +66,8 @@ function passwordNotMatch(done) {
 }
 
 function passwordIsTooShort(done) {
-    options.body.password.original = 'demo1';
-    options.body.password.created = 'qwerty';
+    options.body.password.current = 'demo1';
+    options.body.password.primary= 'qwerty';
     options.body.password.confirm = 'qwerty';
 
     request.put(options, validate);
@@ -81,8 +81,8 @@ function passwordIsTooShort(done) {
 }
 
 function uppercaseLetterMissed(done) {
-    options.body.password.original = 'demo1';
-    options.body.password.created = 'qwerty12345';
+    options.body.password.current = 'demo1';
+    options.body.password.primary= 'qwerty12345';
     options.body.password.confirm = 'qwerty12345';
 
     request.put(options, validate);
@@ -96,8 +96,8 @@ function uppercaseLetterMissed(done) {
 }
 
 function numberMissed(done) {
-    options.body.password.original = 'demo1';
-    options.body.password.created = 'QwertyQwerty';
+    options.body.password.current = 'demo1';
+    options.body.password.primary= 'QwertyQwerty';
     options.body.password.confirm = 'QwertyQwerty';
 
     request.put(options, validate);
@@ -111,8 +111,8 @@ function numberMissed(done) {
 }
 
 function validPassword(done) {
-    options.body.password.original = 'demo1';
-    options.body.password.created = 'Qwerty12345';
+    options.body.password.current = 'demo1';
+    options.body.password.primary= 'Qwerty12345';
     options.body.password.confirm = 'Qwerty12345';
 
     request.put(options, validate);
@@ -121,8 +121,8 @@ function validPassword(done) {
         assert.isNull(err);
         assert.equal(res.statusCode, http.OK);
 
-        options.body.password.original = 'Qwerty12345';
-        options.body.password.created = 'demo1';
+        options.body.password.current = 'Qwerty12345';
+        options.body.password.primary= 'demo1';
 
         request.put(options, resetPassword);
     }

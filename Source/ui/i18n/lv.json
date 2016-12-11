@@ -56,9 +56,19 @@
   "PROPERTIES": "Iestatījumi",
   "PROPERTIES_OF": "Lietotaja iestatījumi",
   "EMAIL": "Ievadiet Jūsu elektroniska pasta adresi",
+  "CURRENT_PASSWORD": "Tekoša parole",
+  "NEW_PASSWORD": "Jauna parole",
   "CONFIRM_PASSWORD": "Apstipriniet paroli",
   "SELECT_TIMEZONE": "Izveleties laikā joslu",
   "PASSWORD_INFO": "Minimals paroles garums ir 8 simboli. Parolei jabūt vismāz 1 lielai burtai un vienām ciparam.",
   "EMAIL_INFO": "Sekojošā elektroniska pasta adrese tiks izmantota lai piegadāt aplikaciju zinās.",
-  "TIMEZONE_INFO": "Laikā josla ir nepieciešama lai pareizi attelot laiku un datumu, kā arī citas radijumus."
+  "TIMEZONE_INFO": "Laikā josla ir nepieciešama lai pareizi attelot laiku un datumu, kā arī citas radijumus.",
+  "INCORRECT_PASSWORD": "Jus ievadijat nepareizo tekošo paroli!",
+  "PROPERTIES_INVALID_PASSWORD": "Existing password is not valid! Please, authorize yourself first!",
+  "PROPERTIES_PASSWORD_NOT_MATCH": "Passwords not match!",
+  "PROPERTIES_PASSWORD_TOO_SHORT": "New password is too short. Min 8 symbols required!",
+  "PROPERTIES_PASSWORD_LETTER": "New password shall contain at least one uppercase letter!",
+  "PROPERTIES_PASSWORD_NUMBER": "New password shall contain at least one number!",
+  "SAVE": "Saglabāt",
+  "CANCEL": "Atcelt"
 }
