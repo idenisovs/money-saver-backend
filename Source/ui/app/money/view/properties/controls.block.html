@@ -4,7 +4,9 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <button class="btn btn-default" ng-click="save()" ng-disabled="propsForm.$invalid || propsForm.$pristine || ctrlDisabled">
+            <button class="btn btn-default"
+                    ng-click="save()"
+                    ng-disabled="propsForm.$invalid || propsForm.$pristine || ctrlDisabled">
                 Save
             </button>
             <button class="btn btn-default" ng-click="cancel()" ng-disabled="ctrlDisabled">
