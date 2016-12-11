@@ -6,6 +6,7 @@ function propertiesCtrl($scope, timezones, properties, $log)
 {
 	var original;
 
+	$scope.ctrlDisabled = true;
 	$scope.selectTimezone = selectTimezone;
 	$scope.save = save;
 	$scope.cancel = cancel;
@@ -26,10 +27,6 @@ function propertiesCtrl($scope, timezones, properties, $log)
 		dismissSpinner();
 	}
 
-	function dismissSpinner() {
-		$log.log('Data load is done!');
-    }
-
 	function selectTimezone(timezone) {
 		$scope.properties.timezone = timezone;
 	}
@@ -37,12 +34,9 @@ function propertiesCtrl($scope, timezones, properties, $log)
 	function save() {
 		$log.log('Saving properties!');
 
-		properties.save($scope.properties).then(dismissSpinner, fail);
-    }
+		$scope.ctrlDisabled = true;
 
-    function fail(obj) {
-		$log.log('FAIL!');
-		$log.log(obj);
+		properties.save($scope.properties).then(dismissSpinner, fail);
     }
 
     function cancel() {
@@ -50,6 +44,23 @@ function propertiesCtrl($scope, timezones, properties, $log)
 
 		$scope.properties = angular.copy(original);
 
+		$scope.propsForm.$setPristine();
 		$scope.propsForm.$setUntouched();
 	}
+
+    function fail(obj) {
+        $log.log('FAIL!');
+        $log.log(obj);
+
+        dismissSpinner();
+    }
+
+    function dismissSpinner() {
+        $log.log('Data load is done!');
+
+        $scope.propsForm.$setPristine();
+        $scope.propsForm.$setUntouched();
+
+        $scope.ctrlDisabled = false;
+    }
 }

@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="well well-sm">
-			<h4>{{"PROPERTIES_OF"|translate}} {{user.login}}.</h4>
+			<h4>{{"PROPERTIES_OF"|translate}} {{properties.login}}.</h4>
 		</div>
 		
 
@@ -20,7 +20,7 @@
 						<div class="panel-body">
 							<div class="form-group" ng-class="{ 'has-error': propsForm.email.$invalid, 'has-success': propsForm.email.$touched }">
 								<label for="email">{{'EMAIL'|translate}}:</label>
-								<input id="email" name="email" class="form-control" type="text" ng-model="properties.email" required />
+								<input id="email" name="email" class="form-control" type="text" ng-model="properties.email" required ng-disabled="ctrlDisabled" />
 							</div>
 						</div>
 					</div>
@@ -43,12 +43,12 @@
 						<div class="panel-body">
 							<div class="form-group">
 								<label for="password">{{'PASSWORD'|translate}}:</label>
-								<input id="password" class="form-control" type="text" value="{{user.password.primary}}">
+								<input id="password" class="form-control" type="text" value="{{user.password.primary}}" ng-disabled="ctrlDisabled" >
 							</div>
 							
 							<div class="form-group">
 								<label for="confirm">{{'CONFIRM_PASSWORD'|translate}}:</label>
-								<input id="confirm" class="form-control" type="text" value="{{user.password.confirm}}">
+								<input id="confirm" class="form-control" type="text" value="{{user.password.confirm}}" ng-disabled="ctrlDisabled">
 							</div>
 						</div>
 					</div>
@@ -70,11 +70,11 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 							
-							<div class="form-group">
+							<div class="form-group" ng-class="{ 'has-success': propsForm.timezone.$touched }">
 								<label for="timezone">{{'SELECT_TIMEZONE'|translate}}:</label>
-								<div id="timezone" uib-dropdown is-open="status.isopen" dropdown-append-to-body>
+								<div id="timezone" name="timezone" uib-dropdown is-open="status.isopen" dropdown-append-to-body>
 
-									<button type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
+									<button type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled || ctrlDisabled" >
 										{{properties.timezone.label}} <span class="caret"></span>
 									</button>
 
@@ -98,10 +98,12 @@
 				
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<button class="btn btn-default" ng-click="save()" ng-disabled="propsForm.$invalid">
+							<button class="btn btn-default" ng-click="save()" ng-disabled="propsForm.$invalid || ctrlDisabled || propsForm.$pristine">
 								Save
 							</button>
-							<button class="btn btn-default" ng-click="cancel()">Cancel</button>
+							<button class="btn btn-default" ng-click="cancel()" ng-disabled="ctrlDisabled">
+								Cancel
+							</button>
 						</div>
 					</div>
 				
