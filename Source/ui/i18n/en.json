@@ -60,7 +60,7 @@
   "NEW_PASSWORD": "New password",
   "CONFIRM_PASSWORD": "Confirm your password",
   "SELECT_TIMEZONE": "Select your Time Zone",
-  "PASSWORD_INFO": "Minimal length of password shall be not less than 8 characters, ir shall have at least one upper-case letter and one number.",
+  "PASSWORD_INFO": "Minimal length of password shall be not less than 8 characters, it shall have at least one upper-case letter and one number.",
   "EMAIL_INFO": "This email address will be used as recepient for notifications from our application.",
   "TIMEZONE_INFO": "Timezone set is required to propely display the time and date of payments and other values.",
   "INCORRECT_PASSWORD": "Current password is not valid!",
