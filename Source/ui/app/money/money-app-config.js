@@ -14,7 +14,7 @@ function routeProviderConfig($routeProvider)
 		
 		properties: { templateUrl: 'app/money/view/properties/view.tpl.html', controller: 'PropertiesCtrl' },
 
-		about: { templateUrl: 'app/money/view/about/view.tpl.html' },
+		about: { templateUrl: 'app/money/view/about/view.tpl.html', controller: 'AboutCtrl' },
 
 		default: { redirectTo: '/daily' }
 	};
