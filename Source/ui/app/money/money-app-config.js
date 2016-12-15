@@ -14,6 +14,8 @@ function routeProviderConfig($routeProvider)
 		
 		properties: { templateUrl: 'app/money/view/properties/view.tpl.html', controller: 'PropertiesCtrl' },
 
+		about: { templateUrl: 'app/money/view/about/view.tpl.html' },
+
 		default: { redirectTo: '/daily' }
 	};
 
@@ -24,6 +26,8 @@ function routeProviderConfig($routeProvider)
 	$routeProvider.when('/intervals/:year?', routes.intervals);
 	
 	$routeProvider.when('/properties', routes.properties);
+
+	$routeProvider.when('/about', routes.about);
 
 	$routeProvider.otherwise(routes.default);
 }
