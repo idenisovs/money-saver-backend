@@ -7,16 +7,23 @@
  *
  * Created by I.Denisovs on 16.19.6.
  */
-
+var bcrypt = require('bcrypt-nodejs');
 var log = require('log4js').getLogger('db');
+
+log.debug('Generating hashes!');
+
+var hash1 = bcrypt.hashSync('demo1');
+var hash2 = bcrypt.hashSync('uBRrv7kyH');
 
 var sql =
 {
     users: "CREATE TABLE users ( id INTEGER PRIMARY KEY ON CONFLICT ROLLBACK AUTOINCREMENT UNIQUE ON CONFLICT ROLLBACK, login TEXT UNIQUE ON CONFLICT ROLLBACK NOT NULL ON CONFLICT ROLLBACK, password TEXT NOT NULL ON CONFLICT ROLLBACK, email TEXT, timezone NUMERIC NOT NULL ON CONFLICT ROLLBACK DEFAULT (0), language NUMERIC DEFAULT en NOT NULL ON CONFLICT ROLLBACK );",
-    intervals: "CREATE TABLE intervals (id INTEGER PRIMARY KEY AUTOINCREMENT, start DATE UNIQUE ON CONFLICT ROLLBACK NOT NULL ON CONFLICT ROLLBACK, \"end\" DATE UNIQUE ON CONFLICT ROLLBACK NOT NULL ON CONFLICT ROLLBACK, sum DOUBLE DEFAULT (0), userId TEXT REFERENCES users (id) ON DELETE CASCADE NOT NULL ON CONFLICT ROLLBACK, latest BOOLEAN DEFAULT 0);",
+    intervals: "CREATE TABLE intervals (id INTEGER PRIMARY KEY AUTOINCREMENT, start DATE NOT NULL ON CONFLICT ROLLBACK, \"end\" DATE NOT NULL ON CONFLICT ROLLBACK, sum DOUBLE DEFAULT (0), userId TEXT REFERENCES users (id) ON DELETE CASCADE NOT NULL ON CONFLICT ROLLBACK, latest BOOLEAN DEFAULT 0);",
     payments: "CREATE TABLE payments (id INTEGER UNIQUE PRIMARY KEY ON CONFLICT ROLLBACK AUTOINCREMENT, time DATETIME NOT NULL ON CONFLICT ROLLBACK DEFAULT (strftime('%s', 'now') * 1000), date DATE DEFAULT (strftime('%Y-%m-%d', 'now')), sum DECIMAL NOT NULL ON CONFLICT ROLLBACK, userId TEXT REFERENCES users (id) ON DELETE CASCADE NOT NULL ON CONFLICT ROLLBACK);",
     createUser: "INSERT INTO users (login, password, email, timezone, language) " +
-    "VALUES ('user1', '$2a$10$dinfsd6EbwkwDe8fqlcRDe6RvhMrUvNfvn6v02UXvB/YOhCOZKjRG', 'abc@def.com', 41, 'ru')"
+    "VALUES " +
+    "('user1', '" + hash1 + "', 'abc@def.com', 41, 'ru')," +
+    "('user2', '" + hash2 + "', 'qwe@rty.com', 42, 'ru')"
 };
 
 function createTestableSchema(db, callback)
