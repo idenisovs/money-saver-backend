@@ -27,3 +27,7 @@ body {
 #login-language-selector a {
   text-decoration: none;
 }
+
+#timezone button, #timezone ul>li {
+  white-space: normal;
+}
