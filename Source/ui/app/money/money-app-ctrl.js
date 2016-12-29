@@ -15,6 +15,8 @@ function appCtrl($scope, $resource, $log, $window, $location, $cookies, $transla
     $scope.isActive = isActive;
 	$scope.lang = $cookies.get('lang');
 
+	$scope.$on('$routeChangeStart', hideNavigation);
+
     $resource('/api/version').get(updateVersion);
 
     if ($scope.lang)
@@ -44,5 +46,9 @@ function appCtrl($scope, $resource, $log, $window, $location, $cookies, $transla
         var path = $location.path().substr(1, page.length);
 
         return (path === page);
+    }
+
+    function hideNavigation() {
+        $scope.isNavCollapsed = true;
     }
 }
