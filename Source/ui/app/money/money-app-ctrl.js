@@ -9,6 +9,7 @@ appCtrl.$inject = [ '$scope', '$resource', '$log', '$window', '$location',
 
 function appCtrl($scope, $resource, $log, $window, $location, $cookies, $translate)
 {
+    $scope.isNavCollapsed = true;
     $scope.version = '';
     $scope.logout = logout;
     $scope.isActive = isActive;
