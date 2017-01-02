@@ -3,7 +3,7 @@ This is a repository of a little financial web application named _Money Saver_.
 
 ## Getting Started
 To launch the application simply run:
-```
+```bash
 npm install
 npm start
 ```
@@ -14,7 +14,7 @@ Default user login is **user1** with password **demo1**.
 In the case if default listening port (_9001_) is already taken by another application, it can be set in _Source/config.json_ file.
 
 ## The reason of project
-Because I needed of an application, which will help me to manage my cash. As also, I wanted to learn new skills and get some more experience with building web applications by using Node.js.
+Because I needed of an application which would help me to manage my expenses. As also, I wanted to learn new skills and get some more experience with building web applications by using Node.js.
 
 ## Parts of web application
 Web application consist from **REST API** part (written with Node.js and Express.js) and **SPA** (generally written with AngularJS and Bootstrap UI). User and application data is stored by using SQLite3.
@@ -35,3 +35,9 @@ As example:
 node daemon.js -vd -p 8000 - will run application in verbose mode with DEBUG loglevel on port 8000;
 ```
 **Note**: _testable_ mode means that application will use _in-memory_ SQLite3 database to store the data. Such mode is necessary to run integration tests provided with _Money Saver_ application.
+
+## Running integration tests
+You may launch Integration tests by running the next command:
+```bash
+npm run integration
+```

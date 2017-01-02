@@ -5,7 +5,8 @@
   "main": "daemon.js",
   "scripts": {
     "start": "node Source/daemon.js -b Source/finance.db -v",
-    "test": "test"
+    "test": "test",
+    "integration": "./Scripts/run-integration-tests.sh -s"
   },
   "private": true,
   "repository": {

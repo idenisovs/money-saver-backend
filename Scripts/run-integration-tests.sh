@@ -10,12 +10,25 @@ if [[ $1 == "-s" ]]; then
 fi
 
 if [[ $STANDALONE == "true" ]]; then
-	node daemon.js --testable &
+
+    if [[ -e ../daemon.log ]]; then
+        rm -f ../daemon.log
+    fi
+
+	node daemon.js -d --testable &
 	TESTABLE_NODE_PID=$!
+    
+    while sleep 1s
+    do
+        LAUNCHED=$(cat ../daemon.log | grep 'daemon started' -i)
+        [[ -z $LAUNCHED ]] || break
+    done
+
 	echo Daemon launched with PID: $TESTABLE_NODE_PID
 else
 	echo "Running on already launched daemon!"
 fi
+
 
 MOCHA_BIN=../node_modules/mocha/bin/mocha
 
