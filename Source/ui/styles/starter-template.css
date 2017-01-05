@@ -31,3 +31,5 @@ body {
 #timezone button, #timezone ul>li {
   white-space: normal;
 }
+
+p { text-indent: 40px; }

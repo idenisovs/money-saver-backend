@@ -1,12 +1,79 @@
 <div class="row">
-    <div class="col-md-8">
-
+    <div class="col-md-8" id="about_top">
         <div class="panel panel-info">
             <div class="panel-body">
-                Here comes Johnny!
+
+                <div class="well">
+                    <blockquote class="blockquote-reverse">
+                        <h5 style="text-indent: 40px;">
+                            What we really want to do is what we are really meant to do. When we do what we are meant to
+                            do, money comes to us, doors open for us, we feel useful, and the work we do feels like play
+                            to us.
+                        </h5>
+
+                        <footer>
+                            Julia Cameron in <cite>The Artist's Way</cite>
+                        </footer>
+                    </blockquote>
+                </div>
+
+                <div class="well">
+                    <p class="text-justify">
+                        Задача данной программы - помочь Вам контролировать Ваши расходы. Как это работает? Допустим, 1
+                        числа вы получили зарплату - 200€, и ваша следующая зарплата будет через 10 дней.
+                    </p>
+
+                    <p class="text-justify">
+                        Что это даёт? Зная количество дней, вы можете расчитать, сколько денег вы можете потратить
+                        каждый день: 200€ / 10 = 20€.
+                    </p>
+
+                    <p class="text-justify">
+                        Таким образом, если вы будете тратить каждый день ровно 20€, то ваш график расходов будет
+                        выглядить так:
+                    </p>
+                </div>
+
+                <div class="panel panel-info">
+                    <div class="panel-body">
+                        <canvas class="chart chart-bar"
+                                chart-options="idealChart.options"
+                                chart-data="idealChart.data"
+                                chart-labels="idealChart.labels"
+                                chart-colors="idealChart.colors"
+                                chart-dataset-override="idealChart.datasetOverride">
+                        </canvas>
+                    </div>
+                </div>
+
+                <div class="well">
+                    <p class="text-justify" id="example">
+                        Но ведь обычно так не бывает? Сегодня можно потратить больше, завтра - меньше, и поэтому расчёт
+                        усложняется.
+                    </p>
+                </div>
+
+                <div class="panel panel-info">
+                    <div class="panel-body">
+                        <canvas class="chart chart-bar"
+                                chart-options="realChart.options"
+                                chart-data="realChart.data"
+                                chart-labels="realChart.labels"
+                                chart-colors="realChart.colors"
+                                chart-dataset-override="realChart.datasetOverride">
+                        </canvas>
+                    </div>
+                </div>
+
+                <div class="well">
+                    <p class="text-justify" id="solution">
+                        В таком случае, можно создать электронную таблицу, которая будет проводить все расчёты за вас.
+                    </p>
+                </div>
+
+
             </div>
         </div>
-
     </div>
 
     <div class="col-md-4">
@@ -16,8 +83,8 @@
                 Content
             </div>
             <div class="panel-body">
-                <a href="" ng-click="scrollTo('foo')">aaaaaaaaaaa</a><br>
-                <a href="" ng-click="scrollTo('foo')">aaaaaaaaaaa</a><br>
+                <a href="" ng-click="scrollTo('top')">В начало</a><br>
+                <a href="" ng-click="scrollTo('example')">К примеру</a><br>
                 <a href="" ng-click="scrollTo('foo')">aaaaaaaaaaa</a><br>
                 <a href="" ng-click="scrollTo('foo')">aaaaaaaaaaa</a><br>
             </div>
