@@ -1,0 +1,41 @@
+{
+  "name": "money-saver",
+  "description": "Personal expenses manager.",
+  "main": "daemon.js",
+  "authors": [
+    "Ilja Denisovs"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "finance",
+    "manager",
+    "spa",
+    "restapi"
+  ],
+  "homepage": "http://ms.e-dreams.lv",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.0",
+    "angular-resource": "1.5.0",
+    "bootstrap": "^3.3.7",
+    "angular-route": "1.5.0",
+    "angular-bootstrap": "^2.4.0",
+    "angular-chart": "^0.5.0",
+    "spin.js": "^2.3.2",
+    "moment": "^2.17.1",
+    "angular-cookies": "1.5.0",
+    "angular-spinner": "^0.8.1",
+    "angular-translate": "^2.13.1",
+    "angular-translate-loader-static-files": "^2.13.1",
+    "angular-translate-loader-url": "^2.13.1",
+    "chart.js": "^2.4.0"
+  }
+}
