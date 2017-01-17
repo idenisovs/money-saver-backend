@@ -98,7 +98,7 @@ function run(grunt)
         {
             'pre-build': [ './Source/ui/app/*.js' ],
             'post-build': [ './Source/ui/app/*app.js', './Source/finance.db', './Source/config.prod.json' ],
-            'libs': [ './node_modules', './Source/ui/libs', './Source/*.log' ]
+            'cleanup': [ './node_modules', './Source/ui/libs', './Source/*.log' ]
         },
 
         replace:

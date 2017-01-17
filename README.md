@@ -4,7 +4,7 @@ This is a repository of a little financial web application named _Money Saver_.
 ## Getting Started
 To launch the application simply run:
 ```bash
-npm install
+npm run setup
 npm start
 ```
 From now, web application should be accessible by passing the following link: [http://localhost:9001] (http://localhost:9001)
@@ -41,3 +41,11 @@ You may launch Integration tests by running the next command:
 ```bash
 npm run integration
 ```
+
+## Bower tasks
+1. **build** (default) - concat and minify UI source files (JS);  
+2. **clean:cleanup** - to remove downloaded libs, modules and _log_ files;
+
+
+## License
+**TBD**
