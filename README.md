@@ -4,7 +4,7 @@ This is a repository of a little financial web application named _Money Saver_.
 ## Getting Started
 To launch the application simply run:
 ```bash
-npm install
+npm run setup
 npm start
 ```
 From now, web application should be accessible by passing the following link: [http://localhost:9001] (http://localhost:9001)
@@ -41,3 +41,19 @@ You may launch Integration tests by running the next command:
 ```bash
 npm run integration
 ```
+
+## Grunt tasks
+1. **build** (default) - concat and minify UI source files (JS);
+    
+    **--local** - build the minified version of app for running on local machine;
+    
+    **--testable** - for testing purposes on local machine;
+    
+    **--cloud** - for running in the cloud (see _config.prod.json_);
+    
+    By default (without any params) Grunt will build the minified version for cloud usage;
+    
+2. **clean:cleanup** - to remove downloaded libs, modules and _log_ files;
+
+## License
+**TBD**

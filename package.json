@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node Source/daemon.js -b Source/finance.db -v",
     "test": "test",
-    "integration": "./Scripts/run-integration-tests.sh -s"
+    "integration": "./Scripts/run-integration-tests.sh -s",
+	"setup": "npm install && bower install && grunt build --local"
   },
   "private": true,
   "repository": {
@@ -15,7 +16,9 @@
   },
   "keywords": [
     "Money",
+    "Finances",
     "Cash",
+    "Expenses",
     "Manager"
   ],
   "bugs": {
