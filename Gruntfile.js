@@ -114,6 +114,13 @@ function run(grunt)
                 src: [ './Source/ui/*.html' ],
                 overwrite: true,
                 replacements: [ { from: '{{version}}', to: projectVersion  } ]
+            },
+
+            testableVersion:
+            {
+                src: [ './Source/ui/*.html' ],
+                overwrite: true,
+                replacements: [ { from: '{{version}}', to: 'testable'  } ]
             }
         },
 
@@ -157,8 +164,25 @@ function run(grunt)
         'clean:post-build'
     ];
 
+    var testBuild = [
+        'clean:pre-build',
+
+        'replace:testableVersion',
+
+        'concat:login',
+        'uglify:login',
+
+        'concat:main',
+        'uglify:main',
+
+        'processhtml',
+
+        'clean:post-build'
+    ];
+
     var updateVersion = [ 'replace:version' ];
 
     grunt.registerTask('build', defaultTask);
+    grunt.registerTask('test-build', testBuild);
     grunt.registerTask('version', updateVersion);
 }
