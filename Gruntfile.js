@@ -7,6 +7,15 @@ module.exports = run;
 
 function run(grunt)
 {
+    var local = (grunt.option('local') || false);
+    console.log('local =', local);
+
+    var testable = (grunt.option('testable') || false);
+    console.log('testable =', testable);
+
+    var cloud = !(local || testable) || grunt.option('cloud');
+    console.log('cloud =', cloud);
+
     var projectVersion = grunt.file.read('./Source/version');
 
     projectVersion = projectVersion.replace(/[\r\n]/, '');
@@ -103,7 +112,7 @@ function run(grunt)
         clean:
         {
             'pre-build': [ './Source/ui/app/*.js' ],
-            'post-build': [ './Source/ui/app/*app.js', './Source/finance.db', './Source/config.prod.json' ],
+            'post-build': [ './Source/ui/app/*app.js', './Source/config.prod.json' ],
             'cleanup': [ './node_modules', './Source/ui/libs', './Source/*.log' ]
         },
 
@@ -133,6 +142,10 @@ function run(grunt)
         }
     };
 
+    if (cloud) {
+        config.clean['post-build'].push('./Source/finance.db');
+    }
+
     grunt.initConfig(config);
 
     grunt.file.defaultEncoding = 'utf8';
@@ -145,15 +158,7 @@ function run(grunt)
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-text-replace');
 
-    var local = (grunt.option('local') || false);
-    console.log('local =', local);
-
-    var testable = (grunt.option('testable') || false);
-    console.log('testable =', testable);
-
-    var cloud = !(local || testable) || grunt.option('cloud');
-    console.log('cloud =', cloud);
-
+    
     var versionTask = (testable ? 'replace:testableVersion' : 'replace:version');
 
     var defaultTask =
