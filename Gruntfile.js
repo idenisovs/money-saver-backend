@@ -23,17 +23,19 @@ function run(grunt)
 			{
 				src: 
 				[
-					'./Source/ui/libs/moment.js',
-                    './Source/ui/libs/spin.js',
-                    './Source/ui/libs/angular.js',
-                    './Source/ui/libs/angular-resource.js',
-					'./Source/ui/libs/angular-route.js',
-					'./Source/ui/libs/angular-spinner.js',
-					'./Source/ui/libs/angular-cookies.js',
-                    './Source/ui/libs/angular-translate.js',
-                    './Source/ui/libs/angular-translate-*.js',
-                    './Source/ui/libs/ui-bootstrap*',
-					'./Source/ui/app/login/**/login-*.js',
+					'./Source/ui/libs/moment/moment.js',
+                    './Source/ui/libs/spin/spin.js',
+                    './Source/ui/libs/**/angular.js',
+                    './Source/ui/libs/**/angular-resource.js',
+                    './Source/ui/libs/**/angular-route.js',
+                    './Source/ui/libs/**/angular-spinner.js',
+                    './Source/ui/libs/**/angular-cookies.js',
+                    './Source/ui/libs/**/angular-translate.js',
+                    './Source/ui/libs/**/angular-translate-loader-static-files.js',
+                    './Source/ui/libs/**/angular-translate-loader-url.js',
+                    './Source/ui/libs/**/ui-bootstrap.js',
+                    './Source/ui/libs/**/ui-bootstrap-tpls.js',
+                    './Source/ui/app/login/**/login-*.js',
                     './Source/ui/app/login/**/i18n.js'
 				],
 				dest: './Source/ui/app/login.app.js'
@@ -43,20 +45,24 @@ function run(grunt)
             {
                 src:
                 [
-					'./Source/ui/libs/Chart.js',
-					'./Source/ui/libs/moment.js',
-					'./Source/ui/libs/spin.js',
+					'./Source/ui/libs/chart.js/dist/Chart.js',
+					'./Source/ui/libs/moment/moment.js',
+					'./Source/ui/libs/spin/spin.js',
 
-					'./Source/ui/libs/angular.js',
-					'./Source/ui/libs/ui-bootstrap-tpls-1.2.2.js',
+					'./Source/ui/libs/**/angular/angular.js',
+                    './Source/ui/libs/**/ui-bootstrap.js',
+                    './Source/ui/libs/**/ui-bootstrap-tpls.js',
 
-                    './Source/ui/libs/angular-translate.js',
-                    './Source/ui/libs/angular-translate-*.js',
+                    './Source/ui/libs/**/angular-translate.js',
+                    './Source/ui/libs/**/angular-translate-loader-static-files.js',
+                    './Source/ui/libs/**/angular-translate-loader-url.js',
 
-                    './Source/ui/libs/angular-*.js',
+                    './Source/ui/libs/**/angular-*.js',
 
 					'./Source/ui/app/money/money-app.js',
-                    './Source/ui/app/money/**/*.js'
+                    './Source/ui/app/money/**/*.js',
+                    '!./Source/**/*.min.js',
+                    '!./Source/**/dist/angular-chart.js'
                 ],
                 dest: './Source/ui/app/app.js'
             }
@@ -133,23 +139,23 @@ function run(grunt)
     grunt.loadNpmTasks('grunt-text-replace');
 
     var defaultTask =
-        [
-            'clean:pre-build',
-			
-            'replace:version',
-			
-			'concat:login',
-			'uglify:login',
-			
-			'concat:main',
-			'uglify:main',
-			
-            'processhtml',
+    [
+        'clean:pre-build',
 
-            'copy:config',
-			
-            'clean:post-build'
-        ];
+        'replace:version',
+
+        'concat:login',
+        'uglify:login',
+
+        'concat:main',
+        'uglify:main',
+
+        'processhtml',
+
+        'copy:config',
+
+        'clean:post-build'
+    ];
 
     var updateVersion = [ 'replace:version' ];
 
