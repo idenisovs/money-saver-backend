@@ -42,10 +42,18 @@ You may launch Integration tests by running the next command:
 npm run integration
 ```
 
-## Bower tasks
-1. **build** (default) - concat and minify UI source files (JS);  
+## Grunt tasks
+1. **build** (default) - concat and minify UI source files (JS);
+    
+    **--local** - build the minified version of app for running on local machine;
+    
+    **--testable** - for testing purposes on local machine;
+    
+    **--cloud** - for running in the cloud (see _config.prod.json_);
+    
+    By default (without any params) Grunt will build the minified version for cloud usage;
+    
 2. **clean:cleanup** - to remove downloaded libs, modules and _log_ files;
-
 
 ## License
 **TBD**

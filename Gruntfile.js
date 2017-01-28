@@ -145,11 +145,22 @@ function run(grunt)
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-text-replace');
 
+    var local = (grunt.option('local') || false);
+    console.log('local =', local);
+
+    var testable = (grunt.option('testable') || false);
+    console.log('testable =', testable);
+
+    var cloud = !(local || testable) || grunt.option('cloud');
+    console.log('cloud =', cloud);
+
+    var versionTask = (testable ? 'replace:testableVersion' : 'replace:version');
+
     var defaultTask =
     [
         'clean:pre-build',
 
-        'replace:version',
+        versionTask,
 
         'concat:login',
         'uglify:login',
@@ -157,32 +168,17 @@ function run(grunt)
         'concat:main',
         'uglify:main',
 
-        'processhtml',
-
-        'copy:config',
-
-        'clean:post-build'
+        'processhtml'
     ];
 
-    var testBuild = [
-        'clean:pre-build',
+    if (cloud) {
+        defaultTask.push('copy:config');
+    }
 
-        'replace:testableVersion',
-
-        'concat:login',
-        'uglify:login',
-
-        'concat:main',
-        'uglify:main',
-
-        'processhtml',
-
-        'clean:post-build'
-    ];
+    defaultTask.push('clean:post-build');
 
     var updateVersion = [ 'replace:version' ];
 
     grunt.registerTask('build', defaultTask);
-    grunt.registerTask('test-build', testBuild);
     grunt.registerTask('version', updateVersion);
 }
