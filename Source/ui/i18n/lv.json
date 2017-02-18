@@ -70,5 +70,16 @@
   "PROPERTIES_PASSWORD_LETTER": "New password shall contain at least one uppercase letter!",
   "PROPERTIES_PASSWORD_NUMBER": "New password shall contain at least one number!",
   "SAVE": "Saglabāt",
-  "CANCEL": "Atcelt"
+  "CANCEL": "Atcelt",
+  "ABOUT": "Par aplikāciju.",
+  "ABOUT_APP_TASK": "Šīs aplikācijas uzdevum ir palīdzēt Jums sekot Jūsu izdevumiem un plānot Jūsu ģimenes budžetu. Kā tas strādā? ",
+  "ABOUT_CALCULATIONS": "Viss izriet no vienas vienkāršas formulas. Ja, piemēram, Jums pienākas alga reiz <strong>10</strong> dienas, un pēc komunālo, nodokļu un citu regulāro izdevumu nomaksas tas sastāda <strong>180€</strong>, tad ir viegli izskaitīt, kā dienā Jūs vārāt iztērēt ap <strong>18€</strong>.",
+  "ABOUT_IDEAL_CASE": "Ideālā gadījumā izdevumu grafiks izskatīsies tā, ka tas ir attēlots pirmajā piemērā.",
+  "ABOUT_EXPENSES": "Tā, kā reālā dzīvē izdevumu summa atšķirsies katru dienu, tad lai sekot līdzi reālajam atlikumam, Jums regulāri nāksies ieviest korekcijas.",
+  "ABOUT_YOUR_TASK": "Šis aplikācijas darbs ir automatizēt šis korekcijas kalkulāciju, lai viss, kas Jums atliek, ir ievadīt Jūsu izdevumus terīņu tabulā, un sekot, lai atlikumu grafiks nepārsniedz oranžo līniju.",
+  "ABOUT_SOURCES": "Aplikācijas kods un papildus informācija ir pieejama pēc sekošas adreses:",
+  "ABOUT_CONTACT": "Sazināties ar autoru ir iespējams pēc šis e-pasta adreses: i.denisovs.at.gmail.com",
+  "ABOUT_IDEAL_GRAPH": "“Ideāls” izdevumu grafiks",
+  "ABOUT_REAL_GRAPH": "“Reāls” izdevumu grafiks",
+  "ABOUT_THANK_YOU": "Pateicamies par mūsu aplikācijas izmantošanu!"
 }
