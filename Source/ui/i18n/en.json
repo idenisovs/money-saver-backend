@@ -71,6 +71,14 @@
   "PROPERTIES_PASSWORD_NUMBER": "New password shall contain at least one number!",
   "SAVE": "Save",
   "CANCEL": "Cancel",
-  "ABOUT_APP_TASK": "<strong>xyu</strong>",
-  "ABOUT_CALCULATIONS": "<strong>xyu</strong>"
+  "ABOUT_APP_TASK": "The main goal of this application is to help you to track your expenses and plan your budget. How its works?",
+  "ABOUT_CALCULATIONS": "There is pretty simple calculations behind this app. Imagine, that you got salary every <strong>10</strong> days, and cash you got is <strong>100€</strong>. In this case, it is easy to calculate, that every day you may spend <strong>{{180/10}}€</strong>.",
+  "ABOUT_IDEAL_CASE": "In <i>ideal</i> case, your expeneses graph will match the first example.",
+  "ABOUT_EXPENSES": "In real world, your expenses will differ every day, so you shall apply correctins to got the remaining cache and plan your following expenses.",
+  "ABOUT_YOUR_TASK": "This application automated those actions and all, you need to do, is simply enter your expenses in the expenses table and track, that your remaining cache (blue bars) not lower than orange line.",
+  "ABOUT_SOURCES": "Source code of application and additional information you may get by the next link:",
+  "ABOUT_CONTACT": "You may also contact the author by the next email: i.denisovs.at.gmail.com",
+  "ABOUT_IDEAL_GRAPH": "Ideal expenses graph",
+  "ABOUT_REAL_GRAPH": "Real expenses graph",
+  "ABOUT_THANK_YOU": "Thank you for using our application!"
 }
