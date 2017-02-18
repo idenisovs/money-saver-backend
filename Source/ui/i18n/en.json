@@ -70,5 +70,7 @@
   "PROPERTIES_PASSWORD_LETTER": "New password shall contain at least one uppercase letter!",
   "PROPERTIES_PASSWORD_NUMBER": "New password shall contain at least one number!",
   "SAVE": "Save",
-  "CANCEL": "Cancel"
+  "CANCEL": "Cancel",
+  "ABOUT_APP_TASK": "<strong>xyu</strong>",
+  "ABOUT_CALCULATIONS": "<strong>xyu</strong>"
 }

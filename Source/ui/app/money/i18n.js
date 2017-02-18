@@ -8,7 +8,7 @@ function translateConfig($translateProvider)
 {
     var files = [ { prefix: 'i18n/', suffix: '.json' } ];
 
-    $translateProvider.useSanitizeValueStrategy('escape');
+    //$translateProvider.useSanitizeValueStrategy('escape');
     $translateProvider.useStaticFilesLoader({ files: files });
     // $translateProvider.useCookieStorage();
     $translateProvider.preferredLanguage('en');

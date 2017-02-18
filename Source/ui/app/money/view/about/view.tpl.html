@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="well well-sm">
-            <h4>О приложении.</h4>
+            <h4>{{"ABOUT"|translate}}</h4>
         </div>
     </div>
 </div>
@@ -10,41 +10,24 @@
     <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-body">
-                <p>
-                    Задача этой программы - помочь Вам контролировать свои расходы и планировать бюджет. Как это работает?
-                </p>
-                <p>
-                    Всё исходит из простого расчёта, что если Вы получаете зарплату раз в <strong>10</strong> дней,
-                    и зарплата, после уплаты налогов, комунальных платежей и других регулярных расходов (таких, как выплаты по кредиту),
-                    составляет <strong>180€</strong>, то легко вычислить, что в день вы можете потратить <strong>{{180/10}}€</strong>.
-                </p>
-                <p>
-                    В <i>идеальном</i> случае график расходов будет выглядеть так, как это показанно на примере справа.
-                </p>
+                <p ng-bind-html="'ABOUT_APP_TASK'|translate"></p>
+                <p ng-bind-html="'ABOUT_CALCULATIONS'|translate"></p>
+                <p ng-bind-html="'ABOUT_IDEAL_CASE'|translate"></p>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p ng-bind-html="'ABOUT_EXPENSES'|translate"></p>
+                <p ng-bind-html="'ABOUT_YOUR_TASK'|translate"></p>
             </div>
         </div>
 
         <div class="panel panel-default">
             <div class="panel-body">
                 <p>
-                    Но сумма расходов, как правило, различается каждый день, поэтому каждый раз приходится вносить коррективы и проводить перерасчёт.
-                    Эту работу на себя берёт данное приложение.
-                </p>
-                <p>
-                    Таким образом, Ваша задача сводится к тому, что-бы записывать Ваши расходы в таблицу расходов и следить за тем,
-                    что-бы остаток средств (синие столбцы) не пересекал границу идеальных расходов (оранжевая линия) на графике расходов.
-                </p>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <p>
-                    Исходный код приложения и дополнительную информацию можно получить по следующему адресу:
+                    <span ng-bind-html="'ABOUT_SOURCES'|translate"></span>
                     <a href="https://github.com/idenisovs/money-saver" target="_blank">https://github.com/idenisovs/money-saver</a>
-                </p>
-                <p>
-                    Связатся с автором можно посредством электронной почты: i.denisovs.at.gmail.com
                 </p>
             </div>
         </div>
@@ -62,7 +45,7 @@
                 </canvas>
             </div>
             <div class="panel-footer">
-                <i>Идеальный график расходов</i>
+                <i>{{'ABOUT_IDEAL_GRAPH'|translate}}</i>
             </div>
         </div>
 
@@ -77,7 +60,7 @@
                 </canvas>
             </div>
             <div class="panel-footer">
-                <i>График реальных расходов</i>
+                <i>{{'ABOUT_REAL_GRAPH'|translate}}</i>
             </div>
         </div>
     </div>
