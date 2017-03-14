@@ -1,42 +1,31 @@
 /**
- * Created by Ilya Denisov on 09.07.2016..
+ * This function takes list of years from list of stored intervals.
+ *
+ * Created by Ilya Denisov on 09.07.2016.
  */
 
 var moment = require('moment');
 var dal = require('../../dal');
 
-function getYears(user, success, error)
-{
+function getYears(user, success, error) {
     var years = [];
 
     dal.intervals.getAll(user, processIntervals);
 
-    function processIntervals(err, intervals)
-    {
-        if (err)
-        {
+    function processIntervals(err, intervals) {
+        if (err) {
             return error(err);
         }
 
-        intervals.forEach(processInterval);
+        intervals.forEach(extractYears);
+
+        success(years);
     }
 
-    function processInterval(interval, idx, list)
-    {
-        processTimestamp(interval.start);
+    function extractYears(interval) {
+        var year = moment(interval.start).year();
 
-        if (idx === (list.length - 1))
-        {
-            success(years);
-        }
-    }
-
-    function processTimestamp(stamp)
-    {
-        var year = moment(stamp).year();
-
-        if (years.indexOf(year) === -1)
-        {
+        if (years.indexOf(year) === -1) {
             years.push(year);
         }
     }
