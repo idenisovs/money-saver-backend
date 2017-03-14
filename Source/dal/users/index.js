@@ -6,7 +6,9 @@ var users =
 {
     getByName: require('./get-by-name'),
     
-    getById: require('./get-by-id')
+    getById: require('./get-by-id'),
+
+    saveLoginTime: require('./save-login-time')
 };
 
 module.exports = users;
