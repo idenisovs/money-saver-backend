@@ -20,23 +20,29 @@ function loginCtrl($scope, $resource, loginService, $log, $window, $translate, $
     $scope.showLogoutSuccess = ('logout' in queryParams);
     $scope.message = 'Hello, world!';
     $scope.version = '';
+    $scope.activeUsers = '-';
 
     $scope.performLogin = performLogin;
     $scope.emptyCredentials = isCredentialsEmpty;
     $scope.changeLanguage = changeLanguage;
-
-    $resource('/api/version').get(setVersion);
 
     if (language)
     {
         changeLanguage(language);
     }
 
+    $resource('/api/version').get(setVersion);
+    $resource('/api/users/active').get(updateUsersCount);
+
     function setVersion(response)
     {
         $log.info('Application version: %s', response.version);
 
         $scope.version = response.version;
+    }
+
+    function updateUsersCount(response) {
+        $scope.activeUsers = response.active;
     }
 
     function performLogin()
@@ -47,7 +53,7 @@ function loginCtrl($scope, $resource, loginService, $log, $window, $translate, $
         $scope.password = '';
     }
 
-    function onLoginSuccess(response)
+    function onLoginSuccess()
     {
         $window.location.href = 'index.html';
     }

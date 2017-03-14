@@ -3,6 +3,7 @@
   "PASSWORD": "Password",
   "MONEY_SAVER_APP": "MoneySaver application.",
   "TAGLINE": "Your personal expense manager.",
+  "ACTIVE_USERS": "Active users:",
   "SUBMIT": "Submit",
   "LOGIN_FAILED": "Login failed",
   "LOGIN_FAILED_MSG": "No such user or password!",
