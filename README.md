@@ -2,7 +2,7 @@
 This is a repository of a little financial web application named _Money Saver_.
 
 ## Getting Started
-To launch the application simply run:
+To launch the application for first time simply run:
 ```bash
 npm run setup
 npm start
