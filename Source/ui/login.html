@@ -113,6 +113,11 @@
 
             </form>
         </div>
+
+        <div class="panel-footer">
+            <span class="glyphicon glyphicon-user"></span>
+            {{'ACTIVE_USERS'|translate}} {{activeUsers === '-' ? activeUsers : activeUsers + '.'}}
+        </div>
     </div>
 
     <div class="alert alert-danger" ng-show="showLoginFailed">

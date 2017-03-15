@@ -47,13 +47,21 @@ function auth(username, password, done)
 
         log.info('%s successfully authenticated!', username);
 
-        done(null, user)
+        done(null, user);
+
+        dal.users.saveLoginTime(user, timeSaveDone);
     }
 
     function reject()
     {
         log.warn('Rejecting user %s with password %s!', username, password);
         done(null, false, { message: 'Incorrect login or password!' });
+    }
+
+    function timeSaveDone(err) {
+        if (err) {
+            log.error(err);
+        }
     }
 
     function fail(error)

@@ -17,6 +17,8 @@ router.use('/properties', auth, require('./properties'));
 
 router.use('/timezones', require('./timezones'));
 
+router.use('/users', require('./users'));
+
 module.exports = router;
 
 require('log4js').getLogger('api').debug('API module is up!');
