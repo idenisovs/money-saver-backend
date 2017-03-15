@@ -41,8 +41,8 @@ function loginCtrl($scope, $resource, loginService, $log, $window, $translate, $
         $scope.version = response.version;
     }
 
-    function updateUsersCount(response) {
-        $scope.activeUsers = response.active;
+    function updateUsersCount(users) {
+        $scope.activeUsers = users.count;
     }
 
     function performLogin()

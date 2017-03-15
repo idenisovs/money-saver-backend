@@ -11,8 +11,8 @@ function getActiveUsersCount(req, res) {
 
     bl.users.getActiveCount(success, error);
 
-    function success(activeUsersCount) {
-        res.json({ active: activeUsersCount });
+    function success(usersCountResult) {
+        res.json(usersCountResult);
     }
 
     function error(err) {

@@ -8,7 +8,9 @@ var users =
     
     getById: require('./get-by-id'),
 
-    saveLoginTime: require('./save-login-time')
+    saveLoginTime: require('./save-login-time'),
+
+    getCountByTime: require('./get-count-by-time')
 };
 
 module.exports = users;
