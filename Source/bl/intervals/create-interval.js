@@ -1,7 +1,10 @@
 /**
+ * Create-Interval workflow module.
+ *
  * Created by I. Denisovs on 24.12.2015..
  */
 var util = require('util');
+var format = util.format;
 var moment = require('moment');
 var log = require('log4js').getLogger('create-interval');
 var updateInterval = require('./update-interval');
@@ -38,19 +41,21 @@ function createInterval(interval, success, error)
         }
 
         if (interval.start <= latestInterval.start) {
-            var newInt = moment(interval.start).format('YYYY-MM-DD');
-            var latInt = moment(latestInterval.start).format('YYYY-MM-DD');
-            var message = util.format('New interval should not be set (%s) before latest (%s)!', newInt, latInt);
+            var newInt = getDate(interval.start);
+            var latInt = getDate(latestInterval.start);
+            var pattern = 'New interval should not be set (%s) before latest (%s)!';
+            var message = format(pattern, newInt, latInt);
             return error(message);
         }
 
         if (interval.start < latestInterval.end) {
 
-            var latestIntervalEnd = moment(latestInterval.end).format('YYYY-MM-DD');
+            var latestIntervalEnd = getDate(latestInterval.end);
             var today = moment().format('YYYY-MM-DD');
-            var requested = moment(interval.start).format('YYYY-MM-DD');
+            var requested = getDate(interval.start);
 
-            log.warn('Latest interval end: %s, Today: %s, Requested start: %s.', latestIntervalEnd, today, requested);
+            var pattern = 'Latest interval end: %s, Today: %s, Requested start: %s.';
+            log.warn(pattern, latestIntervalEnd, today, requested);
 
             var delta = -moment().diff(interval.start, 'days');
 
@@ -88,4 +93,8 @@ function createInterval(interval, success, error)
 
         success(interval);
     }
+}
+
+function getDate(timestamp) {
+    return moment(timestamp).format('YYYY-MM-DD');
 }
