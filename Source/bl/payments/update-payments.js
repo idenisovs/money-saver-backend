@@ -11,7 +11,7 @@ var dal = require('../../dal');
 var payments =
 {
     'save': require('./save-payments'),
-    'delete': require('./delete-payment')
+    'delete': require('./delete-payments')
 };
 
 function updatePayments(paymentList, success)

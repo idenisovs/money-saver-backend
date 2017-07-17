@@ -3,13 +3,13 @@
  * Created by I. Denisovs on 28.12.2015.
  */
 
-var payments = 
+const payments =
 {
     get: require('./get-payments'), 
 
     save: require('./save-payments'), 
     
-    delete: require('./delete-payment'), 
+    delete: require('./delete-payments'),
     
     update: require('./update-payments')
 };
