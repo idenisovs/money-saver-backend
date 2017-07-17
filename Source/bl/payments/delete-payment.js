@@ -13,10 +13,7 @@ function deletePayments(req, success, error)
 
     log.trace(user);
 
-    var fromDefined = !util.isUndefined(req.query.from);
-    var tillDefined = !util.isUndefined(req.query.till);
-
-    if (fromDefined && tillDefined)
+    if (req.query.from && req.query.till)
     {
 		log.debug('Removing payments by defined From and Till');
 		
@@ -30,9 +27,7 @@ function deletePayments(req, success, error)
         return;
     }
 
-    var idDefined = !util.isUndefined(req.query.id);
-
-    if (idDefined)
+    if (req.query.id)
     {
 		log.debug('Removing payments by id!');
         var payment = { id: req.query.id, user: user };
@@ -40,9 +35,7 @@ function deletePayments(req, success, error)
         return;
     }
 
-    var intervalIdDefined = !util.isUndefined(req.query.intervalId);
-
-    if (intervalIdDefined)
+    if (req.query.intervalId)
     {
 		log.debug('Removing payments by interval id!');
         var interval = { id: req.query.intervalId, user: user };
