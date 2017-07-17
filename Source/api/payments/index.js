@@ -1,13 +1,15 @@
 /**
-  * Payments REST API endpoint
-  */
-var router = require('express').Router();
+* Payments REST API endpoint
+*/
+const validatePayments = require('./validate-payment');
+
+const router = require('express').Router();
 
 router.get('/', require('./get-payments'));
 
-router.post('/', require('./save-payments'));
+router.post('/', validatePayments, require('./save-payments'));
 
-router.put('/', require('./update-payments'));
+router.put('/', validatePayments, require('./update-payments'));
 
 router.delete('/', require('./delete-payment'));
 

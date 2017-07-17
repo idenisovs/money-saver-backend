@@ -1,18 +1,16 @@
 /**
  * Created by I. Denisovs on 28.12.2015..
  */
-var util = require('util');
-var Promise = require('promise');
-var moment = require('moment');
-var log = require('log4js').getLogger('save-payments');
-var dal = require('../../dal');
+const util = require('util');
+const Promise = require('promise');
+const moment = require('moment');
+const log = require('log4js').getLogger('save-payments');
+const dal = require('../../dal');
 
 module.exports = savePayments;
 
 function savePayments(payments, success, error)
 {
-    var q = [];
-
     if (!util.isArray(payments))
     {
         payments = [ payments ];
@@ -22,45 +20,20 @@ function savePayments(payments, success, error)
         delete payments[0].user;
     }
 
-    try
-    {
-        payments.forEach(savePayment);
+    let q = payments.map(savePayment);
 
-        Promise.all(q).then(success, error);
-    }
-    catch(err)
-    {
-        error({ reason: 'params', message: err.toString() });
-    }
-
-    function savePayment(payment)
-    {
-        validate(payment);
-
-        setFields(payment);
-
-        payment.user = payments.user;
-
-        log.trace(JSON.stringify(payment));
-
-        q.push(dal.payments.save(payment));
-    }
+    Promise.all(q).then(success, error);
 }
 
-function validate(payment)
+function savePayment(payment, idx, payments)
 {
-    if (util.isNumber(payment.sum))
-    {
-        return;
-    }
+    setFields(payment);
 
-    var template = 'Sum field (%s) shall be properly defined in Payment object!';
-    var message = util.format(template, payment.sum);
+    payment.user = payments.user;
 
-    log.error(message);
     log.trace(payment);
 
-    throw new Error(message);
+    return dal.payments.save(payment);
 }
 
 function setFields(payment)
