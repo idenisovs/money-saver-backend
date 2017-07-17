@@ -6,12 +6,12 @@ var Promise = require('promise');
 var moment = require('moment');
 var util = require('util');
 var log = require('log4js').getLogger('update-payments');
-var dal = require('../../dal');
+var dal = require('../../../dal/index');
 
 var payments =
 {
-    'save': require('./save-payments'),
-    'delete': require('./delete-payments')
+    'save': require('../save-payments'),
+    'delete': require('../delete-payments/index')
 };
 
 function updatePayments(paymentList, success)

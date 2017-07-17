@@ -7,7 +7,7 @@
     "start": "node Source/daemon.js -b Source/finance.db -v",
     "test": "test",
     "integration": "./Scripts/run-integration-tests.sh -s",
-	"setup": "npm install && bower install && grunt build --local"
+    "setup": "npm install && bower install && grunt build --local"
   },
   "private": true,
   "repository": {
@@ -35,6 +35,7 @@
     "chai-as-promised": "^5.1.0",
     "connect-memcached": "^0.2.0",
     "cookie-parser": "^1.4.2",
+    "deferred": "^0.7.8",
     "express": "^4.13.1",
     "express-session": "^1.13.0",
     "http-status": "^0.2.0",
