@@ -1,14 +1,14 @@
-var util = require('util');
-var express = require('express');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-var log = require('./support/logger').getLogger('daemon');
-var passport = require('./support/passport');
-var argv = require('./support/argv');
-var config = require('./config.json');
+const util = require('util');
+const express = require('express');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const log = require('./support/logger').getLogger('daemon');
+const passport = require('./support/passport');
+const argv = require('./support/argv');
+const config = require('./config.json');
 
-var app = express();
+const app = express();
 
 log.info('Launching daemon...');
 

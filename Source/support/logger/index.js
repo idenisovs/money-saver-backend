@@ -1,6 +1,6 @@
 var log4js = require('log4js');
 var appRoot = require('app-root-path');
-var argv = require('./argv');
+var argv = require('../argv');
 
 var config =
 {
