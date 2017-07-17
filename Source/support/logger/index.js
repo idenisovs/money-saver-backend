@@ -1,36 +1,22 @@
-var log4js = require('log4js');
-var appRoot = require('app-root-path');
-var argv = require('../argv');
+const log4js = require('log4js');
+const configure = require('./configure');
+const getCallerFile = require('./get-caller-file');
 
-var config =
-{
-	levels: { '[all]': 'INFO' },
-	appenders:
-	[
-		{ type: 'file', filename: appRoot + '/daemon.log', maxLogSize: 1048576, backups: 5 }
-	]
-};
+configure();
 
-if (argv.verbose)
-{
-	config.appenders.push({ type: 'console' });
+function logger(name) {
+    return log4js.getLogger(name || getLoggerName());
 }
 
-if (argv.debug)
-{
-	config.levels['[all]'] = 'DEBUG';
+function getLoggerName() {
+    let callerFile = getCallerFile();
+    let loggerName = callerFile.replace(basedir, '');
+
+    if (loggerName[0] === '/' || loggerName[0] === '\\') {
+    	loggerName = loggerName.substring(1);
+	}
+
+    return loggerName;
 }
 
-if (argv.trace)
-{
-	config.levels['[all]'] = 'TRACE';
-}
-
-log4js.configure(config);
-
-if (argv.trace)
-{
-	log4js.getLogger('log').warn('Running in extra verbosity level!');
-}
-
-module.exports = log4js;
+module.exports = logger;

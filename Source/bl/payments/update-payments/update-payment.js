@@ -2,7 +2,7 @@
  * Created by I. Denisovs on 17.07.2017..
  */
 
-const log = require('log4js').getLogger('update-payments');
+const log = require('../../../support/logger')();
 const dal = require('../../../dal');
 
 function updatePayment(payment, deferred) {

@@ -1,8 +1,8 @@
-var util = require('util');
-var Promise = require('promise');
-var log = require('log4js').getLogger('save-payment');
-var db = require('./../db');
-var getIntervalByTime = require('../intervals/get-by-time');
+const util = require('util');
+const Promise = require('promise');
+const log = require('../../support/logger')();
+const db = require('./../db');
+const getIntervalByTime = require('../intervals/get-by-time');
 
 var sql = "INSERT INTO payments (time, date, sum, userId) VALUES ($time, $date, $sum, $userId)";
 

@@ -3,7 +3,7 @@
  */
 
 const moment = require('moment');
-const log = require('log4js').getLogger('update-payments');
+const log = require('../../../support/logger')();
 const save = require('../save-payments');
 
 function savePayment(payment, deferred) {

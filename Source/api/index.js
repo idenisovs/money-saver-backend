@@ -21,4 +21,4 @@ router.use('/users', require('./users'));
 
 module.exports = router;
 
-require('log4js').getLogger('api').debug('API module is up!');
+require('../support/logger')().debug('API module is up!');

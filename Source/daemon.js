@@ -1,9 +1,11 @@
+global.basedir = __dirname;
+
 const util = require('util');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const log = require('./support/logger').getLogger('daemon');
+const log = require('./support/logger')('daemon');
 const passport = require('./support/passport');
 const argv = require('./support/argv');
 const config = require('./config.json');

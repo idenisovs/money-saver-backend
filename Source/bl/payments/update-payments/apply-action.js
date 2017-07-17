@@ -3,7 +3,7 @@
  * Created by I. Denisovs on 17.07.2017..
  */
 const deferred = require('deferred');
-const log = require('log4js').getLogger('update-payments');
+const log = require('../../../support/logger')();
 
 const save = require('./save-payment');
 const remove = require('./delete-payment');
