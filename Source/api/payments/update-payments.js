@@ -8,7 +8,7 @@ var bl = require('../../bl');
 
 function updatePayments(req, res)
 {
-    log.debug('api called!');
+    log.debug('Called!');
 
     req.body.user = req.user;
 
@@ -16,11 +16,13 @@ function updatePayments(req, res)
 
     function success(result)
     {
-        res.json(result);
+        log.debug('Success!');
+        res.json({ updated: result.length });
     }
 
     function fail(err)
     {
+        log.err(err);
         res.statusCode(http.INTERNAL_SERVER_ERROR).json(err);
     }
 }
