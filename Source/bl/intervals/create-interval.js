@@ -3,26 +3,23 @@
  *
  * Created by I. Denisovs on 24.12.2015..
  */
-var util = require('util');
-var format = util.format;
-var moment = require('moment');
-var log = require('log4js').getLogger('create-interval');
-var updateInterval = require('./update-interval');
-var dal = require('../../dal');
-var checkValidity = require('./validity');
+
+const util = require('util');
+const format = util.format;
+const moment = require('moment');
+const log = require('../../support/logger')();
+const updateInterval = require('./update-interval');
+const dal = require('../../dal');
+
+const interlaceError = 'New interval should not be set (%s) before latest (%s)!';
+const latestIntervalEndWarning = 'Latest interval end: %s, Today: %s, Requested start: %s.';
+const intervalShallStartedTodayMessage = 'If intervals interlace, then new interval shall be started today or later!';
 
 module.exports = createInterval;
 
 function createInterval(interval, success, error)
 {
     log.debug('Trying to create interval...');
-
-    var invalidInterval = checkValidity(interval);
-
-    if (invalidInterval) {
-        log.error('Interval invalid, breaking!');
-        return error(invalidInterval);
-    }
 
     interval.start = moment(interval.start).valueOf();
     interval.end = moment(interval.end).endOf('day').valueOf();
@@ -52,36 +49,32 @@ function createInterval(interval, success, error)
     }
 
     function interlaceErrorMessage(latestInterval) {
-        var newInt = getDate(interval.start);
-        var latInt = getDate(latestInterval.start);
-        var pattern = 'New interval should not be set (%s) before latest (%s)!';
-        var message = format(pattern, newInt, latInt);
+        const newInt = getDate(interval.start);
+        const latInt = getDate(latestInterval.start);
+        const message = format(interlaceError, newInt, latInt);
         error(message);
     }
 
     function updateCurrentInterval(latestInterval) {
-        var latestIntervalEnd = getDate(latestInterval.end);
-        var today = moment().format('YYYY-MM-DD');
-        var requested = getDate(interval.start);
+        const latestIntervalEnd = getDate(latestInterval.end);
+        const today = moment().format('YYYY-MM-DD');
+        const requested = getDate(interval.start);
 
-        var pattern = 'Latest interval end: %s, Today: %s, Requested start: %s.';
-        log.warn(pattern, latestIntervalEnd, today, requested);
+        log.warn(latestIntervalEndWarning, latestIntervalEnd, today, requested);
 
-        var delta = -moment().diff(interval.start, 'days');
+        const delta = -moment().diff(interval.start, 'days');
 
         if (delta < 0) {
-            return error('If intervals interlace, then new interval shall be started today or later!');
+            return error(intervalShallStartedTodayMessage);
         }
 
         latestInterval.end = moment(interval.start).subtract(1, 'days').valueOf();
-
         latestInterval.user = interval.user;
 
         updateInterval(latestInterval, saveNewInterval, error);
     }
 
-    function saveNewInterval()
-    {
+    function saveNewInterval() {
         log.debug('Saving interval!');
 
         dal.intervals.create(interval, done);
