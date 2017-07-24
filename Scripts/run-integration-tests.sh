@@ -9,6 +9,14 @@ if [[ $1 == "-s" ]]; then
 	STANDALONE=true
 fi
 
+REPORTER=spec
+
+if [[ $2 == "--junit" ]]; then
+    echo Reporting to test-results.xml file!
+    REPORTER=mocha-junit-reporter
+    export MOCHA_FILE="../test-results.xml"
+fi
+
 if [[ $STANDALONE == "true" ]]; then
 
     if [[ -e ../daemon.log ]]; then
@@ -32,7 +40,7 @@ fi
 
 MOCHA_BIN=../node_modules/mocha/bin/mocha
 
-./$MOCHA_BIN -c -r chai -R spec --recursive "tests/integration/**/*.test.js" --timeout 5000
+./$MOCHA_BIN -c -r chai -R $REPORTER --recursive "tests/integration/**/*.test.js" --timeout 5000 
 
 if [[ $STANDALONE == "true" ]]; then
 	kill -9 $TESTABLE_NODE_PID

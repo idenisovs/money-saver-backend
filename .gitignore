@@ -8,3 +8,4 @@ node_modules
 /Source/version
 run.sh
 /Source/ui/libs/
+test-results.xml
