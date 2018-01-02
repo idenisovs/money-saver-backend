@@ -12,19 +12,21 @@ function configure() {
         appenders: {
             console: { type: 'console' }
         },
-        categories: { default: { appenders: ['console'], level: 'debug' } }
+        categories: {
+            default: { appenders: ['console'], level: 'off' }
+        }
     };
 
-    if (argv.verbose)
-    {
+    if (argv.verbose) {
+        config.categories.default.level = 'info';
     }
 
-    if (argv.debug)
-    {
+    if (argv.debug) {
+        config.categories.default.level = 'debug';
     }
 
-    if (argv.trace)
-    {
+    if (argv.trace) {
+        config.categories.default.level = 'trace';
     }
 
     log4js.configure(config);
