@@ -39,7 +39,7 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "http-status": "^1.0.1",
-    "log4js": "^2.3.12",
+    "log4js": "^2.4.1",
     "mocha": "^4.0.1",
     "mocha-junit-reporter": "^1.15.0",
     "moment": "^2.19.3",

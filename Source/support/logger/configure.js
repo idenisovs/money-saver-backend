@@ -9,25 +9,22 @@ const argv = require('../argv');
 
 function configure() {
     var config = {
-        levels: { '[all]': 'INFO' },
-        appenders: [
-            { type: 'file', filename: appRoot + '/daemon.log', maxLogSize: 1048576, backups: 5 }
-        ]
+        appenders: {
+            console: { type: 'console' }
+        },
+        categories: { default: { appenders: ['console'], level: 'debug' } }
     };
 
     if (argv.verbose)
     {
-        config.appenders.push({ type: 'console' });
     }
 
     if (argv.debug)
     {
-        config.levels['[all]'] = 'DEBUG';
     }
 
     if (argv.trace)
     {
-        config.levels['[all]'] = 'TRACE';
     }
 
     log4js.configure(config);
