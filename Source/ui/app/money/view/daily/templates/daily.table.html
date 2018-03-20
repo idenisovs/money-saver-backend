@@ -17,7 +17,7 @@
 			ng-repeat="item in summary.schedule"
 			ng-click="openPaymentsModal(item.date)"
 		>
-			<td>{{item.date|date:'dd.MM.yyyy.'}}</td>
+			<td ng-class="colorizeWeekends(item.date)">{{item.date|date:'dd.MM.yyyy.'}}</td>
 			<td>{{item.sum|currency:'€':2}}</td>
 			<td>{{item.spent|currency:'€':2}}</td>
 			<td>{{item.residual|currency:'€':2}}</td>

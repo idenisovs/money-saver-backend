@@ -16,6 +16,7 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 	$scope.valid = false;
 	$scope.today = today;
 	$scope.compareDates = compareDates;
+	$scope.colorizeWeekends = colorizeWeekends;
 	$scope.savePayment = savePayment;
 	$scope.$watch('payment.sum', checkValidity);
 	$scope.noIntervalsYet = false;
@@ -99,6 +100,14 @@ function dailyController($scope, $log, dailyResource, intervalModal, paymentsMod
 		}
 
 		return 'info';
+	}
+
+	function colorizeWeekends(date) {
+		var weekday = moment(date).isoWeekday();
+
+		if (weekday > 5) {
+            return ['text-info', 'bold'];
+        }
 	}
 	
 	function openIntervalModal(editMode)

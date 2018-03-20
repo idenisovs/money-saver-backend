@@ -7,7 +7,7 @@ To launch the application for first time simply run:
 npm run setup
 npm start
 ```
-From now, web application should be accessible by passing the following link: [http://localhost:9001] (http://localhost:9001)
+From now, web application should be accessible by passing the following link: [http://localhost:9001](http://localhost:9001)
 
 Default user login is **user1** with password **demo1**.
 
