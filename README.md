@@ -1,26 +1,40 @@
 # Money Saver
-This is a repository of a little financial web application named _Money Saver_.
+
+This web application helps me to manage my everyday expenses. 
 
 ## Getting Started
-To launch the application for first time simply run:
+
+You need to have installed [**Node.js**](https://nodejs.org/en/).
+
+No database server is required.
+
+To launch the application for the first time, you shall clone it to your PC:
+
+```bash
+git clone https://github.com/idenisovs/money-saver.git
+```
+
+Then, go inside and run the following commands:
+
 ```bash
 npm run setup
 npm start
 ```
+
 From now, web application should be accessible by passing the following link: [http://localhost:9001](http://localhost:9001)
 
-Default user login is **user1** with password **demo1**.
+Default user login is `user1` with password `demo1`.
 
-In the case if default listening port (_9001_) is already taken by another application, it can be set in _Source/config.json_ file.
+By default it is listening the port `9001`. You can change it in `Source/config.json` file.
 
 ## The reason of project
-Because I needed of an application which would help me to manage my expenses. As also, I wanted to learn new skills and get some more experience with building web applications by using Node.js.
 
-## Parts of web application
-Web application consist from **REST API** part (written with Node.js and Express.js) and **SPA** (generally written with AngularJS and Bootstrap UI). User and application data is stored by using SQLite3.
+Because I wanted to get new skills and gather some more experience with development of web applications by using the technologies like **Node.js**.
 
 ## CLI syntax
+
 In the Source directory:
+
 ```
 Usage: node daemon.js [options]
 -p, --port - select the port to listen;
@@ -34,7 +48,33 @@ Usage: node daemon.js [options]
 As example:
 node daemon.js -vd -p 8000 - will run application in verbose mode with DEBUG loglevel on port 8000;
 ```
+
 **Note**: _testable_ mode means that application will use _in-memory_ SQLite3 database to store the data. Such mode is necessary to run integration tests provided with _Money Saver_ application.
+
+## The parts of application
+
+### Frontend (client side)
+
+* [**Angular.js**](https://angularjs.org/) (1.x.x) and [**Bootstrap**](https://getbootstrap.com/) to make **UI**.
+* [**chart.js**](https://www.chartjs.org/) to make beautifull charts.
+* [**Bower**](https://bower.io/) dependency management.
+* [**Grunt**](https://gruntjs.com/) to perform some routine actions, like _version management_ or _frontend files minification_.
+
+Frontend files located under the following path: `money-saver/Source/ui`.
+
+### Backend (server side)
+
+* [**Node.js**](https://nodejs.org/en/) to run everything.
+* [**Express**](http://expressjs.com/) to make web application on top of Node.js
+* [**Memcached**](https://memcached.org/) mainly used for session storage.
+* [**Passport**](http://www.passportjs.org/) authentication management.
+* [**log4js**](https://www.npmjs.com/package/log4js) logging framework.
+
+### Database
+
+At the moment (_2018-07-17_) no database server is required and no database server can be used by application. To store and manage the data it uses the [**SQLite3**](https://www.sqlite.org/index.html) engine.
+
+It's database is located within `finance.db` file. It can be observerd by [SQLite CLI](https://www.sqlite.org/cli.html) application, [SQLite Studio](https://sqlitestudio.pl/index.rvt) or any modern IDE ([wiki](https://en.wikipedia.org/wiki/Integrated_development_environment)), by using appropriate plugins.
 
 ## Unit Tests
 
