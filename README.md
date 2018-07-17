@@ -37,9 +37,19 @@ node daemon.js -vd -p 8000 - will run application in verbose mode with DEBUG log
 **Note**: _testable_ mode means that application will use _in-memory_ SQLite3 database to store the data. Such mode is necessary to run integration tests provided with _Money Saver_ application.
 
 ## Running integration tests
+
 You may launch Integration tests by running the next command:
+
 ```bash
 npm run integration
+```
+
+## Running unit tests
+
+You may launch unit tests by running the following command:
+
+```bash
+npm test
 ```
 
 ## Grunt tasks

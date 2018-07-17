@@ -5,7 +5,7 @@
   "main": "daemon.js",
   "scripts": {
     "start": "node Source/daemon.js -b Source/finance.db -v",
-    "test": "test",
+    "test": "mocha --color --ui bdd Source/tests/unit/**/*test.js",
     "integration": "./Scripts/run-integration-tests.sh -s",
     "setup": "npm install && bower install && grunt build --local"
   },
