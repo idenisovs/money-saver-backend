@@ -110,6 +110,7 @@ npm run integration
 It will run the whole application in testing mode. Tests will call the different REST API endpoints of application with differnet arguments.
 
 ## Grunt tasks
+
 1. **build** (default) - concat and minify UI source files (JS);
     
     **--local** - build the minified version of app for running on local machine;
@@ -123,4 +124,5 @@ It will run the whole application in testing mode. Tests will call the different
 2. **clean:cleanup** - to remove downloaded libs, modules and _log_ files;
 
 ## License
-**TBD**
+
+You have a right to fork it, study it, change it, share it and use it if you're brave enough.
