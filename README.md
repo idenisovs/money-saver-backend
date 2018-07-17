@@ -36,7 +36,30 @@ node daemon.js -vd -p 8000 - will run application in verbose mode with DEBUG log
 ```
 **Note**: _testable_ mode means that application will use _in-memory_ SQLite3 database to store the data. Such mode is necessary to run integration tests provided with _Money Saver_ application.
 
-## Running integration tests
+## Unit Tests
+
+You may launch unit tests by running the following command:
+
+```bash
+npm test
+```
+
+### Used frameworks
+
+0. [**Mocha**](https://mochajs.org/) - test framework.
+    * [mocha-junit-reporter](https://www.npmjs.com/package/mocha-junit-reporter) - to make reports in JUnit style.
+0. [**Chai**](http://www.chaijs.com/) - BDD / TDD assertion library.
+    * [chai-as-promised](https://github.com/domenic/chai-as-promised) - supports assertion for Promises.
+0. [**sinon**](http://sinonjs.org/) - makes standalone test spies, stubs and mocks. 
+0. [**proxyquire**](https://github.com/thlorenz/proxyquire) - dependency injection for modules under testing. 
+
+### proxyquire
+
+Some modules, like `db` (in `Source/dal/db`) makes some action in the moment, when they are called by `require(...)` at the first time (it might be system startup, for example).
+
+To avoid such behaviour during testing, use [**noCallThru**](https://github.com/thlorenz/proxyquire#preventing-call-thru-to-original-dependency) option of `proxyquire`.
+
+## Integration Tests
 
 You may launch Integration tests by running the next command:
 
@@ -44,13 +67,7 @@ You may launch Integration tests by running the next command:
 npm run integration
 ```
 
-## Running unit tests
-
-You may launch unit tests by running the following command:
-
-```bash
-npm test
-```
+It will run the whole application in testing mode. Tests will call the different REST API endpoints of application with differnet arguments.
 
 ## Grunt tasks
 1. **build** (default) - concat and minify UI source files (JS);
