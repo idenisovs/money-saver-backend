@@ -97,7 +97,7 @@ npm test
 
 Some modules, like `db` (in `Source/dal/db`) makes some action in the moment, when they are called by `require(...)` at the first time (it might be system startup, for example).
 
-To avoid such behaviour during testing, use [**noCallThru**](https://github.com/thlorenz/proxyquire#preventing-call-thru-to-original-dependency) option of `proxyquire`.
+To avoid such behaviour during testing, use [**noCallThru**](https://github.com/thlorenz/proxyquire#preventing-call-thru-to-original-dependency) option of `proxyquire`. Or call the Cthulhu.
 
 ## Integration Tests
 
