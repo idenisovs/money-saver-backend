@@ -1,7 +1,7 @@
 const deferred = require('deferred');
 const util = require('util');
 const log = require('../../support/logger')();
-const db = require('./../db');
+const db = require('../db');
 const getIntervalByTime = require('../intervals/get-by-time');
 
 const sql = "INSERT INTO payments (time, date, sum, userId) VALUES ($time, $date, $sum, $userId)";

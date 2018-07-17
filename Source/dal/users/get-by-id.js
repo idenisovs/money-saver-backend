@@ -4,7 +4,7 @@
  * Created by I.Denisovs on 16.23.5.
  */
 
-var db = require('./../db');
+var db = require('../db');
 
 var sql = "";
 
