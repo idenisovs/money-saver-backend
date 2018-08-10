@@ -70,6 +70,62 @@ Frontend files located under the following path: `money-saver/Source/ui`.
 * [**Passport**](http://www.passportjs.org/) authentication management.
 * [**log4js**](https://www.npmjs.com/package/log4js) logging framework.
 
+#### Backend structure
+
+```
+                     Backend application
+                     +------------------------------------+    finance.db
++--------+  REST API |  +-----+      +----+      +-----+  |    +----+
+| Client | ----------|->| API | <--> | BL | <--> | DAL |<-|--->| DB |
++--------+           |  +-----+      +----+      +-----+  |    +----+
+     |               |                                    |
+     |               |  +--------------+                  |
+     +---------------|->| Static files |                  |
+                     |  +--------------+                  |
+                     +------------------------------------+    
+```
+
+* **API** layer modules, like `intervals` or `payments` process REST API requests, calls BL and makes responses.
+    * Some pre-process and validation functions is moved to [Express middleware](http://expressjs.com/en/guide/writing-middleware.html).
+* **BL** (_Business Logic_) layer has processing and calculations functions and make calls to DAL.
+* **DAL** (_Data Access Layer_) perform database requests.
+
+#### Modules
+
+Each layer is organized in tree-like structure:  
+
+```
+                       +--- ( get-interval-by-id )
+                       |
+     +---- intervals---+--- ( get-latest-interval )
+    /                  |
+ api------ payments    +--- ( get-intervals )
+    \
+     +---- properties
+```
+
+The same is for BL and DAL:
+
+```
+                       +--- ( get-by-id )
+                       |
+     +---- intervals---+--- ( get-latest )
+    /                  |
+  bl------ payments    +--- ( get-all )
+    \
+     +---- properties
+```
+
+So, typically, any API module (like `get-interval-by-id`) may call any BL function like this:
+
+```js
+const bl = require('../../bl');
+
+bl.intervals.getById(id, success, fail);
+``` 
+
+* In the future [async / await](https://javascript.info/async-await) approach will be applied here.  
+
 ### Database
 
 At the moment (_2018-07-17_) no database server is required and no database server can be used by application. To store and manage the data it uses the [**SQLite3**](https://www.sqlite.org/index.html) engine.
@@ -97,7 +153,7 @@ npm test
 
 Some modules, like `db` (in `Source/dal/db`) makes some action in the moment, when they are called by `require(...)` at the first time (it might be system startup, for example).
 
-To avoid such behaviour during testing, use [**noCallThru**](https://github.com/thlorenz/proxyquire#preventing-call-thru-to-original-dependency) option of `proxyquire`. Or call the Cthulhu.
+To avoid such behaviour during testing, use [**noCallThru**](https://github.com/thlorenz/proxyquire#preventing-call-thru-to-original-dependency) option of `proxyquire`.
 
 ## Integration Tests
 
@@ -125,4 +181,4 @@ It will run the whole application in testing mode. Tests will call the different
 
 ## License
 
-You have a right to fork it, study it, change it, share it and use it if you're brave enough.
+You have a right to fork it, study it, change it, share it, blame it and use it if you're brave enough.
