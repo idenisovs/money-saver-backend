@@ -1,5 +1,5 @@
 {
-  "name": "MoneySaver",
+  "name": "@money-saver/backend",
   "version": "1.0.0",
   "description": "Personal cash manager",
   "main": "daemon.js",
