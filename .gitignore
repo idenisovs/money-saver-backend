@@ -6,5 +6,5 @@ node_modules
 *.pid
 *app.min.js
 run.sh
-/Source/ui/libs/
+/Source/web
 test-results.xml
