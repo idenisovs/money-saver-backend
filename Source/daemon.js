@@ -1,6 +1,6 @@
-global.basedir = __dirname;
+global['basedir'] = __dirname;
 
-const util = require('util');
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -20,17 +20,15 @@ enableStaticContent();
 
 enableRestAPI();
 
-config.port = util.isNumber(argv.port) ? argv.port : config.port;
+config.port = argv.port || config.port;
 
-var server = app.listen(config.port, onListen);
+const server = app.listen(config.port, onListen);
 
-function onListen()
-{
-	log.info('Daemon started and listening on %s port', server.address().port);
+function onListen() {
+    log.info('Daemon started and listening on http://localhost:%s', server.address().port);
 }
 
-function enable3dPartyMiddleware()
-{
+function enable3dPartyMiddleware() {
     app.use(cookieParser());
     app.use(bodyParser.json());
     app.use(session(makeSessionConfig()));
@@ -40,23 +38,21 @@ function enable3dPartyMiddleware()
     log.debug('3d party middleware enabled!');
 }
 
-function enableStaticContent()
-{
-    var staticAccessControl = require('./support/middleware/static-access-control');
+function enableStaticContent() {
+    const staticAccessControl = require('./support/middleware/static-access-control');
 
-    var webAppDir = __dirname + '/' + config.content.public;
+    const webAppDir = path.join(__dirname, config.content.public);
     log.debug('Loading static content from %s ...', webAppDir);
 
-    var options = { index: config.index };
-    var static = express.static(webAppDir, options);
+    const options = {index: config.index};
+    const staticContent = express.static(webAppDir, options);
 
-    app.use(staticAccessControl, static);
+    app.use(staticAccessControl, staticContent);
 
     log.debug('Static content enabled!');
 }
 
-function enableRestAPI()
-{
+function enableRestAPI() {
     app.use('/api', require('./api'));
 
     log.debug('REST API enabled!');
@@ -64,7 +60,7 @@ function enableRestAPI()
 
 function makeSessionConfig() {
 
-    var sessionConfig = {
+    const sessionConfig = {
         secret: 'Fb75JGeUyTlEuCMp',
         resave: false,
         saveUninitialized: true
@@ -80,7 +76,7 @@ function makeSessionConfig() {
 }
 
 function enableMemcachedSessionStore(sessionConfig) {
-    var MemcachedStore = require('connect-memcached')(session);
+    const MemcachedStore = require('connect-memcached')(session);
     sessionConfig.store = new MemcachedStore(config.memcached);
     log.debug('Memcached Session Store support is enabled!');
 }
