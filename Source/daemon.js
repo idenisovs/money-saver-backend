@@ -20,6 +20,10 @@ enableStaticContent();
 
 enableRestAPI();
 
+const spaFile = path.join(__dirname, config.content.public, config.index);
+
+app.get('/*', (req, res) => res.sendFile(spaFile));
+
 config.port = argv.port || config.port;
 
 const server = app.listen(config.port, onListen);
@@ -39,15 +43,13 @@ function enable3dPartyMiddleware() {
 }
 
 function enableStaticContent() {
-    const staticAccessControl = require('./support/middleware/static-access-control');
-
     const webAppDir = path.join(__dirname, config.content.public);
     log.debug('Loading static content from %s ...', webAppDir);
 
     const options = {index: config.index};
     const staticContent = express.static(webAppDir, options);
 
-    app.use(staticAccessControl, staticContent);
+    app.use(staticContent);
 
     log.debug('Static content enabled!');
 }
