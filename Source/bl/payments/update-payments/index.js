@@ -3,7 +3,6 @@
  * Created by Ilya Denisov on 12.03.2016..
  */
 
-const Promise = require('promise');
 const util = require('util');
 const applyAction = require('./apply-action');
 

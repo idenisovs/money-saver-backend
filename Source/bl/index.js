@@ -1,5 +1,4 @@
-var bl =
-{
+module.exports = {
     intervals: require('./intervals'),
     payments: require('./payments'),
     auth: require('./auth'),
@@ -7,5 +6,3 @@ var bl =
     summary: require('./summary'),
     properties: require('./properties')
 };
-
-module.exports = bl;

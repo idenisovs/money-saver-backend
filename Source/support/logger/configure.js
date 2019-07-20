@@ -3,7 +3,6 @@
  * Created by I. Denisovs on 16.07.2017..
  */
 
-const appRoot = require('app-root-path');
 const log4js = require('log4js');
 const argv = require('../argv');
 

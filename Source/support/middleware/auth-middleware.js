@@ -3,21 +3,17 @@
  * Created by I.Denisovs on 16.24.5.
  */
 
-var log = require('log4js').getLogger('auth');
-var HttpStatus = require('http-status');
+const log = require('log4js').getLogger('auth');
+const HttpStatus = require('http-status');
 
-function auth(req, res, next)
-{
-    if (req.isAuthenticated())
-    {
+module.exports = function auth(req, res, next) {
+    if (req.isAuthenticated()) {
         return next();
     }
 
     log.warn('Unauthorized access try to %s from %s!', req.originalUrl, req.ip);
 
-    var message = 'Hello, %username%! Please, authenticate yourself first!';
+    const message = 'Hello, %username%! Please, authenticate yourself first!';
 
     res.status(HttpStatus.UNAUTHORIZED).send(message);
-}
-
-module.exports = auth;
+};

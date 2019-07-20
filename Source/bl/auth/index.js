@@ -3,8 +3,7 @@
  * Created by I.Denisovs on 16.17.5.
  */
 
-var auth =
-{
+const auth = {
     local: require('./auth-local')
 };
 

@@ -2,7 +2,6 @@
  * Created by I. Denisovs on 28.12.2015..
  */
 const util = require('util');
-const Promise = require('promise');
 const moment = require('moment');
 const log = require('log4js').getLogger('save-payments');
 const dal = require('../../dal');
