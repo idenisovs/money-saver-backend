@@ -15,8 +15,8 @@ POST http://localhost:9001/api/auth
 Content-Type: application/json
 
 {
-  "username": "aaa",
-  "password": "bbb"
+  "username": "user1",
+  "password": "power$"
 }
 
 ###

@@ -11,8 +11,6 @@ const authenticate = passport.authenticate('local');
 auth.get('/', require('./get-user-auth'));
 auth.post('/', authenticate, require('./complete'));
 auth.get('/logout', checkAuth, require('./logout'));
-auth.get('/success', require('./success'));
-auth.get('/failure', require('./failure'));
 
 module.exports = auth;
 
