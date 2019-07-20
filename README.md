@@ -132,6 +132,10 @@ At the moment (_2018-07-17_) no database server is required and no database serv
 
 It's database is located within `finance.db` file. It can be observerd by [SQLite CLI](https://www.sqlite.org/cli.html) application, [SQLite Studio](https://sqlitestudio.pl/index.rvt) or any modern IDE ([wiki](https://en.wikipedia.org/wiki/Integrated_development_environment)), by using appropriate plugins.
 
+## REST API reference
+
+REST API reference is available [here](./rest-api.md)
+
 ## Unit Tests
 
 You may launch unit tests by running the following command:
