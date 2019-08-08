@@ -49,6 +49,8 @@ function getPaymentsSummary(request, success, fail)
 
         log.trace(interval);
 
+        interval.latest = interval.latest === 1;
+
         summary.interval = interval;
 
         request.id = interval.id;
