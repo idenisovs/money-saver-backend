@@ -40,6 +40,8 @@ function auth(username, password, done) {
 
         log.info('%s successfully authenticated!', username);
 
+        delete user.password;
+
         done(null, user);
 
         dal.users.saveLoginTime(user, timeSaveDone);
