@@ -8,10 +8,8 @@ const dal = require('../../dal');
 
 module.exports = savePayments;
 
-function savePayments(payments, success, error)
-{
-    if (!util.isArray(payments))
-    {
+function savePayments(payments, success, error) {
+    if (!Array.isArray(payments)) {
         payments = [ payments ];
 
         payments.user = payments[0].user;
@@ -24,8 +22,7 @@ function savePayments(payments, success, error)
     Promise.all(q).then(success, error);
 }
 
-function savePayment(payment, idx, payments)
-{
+function savePayment(payment, idx, payments) {
     setFields(payment);
 
     payment.user = payments.user;
@@ -61,7 +58,6 @@ function setFields(payment)
     if (!timeUndefined && dateUndefined)
     {
         payment.date = moment(payment.time).format('YYYY-MM-DD');
-        return;
     }
 }
 
