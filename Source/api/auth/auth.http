@@ -5,18 +5,17 @@
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
 
-GET http://localhost:9001/api/auth
-Accept: application/json
-Cookie: connect.sid=s%3AUD8iBY-kvESFveG6gpS2acVgoLkM8hFf.B1LEVUKnObZs4f20ibmJ6mYvFhdpx4cj2avFTbz%2B9dE; Path=/; HttpOnly
-
-###
-
 POST http://localhost:9001/api/auth
 Content-Type: application/json
 
 {
   "username": "user1",
-  "password": "demo1"
+  "password": "power$4"
 }
+
+###
+
+GET http://localhost:9001/api/auth
+Accept: application/json
 
 ###
