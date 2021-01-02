@@ -7,7 +7,7 @@
 	"port": 9001,
     "db": "finance.db",
 	"memcached": {
-		"enabled": false,
+		"enabled": true,
 		"hosts": [ "127.0.0.1:11211" ],
 		"secret": "EtY3NhQpHdQJwBPX"
 	}
