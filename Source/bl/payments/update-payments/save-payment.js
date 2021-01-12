@@ -7,8 +7,16 @@ const log = require('../../../support/logger')();
 const save = require('../save-payments');
 
 function savePayment(payment, deferred) {
-    payment.date = moment(payment.time).format('YYYY-MM-DD');
-    log.debug('Saving payment on %s for %s...', payment.date, payment.sum);
+    if (!payment.time) {
+        payment.time = Date.now();
+    }
+
+    if (!payment.date) {
+        payment.date = moment(payment.time).format('YYYY-MM-DD');
+    }
+
+    log.debug('Saving new payment <%d> on %s...', payment.sum, payment.date);
+
     save(payment, deferred.resolve, deferred.reject);
 }
 
