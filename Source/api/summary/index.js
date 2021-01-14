@@ -1,8 +1,8 @@
 /**
- * Created by I.Denisovs on 16.3.7.
+ * Created by I.Denisovs on 16.03.07.
  */
 
-var summary = require('express').Router();
+const summary = require('express').Router();
 
 summary.get('/payments', require('./get-payments-summary'));
 

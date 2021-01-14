@@ -1,14 +1,13 @@
 /**
  * Created by I.Denisovs on 16.3.7.
  */
-
-var statusCode = require('http-status');
-var log = require('log4js').getLogger('payments-summary');
-var bl = require('../../bl');
+const statusCode = require('http-status');
+const log = require('log4js').getLogger('payments-summary');
+const bl = require('../../bl');
 
 function getPaymentsSummary(req, res)
 {
-    var request = { user: req.user };
+    const request = {user: req.user};
 
     if (req.query.intervalid)
     {
@@ -28,7 +27,7 @@ function getPaymentsSummary(req, res)
     {
         log.error(err);
 
-        var status;
+        let status;
 
         switch(err)
         {
