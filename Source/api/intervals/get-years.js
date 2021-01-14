@@ -1,10 +1,9 @@
 /**
  * Created by Ilya Denisov on 09.07.2016..
  */
-
-var log = require('log4js').getLogger('get-years');
-var httpCodes = require('http-status');
-var bl = require('../../bl');
+const httpCodes = require('http-status');
+const log = require('log4js').getLogger('get-years');
+const bl = require('../../bl');
 
 function getAvailableYears(req, res)
 {
