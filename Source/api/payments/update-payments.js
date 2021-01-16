@@ -22,8 +22,8 @@ function updatePayments(req, res)
 
     function fail(err)
     {
-        log.err(err);
-        res.statusCode(http.INTERNAL_SERVER_ERROR).json(err);
+        log.error(err);
+        res.status(http.INTERNAL_SERVER_ERROR).json(err);
     }
 }
 
