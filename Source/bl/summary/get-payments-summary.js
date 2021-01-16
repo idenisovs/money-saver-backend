@@ -1,24 +1,22 @@
 /**
  * Created by I.Denisovs on 16.3.7.
  */
+const log = require('log4js').getLogger('payments-summary');
+const dal = require('../../dal');
 
-var log = require('log4js').getLogger('payments-summary');
-var format = require('util').format;
-var dal = require('../../dal');
-
-var calculateSchedule = require('./calc/calculate-schedule');
-var calculatePrediction = require('./calc/calculate-prediction');
-var calculateTotals = require('./calc/calculate-totals');
+const calculateSchedule = require('./calc/calculate-schedule');
+const calculatePrediction = require('./calc/calculate-prediction');
+const calculateTotals = require('./calc/calculate-totals');
 
 function getPaymentsSummary(request, success, fail)
 {
-    var summary =
-    {
-        interval: null,
-        spendings: null,
-        schedule: null,
-        totals: null
-    };
+    const summary =
+        {
+            interval: null,
+            spendings: null,
+            schedule: null,
+            totals: null
+        };
 
     if (request.intervalId)
     {

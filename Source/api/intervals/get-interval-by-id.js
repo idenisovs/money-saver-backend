@@ -1,14 +1,13 @@
 /**
-  * Intervals REST API endpoint
-  * Sample call: http://localhost:9001/api/intervals
-  */
-
-var states = require('http-status');
-var bl = require('../../bl');
+ * Intervals REST API endpoint
+ * Sample call: http://localhost:9001/api/intervals
+ */
+const states = require('http-status');
+const bl = require('../../bl');
 
 function getIntervalById(req, res)
 {
-    var interval = { id: req.params.id, user: req.user };
+    const interval = {id: req.params.id, user: req.user};
 
     bl.intervals.getById(interval, success, error);
 
