@@ -1,15 +1,16 @@
 /**
-  * Intervals REST API endpoint
-  * Sample call: http://localhost:9001/api/intervals
-  */
+ * Intervals REST API endpoint
+ * Sample call: http://localhost:9001/api/intervals
+ */
 
-var states = require('http-status');
-var log = require('log4js').getLogger('create-interval');
-var bl = require('../../bl');
+const states = require('http-status');
+const bl = require('../../bl');
+
+const log = require('log4js').getLogger('create-interval');
 
 function createInterval(req, res)
 {
-    var interval = req.body;
+    const interval = req.body;
 
     interval.user = req.user;
 
