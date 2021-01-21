@@ -6,5 +6,6 @@ node_modules
 *.pid
 *app.min.js
 run.sh
-/Source/web
+/source/web
+/target
 test-results.xml
