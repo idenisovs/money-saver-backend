@@ -8,7 +8,7 @@ const session = require('express-session');
 const log = require('./support/logger')('daemon');
 const passport = require('./support/passport');
 const argv = require('./support/argv');
-const config = require('./config.json');
+const config = require('../config.json');
 
 const app = express();
 

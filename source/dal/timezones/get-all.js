@@ -1,4 +1,4 @@
-var timezones = require('./timezones.json');
+const timezones = require('./timezones');
 
 function getAllTimezones() {
 	return timezones;

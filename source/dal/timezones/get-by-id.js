@@ -1,8 +1,8 @@
-var timezones = require('./timezones.json');
+const timezones = require('./timezones');
 
 function getById(id, done) {
-	for (var i = 0; i < timezones.length; i++) {
-		if (timezones[i].timeZoneId == id) {
+	for (let i = 0; i < timezones.length; i++) {
+		if (timezones[i].timeZoneId === parseInt(id)) {
 			return done(null, timezones[i]);
 		}
 	}

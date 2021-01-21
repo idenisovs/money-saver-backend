@@ -1,12 +1,11 @@
-var argv = require('yargs').argv;
-var log = require('log4js').getLogger('db');
-var config = require('../config.json');
+const argv = require('yargs').argv;
+const log = require('log4js').getLogger('db');
 
-var databaseType = determineDatabaseType();
+const databaseType = determineDatabaseType();
 
 log.debug('Determined database type: %s!', databaseType);
 
-var connector, exitHandler;
+let connector, exitHandler;
 
 switch (databaseType)
 {

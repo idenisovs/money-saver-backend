@@ -4,7 +4,9 @@
   "description": "Personal expenses manager",
   "main": "daemon.js",
   "scripts": {
-    "start": "node Source/daemon.js -b Source/finance.db -v",
+    "build": "tsc",
+    "build:watch": "npm run build -- --watch",
+    "start": "node source/daemon.js -b source/finance.db -v",
     "test": "mocha --color --ui bdd Source/tests/unit/**/*test.js",
     "integration": "./Scripts/run-integration-tests.sh -s",
     "setup": "npm install && bower install && grunt build --local"
