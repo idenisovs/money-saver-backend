@@ -1,10 +1,4 @@
-/**
- * Root module for data access operations of Intervals.
- * Created by I.Denisovs on 13.09.2015..
- */
-
-var intervals =
-{
+const intervals = {
     getLatest: require('./get-latest'),
 
     getNthLatest: require('./get-nth-latest'),
@@ -21,7 +15,10 @@ var intervals =
     
     update: require('./update-interval'), 
     
-    delete: require('./delete')
+    delete: require('./delete'),
+
+    getCount: require('./get-intervals-count')
+
 };
 
 module.exports = intervals;

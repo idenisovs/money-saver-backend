@@ -15,7 +15,7 @@ module.exports = function getLatestIntervalSummary(user, success, error) {
 
     dal.intervals.getLatest(interval, latestInterval);
 
-    function latestInterval(err, interval) {
+    async function latestInterval(err, interval) {
         if (err) {
             return error(err);
         }
@@ -28,7 +28,12 @@ module.exports = function getLatestIntervalSummary(user, success, error) {
 
         interval.user = user;
 
-        dal.payments.getDailySpendings(interval, dailySpendings);
+        dal.intervals.getCount(user.id).then((count) => {
+            interval.single = count === 1;
+            dal.payments.getDailySpendings(interval, dailySpendings);
+        }).catch((err) => {
+            return error(err);
+        });
     }
 
     function dailySpendings(err, dailySpendings) {
