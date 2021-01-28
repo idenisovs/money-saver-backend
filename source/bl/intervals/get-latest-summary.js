@@ -1,38 +1,27 @@
-/**
- * Created by I. Denisovs on 19.12.2015..
- */
+const dal = require('../../dal');
+const calculateSchedule = require('../summary/calc/calculate-schedule');
+const calculatePrediction = require('../summary/calc/calculate-prediction');
+const calculateTotals = require('../summary/calc/calculate-totals');
 
-var dal = require('../../dal');
-var calculateSchedule = require('../summary/calc/calculate-schedule');
-var calculatePrediction = require('../summary/calc/calculate-prediction');
-var calculateTotals = require('../summary/calc/calculate-totals');
-
-module.exports = getLatestIntervalSummary;
-
-function getLatestIntervalSummary(user, success, error)
-{
-    var result =
-    {
+module.exports = function getLatestIntervalSummary(user, success, error) {
+    const result = {
         interval: null,
         spendings: null,
         schedule: null,
         totals: null
     };
 
-    var interval = { user: user };
+    const interval = {user: user};
 
     dal.intervals.getLatest(interval, latestInterval);
 
-    function latestInterval(err, interval)
-    {
-        if (err)
-        {
+    function latestInterval(err, interval) {
+        if (err) {
             return error(err);
         }
 
-        if (!interval)
-        {
-            return success({});
+        if (!interval) {
+            return success(null);
         }
 
         result.interval = interval;
@@ -42,10 +31,8 @@ function getLatestIntervalSummary(user, success, error)
         dal.payments.getDailySpendings(interval, dailySpendings);
     }
 
-    function dailySpendings(err, dailySpendings)
-    {
-        if (err)
-        {
+    function dailySpendings(err, dailySpendings) {
+        if (err) {
             error(err);
             return;
         }

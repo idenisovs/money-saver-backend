@@ -2,14 +2,29 @@
  * This module updates Interval table with given Interval object.
  * Created by I.Denisovs on 27.08.2016
  */
+const db = require('../db');
 
-var db = require('../db');
+const log = require('log4js').getLogger('intervals');
 
-var sql = 'UPDATE intervals SET sum = $sum, end = $end WHERE id = $id AND userId = $userId';
+const sql = `UPDATE intervals 
+SET 
+    sum = $sum,
+    start = $start,
+    end = $end 
+WHERE 
+    id = $id 
+    AND userId = $userId`;
 
-function updateInterval(interval, done)
-{
-    var params = { $id: interval.id, $userId: interval.user.id, $sum: interval.sum, $end: interval.end };
+function updateInterval(interval, done) {
+    log.debug('Updating interval record in database!');
+
+    const params = {
+        $id: interval.id,
+        $userId: interval.user.id,
+        $sum: interval.sum,
+        $start: interval.start,
+        $end: interval.end
+    };
 
     db.run(sql, params, done);
 }
