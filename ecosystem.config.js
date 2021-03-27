@@ -1,7 +1,9 @@
+const path = require('path');
+
 module.exports = {
   apps : [{
     name: 'Money Saver',
-    cwd: './target',
+    cwd: path.join(__dirname, 'target'),
     script: 'daemon.js'
   }],
   deploy : {
