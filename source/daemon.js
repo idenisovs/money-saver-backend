@@ -1,4 +1,6 @@
-require('dotenv').config()
+require('dotenv').config({
+    path: __dirname
+});
 
 global['basedir'] = __dirname;
 
