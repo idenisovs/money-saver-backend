@@ -5,6 +5,7 @@
   "main": "daemon.js",
   "scripts": {
     "setup": "npm install && tsc --project tsconfig.json --traceResolution && uuidgen > ./target/memcached.key && uuidgen > ./target/session.key",
+    "update": "npm install && tsc --project tsconfig.json --traceResolution",
     "build": "tsc",
     "build:watch": "npm run build -- --watch",
     "deploy:setup": "pm2 deploy production setup",
