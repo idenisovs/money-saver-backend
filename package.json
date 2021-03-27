@@ -7,6 +7,8 @@
     "setup": "npm install && tsc --project tsconfig.json --traceResolution && uuidgen > ./target/memcached.key && uuidgen > ./target/session.key",
     "build": "tsc",
     "build:watch": "npm run build -- --watch",
+    "deploy:setup": "pm2 deploy production setup",
+    "deploy:update": "pm2 deploy production update",
     "start": "node source/daemon.js -b source/finance.db -v",
     "test": "mocha --color --ui bdd Source/tests/unit/**/*test.js",
     "integration": "./Scripts/run-integration-tests.sh -s"
