@@ -1,32 +1,25 @@
-/**
- * Created by I.Denisovs on 16.19.6.
- */
+const path = require('path');
+const argv = require('../../support/argv');
+const SQLite = require('sqlite3').Database;
 
-var util = require('util');
-var argv = require('../../support/argv');
-var config = require('../../../config.json');
-var log = require('log4js').getLogger('db');
-var SQLite = require('sqlite3').Database;
+const log = require('log4js').getLogger('db');
 
-if (!util.isUndefined(argv.database))
-{
-    config.db = argv.database;
-}
+const DEFAULT_PATH = path.join(basedir, '..', 'finance.db');
 
-log.debug('Connecting to %s...', config.db);
+const databasePath = argv.database || process.env.DATABASE || DEFAULT_PATH;
 
-var db = new SQLite(config.db);
+log.debug('Connecting to %s...', databasePath);
+
+const db = new SQLite(databasePath);
 
 db.run('PRAGMA foreign_keys = ON', done);
 
 module.exports = db;
 
-log.debug('%s connected!', config.db);
+log.debug('%s connected!', databasePath);
 
-function done(error)
-{
-    if (error)
-    {
+function done(error) {
+    if (error) {
         return log.error(error);
     }
 

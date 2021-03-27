@@ -1,41 +1,36 @@
+require('dotenv').config()
+
 global['basedir'] = __dirname;
 
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
 const log = require('./support/logger')('daemon');
 const passport = require('./support/passport');
 const argv = require('./support/argv');
-const config = require('../config.json');
+const session = require('./support/session').default;
 
 const app = express();
 
-log.info('Launching daemon...');
+log.info('Starting application...');
 
 enable3dPartyMiddleware();
 
-enableStaticContent();
-
 enableRestAPI();
 
-const spaFile = path.join(__dirname, config.content.public, config.index);
+enableStaticContent();
 
-app.get('/*', (req, res) => res.sendFile(spaFile));
+const PORT = argv.port || process.env.PORT || 9001;
 
-config.port = argv.port || config.port;
-
-const server = app.listen(config.port, onListen);
-
-function onListen() {
-    log.info('Daemon started and listening on http://localhost:%s', server.address().port);
-}
+app.listen(PORT, () => {
+    log.info('Application is up and running on http://localhost:%s', PORT);
+});
 
 function enable3dPartyMiddleware() {
     app.use(cookieParser());
     app.use(bodyParser.json());
-    app.use(session(makeSessionConfig()));
+    app.use(session());
     app.use(passport.initialize());
     app.use(passport.session());
 
@@ -43,13 +38,15 @@ function enable3dPartyMiddleware() {
 }
 
 function enableStaticContent() {
-    const webAppDir = path.join(__dirname, config.content.public);
-    log.debug('Loading static content from %s ...', webAppDir);
+    const staticPath = path.join(__dirname, 'www');
 
-    const options = {index: config.index};
-    const staticContent = express.static(webAppDir, options);
+    log.debug('Loading static content from %s ...', staticPath);
 
-    app.use(staticContent);
+    app.use(express.static(staticPath));
+
+    const indexFile = path.join(staticPath, 'index.html');
+
+    app.get('/*', (req, res) => res.sendFile(indexFile));
 
     log.debug('Static content enabled!');
 }
@@ -58,27 +55,4 @@ function enableRestAPI() {
     app.use('/api', require('./api'));
 
     log.debug('REST API enabled!');
-}
-
-function makeSessionConfig() {
-
-    const sessionConfig = {
-        secret: 'Fb75JGeUyTlEuCMp',
-        resave: false,
-        saveUninitialized: true
-    };
-
-    if (config.memcached.enabled) {
-        enableMemcachedSessionStore(sessionConfig);
-    } else {
-        log.warn('Memcached Session Store is not enabled, using MemoryStore instead!');
-    }
-
-    return sessionConfig;
-}
-
-function enableMemcachedSessionStore(sessionConfig) {
-    const MemcachedStore = require('connect-memcached')(session);
-    sessionConfig.store = new MemcachedStore(config.memcached);
-    log.debug('Memcached Session Store support is enabled!');
 }

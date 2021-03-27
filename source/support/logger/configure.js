@@ -1,36 +1,39 @@
-/**
- * This module configures the Log4js library.
- * Created by I. Denisovs on 16.07.2017..
- */
-
 const log4js = require('log4js');
 const argv = require('../argv');
 
+const levels = [ 'fatal', 'error', 'warn', 'info', 'debug', 'trace', 'off' ];
+
 function configure() {
-    var config = {
+    let verbosity = 'off';
+
+    if (process.env.LOGLEVEL && levels.indexOf(process.env.LOGLEVEL.trim().toLowerCase())) {
+        verbosity = process.env.LOGLEVEL.trim().toLowerCase();
+    }
+
+    if (argv.verbose) {
+        verbosity = 'info';
+    }
+
+    if (argv.debug) {
+        verbosity = 'debug';
+    }
+
+    if (argv.trace) {
+        verbosity = 'trace';
+    }
+
+    const config = {
         appenders: {
             console: { type: 'console' }
         },
         categories: {
-            default: { appenders: ['console'], level: 'off' }
+            default: { appenders: ['console'], level: verbosity }
         }
     };
 
-    if (argv.verbose) {
-        config.categories.default.level = 'info';
-    }
-
-    if (argv.debug) {
-        config.categories.default.level = 'debug';
-    }
-
-    if (argv.trace) {
-        config.categories.default.level = 'trace';
-    }
-
     log4js.configure(config);
 
-    if (argv.trace) {
+    if (verbosity === 'trace') {
         log4js.getLogger('log').warn('Running in extra verbosity level!');
     }
 }
