@@ -1,10 +1,11 @@
+const path = require('path');
+
 require('dotenv').config({
-    path: __dirname
+    path: path.join(__dirname, '.env')
 });
 
 global['basedir'] = __dirname;
 
-const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
