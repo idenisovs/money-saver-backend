@@ -4,12 +4,12 @@
   "description": "Personal expenses manager",
   "main": "daemon.js",
   "scripts": {
+    "setup": "npm install && tsc --project tsconfig.json --traceResolution && uuidgen > ./target/memcached.key && uuidgen > ./target/session.key",
     "build": "tsc",
     "build:watch": "npm run build -- --watch",
     "start": "node source/daemon.js -b source/finance.db -v",
     "test": "mocha --color --ui bdd Source/tests/unit/**/*test.js",
-    "integration": "./Scripts/run-integration-tests.sh -s",
-    "setup": "npm install && bower install && grunt build --local"
+    "integration": "./Scripts/run-integration-tests.sh -s"
   },
   "private": true,
   "repository": {
