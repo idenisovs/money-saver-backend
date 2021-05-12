@@ -41,7 +41,7 @@ function enable3dPartyMiddleware() {
 }
 
 function enableStaticContent() {
-    const staticPath = path.join(__dirname, 'www');
+    const staticPath = path.join(__dirname, 'web');
 
     log.debug('Loading static content from %s ...', staticPath);
 
