@@ -1,6 +1,3 @@
-/**
- * Created by I.Denisovs on 16.3.7.
- */
 const statusCode = require('http-status');
 const log = require('log4js').getLogger('payments-summary');
 const bl = require('../../bl');

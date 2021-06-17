@@ -1,16 +1,12 @@
 const moment = require('moment');
 
-module.exports = calculateSchedule;
-
 const dateFormat = 'YYYY-MM-DD';
 
-function calculateSchedule(summary)
-{
+module.exports = function calculateSchedule(summary) {
     const intervalNotInSummary = !('interval' in summary) || summary.interval === null;
     const spendingsNotInSummary = !('spendings' in summary) || summary.spendings === null;
 
-    if (intervalNotInSummary || spendingsNotInSummary)
-    {
+    if (intervalNotInSummary || spendingsNotInSummary) {
         const message = 'Intervals and Spendings field should be presented in given object.';
         throw new Error(message);
     }
@@ -29,8 +25,7 @@ function calculateSchedule(summary)
 
     const schedule = [];
 
-    for (let day = 0; day < daysCount; day++)
-    {
+    for (let day = 0; day <= daysCount; day++) {
         const dailyValues = {};
 
         const inc = day > 0 ? 1 : 0;
@@ -59,12 +54,9 @@ function calculateSchedule(summary)
     return schedule;
 }
 
-function takeDailySpendings(date, spendings)
-{
-    for (let i = 0; i < spendings.length; i++)
-    {
-        if (spendings[i].date === date)
-        {
+function takeDailySpendings(date, spendings) {
+    for (let i = 0; i < spendings.length; i++) {
+        if (spendings[i].date === date) {
             return spendings[i].sum;
         }
     }

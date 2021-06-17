@@ -21,7 +21,7 @@ function createInterval(interval, success, error)
 {
     log.debug('Trying to create interval...');
 
-    interval.start = moment(interval.start).valueOf();
+    interval.start = moment(interval.start).startOf('day').valueOf();
     interval.end = moment(interval.end).endOf('day').valueOf();
 
     log.debug('Taking latest interval...');

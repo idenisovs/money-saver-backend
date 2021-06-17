@@ -1,6 +1,3 @@
-/**
- * Created by I.Denisovs on 16.3.7.
- */
 const log = require('log4js').getLogger('payments-summary');
 const dal = require('../../dal');
 
