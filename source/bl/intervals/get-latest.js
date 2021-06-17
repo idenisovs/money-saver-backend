@@ -1,4 +1,4 @@
-var dal = require('../../dal');
+const dal = require('../../dal');
 
 module.exports = getLatestInterval;
 

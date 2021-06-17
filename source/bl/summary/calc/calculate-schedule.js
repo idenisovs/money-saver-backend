@@ -1,42 +1,39 @@
-/**
- * Created by I. Denisovs on 19.12.2015.
- */
-var moment = require('moment');
+const moment = require('moment');
 
 module.exports = calculateSchedule;
 
-var dateFormat = 'YYYY-MM-DD';
+const dateFormat = 'YYYY-MM-DD';
 
 function calculateSchedule(summary)
 {
-    var intervalNotInSummary = !('interval' in summary) || summary.interval === null;
-    var spendingsNotInSummary = !('spendings' in summary) || summary.spendings === null;
+    const intervalNotInSummary = !('interval' in summary) || summary.interval === null;
+    const spendingsNotInSummary = !('spendings' in summary) || summary.spendings === null;
 
     if (intervalNotInSummary || spendingsNotInSummary)
     {
-        var message = 'Intervals and Spendings field should be presented in given object.';
+        const message = 'Intervals and Spendings field should be presented in given object.';
         throw new Error(message);
     }
 
-    var startingDay = moment(summary.interval.start).subtract(1, 'days');
+    const startingDay = moment(summary.interval.start).subtract(1, 'days');
 
-    var endingDay = moment(summary.interval.end);
+    const endingDay = moment(summary.interval.end);
 
-    var daysCount = endingDay.diff(startingDay, 'days', true);
+    const daysCount = endingDay.diff(startingDay, 'days', false);
 
-    var dailySum = summary.interval.sum / daysCount;
+    const dailySum = summary.interval.sum / daysCount;
 
-    var expectedResidual = summary.interval.sum;
+    let expectedResidual = summary.interval.sum;
 
-    var realResidual = summary.interval.sum;
+    let realResidual = summary.interval.sum;
 
-    var schedule = [];
+    const schedule = [];
 
-    for (var day = 0; day < daysCount; day++)
+    for (let day = 0; day < daysCount; day++)
     {
-        var dailyValues = {};
+        const dailyValues = {};
 
-        var inc = day > 0 ? 1 : 0;
+        const inc = day > 0 ? 1 : 0;
 
         dailyValues.date = startingDay.add(inc, 'day').format(dateFormat);
 
@@ -64,7 +61,7 @@ function calculateSchedule(summary)
 
 function takeDailySpendings(date, spendings)
 {
-    for (var i = 0; i < spendings.length; i++)
+    for (let i = 0; i < spendings.length; i++)
     {
         if (spendings[i].date === date)
         {
