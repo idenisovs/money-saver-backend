@@ -68,6 +68,6 @@
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   },
   "exclude": [
-    "Docs", "Scripts", "node_modules", "target", "./ecosystem.config.js"
+    "docs", "scripts", "node_modules", "target", "./ecosystem.config.js"
   ]
 }
