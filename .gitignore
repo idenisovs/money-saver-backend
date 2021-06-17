@@ -2,9 +2,11 @@
 node_modules
 *.log
 *.log.*
+.env
 .~lock.*
 *.pid
 *app.min.js
 run.sh
-/Source/ui/libs/
+/source/web
+/target
 test-results.xml
