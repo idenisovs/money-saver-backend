@@ -1,8 +1,4 @@
-/**
- * Created by I.Denisovs on 16.24.5.
- */
-
-const bl = require('../../bl/index');
+const bl = require('../../bl');
 
 function deserialize(id, done) {
     bl.users.getById(id, success, error);

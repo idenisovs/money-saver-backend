@@ -1,5 +1,4 @@
-function serialize(user, done)
-{
+function serialize(user, done) {
     done(null, user.id);
 }
 
