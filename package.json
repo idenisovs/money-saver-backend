@@ -12,7 +12,8 @@
     "deploy:update": "pm2 deploy production update",
     "start": "node source/daemon.js -b finance.db -v",
     "test": "mocha --color --ui bdd Source/tests/unit/**/*test.js",
-    "integration": "./Scripts/run-integration-tests.sh -s"
+    "integration": "./Scripts/run-integration-tests.sh -s",
+    "clean": "rm -frv target/api target/bl target/dal target/shared target/support target/tests target/daemon*"
   },
   "private": true,
   "repository": {
