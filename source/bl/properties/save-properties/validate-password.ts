@@ -1,25 +1,21 @@
-/**
- * primary by I.Denisovs on 05.12.2016
- */
+import argv from '../../../support/argv';
+import Password from './password';
+import bcrypt from 'bcrypt';
 
-var argv = require('yargs').argv;
-var bcrypt = require('bcrypt-nodejs');
+type UpdateHashCallback = (err: Error|undefined, hash: string) => any;
 
-function validatePassword(password, updateHash, error) {
-
-    return validator;
-
-    function validator(err, valid) {
+export default function validatePassword(password: Password, updateHash: UpdateHashCallback, error: Function) {
+    return function validator(err: Error|undefined, same: boolean) {
         if (err) {
             return error(err);
         }
 
-        if (!valid) {
+        if (!same) {
             return error({ error: 'PROPERTIES_INVALID_PASSWORD' });
         }
 
         if (argv.testable && password.primary === 'demo1') {
-            return bcrypt.hash(password.primary, null, null, updateHash);
+            return bcrypt.hash(password.primary, 2, updateHash);
         }
 
         if (password.primary !== password.confirm) {
@@ -38,8 +34,6 @@ function validatePassword(password, updateHash, error) {
             return error({ error: 'PROPERTIES_PASSWORD_NUMBER' });
         }
 
-        bcrypt.hash(password.primary, null, null, updateHash);
+        bcrypt.hash(password.primary, 2, updateHash);
     }
 }
-
-module.exports = validatePassword;

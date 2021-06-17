@@ -1,10 +1,6 @@
-/**
- * Initialization module of Passport.js
- * Created by I.Denisovs on 16.17.5.
- */
+const passport = require('passport');
 
-var passport = require('passport');
-var log = require('log4js').getLogger('passport');
+const log = require('log4js').getLogger('passport');
 
 passport.use(require('./strategies/local'));
 

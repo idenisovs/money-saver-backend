@@ -1,16 +1,12 @@
-/**
- * Created by I.Denisovs on 04.12.2016
- */
-
-var log = require('log4js').getLogger('properties');
-var http = require('http-status');
-var bl = require('../../bl');
+const log = require('log4js').getLogger('properties');
+const http = require('http-status');
+const bl = require('../../bl');
 
 function saveProperties(req, res) {
 
-    var user = req.user;
+    const user = req.user;
 
-    var request = {
+    const request = {
         properties: req.body,
         user: user
     };

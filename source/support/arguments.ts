@@ -5,4 +5,5 @@ export interface Arguments {
 	verbose: boolean;
 	debug: boolean;
 	trace: boolean;
+	testable: boolean;
 }

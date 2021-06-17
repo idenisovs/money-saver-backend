@@ -1,8 +1,3 @@
-/**
- * Used to control access for endpoints, where anonymous calls is not permitted.
- * Created by I.Denisovs on 16.24.5.
- */
-
 const log = require('log4js').getLogger('auth');
 const HttpStatus = require('http-status');
 
