@@ -1,21 +1,17 @@
-/**
- * Created by I.Denisovs on 16.17.5.
- */
+import bcrypt from 'bcrypt';
+import log4js from 'log4js';
+import dal from '../../dal';
 
-const bcrypt = require('bcrypt-nodejs');
-const log = require('log4js').getLogger('auth');
-const dal = require('../../dal');
+const log = log4js.getLogger('auth');
 
-module.exports = auth;
-
-function auth(username, password, done) {
-    let user = null;
+export default function auth(username: string, password: string, done: Function) {
+    let user: any;
 
     log.debug('Authorization of user %s...', username);
 
     dal.users.getByName(username, validateUsername);
 
-    function validateUsername(error, userRecord) {
+    function validateUsername(error: Error, userRecord: any) {
         if (error) {
             return fail(error);
         }
@@ -29,7 +25,7 @@ function auth(username, password, done) {
         bcrypt.compare(password, user.password, validatePassword);
     }
 
-    function validatePassword(error, passValid) {
+    function validatePassword(error: Error|undefined, passValid: boolean) {
         if (error) {
             return fail(error);
         }
@@ -52,13 +48,13 @@ function auth(username, password, done) {
         done(null, false, {message: 'Incorrect login or password!'});
     }
 
-    function timeSaveDone(err) {
+    function timeSaveDone(err: Error) {
         if (err) {
             log.error(err);
         }
     }
 
-    function fail(error) {
+    function fail(error: Error) {
         log.error(error);
         done(error);
     }
