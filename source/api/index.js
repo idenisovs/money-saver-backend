@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const auth = require('../support/middleware/auth-middleware');
+const log = require('log4js').getLogger('api');
 
 router.use('/payments', auth, require('./payments'));
 
-router.use('/intervals', auth, require('./intervals'));
+router.use('/intervals', auth, require('./intervals').default);
 
 router.use('/auth', require('./auth'));
 
@@ -21,4 +22,4 @@ router.use('/users', require('./users'));
 
 module.exports = router;
 
-require('../support/logger')().debug('API module is up!');
+log.debug('API module is up!');

@@ -1,4 +1,4 @@
-const log = require('../../support/logger')();
+const log = require('log4js').getLogger('update-payments');
 const http = require('http-status');
 const bl = require('../../bl').default;
 

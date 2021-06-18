@@ -1,6 +1,5 @@
 const deferred = require('deferred');
-const util = require('util');
-const log = require('../../support/logger')();
+const log = require('log4js').getLogger('save-payment');
 const db = require('../db');
 const getIntervalByTime = require('../intervals/get-by-time');
 

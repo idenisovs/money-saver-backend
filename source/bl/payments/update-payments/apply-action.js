@@ -1,9 +1,5 @@
-/**
- * This module decides, which update action should be applied to given payment.
- * Created by I. Denisovs on 17.07.2017..
- */
 const deferred = require('deferred');
-const log = require('../../../support/logger')();
+const log = require('log4js').getLogger('apply-action');
 
 const save = require('./save-payment');
 const remove = require('./delete-payment');

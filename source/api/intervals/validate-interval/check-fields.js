@@ -5,7 +5,7 @@
 
 const util = require('util');
 const moment = require('moment');
-const log = require('../../../support/logger');
+const log = require('../../../support/log4js');
 
 function checkFields(interval) {
     if (util.isUndefined(interval)) {

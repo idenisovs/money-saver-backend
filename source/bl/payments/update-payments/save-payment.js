@@ -1,9 +1,5 @@
-/**
- * Created by I. Denisovs on 17.07.2017..
- */
-
 const moment = require('moment');
-const log = require('../../../support/logger')();
+const log = require('log4js').getLogger('save-payment');
 const save = require('../save-payments');
 
 function savePayment(payment, deferred) {

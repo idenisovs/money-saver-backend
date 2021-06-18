@@ -1,8 +1,4 @@
-/**
- * Created by I. Denisovs on 17.07.2017..
- */
-
-const log = require('../../../support/logger')();
+const log = require('log4js').getLogger('delete-payment');
 const deletePayment = require('../delete-payments');
 
 function remove(payment, deferred)

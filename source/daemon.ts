@@ -1,4 +1,4 @@
-const path = require('path');
+import path from 'path';
 
 require('dotenv').config({
     path: path.join(__dirname, '.env')
@@ -6,13 +6,15 @@ require('dotenv').config({
 
 global['basedir'] = __dirname;
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const log = require('./support/logger')('daemon');
+import express, { Request, Response } from 'express';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import log4js from './support/log4js';
 const passport = require('./support/passport');
 const argv = require('./support/argv');
 const session = require('./support/session').default;
+
+const log = log4js.getLogger('daemon');
 
 const app = express();
 
@@ -49,7 +51,7 @@ function enableStaticContent() {
 
     const indexFile = path.join(staticPath, 'index.html');
 
-    app.get('/*', (req, res) => res.sendFile(indexFile));
+    app.get('/*', (req: Request, res: Response) => res.sendFile(indexFile));
 
     log.debug('Static content enabled!');
 }

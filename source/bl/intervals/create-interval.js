@@ -1,13 +1,7 @@
-/**
- * Create-Interval workflow module.
- *
- * Created by I. Denisovs on 24.12.2015..
- */
-
 const util = require('util');
 const format = util.format;
 const moment = require('moment');
-const log = require('../../support/logger')();
+const log = require('log4js');
 const updateInterval = require('./update-interval');
 const dal = require('../../dal');
 

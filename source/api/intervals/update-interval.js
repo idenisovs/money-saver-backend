@@ -1,10 +1,5 @@
-/**
- * This endpoint is used to update existing Interval
- * Created by Ilya Denisov on 12.03.2016..
- */
-
 const http = require('http-status');
-const log = require('../../support/logger')();
+const log = require('log4js').getLogger('update-interval');
 const bl = require('../../bl');
 
 function updateInterval(req, res)
