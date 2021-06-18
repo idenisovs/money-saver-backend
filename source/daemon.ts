@@ -13,6 +13,7 @@ import log4js from './support/log4js';
 import passport from './support/passport';
 import argv from './support/argv';
 import session from './support/session';
+import api from './api';
 
 const log = log4js.getLogger('daemon');
 
@@ -42,6 +43,12 @@ function enable3dPartyMiddleware() {
     log.debug('3d party middleware enabled!');
 }
 
+function enableRestAPI() {
+    app.use('/api', api);
+
+    log.debug('REST API enabled!');
+}
+
 function enableStaticContent() {
     const staticPath = path.join(__dirname, 'web');
 
@@ -54,10 +61,4 @@ function enableStaticContent() {
     app.get('/*', (req: Request, res: Response) => res.sendFile(indexFile));
 
     log.debug('Static content enabled!');
-}
-
-function enableRestAPI() {
-    app.use('/api', require('./api'));
-
-    log.debug('REST API enabled!');
 }
