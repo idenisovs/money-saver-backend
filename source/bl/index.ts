@@ -1,7 +1,8 @@
 import auth from './auth';
+import intervals from './intervals';
 
 const bl = {
-    intervals: require('./intervals'),
+    intervals,
     payments: require('./payments'),
     auth,
     users: require('./users'),

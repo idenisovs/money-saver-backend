@@ -3,14 +3,14 @@ import statusCodes from 'http-status';
 import log4js from 'log4js';
 
 import bl from '../../bl';
-import { Interval } from '../../shared';
+import { Interval, User } from '../../shared';
 
 const log = log4js.getLogger('intervals');
 
-function getLatestIntervalSummary(req: Request, res: Response) {
+export default function getLatestIntervalSummary(req: Request, res: Response) {
 	log.debug('User requested latest interval summary!');
 
-	bl.intervals.getLatestSummary(req.user, success, error);
+	bl.intervals.getLatestSummary(req.user as User, success, error);
 
 	function success(interval: Interval) {
 		log.debug('Got response!');
@@ -28,5 +28,3 @@ function getLatestIntervalSummary(req: Request, res: Response) {
 		res.status(statusCodes.INTERNAL_SERVER_ERROR).json({ err: err });
 	}
 }
-
-module.exports = getLatestIntervalSummary;

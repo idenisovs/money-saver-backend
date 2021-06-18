@@ -1,6 +1,6 @@
 const statusCode = require('http-status');
 const log = require('log4js').getLogger('payments-summary');
-const bl = require('../../bl');
+const bl = require('../../bl').default;
 
 function getPaymentsSummary(req, res)
 {

@@ -1,13 +1,16 @@
 import { Router } from 'express';
-import validate from './validate-interval';
 import log4js from 'log4js';
+
+import validate from './validate-interval';
+import getIntervals from './get-intervals';
+import getLatestIntervalSummary from './get-latest-interval-summary';
 
 const intervals = Router();
 
-intervals.get('/', require('./get-intervals'));
+intervals.get('/', getIntervals);
 intervals.post('/', validate, require('./create-interval'));
 intervals.get('/latest', require('./get-latest-interval'));
-intervals.get('/latest/summary', require('./get-latest-interval-summary'));
+intervals.get('/latest/summary', getLatestIntervalSummary);
 intervals.get('/years', require('./get-years'));
 intervals.get('/:id', require('./get-interval-by-id'));
 intervals.put('/:id', validate, require('./update-interval'));
