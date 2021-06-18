@@ -1,6 +1,6 @@
 import auth from './auth';
 
-module.exports = {
+const bl = {
     intervals: require('./intervals'),
     payments: require('./payments'),
     auth,
@@ -8,3 +8,5 @@ module.exports = {
     summary: require('./summary'),
     properties: require('./properties')
 };
+
+export default bl;

@@ -1,51 +1,41 @@
-/**
- * Created by I. Denisovs on 28.12.2015..
- */
-
-var util = require('util');
-var moment = require('moment');
-var log = require('log4js').getLogger('get-payments');
-var dal = require('../../dal');
+const moment = require('moment');
+const log = require('log4js').getLogger('get-payments');
+const dal = require('../../dal');
 
 module.exports = getPayments;
 
-function getPayments(request, success, error)
-{
+function getPayments(request, success, error) {
     log.trace(request.user);
 
-    if ('id' in request)
-    {
+    let interval;
+
+    if ('id' in request) {
         log.debug('Taking payment by Id!');
-        var payment = { id: request.id, user: request.user };
         dal.payments.getById(request, done);
         return;
     }
 
-    if ('date' in request)
-    {
+    if ('date' in request) {
         log.debug('Taking payments by date!');
         dal.payments.getByDate(request, done);
         return;
     }
 
-    if (('from' in request) && ('till' in request))
-    {
+    if (('from' in request) && ('till' in request)) {
         log.debug('Taking payments by date range!');
-        var from = moment(request.from).startOf('day').valueOf();
-        var till = moment(request.till).endOf('day').valueOf();
-        var interval = { from: from, till: till, user: request.user };
+        const from = moment(request.from).startOf('day').valueOf();
+        const till = moment(request.till).endOf('day').valueOf();
+        interval = { from: from, till: till, user: request.user };
         dal.payments.getByDateRange(interval, done);
         return;
     }
 
     log.debug('Taking payments by latest interval!');
-    var interval = { user: request.user };
+    interval = { user: request.user };
     dal.intervals.getLatest(interval, getLatestDone);
 
-    function getLatestDone(err, latestInterval)
-    {
-        if (err)
-        {
+    function getLatestDone(err, latestInterval) {
+        if (err) {
             return error(err);
         }
 
@@ -57,10 +47,8 @@ function getPayments(request, success, error)
         dal.payments.getByIntervalId(latestInterval, done);
     }
 
-    function done(err, payments)
-    {
-        if (err)
-        {
+    function done(err, payments) {
+        if (err) {
             return error(err);
         }
 

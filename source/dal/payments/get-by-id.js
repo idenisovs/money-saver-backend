@@ -1,18 +1,14 @@
-/**
- * Created by I.Denisovs on 02.01.2016..
- */
-var db = require('./../db');
+const db = require('./../db');
 
-var sql = "";
+let sql = "";
 
 sql += "SELECT id, date, time, sum\n";
 sql += "FROM payments\n";
 sql += "WHERE id = $id\n";
 sql += "AND userId = $userId\n";
 
-function getById(payment, callback)
-{
-    var params = { '$id': payment.id, '$userId': payment.user.id };
+function getById(payment, callback) {
+    const params = { '$id': payment.id, '$userId': payment.user.id };
 
     db.get(sql, params, callback);
 }

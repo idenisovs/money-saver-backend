@@ -1,10 +1,6 @@
-/**
- * Created by Ilya Denisov on 12.03.2016..
- */
-
 const log = require('../../support/logger')();
 const http = require('http-status');
-const bl = require('../../bl');
+const bl = require('../../bl').default;
 
 function updatePayments(req, res)
 {
