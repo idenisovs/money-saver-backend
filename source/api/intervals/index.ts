@@ -3,12 +3,13 @@ import log4js from 'log4js';
 
 import validate from './validate-interval';
 import getIntervals from './get-intervals';
+import createInterval from './create-interval';
 import getLatestIntervalSummary from './get-latest-interval-summary';
 
 const intervals = Router();
 
 intervals.get('/', getIntervals);
-intervals.post('/', validate, require('./create-interval'));
+intervals.post('/', validate, createInterval);
 intervals.get('/latest', require('./get-latest-interval'));
 intervals.get('/latest/summary', getLatestIntervalSummary);
 intervals.get('/years', require('./get-years'));
