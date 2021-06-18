@@ -16,7 +16,7 @@ export default async function createInterval(intervalRequest: Interval): Promise
 
 	log.debug('Taking latest interval...');
 
-	const latestInterval = await dal.intervals.getLatest(intervalRequest);
+	const latestInterval = await dal.intervals.getLatest(intervalRequest.user);
 
 	if (!latestInterval) {
 		return await finaliseCreate();

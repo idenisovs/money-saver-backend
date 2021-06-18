@@ -1,16 +1,11 @@
-/**
- * Created by I. Denisovs on 19.12.2015..
- */
-var moment = require('moment');
+const moment = require('moment');
 
 module.exports = calculateTotals;
 
-function calculateTotals(summary)
-{
-    var schedule = summary.schedule;
+function calculateTotals(summary) {
+    const schedule = summary.schedule;
 
-    var totals =
-    {
+    const totals = {
         days: schedule.length,
         currentDay: getDaysDiff(summary.interval.start, schedule.length),
         currentDayPercents: 0,
@@ -20,10 +15,9 @@ function calculateTotals(summary)
 
     totals.currentDayPercents = totals.currentDay / totals.days;
 
-    var scheduleItem;
+    let scheduleItem;
 
-    for (var d = 0; d < schedule.length; d++)
-    {
+    for (let d = 0; d < schedule.length; d++) {
         scheduleItem = schedule[d];
 
         totals.expenses += scheduleItem.spent;
@@ -39,19 +33,17 @@ function calculateTotals(summary)
 
     totals.incomesAvg = totals.residual / totals.days;
 
-    totals.expectedResidual =  totals.startingSum - (totals.days * totals.expensesAvg);
+    totals.expectedResidual = totals.startingSum - (totals.days * totals.expensesAvg);
 
     totals.expectedResidualPercents = totals.expectedResidual / totals.startingSum;
 
     return totals;
 }
 
-function getDaysDiff(startingPoint, totalDays)
-{
-    var days = moment().diff(startingPoint, 'days', true);
+function getDaysDiff(startingPoint, totalDays) {
+    const days = moment().diff(startingPoint, 'days', true);
 
-    if (days <= totalDays)
-    {
+    if (days <= totalDays) {
         return Math.ceil(days);
     }
 

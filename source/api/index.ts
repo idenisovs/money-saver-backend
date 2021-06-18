@@ -1,6 +1,8 @@
 import { Router } from 'express';
-import auth from '../support/middleware/auth-middleware';
 import log4js from 'log4js';
+
+import auth from '../support/middleware/auth-middleware';
+import intervals from './intervals';
 
 const log = log4js.getLogger('api');
 
@@ -8,7 +10,7 @@ const api = Router();
 
 api.use('/payments', auth, require('./payments'));
 
-api.use('/intervals', auth, require('./intervals').default);
+api.use('/intervals', auth, intervals);
 
 api.use('/auth', require('./auth'));
 

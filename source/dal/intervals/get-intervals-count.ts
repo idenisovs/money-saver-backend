@@ -2,11 +2,11 @@ const db = require('../db').default;
 
 let sql = 'SELECT count(id) as intervals FROM intervals WHERE userId = $userId';
 
-function getIntervalsCount(userId) {
+export default function getIntervalsCount(userId: number): Promise<number> {
     return new Promise((resolve, reject) => {
         const params = { $userId: userId };
 
-        db.get(sql, params, (err, result) => {
+        db.get(sql, params, (err: Error, result: { intervals: number }) => {
             if (err) {
                 reject(err);
             } else {
@@ -16,5 +16,3 @@ function getIntervalsCount(userId) {
     })
 
 }
-
-module.exports = getIntervalsCount;

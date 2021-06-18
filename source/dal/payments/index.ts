@@ -1,12 +1,9 @@
-/**
- * This module contains data operations for table Payments
- * Created by I.Denisovs on 13.09.2015..
- */
-var payments =
-{
+import getDailySpendings from './get-daily-spendings';
+
+const payments = {
     getByIntervalId: require('./get-by-interval-id'),
 
-    getDailySpendings: require('./get-daily-spendings'),
+    getDailySpendings,
 
     getByDate: require('./get-by-date'),
 
@@ -23,7 +20,6 @@ var payments =
     deleteById: require('./delete-by-id')
 };
 
-
-module.exports = payments;
+export default payments;
 
     

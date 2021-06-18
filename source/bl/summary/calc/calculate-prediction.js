@@ -1,25 +1,22 @@
-/**
- * Created by I. Denisovs on 21.12.2015..
- */
-var moment = require('moment');
+const moment = require('moment');
 
 module.exports = calculatePrediction;
 
 function calculatePrediction(summary)
 {
-    var today = moment();
+    const today = moment();
 
-    var days = today.diff(summary.interval.start, 'days', true);
+    let days = today.diff(summary.interval.start, 'days', true);
 
     days = Math.ceil(days);
 
-    var schedule = summary.schedule;
+    const schedule = summary.schedule;
 
-    var spendAvg = calculateAverageSpending(schedule, days);
+    const spendAvg = calculateAverageSpending(schedule, days);
 
-    var currentDay, prevDaysSum;
+    let currentDay, prevDaysSum;
 
-    for (var d = 0; d < schedule.length; d++)
+    for (let d = 0; d < schedule.length; d++)
     {
         currentDay = schedule[d];
 
@@ -31,10 +28,10 @@ function calculatePrediction(summary)
 
 function calculateAverageSpending(schedule, days)
 {
-    var finalDay = Math.min(schedule.length, days);
-    var totalSpent = 0;
+    const finalDay = Math.min(schedule.length, days);
+    let totalSpent = 0;
 
-    for (var d = 0; d < finalDay; d++)
+    for (let d = 0; d < finalDay; d++)
     {
         totalSpent += schedule[d].spent;
     }
