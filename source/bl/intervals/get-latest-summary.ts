@@ -6,7 +6,7 @@ const calculateSchedule = require('../summary/calc/calculate-schedule');
 const calculatePrediction = require('../summary/calc/calculate-prediction');
 const calculateTotals = require('../summary/calc/calculate-totals');
 
-export default function getLatestIntervalSummary(user: User, success: SuccessCallback<any>, error: ErrorCallback) {
+export default async function getLatestIntervalSummary(user: User, success: SuccessCallback<any>, error: ErrorCallback) {
 	const result: {
 		interval?: Interval,
 		spendings?: Spending[],
@@ -14,30 +14,22 @@ export default function getLatestIntervalSummary(user: User, success: SuccessCal
 		totals?: Totals[]
 	} = {};
 
-	const interval = { user: user };
+	const latestInterval = await dal.intervals.getLatest({ user: user });
 
-	dal.intervals.getLatest(interval, latestInterval);
-
-	async function latestInterval(err: Error, interval: Interval) {
-		if (err) {
-			return error(err);
-		}
-
-		if (!interval) {
-			return success(null);
-		}
-
-		result.interval = interval;
-
-		interval.user = user;
-
-		dal.intervals.getCount(user.id).then((count: number) => {
-			interval.single = count === 1;
-			dal.payments.getDailySpendings(interval, dailySpendings);
-		}).catch((err: Error) => {
-			return error(err);
-		});
+	if (!latestInterval) {
+		return success(null);
 	}
+
+	result.interval = latestInterval;
+
+	latestInterval.user = user;
+
+	dal.intervals.getCount(user.id).then((count: number) => {
+		latestInterval.single = count === 1;
+		dal.payments.getDailySpendings(latestInterval, dailySpendings);
+	}).catch((err: Error) => {
+		return error(err);
+	});
 
 	function dailySpendings(err: Error, dailySpendings: Spending[]) {
 		if (err) {
