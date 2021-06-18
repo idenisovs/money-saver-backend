@@ -1,6 +1,5 @@
-const LocalStrategy = require('passport-local').Strategy;
-const bl = require('../../../bl');
+import { Strategy as LocalStrategy } from 'passport-local';
 
-const strategy = new LocalStrategy(bl.auth.local);
+import bl from '../../../bl';
 
-export default strategy;
+export default new LocalStrategy(bl.auth.local);

@@ -1,14 +1,16 @@
 import passport from 'passport';
 import log4js from 'log4js';
 import localStrategy from './strategies/local';
+import serialize from './serialize';
+import deserialize from './deserialize';
 
 const log = log4js.getLogger('passport');
 
 passport.use(localStrategy);
 
-passport.serializeUser(require('./serialize'));
+passport.serializeUser(serialize);
 
-passport.deserializeUser(require('./deserialize'));
+passport.deserializeUser(deserialize);
 
 module.exports = passport;
 
