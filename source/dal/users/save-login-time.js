@@ -1,14 +1,9 @@
-/**
- * Created by I.Denisovs on 14.03.2017.
- */
+const db = require('../db').default;
 
-var db = require('./../db');
+const sql = 'UPDATE users SET last = strftime("%s") * 1000 WHERE id = $userId';
 
-var sql = 'UPDATE users SET last = strftime("%s") * 1000 WHERE id = $userId';
-
-function saveLoginTime(user, done)
-{
-    var params = { $userId: user.id };
+function saveLoginTime(user, done) {
+    const params = { $userId: user.id };
 
     db.run(sql, params, done);
 }

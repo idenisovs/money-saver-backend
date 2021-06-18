@@ -2,7 +2,7 @@
  * This module returns the daily spendings, taken by it`s interval`s id.
  * Created by I.Denisovs on 18.11.2015..
  */
-var db = require('./../db');
+var db = require('../db').default;
 
 var sql = '';
 

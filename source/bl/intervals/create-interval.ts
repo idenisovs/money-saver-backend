@@ -80,14 +80,14 @@ export default function createInterval(intervalRequest: any, success: SuccessCal
 		dal.intervals.create(intervalRequest, done);
 	}
 
-	function done(this: { lastID: number }, err: Error) {
+	function done(err: Error|null, intervalId?: number) {
 		if (err) {
 			log.error('Save failed!');
 
 			return error(err);
 		}
 
-        intervalRequest.id = this.lastID;
+        intervalRequest.id = intervalId
 
 		log.debug('Interval successfully saved under %d id!', intervalRequest.id);
 

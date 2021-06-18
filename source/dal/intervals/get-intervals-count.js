@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../db').default;
 
 let sql = 'SELECT count(id) as intervals FROM intervals WHERE userId = $userId';
 

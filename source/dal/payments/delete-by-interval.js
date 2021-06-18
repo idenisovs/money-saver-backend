@@ -2,7 +2,7 @@
  * Created by I.Denisovs on 31.12.2015..
  */
 
-var db = require('../db');
+var db = require('../db').default;
 
 var sql = 'DELETE FROM payments WHERE time BETWEEN $start AND $end AND userId = $userId';
 

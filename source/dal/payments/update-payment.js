@@ -2,7 +2,7 @@
  * Created by I.Denisovs on 12.03.2016..
  */
 
-const db = require('../db');
+const db = require('../db').default;
 
 const sql = 'UPDATE payments SET sum = $sum WHERE id = $id AND userId = $userId';
 

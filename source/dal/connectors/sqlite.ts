@@ -4,7 +4,7 @@ const SQLite = require('sqlite3').Database;
 
 const log = require('log4js').getLogger('db');
 
-const DEFAULT_PATH = path.join(basedir, '..', 'finance.db');
+const DEFAULT_PATH = path.join(global.basedir, '..', 'finance.db');
 
 const databasePath = argv.database || process.env.DATABASE || DEFAULT_PATH;
 
@@ -14,11 +14,11 @@ const db = new SQLite(databasePath);
 
 db.run('PRAGMA foreign_keys = ON', done);
 
-module.exports = db;
+export default db;
 
 log.debug('%s connected!', databasePath);
 
-function done(error) {
+function done(error: Error) {
     if (error) {
         return log.error(error);
     }

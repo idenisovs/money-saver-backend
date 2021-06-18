@@ -2,7 +2,7 @@
  * This module returns the number of latest intervals.
  * Created by I.Denisovs on 03.09.2016.
  */
-var db = require('./../db');
+var db = require('../db').default;
 
 var sql = '';
 sql += 'SELECT id, start, end, sum, latest\n';

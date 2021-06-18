@@ -2,7 +2,7 @@
  * Created by I.Denisovs on 15.03.2017.
  */
 
-var db = require('../db');
+var db = require('../db').default;
 
 var sql = "SELECT count(id) AS count FROM users WHERE last >= $timestamp";
 

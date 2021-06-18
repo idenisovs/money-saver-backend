@@ -2,7 +2,7 @@
  * Created by I.Denisovs on 01.02.2016.
  */
 var log = require('log4js').getLogger('get-by-boundary');
-var db = require('../db');
+var db = require('../db').default;
 
 var sql = '';
 

@@ -2,7 +2,7 @@
  * Created by I.Denisovs on 30.12.2015..
  */
 
-var db = require('../db');
+var db = require('../db').default;
 
 var sql = '';
 sql += 'SELECT id, start, end, sum, latest\n';

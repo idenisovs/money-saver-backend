@@ -2,7 +2,7 @@
  * This module updates Interval table with given Interval object.
  * Created by I.Denisovs on 27.08.2016
  */
-const db = require('../db');
+const db = require('../db').default;
 
 const log = require('log4js').getLogger('intervals');
 

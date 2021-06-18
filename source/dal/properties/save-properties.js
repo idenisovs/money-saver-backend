@@ -3,7 +3,7 @@
  */
 
 var log = require('log4js').getLogger('properties');
-var db = require('../db');
+var db = require('../db').default;
 
 var sql = 'UPDATE users ' +
     'SET password = $hash, email = $email, timezone = $timezone, language = $language ' +

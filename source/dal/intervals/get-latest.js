@@ -2,7 +2,7 @@
  * This module returns the latest interval.
  * Created by I.Denisovs on 17.11.2015..
  */
-var db = require('./../db');
+var db = require('../db').default;
 
 module.exports = getLatest;
 

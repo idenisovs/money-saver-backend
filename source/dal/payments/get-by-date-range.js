@@ -1,7 +1,7 @@
 /**
  * Created by I.Denisovs on 02.01.2016..
  */
-var db = require('./../db');
+var db = require('../db').default;
 
 var sql = "";
 

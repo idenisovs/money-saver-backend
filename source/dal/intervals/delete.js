@@ -2,7 +2,7 @@
  * Created by I.Denisovs on 26.12.2015..
  */
 
-var db = require('../db');
+var db = require('../db').default;
 
 module.exports = deleteInterval;
 
