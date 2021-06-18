@@ -7,7 +7,7 @@ module.exports = {
     production : {
       user : 'pm2',
       host : 'e-dreams.lv',
-      ref  : 'origin/v2/dev',
+      ref  : 'origin/master',
       repo : 'https://github.com/idenisovs/money-saver.git',
       path : '/opt/pm2/money-saver',
       'post-deploy' : 'npm run update && pm2 startOrRestart ./ecosystem.config.js',
