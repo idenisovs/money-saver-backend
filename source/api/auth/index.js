@@ -1,5 +1,5 @@
 const auth = require('express').Router();
-const passport = require('../../support/passport');
+const passport = require('../../support/passport').default;
 const checkAuth = require('../../support/middleware/auth-middleware');
 
 const authenticate = passport.authenticate('local');

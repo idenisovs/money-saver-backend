@@ -10,9 +10,9 @@ import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import log4js from './support/log4js';
-const passport = require('./support/passport');
-const argv = require('./support/argv');
-const session = require('./support/session').default;
+import passport from './support/passport';
+import argv from './support/argv';
+import session from './support/session';
 
 const log = log4js.getLogger('daemon');
 

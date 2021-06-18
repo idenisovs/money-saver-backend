@@ -12,6 +12,6 @@ passport.serializeUser(serialize);
 
 passport.deserializeUser(deserialize);
 
-module.exports = passport;
+export default passport;
 
 log.debug('Configured!');
