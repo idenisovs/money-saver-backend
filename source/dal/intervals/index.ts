@@ -20,7 +20,6 @@ const intervals = {
     update,
     delete: remove,
     getCount
-
 };
 
 export default intervals;

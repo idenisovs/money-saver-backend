@@ -1,4 +1,5 @@
 import getDailySpendings from './get-daily-spendings';
+import deleteByInterval from './delete-by-interval';
 
 const payments = {
     getByIntervalId: require('./get-by-interval-id'),
@@ -15,7 +16,7 @@ const payments = {
 
     update: require('./update-payment'),
 
-    deleteByInterval: require('./delete-by-interval'),
+    deleteByInterval,
 
     deleteById: require('./delete-by-id')
 };
