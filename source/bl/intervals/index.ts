@@ -1,4 +1,3 @@
-import getById from './get-by-id';
 import getByTime from './get-by-time';
 import getByBoundary from './get-by-boundary';
 import getLatestSummary from './get-latest-summary';
@@ -9,7 +8,6 @@ import remove from './delete-interval';
 import update from './update-interval';
 
 const intervals = {
-    getById,
     getByTime,
     getByBoundary,
     getLatestSummary,

@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import log4js from 'log4js';
 
-import auth from '../support/middleware/auth-middleware';
 import intervals from './intervals';
+import auth from '../support/middleware/auth-middleware';
 
 const log = log4js.getLogger('api');
 

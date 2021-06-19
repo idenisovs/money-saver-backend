@@ -6,6 +6,7 @@ import getIntervals from './get-intervals';
 import createInterval from './create-interval';
 import getLatestInterval from './get-latest-interval';
 import getLatestIntervalSummary from './get-latest-interval-summary';
+import getYears from './get-years';
 
 const intervals = Router();
 
@@ -13,7 +14,7 @@ intervals.get('/', getIntervals);
 intervals.post('/', validate, createInterval);
 intervals.get('/latest', getLatestInterval);
 intervals.get('/latest/summary', getLatestIntervalSummary);
-intervals.get('/years', require('./get-years'));
+intervals.get('/years', getYears);
 intervals.get('/:id', require('./get-interval-by-id'));
 intervals.put('/:id', validate, require('./update-interval'));
 intervals.delete('/:id', require('./delete-interval'));

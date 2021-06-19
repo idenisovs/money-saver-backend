@@ -1,9 +1,11 @@
+import intervals from './intervals';
+
 const dal = {
-    intervals: require('./intervals').default,
+    intervals,
     payments: require('./payments'),
     users: require('./users'),
     properties: require('./properties'),
     timezones: require('./timezones')
 };
 
-module.exports = dal;
+export default dal;
