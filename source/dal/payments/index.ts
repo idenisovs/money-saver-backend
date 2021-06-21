@@ -1,26 +1,10 @@
-import getDailySpendings from './get-daily-spendings';
-import deleteByInterval from './delete-by-interval';
-
-const payments = {
-    getByIntervalId: require('./get-by-interval-id'),
-
-    getDailySpendings,
-
-    getByDate: require('./get-by-date'),
-
-    getByDateRange: require('./get-by-date-range'),
-
-    getById: require('./get-by-id'),
-
-    save: require('./save-payment'),
-
-    update: require('./update-payment'),
-
-    deleteByInterval,
-
-    deleteById: require('./delete-by-id')
-};
-
-export default payments;
-
+export * from './get-daily-spendings';
+export * from './delete-by-interval';
+export * from './delete-by-id'
+export * from './get-by-date';
+export * from './get-by-date-range';
+export * from './get-by-id';
+export { savePayment as save } from './save-payment';
+export * from './get-by-interval-id';
+export { updatePayment as update } from './update-payment';
     
