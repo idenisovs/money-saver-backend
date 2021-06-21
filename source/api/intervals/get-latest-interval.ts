@@ -25,6 +25,7 @@ export default async function getLatestInterval(req: Request, res: Response) {
 
         res.json(latestInterval);
     } catch (err) {
+        log.error(err);
         res.status(states.INTERNAL_SERVER_ERROR).json({ err: err });
     }
 }
