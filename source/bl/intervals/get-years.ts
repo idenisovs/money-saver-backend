@@ -1,28 +1,15 @@
 import moment from 'moment';
 import dal from '../../dal';
-import { Interval, User } from '../../shared';
+import { User } from '../../shared';
 
-type SuccessCallback = (years: number[]) => void;
-type ErrorCallback = (error: Error) => void;
+export default async function getYears(user: User): Promise<number[]> {
+    const intervals = await dal.intervals.getAll(user);
 
-export default function getYears(user: User, success: SuccessCallback, error: ErrorCallback) {
-    dal.intervals.getAll(user, processIntervals);
+    const years = new Set<number>();
 
-    function processIntervals(err: Error, intervals: Interval[]) {
-        if (err) {
-            return error(err);
-        }
-
-        const years: number[] = [];
-
-        intervals.forEach((interval: Interval) => {
-            const year = moment(interval.start).year();
-
-            if (years.indexOf(year) === -1) {
-                years.push(year);
-            }
-        });
-
-        success(years);
+    for (let interval of intervals) {
+        years.add(moment(interval.start).year());
     }
+
+    return Array.from(years);
 }
