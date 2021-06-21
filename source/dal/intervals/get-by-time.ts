@@ -14,7 +14,7 @@ type IntervalQuery = {
     time: number
 }
 
-export default function getByTime(interval: IntervalQuery, user: User): Promise<Interval> {
+export function getByTime(interval: IntervalQuery, user: User): Promise<Interval> {
     return new Promise((resolve, reject) => {
         const params = {
             $stamp: interval.time,

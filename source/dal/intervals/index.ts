@@ -1,25 +1,10 @@
-import getLatest from './get-latest';
-import getNthLatest from './get-nth-latest';
-import getByTime from './get-by-time';
-import getByBoundary from './get-by-boundary';
-import getAll from './get-all';
-import getById from './get-by-id';
-import create from './create';
-import update from './update-interval';
-import remove from './delete';
-import getCount from './get-intervals-count';
-
-const intervals = {
-    getLatest,
-    getById,
-    getNthLatest,
-    getByTime,
-    getByBoundary,
-    getAll,
-    create,
-    update,
-    delete: remove,
-    getCount
-};
-
-export default intervals;
+export { getLatestInterval as getLatest } from './get-latest';
+export * from './get-nth-latest';
+export * from './get-by-time';
+export * from './get-by-boundary';
+export * from './get-all';
+export * from './get-by-id';
+export * from './create';
+export { updateInterval as update } from './update-interval';
+export * from './remove';
+export { getIntervalsCount as getCount } from './get-intervals-count';

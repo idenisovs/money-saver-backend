@@ -1,9 +1,9 @@
-import intervals from './intervals';
+import * as intervals from './intervals';
 
 const dal = {
     intervals,
-    payments: require('./payments'),
-    users: require('./users'),
+    payments: require('./payments').default,
+    users: require('./users').default,
     properties: require('./properties'),
     timezones: require('./timezones')
 };

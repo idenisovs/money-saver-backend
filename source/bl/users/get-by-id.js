@@ -1,17 +1,10 @@
-/**
- * Created by I.Denisovs on 16.23.5.
- */
+const dal = require('../../dal').default;
 
-var dal = require('../../dal');
-
-function getUserById(id, success, error)
-{
+function getUserById(id, success, error) {
     dal.users.getById(id, done);
 
-    function done(err, user)
-    {
-        if (err)
-        {
+    function done(err, user) {
+        if (err) {
             return error(err);
         }
 

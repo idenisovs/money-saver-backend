@@ -1,23 +1,14 @@
+import moment from 'moment';
+import log4js from 'log4js';
 import { Interval } from '../../shared';
+import dal from '../../dal';
 
-const log = require('log4js').getLogger('update-interval');
-const moment = require('moment');
-const dal = require('../../dal');
+const log = log4js.getLogger('update-interval');
 
 export default async function updateInterval(interval: Interval): Promise<void> {
-    return new Promise((resolve, reject) => {
-        log.trace(interval);
+    log.trace(interval);
 
-        interval.end = moment(interval.end).endOf('day').valueOf();
+    interval.end = moment(interval.end).endOf('day').valueOf();
 
-        dal.intervals.update(interval, done);
-
-        function done(err: Error) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve()
-            }
-        }
-    });
+    await dal.intervals.update(interval);
 }

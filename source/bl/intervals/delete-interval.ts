@@ -18,7 +18,7 @@ export default async function deleteInterval(intervalId: number, user: User): Pr
 
     result.paymentsRemoved = await dal.payments.deleteByInterval(interval, user);
 
-    result.intervalsRemoved = await dal.intervals.delete(interval, user);
+    result.intervalsRemoved = await dal.intervals.remove(interval, user);
 
     return result;
 }

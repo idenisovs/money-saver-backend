@@ -19,7 +19,7 @@ export type IntervalQuery = {
     till?: number
 };
 
-export default function getByBoundary(query: IntervalQuery, user: User): Promise<Interval[]> {
+export function getByBoundary(query: IntervalQuery, user: User): Promise<Interval[]> {
     return new Promise((resolve, reject) => {
         log.trace(query);
 

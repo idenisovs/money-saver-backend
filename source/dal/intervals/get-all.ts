@@ -4,7 +4,7 @@ import done from '../done';
 
 const sql = 'SELECT id, start, end, sum, latest FROM intervals WHERE userId = $userId ORDER BY start DESC';
 
-export default function getAllIntervals(user: User): Promise<Interval[]> {
+export function getAll(user: User): Promise<Interval[]> {
     return new Promise((resolve, reject) => {
         const params = { '$userId': user.id };
 

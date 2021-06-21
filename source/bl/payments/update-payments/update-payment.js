@@ -1,5 +1,5 @@
 const log = require('log4js').getLogger('update-payment');
-const dal = require('../../../dal');
+const dal = require('../../../dal').default;
 
 function updatePayment(payment, deferred) {
     log.debug('Updating payment #%d with sum %d', payment.id, payment.sum);

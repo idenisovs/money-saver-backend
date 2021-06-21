@@ -1,7 +1,7 @@
 const deferred = require('deferred');
 const log = require('log4js').getLogger('save-payment');
 const db = require('../db').default;
-const getIntervalByTime = require('../intervals/get-by-time');
+const { getByTime } = require('../intervals/get-by-time');
 
 const sql = "INSERT INTO payments (time, date, sum, userId) VALUES ($time, $date, $sum, $userId)";
 
@@ -15,7 +15,11 @@ function savePayment(payment)
 	const params = { $time: payment.time, $date: payment.date, $sum: payment.sum, $userId: payment.user.id };
     const interval = { time: payment.time, user: payment.user };
 
-    getIntervalByTime(interval, checkInterval);
+	getByTime(interval, payment.user).then((result) => {
+		checkInterval(null, result);
+	}).catch((error) => {
+		checkInterval(error, null);
+	});
 
 	return q.promise;
 

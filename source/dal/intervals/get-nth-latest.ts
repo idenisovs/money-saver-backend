@@ -8,7 +8,7 @@ sql += 'FROM intervals\n';
 sql += 'WHERE userId = $userId\n';
 sql += 'ORDER BY start DESC LIMIT $limit';
 
-export default function getNthLatest(limit= 1, user: User): Promise<Interval> {
+export function getNthLatest(limit= 1, user: User): Promise<Interval> {
     return new Promise((resolve, reject) => {
         const params = {
             $userId: user.id,

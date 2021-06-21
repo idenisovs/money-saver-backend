@@ -1,6 +1,6 @@
 const moment = require('moment');
 const log = require('log4js').getLogger('get-payments');
-const dal = require('../../dal');
+const dal = require('../../dal').default;
 
 module.exports = getPayments;
 

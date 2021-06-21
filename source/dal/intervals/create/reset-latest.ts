@@ -1,5 +1,6 @@
 import log4js from 'log4js';
 import db from '../../db';
+import done from '../../done';
 
 const log = log4js.getLogger('create-interval');
 
@@ -9,16 +10,10 @@ export default function resetLatestInterval(userId: number): Promise<void> {
 
 		const sql = 'UPDATE intervals SET latest = 0 WHERE userId = $userId';
 
-		const params = { $userId: userId };
+		const params = {
+			$userId: userId
+		};
 
-		db.run(sql, params, (err: Error) => {
-			if (err) {
-				log.error(err);
-				reject(err)
-			} else {
-				log.debug('Reset done!');
-				resolve();
-			}
-		});
+		db.run(sql, params, done(resolve, reject));
 	})
 }

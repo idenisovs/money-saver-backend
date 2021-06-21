@@ -1,6 +1,6 @@
 import { Summary, User } from '../../shared';
+import dal from '../../dal';
 
-const dal = require('../../dal');
 const calculateSchedule = require('../summary/calc/calculate-schedule');
 const calculatePrediction = require('../summary/calc/calculate-prediction');
 const calculateTotals = require('../summary/calc/calculate-totals');
@@ -20,7 +20,7 @@ export default async function getLatestIntervalSummary(user: User): Promise<Summ
 
 	latestInterval.single = count === 1;
 
-	const spendings = dal.payments.getDailySpendings(latestInterval);
+	const spendings = await dal.payments.getDailySpendings(latestInterval);
 
 	const schedule = calculateSchedule({
 		interval, spendings

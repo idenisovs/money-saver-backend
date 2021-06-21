@@ -1,7 +1,7 @@
+import { RunResult } from 'sqlite3';
 import log4js from 'log4js';
 import db from '../../db';
 import { Interval } from '../../../shared';
-import { RunResult } from 'sqlite3';
 
 const log = log4js.getLogger('create-interval');
 
@@ -18,6 +18,8 @@ export default function createInterval(interval: Interval): Promise<number> {
 			$userId: interval.user.id,
 			$latest: 1
 		};
+
+		log.trace(params);
 
 		db.run(sql, params, done);
 
