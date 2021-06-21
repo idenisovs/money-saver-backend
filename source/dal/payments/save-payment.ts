@@ -21,7 +21,7 @@ export function savePayment(payment: Payment, user: User): Promise<void> {
         };
 
         const intervalQuery = {
-            time: payment.time.getTime()
+            time: (payment.time as Date).getTime()
         };
 
         const result = await getByTime(intervalQuery, user);

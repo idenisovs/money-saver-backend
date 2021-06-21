@@ -1,10 +1,15 @@
 import { RunResult } from 'sqlite3';
 import db from '../db';
-import { Interval, User } from '../../shared';
+import { User } from '../../shared';
 
 const sql = 'DELETE FROM payments WHERE time BETWEEN $start AND $end AND userId = $userId';
 
-export function deleteByInterval(interval: Interval, user: User): Promise<number> {
+type IntervalQuery = {
+    start: number;
+    end: number;
+};
+
+export function deleteByInterval(interval: IntervalQuery, user: User): Promise<number> {
     return new Promise((resolve, reject) => {
         const params = {
             $start: interval.start,

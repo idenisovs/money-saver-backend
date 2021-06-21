@@ -1,13 +1,13 @@
 import { RunResult } from 'sqlite3';
 import db from '../db';
-import { Payment, User } from '../../shared';
+import { User } from '../../shared';
 
 const sql = 'DELETE FROM payments WHERE id = $id AND userId = $userId';
 
-export function deleteById(payment: Payment, user: User): Promise<number> {
+export function deleteById(paymentId: number, user: User): Promise<number> {
     return new Promise((resolve, reject) => {
         const params = {
-            $id: payment.id,
+            $id: paymentId,
             $userId: user.id
         };
 

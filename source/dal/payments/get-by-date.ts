@@ -9,10 +9,10 @@ sql += "FROM payments\n";
 sql += "WHERE date = $date AND userId = $userId\n";
 sql += "ORDER BY time ASC\n";
 
-export function getByDate(payment: Payment, user: User): Promise<Payment[]> {
+export function getByDate(date: string, user: User): Promise<Payment[]> {
     return new Promise((resolve, reject) => {
         const params = {
-            '$date': payment.date,
+            '$date': date,
             '$userId': user.id
         };
 
