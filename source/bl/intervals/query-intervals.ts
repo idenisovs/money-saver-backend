@@ -3,9 +3,8 @@ import log4js from 'log4js';
 
 import { Interval, User } from '../../shared';
 import getIntervalByBoundary from './get-by-boundary';
-import dal from '../../dal';
 import { IntervalQuery } from '../../dal/intervals/get-by-boundary';
-
+import dal from '../../dal';
 
 const log = log4js.getLogger('query-intervals');
 
