@@ -1,22 +1,14 @@
 import { Request, Response } from 'express';
 import http from 'http-status';
 import bl from '../../bl';
-import { Payment } from '../../shared';
+import { User } from '../../shared';
 
-export default function getPayments(req: Request, res: Response) {
-	const query = {
-		...req.query,
-		user: req.user
-	};
+export default async function getPayments(req: Request, res: Response) {
+	try {
+		const payments = bl.payments.get(req.query, req.user as User);
 
-	bl.payments.get(query, success, error);
-
-	function success(payments: Payment[]) {
 		res.json(payments);
+	} catch (e) {
+		res.status(http.INTERNAL_SERVER_ERROR).json(e);
 	}
-
-	function error(err: Error) {
-		res.status(http.INTERNAL_SERVER_ERROR).json(err);
-	}
-
 }

@@ -2,14 +2,14 @@ import { Router } from 'express';
 import log4js from 'log4js';
 
 import intervals from './intervals';
+import payments from './payments';
 import auth from '../support/middleware/auth-middleware';
 
 const log = log4js.getLogger('api');
 
 const api = Router();
 
-api.use('/payments', auth, require('./payments'));
-
+api.use('/payments', auth, payments);
 api.use('/intervals', auth, intervals);
 
 api.use('/auth', require('./auth'));
