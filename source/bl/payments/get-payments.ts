@@ -12,28 +12,28 @@ type PaymentsRequest = {
     till?: number;
 }
 
-export async function getPayments(request: PaymentsRequest, user: User): Promise<Payment[]> {
-    log.trace(request);
+export async function getPayments(req: PaymentsRequest, user: User): Promise<Payment[]> {
+    log.trace(req);
 
-    if ('id' in request) {
+    if ('id' in req) {
         log.debug('Taking payment by Id!');
-        return [ await dal.payments.getById(request.id!, user) ];
+        return [ await dal.payments.getById(req.id!, user) ];
     }
 
-    if ('date' in request) {
+    if ('date' in req) {
         log.debug('Taking payments by date!');
-        return await dal.payments.getByDate(request.date!, user);
+        return dal.payments.getByDate(req.date!, user);
     }
 
-    if (('from' in request) && ('till' in request)) {
+    if (('from' in req) && ('till' in req)) {
         log.debug('Taking payments by date range!');
 
         const paymentRequest = {
-            from: moment(request.from).startOf('day').valueOf(),
-            till: moment(request.till).endOf('day').valueOf(),
+            from: moment(req.from).startOf('day').valueOf(),
+            till: moment(req.till).endOf('day').valueOf(),
         };
 
-        return await dal.payments.getByDateRange(paymentRequest, user);
+        return dal.payments.getByDateRange(paymentRequest, user);
     }
 
     log.debug('Taking payments by latest interval!');
@@ -43,5 +43,5 @@ export async function getPayments(request: PaymentsRequest, user: User): Promise
     log.debug('Latest interval taken!');
     log.trace(interval);
 
-    return await dal.payments.getByIntervalId(interval.id, user);
+    return dal.payments.getByIntervalId(interval.id, user);
 }

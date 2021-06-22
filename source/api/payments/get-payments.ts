@@ -5,7 +5,7 @@ import { User } from '../../shared';
 
 export default async function getPayments(req: Request, res: Response) {
 	try {
-		const payments = bl.payments.get(req.query, req.user as User);
+		const payments = await bl.payments.get(req.query, req.user as User);
 
 		res.json(payments);
 	} catch (e) {

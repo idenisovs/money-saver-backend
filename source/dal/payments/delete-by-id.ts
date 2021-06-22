@@ -8,7 +8,7 @@ const log = log4js.getLogger('delete-payment');
 const sql = 'DELETE FROM payments WHERE id = $id AND userId = $userId';
 
 export function deleteById(paymentId: number, user: User): Promise<number> {
-    log.debug('Updating payment <%d> from user <%d>!', paymentId, user.id);
+    log.debug('Removing payment <%d> from user <%d>!', paymentId, user.id);
 
     return new Promise((resolve, reject) => {
         const params = {
