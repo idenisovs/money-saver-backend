@@ -1,7 +1,10 @@
-const log = require('log4js').getLogger('auth');
-const HttpStatus = require('http-status');
+import { NextFunction, Request, Response } from 'express';
+import HttpStatus from 'http-status';
+import log4js from 'log4js';
 
-module.exports = function auth(req, res, next) {
+const log = log4js.getLogger('auth');
+
+export default function auth(req: Request, res: Response, next: NextFunction) {
     if (req.isAuthenticated()) {
         return next();
     }
