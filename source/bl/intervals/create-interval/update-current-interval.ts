@@ -1,6 +1,6 @@
 import moment from 'moment';
 import log4js from 'log4js';
-import updateInterval from '../update-interval';
+import { updateInterval } from '../update-interval';
 import getDate from './get-date';
 import { Interval } from '../../../shared';
 

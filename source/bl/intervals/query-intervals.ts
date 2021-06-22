@@ -2,13 +2,13 @@ import { Request } from 'express';
 import log4js from 'log4js';
 
 import { Interval, User } from '../../shared';
-import getIntervalByBoundary from './get-by-boundary';
+import { getIntervalByBoundary } from './get-by-boundary';
 import { IntervalQuery } from '../../dal/intervals';
 import dal from '../../dal';
 
 const log = log4js.getLogger('query-intervals');
 
-export default async function queryIntervals(req: Request): Promise<Interval[]> {
+export async function queryIntervals(req: Request): Promise<Interval[]> {
 	const user = req.user as User;
 	const time = req.query.timestamp ? req.query.timestamp : null;
 

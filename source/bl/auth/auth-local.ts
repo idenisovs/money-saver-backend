@@ -4,7 +4,7 @@ import dal from '../../dal';
 
 const log = log4js.getLogger('auth');
 
-export default function auth(username: string, password: string, done: Function) {
+export function auth(username: string, password: string, done: Function) {
     let user: any;
 
     log.debug('Authorization of user %s...', username);

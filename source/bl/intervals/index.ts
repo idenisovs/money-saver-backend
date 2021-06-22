@@ -1,19 +1,7 @@
-import getByBoundary from './get-by-boundary';
-import getLatestSummary from './get-latest-summary';
-import getYears from './get-years';
-import queryIntervals from './query-intervals';
-import create from './create-interval';
-import remove from './delete-interval';
-import update from './update-interval';
-
-const intervals = {
-    getByBoundary,
-    getLatestSummary,
-    getYears,
-    get: queryIntervals,
-    create,
-    delete: remove,
-    update
-};
-
-export default intervals;
+export { getIntervalByBoundary as getByBoundary } from './get-by-boundary';
+export { getLatestIntervalSummary as getLatestSummary } from './get-latest-summary';
+export { getYears } from './get-years';
+export { queryIntervals as get } from './query-intervals';
+export { createInterval as create } from './create-interval';
+export { deleteInterval as remove } from './delete-interval';
+export { updateInterval as update } from './update-interval';

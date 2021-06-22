@@ -3,7 +3,7 @@ import dal from '../../dal';
 import IntervalDeleteResult from '../../api/intervals/interval-delete-result';
 import { User } from '../../shared';
 
-export default async function deleteInterval(intervalId: number, user: User): Promise<IntervalDeleteResult> {
+export async function deleteInterval(intervalId: number, user: User): Promise<IntervalDeleteResult> {
     const result = {
         intervalsRemoved: 0,
         paymentsRemoved: 0

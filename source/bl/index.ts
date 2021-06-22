@@ -1,14 +1,12 @@
-import auth from './auth';
-import intervals from './intervals';
+import * as intervals from './intervals';
 import * as payments from './payments';
+import * as properties from './properties';
+import * as auth from './auth';
+import * as users from './users';
+import * as summary from './summary';
 
 const bl = {
-    intervals,
-    payments,
-    auth,
-    users: require('./users'),
-    summary: require('./summary'),
-    properties: require('./properties')
+	intervals, payments, properties, auth, users, summary
 };
 
 export default bl;

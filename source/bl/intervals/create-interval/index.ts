@@ -8,7 +8,7 @@ import { Interval } from '../../../shared';
 
 const log = log4js.getLogger('create-interval');
 
-export default async function createInterval(intervalRequest: Interval): Promise<Interval> {
+export async function createInterval(intervalRequest: Interval): Promise<Interval> {
 	log.debug('Trying to create interval...');
 
 	intervalRequest.start = moment(intervalRequest.start).startOf('day').valueOf();

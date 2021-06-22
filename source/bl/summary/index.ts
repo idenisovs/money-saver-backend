@@ -1,0 +1,1 @@
+export { getPaymentsSummary as payments } from './get-payments-summary';

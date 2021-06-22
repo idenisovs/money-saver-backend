@@ -1,4 +1,6 @@
-module.exports = [
+import { Timezone } from '../../shared';
+
+export const timezones: Timezone[] = [
     { "timeZoneId": 1, "gmtAdjustment": "GMT-12:00", "useDaylightTime": false, "value": -12, "label": "(GMT-12:00) International Date Line West" },
     { "timeZoneId": 2, "gmtAdjustment": "GMT-11:00", "useDaylightTime": false, "value": -11, "label": "(GMT-11:00) Midway Island, Samoa" },
     { "timeZoneId": 3, "gmtAdjustment": "GMT-10:00", "useDaylightTime": false, "value": -10, "label": "(GMT-10:00) Hawaii" },

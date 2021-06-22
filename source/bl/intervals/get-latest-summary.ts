@@ -5,7 +5,7 @@ const calculateSchedule = require('../summary/calc/calculate-schedule');
 const calculatePrediction = require('../summary/calc/calculate-prediction');
 const calculateTotals = require('../summary/calc/calculate-totals');
 
-export default async function getLatestIntervalSummary(user: User): Promise<Summary|null> {
+export async function getLatestIntervalSummary(user: User): Promise<Summary|null> {
 	const latestInterval = await dal.intervals.getLatest(user);
 
 	if (!latestInterval) {

@@ -5,7 +5,7 @@ import dal from '../../dal';
 
 const log = log4js.getLogger('update-interval');
 
-export default async function updateInterval(interval: Interval): Promise<void> {
+export async function updateInterval(interval: Interval): Promise<void> {
     log.trace(interval);
 
     interval.end = moment(interval.end).endOf('day').valueOf();

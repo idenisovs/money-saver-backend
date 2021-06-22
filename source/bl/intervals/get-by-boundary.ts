@@ -2,11 +2,11 @@ import moment from 'moment';
 import log4js from 'log4js';
 import dal from '../../dal';
 import { Interval, User } from '../../shared';
-import { IntervalQuery } from '../../dal/intervals/get-by-boundary';
+import { IntervalQuery } from '../../dal/intervals';
 
 const log = log4js.getLogger('get-by-boundary');
 
-export default function getIntervalByBoundary(query: IntervalQuery, user: User): Promise<Interval[]> {
+export function getIntervalByBoundary(query: IntervalQuery, user: User): Promise<Interval[]> {
     const { from, till } = query;
 
     query.from = typeof from === 'undefined' ? 0 : moment(from).valueOf();

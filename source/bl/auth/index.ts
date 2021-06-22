@@ -1,7 +1,1 @@
-import local from './auth-local';
-
-const auth = {
-    local
-};
-
-export default auth;
+export { auth as local } from './auth-local';

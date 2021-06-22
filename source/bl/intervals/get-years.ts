@@ -2,7 +2,7 @@ import moment from 'moment';
 import dal from '../../dal';
 import { User } from '../../shared';
 
-export default async function getYears(user: User): Promise<number[]> {
+export async function getYears(user: User): Promise<number[]> {
     const intervals = await dal.intervals.getAll(user);
 
     const years = new Set<number>();

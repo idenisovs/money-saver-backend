@@ -8,7 +8,7 @@ export default async function deleteInterval(req: Request, res: Response) {
 	const user = req.user as User;
 
 	try {
-		const result = await bl.intervals.delete(intervalId, user);
+		const result = await bl.intervals.remove(intervalId, user);
 
 		res.json(result);
 	} catch (e) {
