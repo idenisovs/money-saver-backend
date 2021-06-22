@@ -9,6 +9,7 @@ import version from './version';
 import users from './users';
 import properties from './properties';
 import timezones from './timezones';
+import summary from './summary';
 import auth from '../support/middleware/auth-middleware';
 
 const log = log4js.getLogger('api');
@@ -20,7 +21,7 @@ api.use('/intervals', auth, intervals);
 api.use('/auth', authApi);
 api.use('/health', health);
 api.use('/version', version);
-api.use('/summary', auth, require('./summary'));
+api.use('/summary', auth, summary);
 api.use('/properties', auth, properties);
 api.use('/timezones', timezones);
 api.use('/users', users);
