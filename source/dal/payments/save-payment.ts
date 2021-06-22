@@ -9,10 +9,10 @@ const log = log4js.getLogger('save-payment');
 const sql = 'INSERT INTO payments (time, date, sum, userId) VALUES ($time, $date, $sum, $userId)';
 
 export function savePayment(payment: Payment, user: User): Promise<void> {
-    return new Promise(async (resolve, reject) => {
-        log.debug('Saving payment with sum: %s and user id %s', payment.sum, user.id);
-        log.trace(payment);
+    log.debug('Saving payment <%d> with sum <%d> from user <%d>!', payment.id, payment.sum, user.id);
+    log.trace(payment);
 
+    return new Promise(async (resolve, reject) => {
         const params = {
             $time: payment.time,
             $date: payment.date,

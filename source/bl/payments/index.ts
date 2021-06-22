@@ -1,12 +1,4 @@
-import { getPayments as get } from './get-payments';
-import { deletePayments as remove } from './delete-payments';
-import { savePayments as save } from './save-payments';
-
-const payments = {
-	get,
-	save,
-	remove,
-	update: require('./update-payments')
-};
-
-export default payments;
+export { getPayments as get } from './get-payments';
+export { deletePayments as remove } from './delete-payments';
+export { savePayments as save } from './save-payments';
+export { updatePayments as update } from './update-payments';
