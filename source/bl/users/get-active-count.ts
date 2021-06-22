@@ -1,17 +1,11 @@
 import moment from 'moment';
 import dal from '../../dal';
 
-export function getActiveUsersCount(success: Function, error: Function) {
+export async function getActiveUsersCount(): Promise<number> {
 	const last31days = moment().subtract(31, 'days').valueOf();
 
-	dal.users.getCountByTime(last31days, done);
+	const result = await dal.users.getCountByTime(last31days);
 
-	function done(err: Error, result: any) {
+	return result.count;
 
-		if (err) {
-			error(err);
-		} else {
-			success(result);
-		}
-	}
 }

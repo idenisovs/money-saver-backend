@@ -2,7 +2,7 @@ import { User } from '../../shared';
 import bl from '../../bl';
 
 export default function deserialize(id: number, done: (err: any, user: any) => void) {
-    bl.users.getById(id, success, error);
+    bl.users.getById(id).then(success).catch(error);
 
     function success(user: User) {
         done(undefined, clean(user));

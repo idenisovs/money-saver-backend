@@ -1,8 +1,4 @@
-const users = {
-	getByName: require('./get-by-name'),
-	getById: require('./get-by-id'),
-	saveLoginTime: require('./save-login-time'),
-	getCountByTime: require('./get-count-by-time')
-};
-
-export default users;
+export * from './get-by-id';
+export { getUserByName as getByName } from './get-by-name';
+export { getUsersCountByTime as getCountByTime } from './get-count-by-time';
+export * from './save-login-time';

@@ -9,13 +9,9 @@ export function auth(username: string, password: string, done: Function) {
 
     log.debug('Authorization of user %s...', username);
 
-    dal.users.getByName(username, validateUsername);
+    dal.users.getByName(username).then(validateUsername);
 
-    function validateUsername(error: Error, userRecord: any) {
-        if (error) {
-            return fail(error);
-        }
-
+    function validateUsername(userRecord: any) {
         if (!userRecord) {
             return reject();
         }
@@ -40,7 +36,7 @@ export function auth(username: string, password: string, done: Function) {
 
         done(null, user);
 
-        dal.users.saveLoginTime(user, timeSaveDone);
+        dal.users.saveLoginTime(user).then(timeSaveDone);
     }
 
     function reject() {
@@ -48,10 +44,8 @@ export function auth(username: string, password: string, done: Function) {
         done(null, false, {message: 'Incorrect login or password!'});
     }
 
-    function timeSaveDone(err: Error) {
-        if (err) {
-            log.error(err);
-        }
+    function timeSaveDone() {
+        log.debug('Done!');
     }
 
     function fail(error: Error) {
