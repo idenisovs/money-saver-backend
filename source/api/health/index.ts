@@ -1,4 +1,4 @@
-import { Router} from 'express';
+import { Router } from 'express';
 import getHealth from './get-health';
 
 const health = Router();

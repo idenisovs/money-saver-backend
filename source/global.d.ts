@@ -1,5 +1,9 @@
-declare namespace NodeJS {
-  export interface Global {
-    basedir: string;
+declare global {
+  namespace NodeJS {
+    interface Global {
+      basedir: string
+    }
   }
 }
+
+export default global;
