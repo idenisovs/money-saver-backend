@@ -1,6 +1,6 @@
 import log4js from 'log4js';
 import db from '../db';
-import { Interval } from '../../shared';
+import { Interval, IntervalRecord, User } from '../../shared';
 import done from '../done';
 
 const log = log4js.getLogger('update-interval');
@@ -14,13 +14,13 @@ WHERE
     id = $id 
     AND userId = $userId`;
 
-export function updateInterval(interval: Interval): Promise<void> {
+export function updateInterval(interval: Interval|IntervalRecord, user: User): Promise<void> {
     return new Promise((resolve, reject) => {
         log.debug('Updating interval record in database!');
 
         const params = {
             $id: interval.id,
-            $userId: interval.user.id,
+            $userId: user.id,
             $sum: interval.sum,
             $start: interval.start,
             $end: interval.end

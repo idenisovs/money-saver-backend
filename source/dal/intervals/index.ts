@@ -1,10 +1,10 @@
 export { getLatestInterval as getLatest } from './get-latest';
-export * from './get-nth-latest';
-export * from './get-by-time';
-export * from './get-by-boundary';
-export * from './get-all';
-export * from './get-by-id';
-export * from './create';
+export { getNthLatest } from './get-nth-latest';
+export { getByTime } from './get-by-time';
+export { getByBoundary } from './get-by-boundary';
+export { getAll } from './get-all';
+export { getById } from './get-by-id';
+export { create } from './create';
 export { updateInterval as update } from './update-interval';
-export * from './remove';
+export { remove } from './remove';
 export { getIntervalsCount as getCount } from './get-intervals-count';

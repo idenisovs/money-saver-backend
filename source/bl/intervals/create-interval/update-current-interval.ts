@@ -2,14 +2,14 @@ import moment from 'moment';
 import log4js from 'log4js';
 import { updateInterval } from '../update-interval';
 import getDate from './get-date';
-import { Interval } from '../../../shared';
+import { Interval, IntervalRecord, User } from '../../../shared';
 
 const LATEST_INTERVAL_END_WARNING = 'Latest interval end: %s, Today: %s, Requested start: %s.';
 const INTERVAL_SHALL_START_TODAY_MESSAGE = 'If intervals interlace, then new interval shall be started today or later!';
 
 const log = log4js.getLogger('create-interval');
 
-export default async function updateCurrentInterval(intervalRequest: Interval, latestInterval: Interval): Promise<void> {
+export default async function updateCurrentInterval(intervalRequest: Interval, latestInterval: Interval|IntervalRecord, user: User): Promise<void> {
 	log.debug('Updating current interval...');
 
 	const latestIntervalEnd = getDate(latestInterval.end as number);
@@ -27,5 +27,5 @@ export default async function updateCurrentInterval(intervalRequest: Interval, l
 	latestInterval.end = moment(intervalRequest.start).subtract(1, 'days').valueOf();
 	latestInterval.user = intervalRequest.user;
 
-	await updateInterval(latestInterval);
+	await updateInterval(latestInterval, user);
 }

@@ -1,11 +1,11 @@
-import { Summary, User } from '../../shared';
+import { SummaryRecord, User } from '../../shared';
 import dal from '../../dal';
 
 const calculateSchedule = require('../summary/calc/calculate-schedule');
 const calculatePrediction = require('../summary/calc/calculate-prediction');
 const calculateTotals = require('../summary/calc/calculate-totals');
 
-export async function getLatestIntervalSummary(user: User): Promise<Summary|null> {
+export async function getLatestIntervalSummary(user: User): Promise<SummaryRecord|null> {
 	const latestInterval = await dal.intervals.getLatest(user);
 
 	if (!latestInterval) {
@@ -14,13 +14,11 @@ export async function getLatestIntervalSummary(user: User): Promise<Summary|null
 
 	const interval = latestInterval;
 
-	latestInterval.user = user;
-
 	const count = await dal.intervals.getCount(user.id);
 
 	latestInterval.single = count === 1;
 
-	const spendings = await dal.payments.getDailySpendings(latestInterval);
+	const spendings = await dal.payments.getDailySpendings(latestInterval, user);
 
 	const schedule = calculateSchedule({
 		interval, spendings
@@ -36,5 +34,5 @@ export async function getLatestIntervalSummary(user: User): Promise<Summary|null
 
 	return {
 		interval, schedule, totals, spendings
-	} as Summary;
+	} as SummaryRecord;
 }

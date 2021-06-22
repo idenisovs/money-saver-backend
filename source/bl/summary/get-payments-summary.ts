@@ -1,73 +1,36 @@
-import { Interval, Payment } from '../../shared';
+import { SummaryRecord, User } from '../../shared';
+import log4js from 'log4js';
+import dal from '../../dal';
 
-const log = require('log4js').getLogger('payments-summary');
-const dal = require('../../dal');
+import calculateTotals from './calc/calculate-totals';
+import calculatePrediction from './calc/calculate-prediction';
+import calculateSchedule from './calc/calculate-schedule';
+import getInterval from './get-interval';
+import ItemNotFoundError from '../../support/errors/item-not-found';
 
-const calculateSchedule = require('./calc/calculate-schedule');
-const calculatePrediction = require('./calc/calculate-prediction');
-const calculateTotals = require('./calc/calculate-totals');
+const log = log4js.getLogger('payments-summary');
 
-type SummaryQuery = {
-	id: number;
-	intervalId: number;
-}
+export async function getPaymentsSummary(intervalId: number, user: User): Promise<SummaryRecord> {
+	const interval = await getInterval(intervalId, user);
 
-export function getPaymentsSummary(request: SummaryQuery, success: Function, fail: Function) {
-	const summary: {
-	    interval: any,
-        spendings: any,
-        schedule: any,
-        totals: any
-    } = {
-		interval: null,
-		spendings: null,
-		schedule: null,
-		totals: null
-	};
+	log.trace(interval);
 
-	if (request.intervalId) {
-		request.id = request.intervalId;
-
-		log.debug('Requested summary of interval %d', request.id);
-
-		dal.intervals.getById(request, getPayments);
-	} else {
-		log.debug('Requested summary of latest interval!');
-
-		dal.intervals.getLatest(request, getPayments);
+	if (!interval) {
+		throw new ItemNotFoundError('Interval not found!');
 	}
 
-	function getPayments(err: Error, interval: Interval) {
-		if (err) {
-			return fail(err);
-		}
+	const spendings = await dal.payments.getDailySpendings(interval, user);
 
-		if (!interval) {
-			return fail('Interval not found!');
-		}
+	const schedule = calculateSchedule(interval, spendings);
 
-		log.trace(interval);
+	const totals = calculateTotals(schedule, interval);
 
-		summary.interval = interval;
+	calculatePrediction(interval, schedule);
 
-		request.id = interval.id;
-
-		dal.payments.getDailySpendings(request, calculateSummary);
-	}
-
-	function calculateSummary(err: Error, payments: Payment[]) {
-		if (err) {
-			return fail(err);
-		}
-
-		summary.spendings = payments;
-
-		summary.schedule = calculateSchedule(summary);
-
-		calculatePrediction(summary);
-
-		summary.totals = calculateTotals(summary);
-
-		success(summary);
+	return {
+		interval,
+		spendings,
+		schedule,
+		totals
 	}
 }

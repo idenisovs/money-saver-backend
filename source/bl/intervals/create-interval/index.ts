@@ -4,11 +4,11 @@ import log4js from 'log4js';
 import dal from '../../../dal';
 import makeInterlaceErrorMessage from './make-interlace-error-message';
 import updateCurrentInterval from './update-current-interval';
-import { Interval } from '../../../shared';
+import { Interval, User } from '../../../shared';
 
 const log = log4js.getLogger('create-interval');
 
-export async function createInterval(intervalRequest: Interval): Promise<Interval> {
+export async function createInterval(intervalRequest: Interval, user: User): Promise<Interval> {
 	log.debug('Trying to create interval...');
 
 	intervalRequest.start = moment(intervalRequest.start).startOf('day').valueOf();
@@ -29,7 +29,7 @@ export async function createInterval(intervalRequest: Interval): Promise<Interva
 	}
 
 	if (intervalRequest.start < latestInterval.end) {
-		await updateCurrentInterval(intervalRequest, latestInterval);
+		await updateCurrentInterval(intervalRequest, latestInterval, user);
 	}
 
 	return await finaliseCreate();

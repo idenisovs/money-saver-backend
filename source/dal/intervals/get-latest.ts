@@ -1,5 +1,5 @@
 import db from '../db';
-import { Interval, User } from '../../shared';
+import { IntervalRecord, User } from '../../shared';
 import done from '../done';
 
 let sql = '';
@@ -8,12 +8,12 @@ sql += 'FROM intervals\n';
 sql += 'WHERE userId = $userId\n';
 sql += 'ORDER BY start DESC LIMIT 1';
 
-export function getLatestInterval(user: User): Promise<Interval> {
+export function getLatestInterval(user: User): Promise<IntervalRecord> {
     return new Promise((resolve, reject) => {
         const params = {
             $userId: user.id
         };
 
-        db.get(sql, params, done<Interval>(resolve, reject));
+        db.get(sql, params, done<IntervalRecord>(resolve, reject));
     });
 }

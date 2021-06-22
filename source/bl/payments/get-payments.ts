@@ -43,5 +43,5 @@ export async function getPayments(req: PaymentsRequest, user: User): Promise<Pay
     log.debug('Latest interval taken!');
     log.trace(interval);
 
-    return dal.payments.getByIntervalId(interval.id, user);
+    return dal.payments.getByIntervalId(interval.id as number, user);
 }

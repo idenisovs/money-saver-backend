@@ -1,16 +1,20 @@
-const moment = require('moment');
+import moment from 'moment';
+import { IntervalRecord, ScheduleItemRecord, Totals } from '../../../shared';
 
-module.exports = calculateTotals;
-
-function calculateTotals(summary) {
-    const schedule = summary.schedule;
-
-    const totals = {
+export default function calculateTotals(schedule: ScheduleItemRecord[], interval: IntervalRecord) {
+    const totals: Totals = {
+        expectedResidual: 0,
+        expectedResidualPercents: 0,
+        expensesAvg: 0,
+        incomesAvg: 0,
+        residual: 0,
+        residualPercents: 0,
         days: schedule.length,
-        currentDay: getDaysDiff(summary.interval.start, schedule.length),
+        currentDay: getDaysDiff(interval.start, schedule.length),
         currentDayPercents: 0,
-        startingSum: summary.interval.sum,
-        expenses: 0
+        startingSum: interval.sum,
+        expenses: 0,
+        expensesPercent: 0
     };
 
     totals.currentDayPercents = totals.currentDay / totals.days;
@@ -40,12 +44,12 @@ function calculateTotals(summary) {
     return totals;
 }
 
-function getDaysDiff(startingPoint, totalDays) {
+function getDaysDiff(startingPoint: number, totalDays: number): number {
     const days = moment().diff(startingPoint, 'days', true);
 
     if (days <= totalDays) {
         return Math.ceil(days);
+    } else {
+        return totalDays;
     }
-
-    return totalDays;
 }

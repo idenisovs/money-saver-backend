@@ -2,7 +2,7 @@ import moment from 'moment';
 import log4js from 'log4js';
 import dal from '../../dal';
 import { Interval, User } from '../../shared';
-import { IntervalQuery } from '../../dal/intervals';
+import { IntervalQuery } from '../../dal/intervals/get-by-boundary';
 
 const log = log4js.getLogger('get-by-boundary');
 
