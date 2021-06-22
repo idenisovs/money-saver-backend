@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import log4js from 'log4js';
 
 import validate from './validate-interval';
 import createInterval from './create-interval';
@@ -23,5 +22,3 @@ intervals.put('/:id', validate, updateInterval);
 intervals.delete('/:id', deleteInterval);
 
 export default intervals;
-
-log4js.getLogger('api').debug('Intervals module is up!');
