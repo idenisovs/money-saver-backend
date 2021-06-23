@@ -8,16 +8,11 @@ log.warn('Launching testable database!');
 
 const db = new sqlite3.Database(':memory:');
 
-createTestableSchema(db, schemaCreateDone);
+createTestableSchema(db).then(schemaCreateDone);
 
 export default db;
 
-function schemaCreateDone(err: Error) {
-    if (err) {
-        log.error(err);
-        process.exit(1);
-    }
-
+function schemaCreateDone() {
     db.run('PRAGMA foreign_keys = ON', foreignKeysOn);
 }
 
