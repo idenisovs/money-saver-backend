@@ -20,8 +20,5 @@ export default async function deleteByIntervalId(req: Request): Promise<number> 
         throw new Error(format(NO_INTERVAL_MESSAGE, intervalId));
     }
 
-    return await dal.payments.deleteByInterval({
-        start: interval.start as number,
-        end: interval.end as number
-    }, user);
+    return await dal.payments.deleteByInterval(interval, user);
 }

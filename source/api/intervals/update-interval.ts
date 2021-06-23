@@ -7,7 +7,7 @@ import { Interval, User } from '../../shared';
 const log = log4js.getLogger('update-interval');
 
 export default async function updateInterval(req: Request, res: Response) {
-    const interval = req.body as Interval;
+    const interval = new Interval(req.body);
     const user = req.user as User;
 
     try {

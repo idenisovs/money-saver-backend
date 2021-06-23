@@ -1,7 +1,7 @@
 import moment from 'moment';
-import { IntervalRecord, ScheduleItemRecord, Totals } from '../../../shared';
+import { Interval, ScheduleItemRecord, Totals } from '../../../shared';
 
-export default function calculateTotals(schedule: ScheduleItemRecord[], interval: IntervalRecord) {
+export default function calculateTotals(schedule: ScheduleItemRecord[], interval: Interval) {
     const totals: Totals = {
         expectedResidual: 0,
         expectedResidualPercents: 0,
@@ -44,7 +44,7 @@ export default function calculateTotals(schedule: ScheduleItemRecord[], interval
     return totals;
 }
 
-function getDaysDiff(startingPoint: number, totalDays: number): number {
+function getDaysDiff(startingPoint: Date, totalDays: number): number {
     const days = moment().diff(startingPoint, 'days', true);
 
     if (days <= totalDays) {

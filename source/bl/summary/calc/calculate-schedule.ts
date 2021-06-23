@@ -1,10 +1,10 @@
-import { IntervalRecord, ScheduleItemRecord, SpendingRecord } from '../../../shared';
+import { Interval, ScheduleItemRecord, SpendingRecord } from '../../../shared';
 
 const moment = require('moment');
 
 const dateFormat = 'YYYY-MM-DD';
 
-export default function calculateSchedule(interval: IntervalRecord, spendings: SpendingRecord[] ): ScheduleItemRecord[] {
+export default function calculateSchedule(interval: Interval, spendings: SpendingRecord[] ): ScheduleItemRecord[] {
     const startingDay = moment(interval.start).subtract(1, 'days');
     const endingDay = moment(interval.end);
     const daysCount = endingDay.diff(startingDay, 'days', false);

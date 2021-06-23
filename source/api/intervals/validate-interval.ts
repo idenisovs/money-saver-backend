@@ -7,7 +7,7 @@ import { Interval } from '../../shared';
 const log = log4js.getLogger('validate-interval');
 
 export default function validateInterval(req: Request, res: Response, next: NextFunction) {
-	const interval = req.body as Interval;
+	const interval = new Interval(req.body);
 
 	log.debug('Checking interval: %j', interval);
 

@@ -7,3 +7,31 @@ GET http://localhost:9001/api/intervals/latest
 Accept: application/json
 
 ###
+
+GET http://localhost:9001/api/intervals/years
+Accept: application/json
+
+###
+
+PUT http://localhost:9001/api/intervals/1
+Content-Type: application/json
+
+{
+  "start": "2021-06-16T21:00:00.000Z",
+  "end": "2021-06-22T20:59:59.000Z",
+  "sum": 70,
+  "latest": true,
+  "id": 1
+}
+
+###
+
+POST http://localhost:9001/api/intervals
+Content-Type: application/json
+
+{
+  "start": "2021-06-23T21:00:00.000Z",
+  "end": "2021-06-30T20:59:59.000Z",
+  "sum": 70,
+  "latest": true
+}

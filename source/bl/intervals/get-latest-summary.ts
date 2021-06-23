@@ -14,10 +14,6 @@ export async function getLatestIntervalSummary(user: User): Promise<SummaryRecor
 
 	const interval = latestInterval;
 
-	const count = await dal.intervals.getCount(user.id);
-
-	latestInterval.single = count === 1;
-
 	const spendings = await dal.payments.getDailySpendings(latestInterval, user);
 
 	const schedule = calculateSchedule({

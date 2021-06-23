@@ -1,10 +1,10 @@
 import { RunResult } from 'sqlite3';
 import db from '../db';
-import { Interval, IntervalRecord, User } from '../../shared';
+import { Interval, User } from '../../shared';
 
 const sql = 'DELETE FROM intervals WHERE id = $id AND userId = $userId';
 
-export function remove(interval: Interval|IntervalRecord, user: User): Promise<number> {
+export function remove(interval: Interval, user: User): Promise<number> {
     return new Promise((resolve, reject) => {
         const params = {
             $id: interval.id,

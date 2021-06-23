@@ -16,10 +16,7 @@ export async function deleteInterval(intervalId: number, user: User): Promise<In
         throw new Error(message);
     }
 
-    result.paymentsRemoved = await dal.payments.deleteByInterval({
-        start: interval.start as number,
-        end: interval.end as number
-    }, user);
+    result.paymentsRemoved = await dal.payments.deleteByInterval(interval, user);
 
     result.intervalsRemoved = await dal.intervals.remove(interval, user);
 

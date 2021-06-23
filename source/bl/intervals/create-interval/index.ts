@@ -1,47 +1,40 @@
 import moment from 'moment';
 import log4js from 'log4js';
 
-import dal from '../../../dal';
 import makeInterlaceErrorMessage from './make-interlace-error-message';
 import updateCurrentInterval from './update-current-interval';
+import finaliseCreation from './finalise-creation';
+import dal from '../../../dal';
 import { Interval, User } from '../../../shared';
 
 const log = log4js.getLogger('create-interval');
 
-export async function createInterval(intervalRequest: Interval, user: User): Promise<Interval> {
+export async function createInterval(interval: Interval, user: User): Promise<Interval> {
 	log.debug('Trying to create interval...');
 
-	intervalRequest.start = moment(intervalRequest.start).startOf('day').valueOf();
-	intervalRequest.end = moment(intervalRequest.end).endOf('day').valueOf();
+	interval.start = moment(interval.start).startOf('day').toDate();
+	interval.end = moment(interval.end).endOf('day').toDate();
 
 	log.debug('Taking latest interval...');
 
-	const latestInterval = await dal.intervals.getLatest(intervalRequest.user);
+	const latestInterval = await dal.intervals.getLatest(user);
 
 	if (!latestInterval) {
-		return await finaliseCreate();
+		return await finaliseCreation(interval, user);
 	}
 
-	if (intervalRequest.start <= latestInterval.start) {
-		const message = makeInterlaceErrorMessage(intervalRequest, latestInterval);
+	if (interval.start <= latestInterval.start) {
+		const message = makeInterlaceErrorMessage(interval, latestInterval);
 
 		throw new Error(message);
 	}
 
-	if (intervalRequest.start < latestInterval.end) {
-		await updateCurrentInterval(intervalRequest, latestInterval, user);
+	if (interval.start < latestInterval.end) {
+		await updateCurrentInterval(interval, latestInterval, user);
 	}
 
-	return await finaliseCreate();
-
-	async function finaliseCreate() {
-		const intervalId = await dal.intervals.create(intervalRequest);
-
-		intervalRequest.id = intervalId!;
-
-		log.debug('Interval successfully saved under %d id!', intervalRequest.id);
-
-		return intervalRequest;
-	}
+	return await finaliseCreation(interval, user);
 }
+
+
 

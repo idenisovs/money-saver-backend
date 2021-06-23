@@ -1,21 +1,21 @@
 import { RunResult } from 'sqlite3';
 import log4js from 'log4js';
 import db from '../../db';
-import { Interval } from '../../../shared';
+import { Interval, User } from '../../../shared';
 
 const log = log4js.getLogger('create-interval');
 
 const sql = 'INSERT INTO intervals (start, end, sum, userId, latest) VALUES ($start, $end, $sum, $userId, $latest)';
 
-export default function createInterval(interval: Interval): Promise<number> {
+export default function createInterval(interval: Interval, user: User): Promise<number> {
 	return new Promise((resolve, reject) => {
 		log.debug('Inserting new interval!');
 
 		const params = {
-			$start: interval.start,
-			$end: interval.end,
+			$start: interval.start.toISOString(),
+			$end: interval.end.toISOString(),
 			$sum: interval.sum,
-			$userId: interval.user.id,
+			$userId: user.id,
 			$latest: 1
 		};
 

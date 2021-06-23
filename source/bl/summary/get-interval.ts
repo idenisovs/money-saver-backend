@@ -1,10 +1,10 @@
 import log4js from 'log4js';
-import { IntervalRecord, User } from '../../shared';
+import { Interval, User } from '../../shared';
 import dal from '../../dal';
 
 const log = log4js.getLogger('summary');
 
-export default function getInterval(intervalId: number, user: User): Promise<IntervalRecord> {
+export default function getInterval(intervalId: number, user: User): Promise<Interval> {
 	if (intervalId) {
 		log.debug('Requested summary of interval %d', intervalId);
 

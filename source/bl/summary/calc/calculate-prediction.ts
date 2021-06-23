@@ -1,7 +1,7 @@
 import moment from 'moment';
-import { IntervalRecord, ScheduleItemRecord } from '../../../shared';
+import { Interval, ScheduleItemRecord } from '../../../shared';
 
-export default function calculatePrediction(interval: IntervalRecord, schedule: ScheduleItemRecord[]) {
+export default function calculatePrediction(interval: Interval, schedule: ScheduleItemRecord[]) {
     const today = moment();
 
     let days = today.diff(interval.start, 'days', true);
