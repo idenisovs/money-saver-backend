@@ -2,6 +2,8 @@ import log4js from 'log4js';
 import db from '../db';
 import { Interval, User } from '../../shared';
 import done from '../done';
+import IntervalRecord from './interval-record';
+import intervalMapper from './interval-mapper';
 
 const log = log4js.getLogger('update-interval');
 
@@ -28,6 +30,6 @@ export function updateInterval(interval: Interval, user: User): Promise<void> {
 
         log.trace(params);
 
-        db.run(sql, params, done<void>(resolve, reject));
+        db.run(sql, params, done<IntervalRecord, Interval>(resolve, reject, intervalMapper));
     });
 }

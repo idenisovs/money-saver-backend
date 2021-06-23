@@ -1,7 +1,9 @@
 import log4js from 'log4js';
 import db from '../db';
 import { Interval, User } from '../../shared';
-import completeIntervalRequest from './complete-interval-request';
+import done from '../done';
+import IntervalRecord from './interval-record';
+import intervalMapper from './interval-mapper';
 
 const log = log4js.getLogger('get-by-boundary');
 
@@ -29,6 +31,6 @@ export function getByBoundary(query: IntervalQuery, user: User): Promise<Interva
             $userId: user.id
         };
 
-        db.all(sql, params, completeIntervalRequest(resolve, reject));
+        db.all(sql, params, done<IntervalRecord, Interval>(resolve, reject, intervalMapper));
     });
 }

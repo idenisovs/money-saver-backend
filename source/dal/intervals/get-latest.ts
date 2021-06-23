@@ -2,6 +2,7 @@ import db from '../db';
 import { Interval, User } from '../../shared';
 import IntervalRecord from './interval-record';
 import intervalMapper from './interval-mapper';
+import done from '../done';
 
 let sql = '';
 sql += 'SELECT id, start, end, sum, latest\n';
@@ -15,12 +16,6 @@ export function getLatestInterval(user: User): Promise<Interval> {
             $userId: user.id
         };
 
-        db.get(sql, params, (err: Error, record: IntervalRecord) => {
-            if (err) {
-                return reject(err);
-            }
-
-            resolve(intervalMapper(record));
-        });
+        db.get(sql, params, done<IntervalRecord, Interval>(resolve, reject, intervalMapper));
     });
 }

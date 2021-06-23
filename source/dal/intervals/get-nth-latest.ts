@@ -1,6 +1,8 @@
 import { Interval, User } from '../../shared';
 import db from '../db'
 import done from '../done';
+import IntervalRecord from './interval-record';
+import intervalMapper from './interval-mapper';
 
 let sql = '';
 sql += 'SELECT id, start, end, sum, latest\n';
@@ -15,6 +17,6 @@ export function getNthLatest(limit= 1, user: User): Promise<Interval> {
             $limit: limit
         };
 
-        db.all(sql, params, done(resolve, reject));
+        db.all(sql, params, done<IntervalRecord, Interval>(resolve, reject, intervalMapper));
     })
 }
