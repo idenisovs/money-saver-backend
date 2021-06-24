@@ -9,7 +9,7 @@ export function isSameDay(date1: Date, date2: Date): boolean {
 		&& date1.getDate() === date2.getDate();
 }
 
-export function daysDiff(dateA: Date, dateB: Date, datesDifferenceMatter = false): number {
+export function daysDiff(dateA: Date, dateB: Date, hoursDifferenceMatter = true): number {
 	let date1: Date, date2: Date;
 
 	if (dateA.getTime() > dateB.getTime()) {
@@ -20,7 +20,7 @@ export function daysDiff(dateA: Date, dateB: Date, datesDifferenceMatter = false
 		date2 = new Date(dateB);
 	}
 
-	if (datesDifferenceMatter) {
+	if (!hoursDifferenceMatter) {
 		date1.setHours(0, 0, 0);
 		date2.setHours(23, 59, 59);
 	}

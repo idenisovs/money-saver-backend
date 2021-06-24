@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import getPaymentsSummary from './get-payments-summary';
+import getExpensesSummary from './get-expenses-summary';
 
 const summary = Router();
 
-summary.get('/payments', getPaymentsSummary);
+summary.get('/expenses', getExpensesSummary);
 
 export default summary;

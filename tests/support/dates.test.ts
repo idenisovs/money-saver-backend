@@ -32,7 +32,7 @@ describe('datesDiff', () => {
 		const date1 = new Date('2021-06-01T18:18:18');
 		const date2 = new Date('2021-06-02T00:00:00');
 
-		const result = daysDiff(date2, date1, true);
+		const result = daysDiff(date2, date1, false);
 
 		expect(result).toBe(1);
 	});

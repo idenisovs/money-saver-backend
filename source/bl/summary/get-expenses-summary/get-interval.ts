@@ -1,6 +1,6 @@
 import log4js from 'log4js';
-import { Interval, User } from '../../shared';
-import dal from '../../dal';
+import { Interval, User } from '../../../shared';
+import dal from '../../../dal';
 
 const log = log4js.getLogger('summary');
 

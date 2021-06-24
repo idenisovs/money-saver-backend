@@ -1,1 +1,1 @@
-export { getPaymentsSummary as payments } from './get-payments-summary';
+export { getExpensesSummary as expenses } from './get-expenses-summary';

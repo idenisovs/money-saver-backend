@@ -3,6 +3,7 @@ import db from '../db';
 import done from '../done';
 import { Expenses, Interval, User } from '../../shared';
 import { ExpensesRecord } from './expenses-record';
+import expensesMapper from './expenses-mapper';
 
 const log = log4js.getLogger('expenses-by-interval');
 
@@ -28,6 +29,6 @@ export function getExpensesByInterval(interval: Interval, user: User): Promise<E
 			$userId: user.id
 		};
 
-		db.all(sql, params, done<ExpensesRecord, Expenses>(resolve, reject));
+		db.all(sql, params, done<ExpensesRecord, Expenses>(resolve, reject, expensesMapper));
 	});
 }
