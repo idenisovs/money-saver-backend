@@ -1,4 +1,3 @@
-export * from './get-daily-spendings';
 export * from './delete-by-interval';
 export * from './delete-by-id'
 export * from './get-by-date';

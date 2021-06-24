@@ -1,0 +1,4 @@
+GET http://localhost:9001/api/summary/payments
+Accept: application/json
+
+###
