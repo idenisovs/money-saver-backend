@@ -87,6 +87,8 @@
     "scripts",
     "node_modules",
     "target",
-    "./ecosystem.config.js"
+    "tests",
+    "./ecosystem.config.js",
+    "./jest.config.js"
   ]
 }
