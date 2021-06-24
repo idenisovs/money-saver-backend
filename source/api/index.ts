@@ -10,6 +10,7 @@ import users from './users';
 import properties from './properties';
 import timezones from './timezones';
 import summary from './summary';
+import expenses from './expenses';
 import auth from '../support/middleware/auth-middleware';
 
 const log = log4js.getLogger('api');
@@ -18,6 +19,7 @@ const api = Router();
 
 api.use('/payments', auth, payments);
 api.use('/intervals', auth, intervals);
+api.use('/expenses', auth, expenses);
 api.use('/auth', authApi);
 api.use('/health', health);
 api.use('/version', version);
