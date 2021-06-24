@@ -1,0 +1,9 @@
+GET http://localhost:9001/api/payments
+Accept: application/json
+
+###
+
+GET http://localhost:9001/api/payments?date=2021-06-18
+Accept: application/json
+
+###

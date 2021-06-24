@@ -4,7 +4,7 @@ import done from '../done';
 
 let sql = '';
 
-sql += 'SELECT p.date, sum(p.sum) AS sum\n';
+sql += 'SELECT date(p.time) AS date, sum(p.sum) AS sum\n';
 sql += 'FROM intervals i\n';
 sql += 'LEFT OUTER JOIN payments p ON p.time > i.start AND p.time <= i.end\n';
 sql += 'WHERE i.id = $id AND p.userId = $userId\n';

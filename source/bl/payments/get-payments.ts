@@ -12,25 +12,25 @@ type PaymentsRequest = {
     till?: number;
 }
 
-export async function getPayments(req: PaymentsRequest, user: User): Promise<Payment[]> {
-    log.trace(req);
+export async function getPayments(query: PaymentsRequest, user: User): Promise<Payment[]> {
+    log.trace(query);
 
-    if ('id' in req) {
+    if ('id' in query) {
         log.debug('Taking payment by Id!');
-        return [ await dal.payments.getById(req.id!, user) ];
+        return [ await dal.payments.getById(query.id!, user) ];
     }
 
-    if ('date' in req) {
+    if ('date' in query) {
         log.debug('Taking payments by date!');
-        return dal.payments.getByDate(req.date!, user);
+        return dal.payments.getByDate(query.date!, user);
     }
 
-    if (('from' in req) && ('till' in req)) {
+    if (('from' in query) && ('till' in query)) {
         log.debug('Taking payments by date range!');
 
         const paymentRequest = {
-            from: moment(req.from).startOf('day').valueOf(),
-            till: moment(req.till).endOf('day').valueOf(),
+            from: moment(query.from).startOf('day').valueOf(),
+            till: moment(query.till).endOf('day').valueOf(),
         };
 
         return dal.payments.getByDateRange(paymentRequest, user);

@@ -1,10 +1,12 @@
 import db from '../db';
 import done from '../done';
 import { Payment, User } from '../../shared';
+import { PaymentRecord } from './payment-record';
+import paymentMapper from './payment-mapper';
 
 let sql = '';
 
-sql += 'SELECT p.date, sum(p.sum) AS sum\n';
+sql += 'SELECT date(p.time) AS date, sum(p.sum) AS sum\n';
 sql += 'FROM intervals i\n';
 sql += 'LEFT OUTER JOIN payments p ON p.time > i.start AND p.time < i.end\n';
 sql += 'WHERE i.id = $id AND p.userId = $userId\n';
@@ -17,6 +19,6 @@ export function getByIntervalId(intervalId: number, user: User): Promise<Payment
 			'$userId': user.id
 		};
 
-		db.all(sql, params, done<Payment[]>(resolve, reject));
+		db.all(sql, params, done<PaymentRecord, Payment>(resolve, reject, paymentMapper));
 	});
 }

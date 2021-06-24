@@ -6,7 +6,7 @@ import done from '../done';
 
 const log = log4js.getLogger('save-payment');
 
-const sql = 'INSERT INTO payments (time, date, sum, userId) VALUES ($time, $date, $sum, $userId)';
+const sql = 'INSERT INTO payments (time, sum, userId) VALUES ($time, $sum, $userId)';
 
 export function savePayment(payment: Payment, user: User): Promise<void> {
     log.debug('Saving payment <%d> with sum <%d> from user <%d>!', payment.id, payment.sum, user.id);
@@ -15,7 +15,6 @@ export function savePayment(payment: Payment, user: User): Promise<void> {
     return new Promise(async (resolve, reject) => {
         const params = {
             $time: payment.time,
-            $date: payment.date,
             $sum: payment.sum,
             $userId: user.id
         };
@@ -27,7 +26,7 @@ export function savePayment(payment: Payment, user: User): Promise<void> {
         const result = await getByTime(intervalQuery, user);
 
         if (result) {
-            return db.run(sql, params, done<void>(resolve, reject));
+            return db.run(sql, params, done(resolve, reject));
         }
 
         let message = '';

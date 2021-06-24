@@ -1,10 +1,12 @@
 import db from '../db';
 import done from '../done';
 import { Payment, User } from '../../shared';
+import { PaymentRecord } from './payment-record';
+import paymentMapper from './payment-mapper';
 
 let sql = '';
 
-sql += 'SELECT id, date, time, sum\n';
+sql += 'SELECT id, time, sum\n';
 sql += 'FROM payments\n';
 sql += 'WHERE id = $id\n';
 sql += 'AND userId = $userId\n';
@@ -16,6 +18,6 @@ export function getById(paymentId: number, user: User): Promise<Payment> {
             '$userId': user.id
         };
 
-        db.get(sql, params, done<Payment>(resolve, reject));
+        db.get(sql, params, done<PaymentRecord, Payment>(resolve, reject, paymentMapper));
     });
 }
