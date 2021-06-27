@@ -16,7 +16,7 @@ let connector: sqlite3.Database;
 switch (databaseType) {
     case 'testable':
         log.debug('Switching to testable connector!');
-        connector = testableConnector;
+        connector = testableConnector();
         break;
     default:
         log.debug('Switching to default (SQLite3) connector!');
@@ -27,3 +27,4 @@ process.on('exit', exitHandler(connector));
 process.on('SIGINT', exitHandler(connector));
 
 export default connector;
+

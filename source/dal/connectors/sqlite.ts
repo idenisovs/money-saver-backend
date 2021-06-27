@@ -1,3 +1,5 @@
+import enableForeignKeys from './enable-foreign-keys';
+
 const path = require('path');
 const argv = require('../../support/argv');
 const SQLite = require('sqlite3').Database;
@@ -12,16 +14,10 @@ log.debug('Connecting to %s...', databasePath);
 
 const db = new SQLite(databasePath);
 
-db.run('PRAGMA foreign_keys = ON', done);
+(async () => {
+    await enableForeignKeys(db);
+})()
 
 export default db;
 
 log.debug('%s connected!', databasePath);
-
-function done(error: Error) {
-    if (error) {
-        return log.error(error);
-    }
-
-    log.debug('Foreign key support shall be enabled now!\n');
-}
