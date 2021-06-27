@@ -8,10 +8,10 @@ module.exports = {
       user : 'pm2',
       host : 'e-dreams.lv',
       ref  : 'origin/master',
-      repo : 'https://github.com/idenisovs/money-saver.git',
+      repo : 'git@github.com:idenisovs/money-saver-backend.git',
       path : '/opt/pm2/money-saver',
       'post-deploy' : 'git submodule update && npm run update && pm2 startOrRestart ./ecosystem.config.js',
-      'post-setup': 'npm run setup && pm2 start ./ecosystem.config.js && pm2 save'
+      'post-setup': 'npm run setup && pm2 save'
     }
   }
 };
