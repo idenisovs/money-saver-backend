@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name: 'Money Saver',
-    script: 'daemon.js'
+    script: 'target/daemon.js'
   }],
   deploy : {
     production : {
