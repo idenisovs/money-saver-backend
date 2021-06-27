@@ -4,15 +4,16 @@
   "description": "Personal expenses manager",
   "main": "daemon.js",
   "scripts": {
-    "setup": "npm install && tsc --project tsconfig.json --traceResolution && uuidgen > ./target/memcached.key && uuidgen > ./target/session.key",
-    "update": "npm install && tsc --project tsconfig.json --traceResolution",
+    "setup": "npm install && tsc --project tsconfig.json && cp .env.example target/.env && npm run keys",
+    "update": "npm install && tsc --project tsconfig.json",
     "build": "tsc",
     "build:watch": "npm run build -- --watch",
     "deploy:setup": "pm2 deploy production setup",
     "deploy:update": "pm2 deploy production update",
-    "start": "node source/daemon.js -b finance.db -v",
+    "start": "node target/daemon.js -b ../finance.db -vd",
     "test": "jest",
-    "clean": "rm -frv target/api target/bl target/dal target/shared target/support target/tests target/daemon*"
+    "clean": "rm -frv target/api target/bl target/dal target/shared target/support target/tests target/daemon*",
+    "keys": "sed -i -e \"/MEMCACHED_KEY/s/<.*>/$(uuidgen)/\" -e \"/SESSION_KEY/s/<.*>/$(uuidgen)/\" target/.env"
   },
   "private": true,
   "repository": {

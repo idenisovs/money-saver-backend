@@ -1,5 +1,3 @@
-import path from 'path';
-import fs from 'fs';
 import session, { SessionOptions, Store } from 'express-session';
 import log4js from 'log4js';
 import { v4 as uuid } from 'uuid';
@@ -9,7 +7,7 @@ const log = log4js.getLogger('session');
 
 export default function createSession() {
     const config: SessionOptions = {
-        secret: readKey('session.key'),
+        secret: process.env['SESSION_KEY'] || uuid(),
         resave: false,
         saveUninitialized: true
     };
@@ -28,22 +26,7 @@ function makeMemcachedStore(): Store {
 
     return new MemcachedStore({
         hosts: ['127.0.0.1:11211'],
-        secret: readKey('memcached.key'),
+        secret: process.env['MEMCACHED_KEY'] || uuid(),
         prefix: 'ms'
     });
-}
-
-function readKey(name: string): string {
-    const keyFilePath = path.join(global.basedir, name);
-
-    log.debug('Reading key from %s', keyFilePath);
-
-    if (fs.existsSync(keyFilePath)) {
-        return fs.readFileSync(keyFilePath).toString();
-    }
-
-    log.warn('There is no such key file: %s!', name);
-    log.warn('Making random key!');
-
-    return uuid();
 }
