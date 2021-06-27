@@ -1,9 +1,9 @@
 export * from './delete-by-interval';
-export * from './delete-by-id'
+export { removePayment as remove } from './remove-payment'
 export * from './get-by-date';
 export * from './get-by-date-range';
 export * from './get-by-id';
-export { savePayment as save } from './save-payment';
+export { createPayment as create } from './create-payment';
 export * from './get-by-interval-id';
 export { updatePayment as update } from './update-payment';
     

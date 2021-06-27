@@ -16,12 +16,12 @@ export async function getPayments(query: PaymentsRequest, user: User): Promise<P
     log.trace(query);
 
     if ('id' in query) {
-        log.debug('Taking payment by Id!');
+        log.debug('Taking payment by id <%s>!', query.id);
         return [ await dal.payments.getById(query.id!, user) ];
     }
 
     if ('date' in query) {
-        log.debug('Taking payments by date!');
+        log.debug('Taking payments by date <%s>!', query.date);
         return dal.payments.getByDate(query.date!, user);
     }
 

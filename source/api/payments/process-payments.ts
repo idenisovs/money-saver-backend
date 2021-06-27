@@ -7,16 +7,18 @@ import processPaymentDtos from './process-payment-dtos';
 
 const log = log4js.getLogger('save-payments');
 
-export default async function savePayments(req: Request, res: Response) {
-    log.debug('Arrived request to save payments!');
-
+export default async function processPayments(req: Request, res: Response) {
 	const user = req.user as User;
 	const payments = processPaymentDtos(req.body);
 
-	try {
-		const result = await bl.payments.save(payments, user);
+	log.debug('User <%d> made request to process <%d> payments!', user.id, payments.length);
 
-        res.json(result);
+	try {
+		await bl.payments.process(payments, user);
+
+        res.json({
+			message: 'ok'
+		});
     } catch(e) {
         res.status(http.INTERNAL_SERVER_ERROR).json(e);
     }

@@ -1,16 +1,11 @@
 import Router from 'express';
 import validatePayments from './validate-payment';
 import getPayments from './get-payments';
-import savePayments from './save-payments';
-import updatePayments from './update-payments';
-import deletePayment from './delete-payment';
+import processPayments from './process-payments';
 
 const payments = Router();
 
 payments.get('/', getPayments);
-payments.post('/', validatePayments, savePayments);
-payments.put('/', validatePayments, updatePayments);
-payments.delete('/', deletePayment);
-payments.delete('/:id', deletePayment);
+payments.post('/', validatePayments, processPayments);
 
 export default payments;
