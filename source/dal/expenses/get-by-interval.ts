@@ -14,7 +14,7 @@ SELECT
 FROM
 	payments p
 WHERE
-	date >= $from AND date <= $till AND userId = $userId
+	p.time >= $from AND p.time <= $till AND userId = $userId
 GROUP BY 
 	date
 `;
