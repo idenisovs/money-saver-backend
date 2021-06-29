@@ -14,11 +14,12 @@ sql += 'FROM intervals\n ';
 sql += 'WHERE\n';
 sql += 'start >= $from\n';
 sql += 'AND start <= $till\n';
-sql += 'AND userId = $userId';
+sql += 'AND userId = $userId\n';
+sql += 'ORDER BY start DESC'
 
 export type IntervalQuery = {
-    from?: number,
-    till?: number
+    from?: string,
+    till?: string
 };
 
 export function getByBoundary(query: IntervalQuery, user: User): Promise<Interval[]> {

@@ -1,4 +1,3 @@
-export { getIntervalByBoundary as getByBoundary } from './get-by-boundary';
 export { getYears } from './get-years';
 export { queryIntervals as get } from './query-intervals';
 export { createInterval as create } from './create-interval';

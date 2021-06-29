@@ -10,7 +10,7 @@ export default async function getExpensesSummary(req: Request, res: Response) {
 	log.debug('Arrived client request!');
 
 	const user = req.user as User;
-	const intervalId = parseInt(req.query.interval_id as string);
+	const intervalId = typeof req.query.interval_id === 'undefined' ? undefined : parseInt(req.query.interval_id as string);
 
 	try {
 		const summary = await bl.summary.expenses(intervalId, user);

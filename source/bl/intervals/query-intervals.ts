@@ -2,7 +2,6 @@ import { Request } from 'express';
 import log4js from 'log4js';
 
 import { Interval, User } from '../../shared';
-import { getIntervalByBoundary } from './get-by-boundary';
 import dal from '../../dal';
 import { IntervalQuery } from '../../dal/intervals/get-by-boundary';
 
@@ -30,14 +29,14 @@ export async function queryIntervals(req: Request): Promise<Interval[]> {
 		const query: IntervalQuery = {};
 
 		if (from) {
-			query.from = parseInt(from as string);
+			query.from = from as string;
 		}
 
 		if (till) {
-			query.till = parseInt(till as string);
+			query.till = till as string;
 		}
 
-		return await getIntervalByBoundary(query, user);
+		return await dal.intervals.getByBoundary(query, user);
 	}
 
 	log.debug('No query params defined, returning list of all intervals...');
