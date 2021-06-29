@@ -6,9 +6,9 @@ export default function calculateTotals(summary: Summary): Totals {
 
     totals.days = summary.days.length;
 
-    totals.startingSum = summary.sum;
+    totals.startingSum = summary.interval.sum;
 
-    totals.currentDay = daysDiff(summary.start, new Date()) + 1;
+    totals.currentDay = daysDiff(summary.interval.start, new Date()) + 1;
 
     totals.currentDayPercents = totals.currentDay / totals.days;
 

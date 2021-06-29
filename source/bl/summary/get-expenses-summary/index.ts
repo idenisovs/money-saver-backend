@@ -21,7 +21,9 @@ export async function getExpensesSummary(intervalId: number|undefined, user: Use
 		return null;
 	}
 
-	const summary = Summary.fromInterval(interval);
+	const summary = new Summary();
+
+	summary.interval = interval;
 
 	summary.days = await makeSchedule(interval, user);
 

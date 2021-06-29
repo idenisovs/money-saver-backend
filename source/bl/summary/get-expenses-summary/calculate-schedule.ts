@@ -2,9 +2,9 @@ import { Summary } from '../../../shared';
 
 export default function calculateSchedule(summary: Summary) {
 	const { days } = summary;
-	const dailySum = summary.sum / days.length;
+	const dailySum = summary.interval.sum / days.length;
 
-	let residual = summary.sum;
+	let residual = summary.interval.sum;
 	let balance = 0;
 
 	for (let idx = 0; idx < days.length; idx++) {
@@ -13,7 +13,7 @@ export default function calculateSchedule(summary: Summary) {
 		residual -= day.expenses;
 
 		day.residual.real = residual
-		day.residual.planned = summary.sum - dailySum * (idx + 1);
+		day.residual.planned = summary.interval.sum - dailySum * (idx + 1);
 
 		day.balance.daily = dailySum - day.expenses;
 
