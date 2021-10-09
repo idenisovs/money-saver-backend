@@ -19,7 +19,9 @@ export default async function saveProperties(req: Request, res: Response) {
         user.email = properties.email;
         user.timezone = properties.timezone.timeZoneId;
     } catch (e) {
-        if (e.message && e.message.match(/^PROPERTIES_/)) {
+        const message = (e as Error).message;
+
+        if (message && message.match(/^PROPERTIES_/)) {
             res.status(http.BAD_REQUEST).json(e);
         } else {
             res.status(http.INTERNAL_SERVER_ERROR).json(e);

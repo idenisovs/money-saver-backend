@@ -21,7 +21,7 @@ export default async function getExpensesSummary(req: Request, res: Response) {
 	} catch (e) {
 		log.error(e);
 
-		const msg = e.message;
+		const msg = (e as Error).message;
 
 		if (msg === 'Interval not found!') {
 			res.status(statusCode.NOT_FOUND);

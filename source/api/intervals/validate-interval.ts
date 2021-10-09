@@ -19,7 +19,7 @@ export default function validateInterval(req: Request, res: Response, next: Next
 		log.error(err);
 
 		res.status(status.EXPECTATION_FAILED).json({
-			message: err.toString()
+			message: (err as Error).toString()
 		});
 	}
 }
