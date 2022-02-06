@@ -1,6 +1,7 @@
 export { getLatestInterval as getLatest } from './get-latest';
 export { getNthLatest } from './get-nth-latest';
 export { getByTime } from './get-by-time';
+export { getByDate } from './get-by-date';
 export { getByBoundary } from './get-by-boundary';
 export { getAll } from './get-all';
 export { getById } from './get-by-id';

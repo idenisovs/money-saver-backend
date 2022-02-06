@@ -21,6 +21,14 @@ export async function queryIntervals(req: Request): Promise<Interval[]> {
 		return [ await dal.intervals.getByTime(query, user) ];
 	}
 
+	if ('date' in req.query) {
+		const result = await dal.intervals.getByDate({
+			date: req.query.date as string
+		}, user);
+
+		return [ result ];
+	}
+
 	const { from, till } = req.query;
 
 	if (from || till) {
