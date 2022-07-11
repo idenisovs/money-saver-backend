@@ -11,7 +11,7 @@ No database server is required.
 To launch the application for the first time, you shall clone it to your PC:
 
 ```bash
-git clone https://github.com/idenisovs/money-saver.git
+git clone --recurse https://github.com/idenisovs/money-saver.git backend
 ```
 
 Then, go inside and run the following commands:
