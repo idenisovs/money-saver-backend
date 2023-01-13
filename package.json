@@ -10,7 +10,7 @@
     "build:watch": "npm run build -- --watch",
     "deploy:setup": "pm2 deploy production setup",
     "deploy:update": "pm2 deploy production update",
-    "start": "node target/daemon.js -b ../finance.db -vd",
+    "start": "node target/daemon.js",
     "test": "jest",
     "clean": "rm -frv target/api target/bl target/dal target/shared target/support target/tests target/daemon*",
     "keys": "sed -i -e \"/MEMCACHED_KEY/s/<.*>/$(uuidgen)/\" -e \"/SESSION_KEY/s/<.*>/$(uuidgen)/\" target/.env"
