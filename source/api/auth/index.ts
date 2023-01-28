@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import passport from 'passport';
-import checkAuth from '../../support/middleware/auth-middleware';
+
+import { auth as checkAuth } from '../../support/middleware';
 
 import getUserAuth from './get-user-auth';
 import completeAuthentication from './complete';

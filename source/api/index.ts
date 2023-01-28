@@ -11,7 +11,8 @@ import properties from './properties';
 import timezones from './timezones';
 import summary from './summary';
 import expenses from './expenses';
-import auth from '../support/middleware/auth-middleware';
+
+import { auth } from '../support/middleware';
 
 const log = log4js.getLogger('api');
 
