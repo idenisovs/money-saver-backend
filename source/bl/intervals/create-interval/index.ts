@@ -1,4 +1,3 @@
-import moment from 'moment';
 import log4js from 'log4js';
 
 import makeInterlaceErrorMessage from './make-interlace-error-message';
@@ -12,8 +11,8 @@ const log = log4js.getLogger('create-interval');
 export async function createInterval(interval: Interval, user: User): Promise<Interval> {
 	log.debug('Trying to create interval...');
 
-	interval.start = moment(interval.start).startOf('day').toDate();
-	interval.end = moment(interval.end).endOf('day').toDate();
+	interval.start = new Date(interval.start);
+	interval.end = new Date(interval.end);
 
 	log.debug('Taking latest interval...');
 
