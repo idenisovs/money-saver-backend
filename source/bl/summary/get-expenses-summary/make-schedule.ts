@@ -1,16 +1,16 @@
 import dal from '../../../dal';
-import { Interval, User, Day } from '../../../shared';
+import { Interval, User, DailyExpensesOverview } from '../../../shared';
 import { isSameDay } from '../../../shared/utils';
 
-export default async function makeSchedule(interval: Interval, user: User): Promise<Day[]> {
-	const schedule: Day[] = [];
+export default async function makeSchedule(interval: Interval, user: User): Promise<DailyExpensesOverview[]> {
+	const schedule: DailyExpensesOverview[] = [];
 
 	const expenses = await dal.expenses.getByInterval(interval, user);
 
 	const now = new Date(interval.start);
 
 	while(now <= interval.end) {
-		const day = new Day();
+		const day = new DailyExpensesOverview();
 
 		day.date = new Date(now);
 

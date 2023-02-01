@@ -25,7 +25,7 @@ export async function getExpensesSummary(intervalId: number|undefined, user: Use
 
 	summary.interval = interval;
 
-	summary.days = await makeSchedule(interval, user);
+	summary.dailyExpenses = await makeSchedule(interval, user);
 
 	calculateSchedule(summary);
 

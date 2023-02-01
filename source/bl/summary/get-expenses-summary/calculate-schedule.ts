@@ -1,14 +1,14 @@
 import { Summary } from '../../../shared';
 
 export default function calculateSchedule(summary: Summary) {
-	const { days } = summary;
-	const dailySum = summary.interval.sum / days.length;
+	const { dailyExpenses } = summary;
+	const dailySum = summary.interval.sum / dailyExpenses.length;
 
 	let residual = summary.interval.sum;
 	let balance = 0;
 
-	for (let idx = 0; idx < days.length; idx++) {
-		const day = days[idx];
+	for (let idx = 0; idx < dailyExpenses.length; idx++) {
+		const day = dailyExpenses[idx];
 
 		residual -= day.expenses;
 

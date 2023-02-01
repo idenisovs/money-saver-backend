@@ -4,7 +4,7 @@ import { daysDiff } from '../../../shared/utils';
 export default function calculateTotals(summary: Summary): Totals {
     const totals = new Totals();
 
-    totals.days = summary.days.length;
+    totals.days = summary.dailyExpenses.length;
 
     totals.startingSum = summary.interval.sum;
 
@@ -12,7 +12,7 @@ export default function calculateTotals(summary: Summary): Totals {
 
     totals.currentDayPercents = totals.currentDay / totals.days;
 
-    totals.expenses = summary.days.reduce((result, day) => {
+    totals.expenses = summary.dailyExpenses.reduce((result, day) => {
         return result + day.expenses;
     }, 0);
 
