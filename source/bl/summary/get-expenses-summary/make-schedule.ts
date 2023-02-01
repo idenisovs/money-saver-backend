@@ -1,7 +1,6 @@
-import { Interval, User } from '../../../shared';
-import { Day } from '../../../shared/Day';
 import dal from '../../../dal';
-import { isSameDay } from '../../../support/dates';
+import { Interval, User, Day } from '../../../shared';
+import { isSameDay } from '../../../shared/utils';
 
 export default async function makeSchedule(interval: Interval, user: User): Promise<Day[]> {
 	const schedule: Day[] = [];

@@ -13,7 +13,7 @@ export function createPayment(payment: Payment, user: User): Promise<void> {
 
     return new Promise(async (resolve, reject) => {
         const params = {
-            $time: payment.time,
+            $time: payment.time.toISOString(),
             $sum: payment.sum,
             $userId: user.id
         };

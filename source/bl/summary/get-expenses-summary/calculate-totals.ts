@@ -1,5 +1,5 @@
 import { Summary, Totals } from '../../../shared';
-import { daysDiff } from '../../../support/dates';
+import { daysDiff } from '../../../shared/utils';
 
 export default function calculateTotals(summary: Summary): Totals {
     const totals = new Totals();
