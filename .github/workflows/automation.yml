@@ -15,5 +15,8 @@ jobs:
         with:
           node-version: lts/*
       - run: npm ci
-      - run: npm run lint
+      - name: Build
+        run: npm run build
+      - name: Lint
+        run: npm run lint
         continue-on-error: true
