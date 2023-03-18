@@ -14,7 +14,7 @@
     "test": "jest",
     "clean": "rm -frv target/api target/bl target/dal target/shared target/support target/tests target/daemon*",
     "keys": "sed -i -e \"/MEMCACHED_KEY/s/<.*>/$(uuidgen)/\" -e \"/SESSION_KEY/s/<.*>/$(uuidgen)/\" target/.env",
-    "eslint": "eslint -c .eslintrc.json ./source/**/*.ts"
+    "lint": "eslint -c .eslintrc.json ./source/**/*.ts"
   },
   "private": true,
   "repository": {
