@@ -11,11 +11,11 @@ sql += 'WHERE userId = $userId\n';
 sql += 'ORDER BY start DESC LIMIT 1';
 
 export function getLatestInterval(user: User): Promise<Interval> {
-    return new Promise((resolve, reject) => {
-        const params = {
-            $userId: user.id
-        };
+	return new Promise((resolve, reject) => {
+		const params = {
+			$userId: user.id,
+		};
 
-        db.get(sql, params, done<IntervalRecord, Interval>(resolve, reject, intervalMapper));
-    });
+		db.get(sql, params, done<IntervalRecord, Interval>(resolve, reject, intervalMapper));
+	});
 }

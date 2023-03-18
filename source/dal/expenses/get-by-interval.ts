@@ -26,7 +26,7 @@ export function getExpensesByInterval(interval: Interval, user: User): Promise<E
 		const params = {
 			$from: interval.start.toISOString(),
 			$till: interval.end.toISOString(),
-			$userId: user.id
+			$userId: user.id,
 		};
 
 		db.all(sql, params, done<ExpensesRecord, Expenses>(resolve, reject, expensesMapper));

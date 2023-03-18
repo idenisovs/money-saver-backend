@@ -6,30 +6,30 @@ import { Payment, User } from '../../shared';
 const log = log4js.getLogger('validate-payments');
 
 export default function validatePayments(req: Request, res: Response, next: Function) {
-    const payments: Payment[] = Array.isArray(req.body) ? req.body : [ req.body ];
+	const payments: Payment[] = Array.isArray(req.body) ? req.body : [req.body];
 
-    log.debug('Running for %d payments!', payments.length);
+	log.debug('Running for %d payments!', payments.length);
 
-    const invalidPayment = payments.find(invalidPayments);
+	const invalidPayment = payments.find(invalidPayments);
 
-    if (!invalidPayment) {
-        return next();
-    }
+	if (!invalidPayment) {
+		return next();
+	}
 
-    const user: User = req.user as User;
+	const user: User = req.user as User;
 
-    log.warn('Rejecting payments from user %d, missing Sum field: %j.', user.id, invalidPayment);
+	log.warn('Rejecting payments from user %d, missing Sum field: %j.', user.id, invalidPayment);
 
-    res.status(status.EXPECTATION_FAILED).json({
-        message: 'Sum field is required!',
-        rejected: invalidPayment
-    });
+	res.status(status.EXPECTATION_FAILED).json({
+		message: 'Sum field is required!',
+		rejected: invalidPayment,
+	});
 }
 
 function invalidPayments(payment: Payment) {
-    return !isNumber(payment.sum) && !payment.remove;
+	return !isNumber(payment.sum) && !payment.remove;
 }
 
-function isNumber (o: any) {
-    return ! isNaN (o-0) && o !== null && o !== "" && o !== false;
+function isNumber(o: any) {
+	return !isNaN(o - 0) && o !== null && o !== '' && o !== false;
 }

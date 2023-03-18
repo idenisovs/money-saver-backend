@@ -11,9 +11,9 @@ export default function resetLatestInterval(userId: number): Promise<void> {
 		const sql = 'UPDATE intervals SET latest = 0 WHERE userId = $userId';
 
 		const params = {
-			$userId: userId
+			$userId: userId,
 		};
 
 		db.run(sql, params, done(resolve, reject));
-	})
+	});
 }

@@ -6,9 +6,9 @@ import createInterval from './create-interval';
 const log = log4js.getLogger('create-interval');
 
 export async function create(interval: Interval, user: User): Promise<number> {
-    log.debug('createInterval called for user %s', user.login);
+	log.debug('createInterval called for user %s', user.login);
 
-    await resetLatest(user.id);
+	await resetLatest(user.id);
 
-    return await createInterval(interval, user);
+	return createInterval(interval, user);
 }

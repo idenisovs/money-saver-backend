@@ -4,14 +4,13 @@ import dal from '../../../dal';
 
 const log = log4js.getLogger('summary');
 
-export default function getInterval(intervalId: number|undefined, user: User): Promise<Interval> {
+export default function getInterval(intervalId: number | undefined, user: User): Promise<Interval> {
 	if (typeof intervalId === 'undefined') {
 		log.debug('Requested summary of latest interval!');
 
 		return dal.intervals.getLatest(user);
-	} else {
-		log.debug('Requested summary of interval %d', intervalId);
-
-		return dal.intervals.getById(intervalId, user);
 	}
+	log.debug('Requested summary of interval %d', intervalId);
+
+	return dal.intervals.getById(intervalId, user);
 }

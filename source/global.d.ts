@@ -1,1 +1,1 @@
-declare var basedir: string;
+declare let basedir: string;

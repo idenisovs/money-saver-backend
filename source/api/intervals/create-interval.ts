@@ -13,7 +13,7 @@ export default async function createInterval(req: Request, res: Response) {
 	try {
 		const result = await bl.intervals.create(interval, user);
 		res.json(result);
-	} catch(err) {
+	} catch (err) {
 		log.error(err);
 		res.status(states.INTERNAL_SERVER_ERROR).json(err);
 	}

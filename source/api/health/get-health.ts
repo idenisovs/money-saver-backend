@@ -7,7 +7,7 @@ updateTimestamp();
 
 export default function makeHealthResponse(req: Request, res: Response) {
 	res.json({
-		timestamp
+		timestamp,
 	});
 }
 

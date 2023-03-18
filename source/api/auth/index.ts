@@ -16,4 +16,3 @@ auth.post('/', authenticate, completeAuthentication);
 auth.get('/logout', checkAuth, logout);
 
 export default auth;
-

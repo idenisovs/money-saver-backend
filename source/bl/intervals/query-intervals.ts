@@ -14,19 +14,19 @@ export async function queryIntervals(req: Request): Promise<Interval[]> {
 	if (time) {
 		log.debug('Taking interval by time: %s', time);
 
-		let query = {
-			time: parseInt(time as string)
+		const query = {
+			time: parseInt(time as string),
 		};
 
-		return [ await dal.intervals.getByTime(query, user) ];
+		return [await dal.intervals.getByTime(query, user)];
 	}
 
 	if ('date' in req.query) {
 		const result = await dal.intervals.getByDate({
-			date: req.query.date as string
+			date: req.query.date as string,
 		}, user);
 
-		return [ result ];
+		return [result];
 	}
 
 	const { from, till } = req.query;
@@ -44,10 +44,10 @@ export async function queryIntervals(req: Request): Promise<Interval[]> {
 			query.till = till as string;
 		}
 
-		return await dal.intervals.getByBoundary(query, user);
+		return dal.intervals.getByBoundary(query, user);
 	}
 
 	log.debug('No query params defined, returning list of all intervals...');
 
-	return await dal.intervals.getAll(user);
+	return dal.intervals.getAll(user);
 }

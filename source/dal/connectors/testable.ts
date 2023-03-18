@@ -6,11 +6,11 @@ import enableForeignKeys from './enable-foreign-keys';
 const log = log4js.getLogger('db');
 
 export default function launchTestableDatabase(): Database {
-    log.warn('Launching testable database!');
+	log.warn('Launching testable database!');
 
-    const db = new sqlite3.Database(':memory:');
+	const db = new sqlite3.Database(':memory:');
 
-    createTestableSchema(db).then(() => enableForeignKeys(db));
+	createTestableSchema(db).then(() => enableForeignKeys(db));
 
-    return db;
+	return db;
 }

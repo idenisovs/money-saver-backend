@@ -13,16 +13,16 @@ sql += 'AND end >= $stamp\n';
 sql += 'AND userId = $userId';
 
 type IntervalQuery = {
-    time: number
-}
+  time: number
+};
 
 export function getByTime(interval: IntervalQuery, user: User): Promise<Interval> {
-    return new Promise((resolve, reject) => {
-        const params = {
-            $stamp: interval.time,
-            $userId: user.id
-        };
+	return new Promise((resolve, reject) => {
+		const params = {
+			$stamp: interval.time,
+			$userId: user.id,
+		};
 
-        db.get(sql, params, done<IntervalRecord, Interval>(resolve, reject, intervalMapper));
-    });
+		db.get(sql, params, done<IntervalRecord, Interval>(resolve, reject, intervalMapper));
+	});
 }

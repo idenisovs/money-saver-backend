@@ -13,14 +13,14 @@ sql += "AND strftime('%Y-%m-%d', end) >= $date\n";
 sql += 'AND userId = $userId';
 
 type IntervalQuery = {
-	date: string
-}
+  date: string
+};
 
 export function getByDate(interval: IntervalQuery, user: User): Promise<Interval> {
 	return new Promise((resolve, reject) => {
 		const params = {
 			$date: interval.date,
-			$userId: user.id
+			$userId: user.id,
 		};
 
 		db.get(sql, params, done<IntervalRecord, Interval>(resolve, reject, intervalMapper));

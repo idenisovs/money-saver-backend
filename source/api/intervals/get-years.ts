@@ -7,15 +7,15 @@ import { User } from '../../shared';
 const log = log4js.getLogger('get-years');
 
 export default async function getAvailableYears(req: Request, res: Response) {
-    const user = req.user as User;
+	const user = req.user as User;
 
-    log.debug('Requesting years for user %s!', user.login);
+	log.debug('Requesting years for user %s!', user.login);
 
-    try {
-        const years = await bl.intervals.getYears(user);
+	try {
+		const years = await bl.intervals.getYears(user);
 
-        res.json(years);
-    } catch (err) {
-        res.status(httpCodes.INTERNAL_SERVER_ERROR).json(err);
-    }
+		res.json(years);
+	} catch (err) {
+		res.status(httpCodes.INTERNAL_SERVER_ERROR).json(err);
+	}
 }

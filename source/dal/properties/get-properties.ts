@@ -8,7 +8,7 @@ const sql = 'SELECT password, email, timezone, language FROM users WHERE id = $u
 export function getProperties(user: User): Promise<Properties> {
 	return new Promise((resolve, reject) => {
 		const params = {
-			userId: user.id
+			userId: user.id,
 		};
 
 		db.get(sql, params, (err: Error, result: PropertiesRecord) => {
@@ -21,11 +21,11 @@ export function getProperties(user: User): Promise<Properties> {
 					primary: '',
 					confirm: '',
 					hash: '',
-					current: result.password
+					current: result.password,
 				},
 				timezone: timezones.find((tz) => tz.timeZoneId === result.timezone) || timezones[0],
 				email: result.email,
-				language: result.language
+				language: result.language,
 			};
 
 			resolve(properties);

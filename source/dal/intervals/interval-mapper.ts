@@ -6,6 +6,6 @@ export default function intervalMapper(record: IntervalRecord): Interval {
 		...record,
 		start: new Date(record.start),
 		end: new Date(record.end),
-		latest: (record.latest === 1)
+		latest: (record.latest === 1),
 	});
 }

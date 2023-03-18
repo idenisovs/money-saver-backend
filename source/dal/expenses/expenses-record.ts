@@ -1,4 +1,4 @@
 export interface ExpensesRecord {
-	date: string;
-	sum: number;
+  date: string;
+  sum: number;
 }

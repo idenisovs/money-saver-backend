@@ -19,7 +19,7 @@ export async function createInterval(interval: Interval, user: User): Promise<In
 	const latestInterval = await dal.intervals.getLatest(user);
 
 	if (!latestInterval) {
-		return await finaliseCreation(interval, user);
+		return finaliseCreation(interval, user);
 	}
 
 	if (interval.start <= latestInterval.start) {
@@ -32,8 +32,5 @@ export async function createInterval(interval: Interval, user: User): Promise<In
 		await updateCurrentInterval(interval, latestInterval, user);
 	}
 
-	return await finaliseCreation(interval, user);
+	return finaliseCreation(interval, user);
 }
-
-
-

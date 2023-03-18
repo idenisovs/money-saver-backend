@@ -15,8 +15,8 @@ log.debug('Connecting to %s...', databasePath);
 const db = new SQLite(databasePath);
 
 (async () => {
-    await enableForeignKeys(db);
-})()
+	await enableForeignKeys(db);
+})();
 
 export default db;
 

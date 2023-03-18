@@ -12,7 +12,7 @@ export default async function deleteInterval(req: Request, res: Response) {
 
 		res.json(result);
 	} catch (e) {
-		const message = (e as Error).message;
+		const { message } = e as Error;
 
 		if (message.indexOf('There is no Interval with such id') === -1) {
 			res.status(states.INTERNAL_SERVER_ERROR);

@@ -6,42 +6,42 @@ import { Payment, User } from '../../shared';
 const log = log4js.getLogger('get-payments');
 
 type PaymentsRequest = {
-    id?: number;
-    date?: string;
-    from?: number;
-    till?: number;
-}
+  id?: number;
+  date?: string;
+  from?: number;
+  till?: number;
+};
 
 export async function getPayments(query: PaymentsRequest, user: User): Promise<Payment[]> {
-    log.trace(query);
+	log.trace(query);
 
-    if ('id' in query) {
-        log.debug('Taking payment by id <%s>!', query.id);
-        return [ await dal.payments.getById(query.id!, user) ];
-    }
+	if ('id' in query) {
+		log.debug('Taking payment by id <%s>!', query.id);
+		return [await dal.payments.getById(query.id!, user)];
+	}
 
-    if ('date' in query) {
-        log.debug('Taking payments by date <%s>!', query.date);
-        return dal.payments.getByDate(query.date!, user);
-    }
+	if ('date' in query) {
+		log.debug('Taking payments by date <%s>!', query.date);
+		return dal.payments.getByDate(query.date!, user);
+	}
 
-    if (('from' in query) && ('till' in query)) {
-        log.debug('Taking payments by date range!');
+	if (('from' in query) && ('till' in query)) {
+		log.debug('Taking payments by date range!');
 
-        const paymentRequest = {
-            from: moment(query.from).startOf('day').valueOf(),
-            till: moment(query.till).endOf('day').valueOf(),
-        };
+		const paymentRequest = {
+			from: moment(query.from).startOf('day').valueOf(),
+			till: moment(query.till).endOf('day').valueOf(),
+		};
 
-        return dal.payments.getByDateRange(paymentRequest, user);
-    }
+		return dal.payments.getByDateRange(paymentRequest, user);
+	}
 
-    log.debug('Taking payments by latest interval!');
+	log.debug('Taking payments by latest interval!');
 
-    const interval = await dal.intervals.getLatest(user);
+	const interval = await dal.intervals.getLatest(user);
 
-    log.debug('Latest interval taken!');
-    log.trace(interval);
+	log.debug('Latest interval taken!');
+	log.trace(interval);
 
-    return dal.payments.getByIntervalId(interval.id as number, user);
+	return dal.payments.getByIntervalId(interval.id as number, user);
 }

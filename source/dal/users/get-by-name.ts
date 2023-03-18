@@ -12,11 +12,11 @@ sql += 'FROM users\n';
 sql += 'WHERE login = $username';
 
 export function getUserByName(username: string): Promise<User> {
-    return new Promise((resolve, reject) => {
-        log.debug('Requesting user %s...', username);
+	return new Promise((resolve, reject) => {
+		log.debug('Requesting user %s...', username);
 
-        const params = { $username: username };
+		const params = { $username: username };
 
-        db.get(sql, params, done<User>(resolve, reject));
-    });
+		db.get(sql, params, done<User>(resolve, reject));
+	});
 }
