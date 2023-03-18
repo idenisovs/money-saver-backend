@@ -10,6 +10,12 @@
         "airbnb-typescript/base"
     ],
     "overrides": [
+        {
+            "files": ["*.d.ts"],
+            "rules": {
+                "no-var": "off"
+            }
+        }
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
