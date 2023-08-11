@@ -6,12 +6,12 @@ import * as timezones from './timezones';
 import * as expenses from './expenses';
 
 const dal = {
-    intervals,
-    payments,
-    users,
-    properties,
-    timezones,
-    expenses
+	intervals,
+	payments,
+	users,
+	properties,
+	timezones,
+	expenses,
 };
 
 export default dal;

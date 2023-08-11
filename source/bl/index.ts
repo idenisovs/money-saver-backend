@@ -6,7 +6,7 @@ import * as users from './users';
 import * as summary from './summary';
 
 const bl = {
-	intervals, payments, properties, auth, users, summary
+	intervals, payments, properties, auth, users, summary,
 };
 
 export default bl;

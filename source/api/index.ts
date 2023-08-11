@@ -32,4 +32,3 @@ api.use('/users', users);
 log.debug('API module is up!');
 
 export default api;
-

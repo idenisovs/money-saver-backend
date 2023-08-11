@@ -12,7 +12,7 @@ export default function getVersion(req: Request, res: Response) {
 
 	fs.readFile(versionFilePath, { encoding: 'utf8' }, readDone);
 
-	function readDone(err: ErrnoException|null, version: string) {
+	function readDone(err: ErrnoException | null, version: string) {
 		if (err) {
 			log.error(err);
 
@@ -21,6 +21,6 @@ export default function getVersion(req: Request, res: Response) {
 
 		version = version.replace(/[\r\n]/g, '');
 
-		res.json({ version: version });
+		res.json({ version });
 	}
 }

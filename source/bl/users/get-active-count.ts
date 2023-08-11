@@ -7,5 +7,4 @@ export async function getActiveUsersCount(): Promise<number> {
 	const result = await dal.users.getCountByTime(last31days);
 
 	return result.count;
-
 }

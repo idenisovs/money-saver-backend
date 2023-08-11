@@ -7,16 +7,16 @@ import { Interval, User } from '../../shared';
 const log = log4js.getLogger('update-interval');
 
 export default async function updateInterval(req: Request, res: Response) {
-    const interval = new Interval(req.body);
-    const user = req.user as User;
+	const interval = new Interval(req.body);
+	const user = req.user as User;
 
-    try {
-        const result = await bl.intervals.update(interval, user);
+	try {
+		const result = await bl.intervals.update(interval, user);
 
-        res.json(result);
-    } catch (err) {
-        log.error(err);
+		res.json(result);
+	} catch (err) {
+		log.error(err);
 
-        res.status(http.INTERNAL_SERVER_ERROR).json(err);
-    }
+		res.status(http.INTERNAL_SERVER_ERROR).json(err);
+	}
 }

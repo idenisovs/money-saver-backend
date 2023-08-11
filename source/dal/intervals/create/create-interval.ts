@@ -16,7 +16,7 @@ export default function createInterval(interval: Interval, user: User): Promise<
 			$end: interval.end.toISOString(),
 			$sum: interval.sum,
 			$userId: user.id,
-			$latest: 1
+			$latest: 1,
 		};
 
 		log.trace(params);
@@ -32,6 +32,5 @@ export default function createInterval(interval: Interval, user: User): Promise<
 				resolve(this.lastID);
 			}
 		}
-	})
-
+	});
 }

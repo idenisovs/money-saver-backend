@@ -5,13 +5,13 @@ import log4js from 'log4js';
 const log = log4js.getLogger('auth');
 
 export function auth(req: Request, res: Response, next: NextFunction) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
+	if (req.isAuthenticated()) {
+		return next();
+	}
 
-    log.warn('Unauthorized access try to %s from %s!', req.originalUrl, req.ip);
+	log.warn('Unauthorized access try to %s from %s!', req.originalUrl, req.ip);
 
-    const message = 'Hello, %username%! Please, authenticate yourself first!';
+	const message = 'Hello, %username%! Please, authenticate yourself first!';
 
-    res.status(HttpStatus.UNAUTHORIZED).send(message);
+	res.status(HttpStatus.UNAUTHORIZED).send(message);
 }

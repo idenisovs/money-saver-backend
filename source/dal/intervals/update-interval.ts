@@ -17,19 +17,19 @@ WHERE
     AND userId = $userId`;
 
 export function updateInterval(interval: Interval, user: User): Promise<void> {
-    return new Promise((resolve, reject) => {
-        log.debug('Updating interval record in database!');
+	return new Promise((resolve, reject) => {
+		log.debug('Updating interval record in database!');
 
-        const params = {
-            $id: interval.id,
-            $userId: user.id,
-            $sum: interval.sum,
-            $start: interval.start.toISOString(),
-            $end: interval.end.toISOString()
-        };
+		const params = {
+			$id: interval.id,
+			$userId: user.id,
+			$sum: interval.sum,
+			$start: interval.start.toISOString(),
+			$end: interval.end.toISOString(),
+		};
 
-        log.trace(params);
+		log.trace(params);
 
-        db.run(sql, params, done<IntervalRecord, Interval>(resolve, reject, intervalMapper));
-    });
+		db.run(sql, params, done<IntervalRecord, Interval>(resolve, reject, intervalMapper));
+	});
 }

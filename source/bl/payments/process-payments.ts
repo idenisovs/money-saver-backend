@@ -11,7 +11,7 @@ export async function processPayments(payments: Payment[], user: User): Promise<
 
 	log.debug('Carrying out <%d> payments from list of <%d> and user <%d>!', updateList.length, payments.length, user.id);
 
-	for (let payment of updateList) {
+	for (const payment of updateList) {
 		if (payment.add || !('id' in payment)) {
 			await dal.payments.create(payment, user);
 		} else if (payment.remove) {

@@ -4,6 +4,13 @@ import log4js from 'log4js';
 
 const log = log4js.getLogger('static-access-control');
 
+function isHtmlFile(fileName: string): boolean {
+	return path.extname(fileName) === '.html';
+}
+
+function isLoginPage(fileName: string): boolean {
+	return !fileName || fileName === 'login.html';
+}
 function staticAccessControl(req: Request, res: Response, next: NextFunction) {
 	const fileName = path.basename(req.path);
 
@@ -30,12 +37,4 @@ function staticAccessControl(req: Request, res: Response, next: NextFunction) {
 	return res.redirect('login.html?not-authorized=true');
 }
 
-module.exports = staticAccessControl;
-
-function isHtmlFile(fileName: string): boolean {
-	return path.extname(fileName) === '.html';
-}
-
-function isLoginPage(fileName: string): boolean {
-	return !fileName || fileName === 'login.html';
-}
+export default staticAccessControl;

@@ -12,12 +12,12 @@ sql += 'WHERE date(time) = $date AND userId = $userId\n';
 sql += 'ORDER BY time ASC\n';
 
 export function getByDate(date: string, user: User): Promise<Payment[]> {
-    return new Promise((resolve, reject) => {
-        const params = {
-            '$date': date,
-            '$userId': user.id
-        };
+	return new Promise((resolve, reject) => {
+		const params = {
+			$date: date,
+			$userId: user.id,
+		};
 
-        db.all(sql, params, done<PaymentRecord, Payment>(resolve, reject, paymentMapper));
-    });
+		db.all(sql, params, done<PaymentRecord, Payment>(resolve, reject, paymentMapper));
+	});
 }

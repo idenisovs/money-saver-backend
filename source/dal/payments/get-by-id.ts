@@ -12,12 +12,12 @@ sql += 'WHERE id = $id\n';
 sql += 'AND userId = $userId\n';
 
 export function getById(paymentId: number, user: User): Promise<Payment> {
-    return new Promise((resolve, reject) => {
-        const params = {
-            '$id': paymentId,
-            '$userId': user.id
-        };
+	return new Promise((resolve, reject) => {
+		const params = {
+			$id: paymentId,
+			$userId: user.id,
+		};
 
-        db.get(sql, params, done<PaymentRecord, Payment>(resolve, reject, paymentMapper));
-    });
+		db.get(sql, params, done<PaymentRecord, Payment>(resolve, reject, paymentMapper));
+	});
 }

@@ -9,11 +9,11 @@ sql += 'FROM users\n';
 sql += 'WHERE id = $id';
 
 export function getById(userId: number): Promise<User> {
-    return new Promise((resolve, reject) => {
-        const params = {
-            $id: userId
-        };
+	return new Promise((resolve, reject) => {
+		const params = {
+			$id: userId,
+		};
 
-        db.get(sql, params, done<User>(resolve, reject));
-    });
+		db.get(sql, params, done<User>(resolve, reject));
+	});
 }

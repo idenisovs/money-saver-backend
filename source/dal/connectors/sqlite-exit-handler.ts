@@ -6,30 +6,28 @@ const log = log4js.getLogger('db');
 let isClosed = false;
 
 export default function exitHandler(db: sqlite3.Database) {
-    return function handler() {
-        if (isClosed) {
-            return;
-        }
+	return function handler() {
+		if (isClosed) {
+			return;
+		}
 
-        isClosed = true;
+		isClosed = true;
 
-        process.removeListener('exit', handler);
-        process.removeListener('SIGINT', handler);
+		process.removeListener('exit', handler);
+		process.removeListener('SIGINT', handler);
 
-        log.info('Closing database...');
+		log.info('Closing database...');
 
-        db.close(closeDone);
-    }
+		db.close(closeDone);
+	};
 
-    function closeDone(err: Error|null) {
-        if (err) {
-            log.error(err);
-        }
+	function closeDone(err: Error | null) {
+		if (err) {
+			log.error(err);
+		}
 
-        log.info('Done!');
+		log.info('Done!');
 
-        process.exit(0);
-    }
+		process.exit(0);
+	}
 }
-
-

@@ -1,4 +1,4 @@
 export default interface IntervalDeleteResult {
-	intervalsRemoved: number;
-	paymentsRemoved: number;
+  intervalsRemoved: number;
+  paymentsRemoved: number;
 }

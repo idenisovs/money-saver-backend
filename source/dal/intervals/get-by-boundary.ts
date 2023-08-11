@@ -15,23 +15,23 @@ sql += 'WHERE\n';
 sql += 'start >= $from\n';
 sql += 'AND start <= $till\n';
 sql += 'AND userId = $userId\n';
-sql += 'ORDER BY start DESC'
+sql += 'ORDER BY start DESC';
 
 export type IntervalQuery = {
-    from?: string,
-    till?: string
+  from?: string,
+  till?: string
 };
 
 export function getByBoundary(query: IntervalQuery, user: User): Promise<Interval[]> {
-    return new Promise((resolve, reject) => {
-        log.trace(query);
+	return new Promise((resolve, reject) => {
+		log.trace(query);
 
-        const params = {
-            $from: query.from,
-            $till: query.till,
-            $userId: user.id
-        };
+		const params = {
+			$from: query.from,
+			$till: query.till,
+			$userId: user.id,
+		};
 
-        db.all(sql, params, done<IntervalRecord, Interval>(resolve, reject, intervalMapper));
-    });
+		db.all(sql, params, done<IntervalRecord, Interval>(resolve, reject, intervalMapper));
+	});
 }

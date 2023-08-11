@@ -6,4 +6,3 @@ const health = Router();
 health.get('/', getHealth);
 
 export default health;
-

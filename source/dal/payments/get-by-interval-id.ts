@@ -15,8 +15,8 @@ sql += 'GROUP BY date';
 export function getByIntervalId(intervalId: number, user: User): Promise<Payment[]> {
 	return new Promise((resolve, reject) => {
 		const params = {
-			'$id': intervalId,
-			'$userId': user.id
+			$id: intervalId,
+			$userId: user.id,
 		};
 
 		db.all(sql, params, done<PaymentRecord, Payment>(resolve, reject, paymentMapper));

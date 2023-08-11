@@ -1,7 +1,7 @@
 import log4js from 'log4js';
 import argv from './argv';
 
-const levels = [ 'fatal', 'error', 'warn', 'info', 'debug', 'trace', 'off' ];
+const levels = ['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'off'];
 
 let verbosity = 'off';
 
@@ -23,11 +23,11 @@ if (argv.trace) {
 
 const config = {
 	appenders: {
-		console: { type: 'console' }
+		console: { type: 'console' },
 	},
 	categories: {
-		default: { appenders: ['console'], level: verbosity }
-	}
+		default: { appenders: ['console'], level: verbosity },
+	},
 };
 
 log4js.configure(config);

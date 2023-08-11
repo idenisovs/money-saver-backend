@@ -12,7 +12,7 @@ export default function calculateSchedule(summary: Summary) {
 
 		residual -= day.expenses;
 
-		day.residual.real = residual
+		day.residual.real = residual;
 		day.residual.planned = summary.interval.sum - dailySum * (idx + 1);
 
 		day.balance.daily = dailySum - day.expenses;

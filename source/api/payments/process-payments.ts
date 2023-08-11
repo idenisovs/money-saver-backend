@@ -1,7 +1,7 @@
 import http from 'http-status';
 import log4js from 'log4js';
-import bl from '../../bl';
 import { Request, Response } from 'express';
+import bl from '../../bl';
 import { User } from '../../shared';
 import processPaymentDtos from './process-payment-dtos';
 
@@ -16,10 +16,10 @@ export default async function processPayments(req: Request, res: Response) {
 	try {
 		await bl.payments.process(payments, user);
 
-        res.json({
-			message: 'ok'
+		res.json({
+			message: 'ok',
 		});
-    } catch(e) {
-        res.status(http.INTERNAL_SERVER_ERROR).json(e);
-    }
+	} catch (e) {
+		res.status(http.INTERNAL_SERVER_ERROR).json(e);
+	}
 }

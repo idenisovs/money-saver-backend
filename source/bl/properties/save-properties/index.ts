@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
 import validatePassword from './validate-password';
 import dal from '../../../dal';
 import { Properties, User } from '../../../shared';
@@ -6,11 +6,11 @@ import { Properties, User } from '../../../shared';
 const SALT_ROUNDS = 3;
 
 export async function saveProperties(properties: Properties, user: User): Promise<void> {
-    const { password } = properties;
+	const { password } = properties;
 
-    validatePassword(password);
+	validatePassword(password);
 
-    password.hash = await bcrypt.hash(password.primary, SALT_ROUNDS);
+	password.hash = await bcrypt.hash(password.primary, SALT_ROUNDS);
 
-    await dal.properties.save(properties, user);
+	await dal.properties.save(properties, user);
 }

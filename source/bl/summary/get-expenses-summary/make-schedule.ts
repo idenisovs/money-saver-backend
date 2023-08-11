@@ -9,12 +9,12 @@ export default async function makeSchedule(interval: Interval, user: User): Prom
 
 	const now = new Date(interval.start);
 
-	while(now <= interval.end) {
+	while (now <= interval.end) {
 		const day = new DailyExpensesOverview();
 
 		day.date = new Date(now);
 
-		const record = expenses.find(e => isSameDay(e.date, day.date));
+		const record = expenses.find((e) => isSameDay(e.date, day.date));
 
 		if (record) {
 			day.expenses = record.sum;
