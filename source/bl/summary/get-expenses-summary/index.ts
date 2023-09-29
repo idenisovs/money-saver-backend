@@ -7,11 +7,11 @@ import calculateTotals from './calculate-totals';
 
 const log = log4js.getLogger('expenses-summary');
 
-export async function getExpensesSummary(intervalId: number | undefined, user: User): Promise<Summary | null> {
-	if (typeof intervalId === 'undefined') {
-		log.debug('Calculating summary for latest interval of user <%d>!', user.id);
-	} else {
+export async function getExpensesSummary(intervalId: number | null, user: User): Promise<Summary | null> {
+	if (intervalId) {
 		log.debug('Calculating summary for interval <%d> of user <%d>!', intervalId, user.id);
+	} else {
+		log.debug('Calculating summary for latest interval of user <%d>!', user.id);
 	}
 
 	const interval = await getInterval(intervalId, user);

@@ -10,6 +10,10 @@ export default function calculateTotals(summary: Summary): Totals {
 
 	totals.currentDay = daysDiff(summary.interval.start, new Date()) + 1;
 
+	if (totals.currentDay > totals.days) {
+		totals.currentDay = totals.days;
+	}
+
 	totals.currentDayPercents = totals.currentDay / totals.days;
 
 	totals.expenses = summary.dailyExpenses.reduce((result, day) => result + day.expenses, 0);
