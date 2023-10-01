@@ -3,7 +3,7 @@ import {
 } from '../../../../shared';
 import dal from '../../../../dal';
 import getPaymentsByDate from './get-payments-by-date';
-import calculatePaymentsSum from './calculate-paymens-sum';
+import calculatePaymentsSum from './calculate-payments-sum';
 
 export default async function makeSchedule(interval: Interval, user: User): Promise<DailyExpensesOverview[]> {
 	const schedule: DailyExpensesOverview[] = [];
