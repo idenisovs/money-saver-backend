@@ -2,14 +2,15 @@ import moment from 'moment';
 import log4js from 'log4js';
 import dal from '../../dal';
 import { Payment, User } from '../../shared';
+import { endOfDay, startOfDay } from '../../shared/utils';
 
 const log = log4js.getLogger('get-payments');
 
 type PaymentsRequest = {
-  id?: number;
-  date?: string;
-  from?: number;
-  till?: number;
+	id?: number;
+	date?: string;
+	from?: number;
+	till?: number;
 };
 
 export async function getPayments(query: PaymentsRequest, user: User): Promise<Payment[]> {
@@ -29,8 +30,8 @@ export async function getPayments(query: PaymentsRequest, user: User): Promise<P
 		log.debug('Taking payments by date range!');
 
 		const paymentRequest = {
-			from: moment(query.from).startOf('day').valueOf(),
-			till: moment(query.till).endOf('day').valueOf(),
+			from: startOfDay(new Date(query.from as number)),
+			till: endOfDay(new Date(query.till as number)),
 		};
 
 		return dal.payments.getByDateRange(paymentRequest, user);

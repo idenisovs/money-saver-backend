@@ -7,7 +7,7 @@ export default function calculateSchedule(summary: Summary) {
 	let residual = summary.interval.sum;
 	let balance = 0;
 
-	for (let idx = 0; idx < dailyExpenses.length; idx++) {
+	for (let idx = 0; idx < dailyExpenses.length; idx += 1) {
 		const day = dailyExpenses[idx];
 
 		residual -= day.expenses;
