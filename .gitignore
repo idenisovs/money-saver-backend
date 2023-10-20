@@ -10,3 +10,4 @@ run.sh
 /source/web
 /target
 test-results.xml
+.DS_Store
