@@ -4,6 +4,7 @@ import log4js from 'log4js';
 
 import { User } from '../../shared';
 import bl from '../../bl';
+import ItemNotFoundError from '../../support/errors/item-not-found';
 
 const log = log4js.getLogger('get-previous-interval');
 
@@ -25,6 +26,13 @@ export default async function getPreviousInterval(req: Request, res: Response) {
 		res.json(previousInterval);
 	} catch (err) {
 		log.error(err);
+
+		if (err instanceof ItemNotFoundError) {
+			return res.status(states.NOT_FOUND).json({
+				message: err.message,
+			});
+		}
+
 		res.status(states.INTERNAL_SERVER_ERROR).json({ err });
 	}
 }

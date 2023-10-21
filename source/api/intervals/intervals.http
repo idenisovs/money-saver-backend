@@ -48,5 +48,5 @@ Accept: application/json
 
 ###
 
-GET http://localhost:9001/api/intervals/666/previous
+GET http://localhost:9001/api/intervals/2/previous
 Accept: application/json
