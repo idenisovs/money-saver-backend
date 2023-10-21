@@ -9,3 +9,4 @@ export { create } from './create';
 export { updateInterval as update } from './update-interval';
 export { remove } from './remove';
 export { getIntervalsCount as getCount } from './get-intervals-count';
+export { getPrevious } from './get-previous';

@@ -10,6 +10,7 @@ import getYears from './get-years';
 import updateInterval from './update-interval';
 import validateIntervalToFinish from './interval-finish-validate';
 import finishInterval from './finish-interval';
+import getPreviousInterval from './get-previous-interval';
 
 const intervals = Router();
 
@@ -20,6 +21,7 @@ intervals.get('/years', getYears);
 intervals.get('/:id', getIntervalById);
 intervals.put('/:id', validate, updateInterval);
 intervals.delete('/:id', deleteInterval);
+intervals.get('/:id/previous', getPreviousInterval);
 intervals.post('/finish', validateIntervalToFinish, finishInterval);
 
 export default intervals;
