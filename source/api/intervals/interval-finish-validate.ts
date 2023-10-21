@@ -4,7 +4,6 @@ import log4js from 'log4js';
 
 import { Interval, User } from '../../shared';
 import dal from '../../dal';
-import intervals from './index';
 
 const log = log4js.getLogger('intervals');
 
@@ -17,7 +16,7 @@ export default async function intervalFinishValidate(req: Request, res: Response
 		log.trace(interval2finish);
 
 		return res.status(httpStatus.EXPECTATION_FAILED).json({
-			message: 'MISSING_ID'
+			message: 'MISSING_ID',
 		});
 	}
 
@@ -27,7 +26,7 @@ export default async function intervalFinishValidate(req: Request, res: Response
 		log.warn('There is no interval <%d> assigned to user <%d>!', interval2finish.id, user.id);
 
 		return res.status(httpStatus.NOT_FOUND).json({
-			message: 'MISSING_ID'
+			message: 'MISSING_ID',
 		});
 	}
 
@@ -35,9 +34,9 @@ export default async function intervalFinishValidate(req: Request, res: Response
 		log.warn('User <%d> tried to finish already finished interval <%d>!', user.id, interval2finish.id);
 
 		return res.status(httpStatus.EXPECTATION_FAILED).json({
-			message: 'MISSING_ID'
+			message: 'MISSING_ID',
 		});
 	}
 
-	next();
+	return next();
 }
