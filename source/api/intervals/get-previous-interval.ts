@@ -28,11 +28,11 @@ export default async function getPreviousInterval(req: Request, res: Response) {
 		log.error(err);
 
 		if (err instanceof ItemNotFoundError) {
-			return res.status(states.NOT_FOUND).json({
+			res.status(states.NOT_FOUND).json({
 				message: err.message,
 			});
+		} else {
+			res.status(states.INTERNAL_SERVER_ERROR).json({ err });
 		}
-
-		res.status(states.INTERNAL_SERVER_ERROR).json({ err });
 	}
 }
