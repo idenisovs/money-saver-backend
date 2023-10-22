@@ -15,6 +15,8 @@ export default async function makeSchedule(interval: Interval, user: User): Prom
 
 	const currentDate = new Date(interval.start);
 
+	currentDate.setHours(23, 59, 59, 999);
+
 	while (currentDate <= interval.end) {
 		const dailyPayments = getPaymentsByDate(payments, currentDate);
 
