@@ -8,7 +8,7 @@ export default function calculateTotals(summary: Summary): Totals {
 
 	totals.startingSum = summary.interval.sum;
 
-	totals.currentDay = daysDiff(summary.interval.start, new Date()) + 1;
+	totals.currentDay = daysDiff(summary.interval.start, new Date());
 
 	if (totals.currentDay > totals.days) {
 		totals.currentDay = totals.days;
