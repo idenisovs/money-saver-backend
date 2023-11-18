@@ -1,20 +1,21 @@
-import { Request, Response } from 'express';
-import http from 'http-status';
 import log4js from 'log4js';
+import { Request, Response } from 'express';
 import dal from '../../dal';
 
 const log = log4js.getLogger('timezones');
 
-export default function getTzById(req: Request, res: Response) {
-	log.debug('User requested specific timezone <%s>!', req.params.id);
+export default function getById(req: Request, res: Response) {
+  const timezoneId = req.params.timezoneId;
 
-	const tzId = parseInt(req.params.id);
+  log.debug('User requested timezone %s', timezoneId);
 
-	const timezone = dal.timezones.getById(tzId);
+  const timezone = dal.timezones.getById(timezoneId);
 
-	if (!timezone) {
-		return res.status(http.NOT_FOUND).send();
-	}
+  if (!timezone) {
+    res.status(404).json({
+      error: 'NOT_FOUND'
+    });
+  }
 
-	res.json(timezone);
+  res.json(timezone);
 }

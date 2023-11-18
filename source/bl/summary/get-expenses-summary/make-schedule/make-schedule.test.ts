@@ -48,7 +48,7 @@ it('should make proper summary list', async () => {
 		id: 1,
 		login: 'john',
 		email: 'john.doe@example.com',
-		timezone: 1,
+		timezone: 'Europe/Riga',
 		language: 'en',
 	};
 

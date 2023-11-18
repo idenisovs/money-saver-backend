@@ -1,6 +1,7 @@
-import { timezones } from './timezones';
-import { Timezone } from '../../shared';
+import timezones, { Timezone } from 'timezones.json';
 
-export function getTzById(id: number): Timezone | undefined {
-	return timezones.find((tz) => tz.timeZoneId === id);
+export function getTimezoneById(timezoneId: string): Timezone|undefined {
+  return timezones.find((item) => {
+    return item.utc.includes(timezoneId)
+  });
 }

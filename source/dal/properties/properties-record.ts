@@ -1,6 +1,6 @@
 export default interface PropertiesRecord {
   password: string;
   email: string;
-  timezone: number;
+  timezone: string;
   language: number;
 }

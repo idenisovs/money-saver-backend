@@ -17,7 +17,7 @@ export default async function saveProperties(req: Request, res: Response) {
 
 		user.password = properties.password.hash;
 		user.email = properties.email;
-		user.timezone = properties.timezone.timeZoneId;
+		user.timezone = properties.timezone;
 	} catch (e) {
 		const { message } = e as Error;
 

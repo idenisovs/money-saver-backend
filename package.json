@@ -49,6 +49,7 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "sqlite3": "^5.1.6",
+    "timezones.json": "^1.7.1",
     "uuid": "^9.0.1",
     "yargs": "^17.7.2"
   },

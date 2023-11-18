@@ -15,7 +15,7 @@ export function saveProperties(properties: Properties, user: User): Promise<void
 			$id: user.id,
 			$hash: properties.password.hash,
 			$email: properties.email,
-			$timezone: properties.timezone.timeZoneId,
+			$timezone: properties.timezone,
 			$language: properties.language,
 		};
 

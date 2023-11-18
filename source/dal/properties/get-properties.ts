@@ -1,7 +1,6 @@
 import db from '../db';
 import { Properties, User } from '../../shared';
 import PropertiesRecord from './properties-record';
-import { timezones } from '../timezones/timezones';
 
 const sql = 'SELECT password, email, timezone, language FROM users WHERE id = $userId ';
 
@@ -23,7 +22,7 @@ export function getProperties(user: User): Promise<Properties> {
 					hash: '',
 					current: result.password,
 				},
-				timezone: timezones.find((tz) => tz.timeZoneId === result.timezone) || timezones[0],
+				timezone: result.timezone,
 				email: result.email,
 				language: result.language,
 			};
