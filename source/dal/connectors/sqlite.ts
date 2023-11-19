@@ -7,18 +7,16 @@ import argv from '../../support/argv';
 
 const log = getLogger('db');
 
-const DEFAULT_PATH = path.join(global.basedir, '..', 'finance.db');
+export default function connectSqlite() {
+	const defaultPath = path.join(global.basedir, '..', 'finance.db');
+	const databasePath = argv.database || process.env.DATABASE || defaultPath;
+	log.debug('Connecting to %s...', databasePath);
 
-const databasePath = argv.database || process.env.DATABASE || DEFAULT_PATH;
+	const db = new SQLite(databasePath);
 
-log.debug('Connecting to %s...', databasePath);
+	enableForeignKeys(db).then(() => {
+		log.debug('%s connected!', databasePath);
+	})
 
-const db = new SQLite(databasePath);
-
-(async () => {
-	await enableForeignKeys(db);
-})();
-
-export default db;
-
-log.debug('%s connected!', databasePath);
+	return db;
+}

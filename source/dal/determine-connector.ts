@@ -7,7 +7,8 @@ import * as connectors from './connectors';
 const log = log4js.getLogger('db');
 
 export default function determineConnector(): sqlite3.Database {
-	const databaseType = argv.testable ? 'testable' : 'sqlite';
+	const databaseMode = process.env.DATABASE_MODE ? process.env.DATABASE_MODE : argv.testable;
+	const databaseType = databaseMode ? 'testable' : 'sqlite';
 
 	log.debug('Determined database type: %s!', databaseType);
 
@@ -17,6 +18,6 @@ export default function determineConnector(): sqlite3.Database {
 			return connectors.testable();
 		default:
 			log.debug('Switching to default (SQLite3) connector!');
-			return connectors.sqlite;
+			return connectors.sqlite();
 	}
 }
