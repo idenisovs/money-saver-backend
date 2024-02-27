@@ -4,6 +4,7 @@ import {
 import dal from '../../../../dal';
 import getPaymentsByDate from './get-payments-by-date';
 import calculatePaymentsSum from './calculate-payments-sum';
+import { daysDiff } from '../../../../shared/utils';
 
 export default async function makeSchedule(interval: Interval, user: User): Promise<DailyExpensesOverview[]> {
 	const schedule: DailyExpensesOverview[] = [];
@@ -14,11 +15,10 @@ export default async function makeSchedule(interval: Interval, user: User): Prom
 	}, user);
 
 	const currentDate = new Date(interval.start);
+	const days = daysDiff(interval.start, interval.end);
 
-	currentDate.setHours(23, 59, 59, 999);
-
-	while (currentDate <= interval.end) {
-		const dailyPayments = getPaymentsByDate(payments, currentDate);
+	for (let idx = 0; idx < days; idx++) {
+		const dailyPayments = getPaymentsByDate(payments, currentDate, user.timezone);
 
 		schedule.push(new DailyExpensesOverview({
 			date: new Date(currentDate),
