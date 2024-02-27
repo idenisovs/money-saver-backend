@@ -1,4 +1,4 @@
-import { getTimezoneOffset, getDateStr, startOfDay } from '../../source/shared/utils';
+import { getTimezoneOffset, getDateStr, startOfDay, endOfDay } from '../../source/shared/utils';
 import { HOUR } from '../../source/shared/constants';
 
 describe('getDateStr', () => {
@@ -41,4 +41,38 @@ describe('startOfDay', () => {
 
 		expect(startOfDayInRigaInUTC.toISOString()).toBe('2023-06-30T07:00:00.000Z');
 	});
+
+	it('should calculate the proper start of day in UTC', () => {
+		const theSummerDayInUTC = new Date('2023-06-30T15:55:55.123+02:00');
+
+		const startOfDayInUTC = startOfDay(theSummerDayInUTC, 'UTC');
+
+		expect(startOfDayInUTC.toISOString()).toBe('2023-06-30T00:00:00.000Z');
+	});
 });
+
+describe('endOfDay', () => {
+	it('should calculate the proper End Of Day in Riga in Winter', () => {
+		const theWinterDayInRiga = new Date('2024-02-27T15:55:55.123+02:00');
+
+		const theEndOfDayInRigaInUTC = endOfDay(theWinterDayInRiga, 'Europe/Riga');
+
+		expect(theEndOfDayInRigaInUTC.toISOString()).toBe('2024-02-27T21:59:59.999Z');
+	});
+
+	it('should calculate the proper End Of Day in LA in Summer', () => {
+		const theWinterDayInRiga = new Date('2024-02-27T15:55:55.123+02:00');
+
+		const theEndOfDayInRigaInUTC = endOfDay(theWinterDayInRiga, 'America/Los_Angeles');
+
+		expect(theEndOfDayInRigaInUTC.toISOString()).toBe('2024-02-28T07:59:59.999Z');
+	});
+
+	it('should calculate the proper End Of Day in UTC', () => {
+		const theSummerDayInUTC = new Date('2023-06-30T15:55:55.123+02:00');
+
+		const startOfDayInUTC = endOfDay(theSummerDayInUTC, 'UTC');
+
+		expect(startOfDayInUTC.toISOString()).toBe('2023-06-30T23:59:59.999Z');
+	});
+})
