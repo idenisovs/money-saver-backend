@@ -1,17 +1,8 @@
 import { User } from '../../../shared';
-import { HOUR } from '../../../shared/constants';
-import dal from '../../../dal'
+import { getTimezoneOffset } from '../../../shared/utils';
 
 export default function getCurrentLocalTime(user: User): Date {
-  const timezone = dal.timezones.getById(user.timezone);
-
-  if (!timezone) {
-    return new Date();
-  }
-
-  const serverTime = Date.now();
-
-  const offset = serverTime + timezone.offset * HOUR;
-
-  return new Date(offset);
+  const currentTime = new Date();
+  const timezoneOffset = getTimezoneOffset(currentTime, user.timezone);
+  return new Date(currentTime.getTime() + timezoneOffset);
 }

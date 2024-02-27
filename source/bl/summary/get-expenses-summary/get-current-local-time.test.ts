@@ -1,28 +1,19 @@
 import getCurrentLocalTime from './get-current-local-time';
 import makeTestData from './make-test-data';
-import dal from '../../../dal';
 
 describe('getCurrentLocalTime', () => {
   it('returns the correct time for Riga timezone', () => {
     const serverTime = new Date('2023-11-18T12:00:00.000Z');
 
-    jest.useFakeTimers().setSystemTime(serverTime);
+    jest.useFakeTimers();
+    jest.setSystemTime(serverTime);
 
-    const { user, timezone } = makeTestData();
-
-    const getByIdSpy = jest.spyOn(dal.timezones, 'getById');
-
-    getByIdSpy.mockImplementation(() => timezone);
+    const { user } = makeTestData();
 
     const localTime = getCurrentLocalTime(user);
+    const localHours = localTime.getHours();
 
-    const serverTimeHours = serverTime.getHours();
-
-    expect(serverTimeHours).toBe(12);
-
-    const localTimeHours = localTime.getHours();
-
-    expect(localTimeHours).toBe(serverTimeHours + 3);
+    expect(localHours).toBe(14);
   });
 
   afterAll(() => {
