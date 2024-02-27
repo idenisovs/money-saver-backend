@@ -15,7 +15,7 @@ describe('calculate-totals.ts', () => {
 
     jest.useFakeTimers().setSystemTime(serverTime);
 
-    const { summary, user, timezone } = makeTestData();
+    const { summary, timezone } = makeTestData();
 
     getByIdSpy.mockImplementation(() => timezone);
 
@@ -23,13 +23,13 @@ describe('calculate-totals.ts', () => {
 
     expect(totals).toMatchInlineSnapshot(`
 Totals {
-  "currentDay": 5,
-  "currentDayPercents": 0.5,
+  "currentDay": 4.0625,
+  "currentDayPercents": 0.40625,
   "days": 10,
-  "expectedResidual": 100,
-  "expectedResidualPercents": 0.7142857142857143,
+  "expectedResidual": 90.76923076923077,
+  "expectedResidualPercents": 0.6483516483516484,
   "expenses": 20,
-  "expensesAvg": 4,
+  "expensesAvg": 4.923076923076923,
   "expensesPercent": 0.14285714285714285,
   "incomesAvg": 12,
   "residual": 120,
