@@ -43,11 +43,27 @@ describe('startOfDay', () => {
 	});
 
 	it('should calculate the proper start of day in UTC', () => {
-		const theSummerDayInUTC = new Date('2023-06-30T15:55:55.123+02:00');
+		const theSummerDayInUTC = new Date('2023-06-30T15:55:55.123Z');
 
 		const startOfDayInUTC = startOfDay(theSummerDayInUTC, 'UTC');
 
 		expect(startOfDayInUTC.toISOString()).toBe('2023-06-30T00:00:00.000Z');
+	});
+
+	it('should calculate the proper start of day for date at 00:00:00', () => {
+		const theSummerDayInRiga = new Date('2023-06-30T00:00:00.000+03:00');
+
+		const startOfDayInUTC = startOfDay(theSummerDayInRiga, 'Europe/Riga');
+
+		expect(startOfDayInUTC.toISOString()).toBe('2023-06-29T21:00:00.000Z');
+	});
+
+	it('should calculate the proper start of day for date at 23:59:59', () => {
+		const theSummerDayInRiga = new Date('2023-06-30T23:59:59.999+03:00');
+
+		const startOfDayInUTC = startOfDay(theSummerDayInRiga, 'Europe/Riga');
+
+		expect(startOfDayInUTC.toISOString()).toBe('2023-06-29T21:00:00.000Z');
 	});
 });
 
@@ -61,11 +77,11 @@ describe('endOfDay', () => {
 	});
 
 	it('should calculate the proper End Of Day in LA in Summer', () => {
-		const theWinterDayInRiga = new Date('2024-02-27T15:55:55.123+02:00');
+		const theSummerDayInLA = new Date('2024-02-27T15:55:55.123+02:00');
 
-		const theEndOfDayInRigaInUTC = endOfDay(theWinterDayInRiga, 'America/Los_Angeles');
+		const theEndOfDayInLA = endOfDay(theSummerDayInLA, 'America/Los_Angeles');
 
-		expect(theEndOfDayInRigaInUTC.toISOString()).toBe('2024-02-28T07:59:59.999Z');
+		expect(theEndOfDayInLA.toISOString()).toBe('2024-02-28T07:59:59.999Z');
 	});
 
 	it('should calculate the proper End Of Day in UTC', () => {
@@ -74,5 +90,13 @@ describe('endOfDay', () => {
 		const startOfDayInUTC = endOfDay(theSummerDayInUTC, 'UTC');
 
 		expect(startOfDayInUTC.toISOString()).toBe('2023-06-30T23:59:59.999Z');
+	});
+
+	it('should calculate the proper End Of Day for date at 23:59:59', () => {
+		const theSummerDayInRiga = new Date('2023-06-15T23:59:59.999+03:00');
+
+		const theEndOfSummerDayInRiga = endOfDay(theSummerDayInRiga, 'Europe/Riga');
+
+		expect(theEndOfSummerDayInRiga.toISOString()).toBe('2023-06-15T20:59:59.999Z');
 	});
 })
