@@ -11,7 +11,7 @@
     "deploy:setup": "pm2 deploy production setup",
     "deploy:update": "pm2 deploy production update",
     "start": "node target/daemon.js",
-    "test": "jest",
+    "test": "TZ=UTC jest --config=jest.config.js",
     "clean": "rm -frv target/api target/bl target/dal target/shared target/support target/tests target/daemon*",
     "keys": "sed -i -e \"/MEMCACHED_KEY/s/<.*>/$(uuidgen)/\" -e \"/SESSION_KEY/s/<.*>/$(uuidgen)/\" target/.env",
     "lint": "eslint -c .eslintrc.json ./source/**/*.ts"
