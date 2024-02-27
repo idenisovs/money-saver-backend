@@ -1,12 +1,12 @@
 import { Payment } from '../../../../shared';
-import { DAY } from '../../../../support/constants';
+import { endOfDay, startOfDay } from '../../../../shared/utils';
 
-export default function getPaymentsByDate(payments: Payment[], date: Date): Payment[] {
-	const startOfDay = date.getTime();
-	const endOfDay = startOfDay + DAY - 1;
+export default function getPaymentsByDate(payments: Payment[], date: Date, timezone: string): Payment[] {
+	const start = startOfDay(date, timezone).getTime();
+	const end = endOfDay(date, timezone).getTime();
 
 	return payments.filter((payment) => {
 		const timeOfPayment = payment.time.getTime();
-		return timeOfPayment >= startOfDay && timeOfPayment <= endOfDay;
+		return start <= timeOfPayment && timeOfPayment <= end;
 	});
 }
