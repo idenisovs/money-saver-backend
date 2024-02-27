@@ -1,48 +1,26 @@
-import { daysDiff } from '../../source/support/dates';
+import { findTimezoneOffset, getDateStr } from '../../source/shared/utils';
+import { HOUR } from '../../source/shared/constants';
 
-describe('datesDiff', () => {
-	it('Basic check', () => {
-		const date1 = new Date('2021-06-01');
-		const date2 = new Date('2021-06-02');
+describe('getDateStr', () => {
+	it('returns correct string', () => {
+		const d1 = new Date('2024-02-03T12:12:12.999Z');
 
-		const result = daysDiff(date2, date1);
+		const result = getDateStr(d1);
 
-		expect(result).toBe(1);
+		expect(result).toBe('2024-02-03');
+	});
+});
+
+describe('findTimezoneOffset', () => {
+	it('should be 2 hours in Riga during the Winter time', () => {
+		const date = new Date('2021-01-23T12:23:34+02:00');
+		const offset = findTimezoneOffset(date, 'Europe/Riga');
+		expect(offset/HOUR).toBe(2);
 	});
 
-	it('Day and a half still day difference', () => {
-		const date1 = new Date('2021-06-01');
-		const date2 = new Date('2021-06-02T15:30:59');
-
-		const result = daysDiff(date2, date1);
-
-		expect(result).toBe(1);
+	it('should be 3 hours in Riga during the Summer time', () => {
+		const date = new Date('2021-06-23T12:23:34+02:00');
+		const offset = findTimezoneOffset(date, 'Europe/Riga');
+		expect(offset/HOUR).toBe(3);
 	});
-
-	it('Hours difference is less than dates difference', () => {
-		const date1 = new Date('2021-06-01T18:18:18');
-		const date2 = new Date('2021-06-02T00:00:00');
-
-		const result = daysDiff(date2, date1);
-
-		expect(result).toBe(0);
-	});
-
-	it('Dates difference matter', () => {
-		const date1 = new Date('2021-06-01T18:18:18');
-		const date2 = new Date('2021-06-02T00:00:00');
-
-		const result = daysDiff(date2, date1, false);
-
-		expect(result).toBe(1);
-	});
-
-	it('Intervals example', () => {
-		const date1 = new Date('2021-06-23T21:00:00.000Z');
-		const date2 = new Date('2021-06-30T20:59:59.999Z');
-
-		const result = daysDiff(date1, date2);
-
-		expect(result).toBe(6);
-	});
-})
+});
