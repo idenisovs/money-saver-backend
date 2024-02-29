@@ -1,13 +1,8 @@
-import { Timezone } from 'timezones.json';
 import calculateTotals from './calculate-totals';
-import makeTestData from './make-test-data';
-import dal from '../../../dal'
+import makeTestData from '../../../support/make-test-data';
 
 describe('calculate-totals.ts', () => {
-  let getByIdSpy: jest.SpyInstance<Timezone | undefined, [timezoneId: string], any>;
-
   beforeEach(() => {
-    getByIdSpy = jest.spyOn(dal.timezones, 'getById');
   });
 
   it('returns the correct current day', () => {
@@ -15,9 +10,7 @@ describe('calculate-totals.ts', () => {
 
     jest.useFakeTimers().setSystemTime(serverTime);
 
-    const { summary, timezone } = makeTestData();
-
-    getByIdSpy.mockImplementation(() => timezone);
+    const { summary } = makeTestData();
 
     const totals = calculateTotals(summary);
 

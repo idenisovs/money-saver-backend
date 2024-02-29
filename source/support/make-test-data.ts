@@ -1,7 +1,6 @@
-import { DailyExpensesOverview, Interval, Summary, User } from '../../../shared';
-import { Timezone } from 'timezones.json';
+import { DailyExpensesOverview, Interval, Summary, User } from '../shared';
 
-function makeDailyExpenses(): DailyExpensesOverview[] {
+export function makeDailyExpenses(): DailyExpensesOverview[] {
   return [
     new DailyExpensesOverview({
       date: new Date('2023-11-11T12:00:00+0300'),
@@ -46,7 +45,7 @@ function makeDailyExpenses(): DailyExpensesOverview[] {
   ];
 }
 
-function makeUser(): User {
+export function makeUser(): User {
   return {
     id: 1,
     login: 'user1',
@@ -56,47 +55,30 @@ function makeUser(): User {
   }
 }
 
-function makeRigaTimezone(): Timezone {
-  return {
-    value: 'E. Europe Standard Time',
-    abbr: 'EEDT',
-    offset: 3,
-    isdst: true,
-    text: '(UTC+02:00) E. Europe',
-    utc: [
-      'Asia/Nicosia',
-      'Europe/Athens',
-      'Europe/Bucharest',
-      'Europe/Chisinau',
-      'Europe/Helsinki',
-      'Europe/Kyiv',
-      'Europe/Mariehamn',
-      'Europe/Nicosia',
-      'Europe/Riga',
-      'Europe/Sofia',
-      'Europe/Tallinn',
-      'Europe/Uzhgorod',
-      'Europe/Vilnius',
-      'Europe/Zaporozhye'
-    ]
-  }
-}
-
-export default function makeTestData() {
+export function makeInterval(): Interval {
   const interval = new Interval();
 
   interval.start = new Date('2023-11-10T00:00:00+0300');
   interval.end = new Date('2023-11-19T23:59:59.999+0300');
   interval.sum = 140;
+  interval.latest = true;
 
+  return interval;
+}
+
+function makeSummary(interval: Interval) {
   const summary = new Summary();
 
   summary.interval = interval;
   summary.dailyExpenses = makeDailyExpenses();
 
-  const user = makeUser()
+  return summary;
+}
 
-  const timezone = makeRigaTimezone();
+export default function makeTestData() {
+  const user = makeUser();
+  const interval = makeInterval();
+  const summary = makeSummary(interval);
 
-  return { summary, user, timezone };
+  return { summary, user, interval };
 }

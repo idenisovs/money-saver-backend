@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import log4js from 'log4js';
 
 import { Interval, User } from '../../shared';
-import dal from '../../dal';
+import bl from '../../bl';
 
 const log = log4js.getLogger('intervals');
 
@@ -14,7 +14,7 @@ export default async function finishInterval(req: Request, res: Response): Promi
 
 	interval.latest = false;
 
-	await dal.intervals.update(interval, user);
+	await bl.intervals.finish(interval, user);
 
 	res.send();
 }

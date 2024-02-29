@@ -1,5 +1,5 @@
 import getCurrentLocalTime from './get-current-local-time';
-import makeTestData from './make-test-data';
+import makeTestData from '../../../support/make-test-data';
 
 describe('getCurrentLocalTime', () => {
   it('returns the correct time for Riga timezone', () => {
