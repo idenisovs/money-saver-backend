@@ -36,4 +36,13 @@ describe('datesDiff', () => {
 
     expect(result).toBeCloseTo(7, 1);
   });
+
+  it('should return the proper day difference for 16-day issue', () => {
+    const date1 = new Date('2024-02-18T22:00:00.000Z');
+    const date2 = new Date('2024-03-05T21:59:00.000Z');
+
+    const result = daysDiff(date1, date2);
+
+    expect(result).toBeCloseTo(16, 1);
+  });
 });
