@@ -11,7 +11,8 @@ const sql = `UPDATE intervals
 SET 
     sum = $sum,
     start = $start,
-    end = $end 
+    end = $end,
+		latest = $latest
 WHERE 
     id = $id 
     AND userId = $userId`;
@@ -26,6 +27,7 @@ export function updateInterval(interval: Interval, user: User): Promise<void> {
 			$sum: interval.sum,
 			$start: interval.start.toISOString(),
 			$end: interval.end.toISOString(),
+			$latest: interval.latest
 		};
 
 		log.trace(params);

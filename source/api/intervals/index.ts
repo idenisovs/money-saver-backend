@@ -22,6 +22,6 @@ intervals.get('/:id', getIntervalById);
 intervals.put('/:id', validate, updateInterval);
 intervals.delete('/:id', deleteInterval);
 intervals.get('/:id/previous', getPreviousInterval);
-intervals.post('/finish', validateIntervalToFinish, finishInterval);
+intervals.post('/:id/finish', validateIntervalToFinish, finishInterval);
 
 export default intervals;

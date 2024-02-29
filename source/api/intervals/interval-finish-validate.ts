@@ -10,6 +10,9 @@ const log = log4js.getLogger('intervals');
 export default async function intervalFinishValidate(req: Request, res: Response, next: NextFunction) {
 	const user = req.user as User;
 	const interval2finish = new Interval(req.body);
+	const intervalId = Number(req.params.id);
+
+	log.debug('Validating interval %d to finish!', intervalId);
 
 	if (!interval2finish.id) {
 		log.warn('Interval validation failed due to missing interval Id!');
