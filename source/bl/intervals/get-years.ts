@@ -1,4 +1,3 @@
-import moment from 'moment';
 import dal from '../../dal';
 import { User } from '../../shared';
 
@@ -8,7 +7,7 @@ export async function getYears(user: User): Promise<number[]> {
 	const years = new Set<number>();
 
 	for (const interval of intervals) {
-		years.add(moment(interval.start).year());
+		years.add(interval.start.getFullYear());
 	}
 
 	return Array.from(years);

@@ -1,6 +1,6 @@
-import moment from 'moment';
 import { Interval } from '../../shared';
 import IntervalValidationError from '../../support/errors/interval-validation-error';
+import { daysDiff } from '../../shared/utils';
 
 export function validateInterval(interval: Interval) {
 	if (!interval) {
@@ -19,9 +19,9 @@ export function validateInterval(interval: Interval) {
 		throw new IntervalValidationError('Start date is not set! Please, set `start` field properly!');
 	}
 
-	const delta = moment(interval.end).diff(interval.start, 'days', true);
+	const delta = daysDiff(interval.start, interval.end);
 
-	if (delta < 1) {
+	if (Math.floor(delta) < 1) {
 		throw new IntervalValidationError('Interval between Start and End dates is smaller than 1 day!');
 	}
 }
