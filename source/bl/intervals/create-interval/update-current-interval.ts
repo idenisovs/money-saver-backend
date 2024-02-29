@@ -1,30 +1,40 @@
-import moment from 'moment';
 import log4js from 'log4js';
 import { updateInterval } from '../update-interval';
-import getDate from './get-date';
 import { Interval, User } from '../../../shared';
-
-const LATEST_INTERVAL_END_WARNING = 'Latest interval end: %s, Today: %s, Requested start: %s.';
-const INTERVAL_SHALL_START_TODAY_MESSAGE = 'If intervals interlace, then new interval shall be started today or later!';
+import { daysDiff, getDateStr, startOfDay } from '../../../shared/utils';
+import { DAY } from '../../../shared/constants';
 
 const log = log4js.getLogger('create-interval');
 
-export default async function updateCurrentInterval(intervalRequest: Interval, latestInterval: Interval, user: User): Promise<void> {
-	log.debug('Updating current interval...');
+export default async function updateCurrentInterval(createdInterval: Interval, latestInterval: Interval, user: User): Promise<void> {
+	log.debug('Updating the current interval <%d> of user <%d>...', latestInterval.id, user.id);
 
-	const latestIntervalEnd = getDate(latestInterval.end.getTime());
-	const today = moment().format('YYYY-MM-DD');
-	const requested = getDate(intervalRequest.start.getTime());
+	printLatestIntervalEndWarning(createdInterval, latestInterval);
 
-	log.warn(LATEST_INTERVAL_END_WARNING, latestIntervalEnd, today, requested);
+	checkInterlacedIntervalStarts(createdInterval, user);
 
-	const delta = -moment().diff(intervalRequest.start, 'days');
-
-	if (delta < 0) {
-		throw new Error(INTERVAL_SHALL_START_TODAY_MESSAGE);
-	}
-
-	latestInterval.end = moment(intervalRequest.start).subtract(1, 'days').toDate();
+	latestInterval.end = new Date(latestInterval.end.getTime() - DAY)
 
 	await updateInterval(latestInterval, user);
+}
+
+function printLatestIntervalEndWarning(createdInterval: Interval, latestInterval: Interval) {
+	const latestIntervalEnd = getDateStr(latestInterval.end);
+	const today = getDateStr(new Date());
+	const requested = getDateStr(createdInterval.start);
+
+	log.warn('Latest interval end: %s, Today: %s, Requested start: %s.', latestIntervalEnd, today, requested);
+}
+
+function checkInterlacedIntervalStarts(createdInterval: Interval, user: User) {
+	const today = startOfDay(new Date(), user.timezone);
+	const delta = daysDiff(createdInterval.start, today);
+
+	if (!delta) {
+		return;
+	}
+
+	if (createdInterval.start.getTime() < today.getTime()) {
+		throw new Error('If intervals interlace, then new interval shall be started today or later!');
+	}
 }

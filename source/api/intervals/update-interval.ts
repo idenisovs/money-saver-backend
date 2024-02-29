@@ -11,6 +11,8 @@ export default async function updateInterval(req: Request, res: Response) {
 	const user = req.user as User;
 
 	try {
+		log.info('User <%d> requested to update interval <%d>!', user.id, interval.id);
+
 		const result = await bl.intervals.update(interval, user);
 
 		res.json(result);
