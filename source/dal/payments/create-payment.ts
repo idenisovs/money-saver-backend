@@ -11,7 +11,7 @@ export function createPayment(payment: Payment, user: User): Promise<void> {
 	log.debug('Creating payment record with sum <%d> and user <%d>!', payment.sum, user.id);
 	log.trace(payment);
 
-	return new Promise(async (resolve, reject) => {
+	return new Promise((resolve, reject) => {
 		const params = {
 			$time: payment.time.toISOString(),
 			$sum: payment.sum,
