@@ -90,6 +90,7 @@
     "tests",
     "./ecosystem.config.js",
     "./jest.config.js",
-    "./jest.setup.js"
+    "./jest.setup.js",
+    "eslint.config.mjs"
   ]
 }

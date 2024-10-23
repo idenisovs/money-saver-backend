@@ -18,9 +18,11 @@ export default async function intervalFinishValidate(req: Request, res: Response
 		log.warn('Interval validation failed due to missing interval Id!');
 		log.trace(interval2finish);
 
-		return res.status(httpStatus.EXPECTATION_FAILED).json({
+		res.status(httpStatus.EXPECTATION_FAILED).json({
 			message: 'MISSING_ID',
 		});
+
+		return;
 	}
 
 	const existingInterval = await dal.intervals.getById(interval2finish.id, user);
@@ -28,18 +30,22 @@ export default async function intervalFinishValidate(req: Request, res: Response
 	if (!existingInterval) {
 		log.warn('There is no interval <%d> assigned to user <%d>!', interval2finish.id, user.id);
 
-		return res.status(httpStatus.NOT_FOUND).json({
+		res.status(httpStatus.NOT_FOUND).json({
 			message: 'MISSING_ID',
 		});
+
+		return;
 	}
 
 	if (!existingInterval.latest) {
 		log.warn('User <%d> tried to finish already finished interval <%d>!', user.id, interval2finish.id);
 
-		return res.status(httpStatus.EXPECTATION_FAILED).json({
+		res.status(httpStatus.EXPECTATION_FAILED).json({
 			message: 'MISSING_ID',
 		});
+
+		return;
 	}
 
-	return next();
+	next();
 }

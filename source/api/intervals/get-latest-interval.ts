@@ -18,7 +18,8 @@ export default async function getLatestInterval(req: Request, res: Response) {
 		if (!latestInterval) {
 			log.warn('There is no intervals yet!');
 
-			return res.status(states.NO_CONTENT).send();
+			res.status(states.NO_CONTENT).send();
+			return;
 		}
 
 		log.trace(latestInterval);
