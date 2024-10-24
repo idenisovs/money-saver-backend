@@ -6,9 +6,9 @@ import paymentMapper from './payment-mapper';
 
 let sql = '';
 
-sql += 'SELECT date(p.time) AS date, sum(p.sum) AS sum\n';
+sql += 'SELECT date, sum(p.sum) AS sum\n';
 sql += 'FROM intervals i\n';
-sql += 'LEFT OUTER JOIN payments p ON p.time > i.start AND p.time < i.end\n';
+sql += 'LEFT OUTER JOIN payments p ON p.date > i.start AND p.date < i.end\n';
 sql += 'WHERE i.id = $id AND p.userId = $userId\n';
 sql += 'GROUP BY date';
 

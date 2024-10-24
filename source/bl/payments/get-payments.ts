@@ -21,7 +21,7 @@ export async function getPayments(query: PaymentsRequest, user: User): Promise<P
 
 	if ('date' in query) {
 		log.debug('Taking payments by date <%s>!', query.date);
-		return dal.payments.getByDate(query.date!, user);
+		return await dal.payments.getByDate(query.date!, user);
 	}
 
 	if (('from' in query) && ('till' in query)) {
@@ -42,5 +42,5 @@ export async function getPayments(query: PaymentsRequest, user: User): Promise<P
 	log.debug('Latest interval taken!');
 	log.trace(interval);
 
-	return dal.payments.getByIntervalId(interval.id as number, user);
+	return await dal.payments.getByIntervalId(interval.id as number, user);
 }

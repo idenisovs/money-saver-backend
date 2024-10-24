@@ -6,7 +6,7 @@ import paymentMapper from './payment-mapper';
 
 let sql = '';
 
-sql += 'SELECT id, time, sum\n';
+sql += 'SELECT id, date, sum\n';
 sql += 'FROM payments\n';
 sql += 'WHERE id = $id\n';
 sql += 'AND userId = $userId\n';
