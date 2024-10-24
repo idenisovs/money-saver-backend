@@ -1,12 +1,7 @@
 import { Payment } from '../../../../shared';
-import { endOfDay, startOfDay } from '../../../../shared/utils';
 
-export default function getPaymentsByDate(payments: Payment[], date: Date, timezone: string): Payment[] {
-	const start = startOfDay(date, timezone).getTime();
-	const end = endOfDay(date, timezone).getTime();
-
+export default function getPaymentsByDate(payments: Payment[], date: string): Payment[] {
 	return payments.filter((payment) => {
-		const timeOfPayment = payment.time.getTime();
-		return start <= timeOfPayment && timeOfPayment <= end;
+		return payment.date === date;
 	});
 }

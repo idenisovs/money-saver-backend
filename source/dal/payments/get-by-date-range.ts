@@ -6,10 +6,10 @@ import paymentMapper from './payment-mapper';
 
 let sql = '';
 
-sql += 'SELECT id, time, sum\n';
+sql += 'SELECT id, date, sum\n';
 sql += 'FROM payments\n';
-sql += 'WHERE time BETWEEN $from AND $till AND userId = $userId\n';
-sql += 'ORDER BY time ASC';
+sql += 'WHERE date BETWEEN $from AND $till AND userId = $userId\n';
+sql += 'ORDER BY date ASC, createdAt ASC';
 
 type DataRange = {
 	from: string,

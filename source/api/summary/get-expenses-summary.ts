@@ -7,9 +7,10 @@ import { User } from '../../shared';
 const log = log4js.getLogger('expenses-summary');
 
 export default async function getExpensesSummary(req: Request, res: Response) {
-	log.debug('Arrived client request!');
-
 	const user = req.user as User;
+
+	log.debug('User <%s> requested Expenses Summary!');
+
 	const intervalId = req.params.interval_id ? Number(req.params.interval_id) : null;
 
 	try {

@@ -5,7 +5,7 @@ import done from '../done';
 
 const log = log4js.getLogger('create-payment');
 
-const sql = 'INSERT INTO payments (time, sum, userId) VALUES ($time, $sum, $userId)';
+const sql = 'INSERT INTO payments (date, sum, userId) VALUES ($date, $sum, $userId)';
 
 export function createPayment(payment: Payment, user: User): Promise<void> {
 	log.debug('Creating payment record with sum <%d> and user <%d>!', payment.sum, user.id);
@@ -13,7 +13,7 @@ export function createPayment(payment: Payment, user: User): Promise<void> {
 
 	return new Promise((resolve, reject) => {
 		const params = {
-			$time: payment.time.toISOString(),
+			$date: payment.date,
 			$sum: payment.sum,
 			$userId: user.id,
 		};

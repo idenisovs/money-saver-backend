@@ -3,43 +3,43 @@ import { DailyExpensesOverview, Interval, Summary, User } from '../shared';
 export function makeDailyExpenses(): DailyExpensesOverview[] {
   return [
     new DailyExpensesOverview({
-      date: new Date('2023-11-11T12:00:00+0300'),
+      date: '2023-11-11',
       expenses: 5
     }),
     new DailyExpensesOverview({
-      date: new Date('2023-11-12T12:00:00+0300'),
+      date: '2023-11-12',
       expenses: 5
     }),
     new DailyExpensesOverview({
-      date: new Date('2023-11-13T12:00:00+0300'),
+      date: '2023-11-13',
       expenses: 5
     }),
     new DailyExpensesOverview({
-      date: new Date('2023-11-14T12:00:00+0300'),
+      date: '2023-11-14',
       expenses: 5
     }),
     new DailyExpensesOverview({
-      date: new Date('2023-11-15T12:00:00+0300'),
+      date: '2023-11-15',
       expenses: 0
     }),
     new DailyExpensesOverview({
-      date: new Date('2023-11-16T12:00:00+0300'),
+      date: '2023-11-16',
       expenses: 0
     }),
     new DailyExpensesOverview({
-      date: new Date('2023-11-17T12:00:00+0300'),
+      date: '2023-11-17',
       expenses: 0
     }),
     new DailyExpensesOverview({
-      date: new Date('2023-11-18T12:00:00+0300'),
+      date: '2023-11-18',
       expenses: 0
     }),
     new DailyExpensesOverview({
-      date: new Date('2023-11-19T12:00:00+0300'),
+      date: '2023-11-19',
       expenses: 0
     }),
     new DailyExpensesOverview({
-      date: new Date('2023-11-20T12:00:00+0300'),
+      date: '2023-11-20',
       expenses: 0
     }),
   ];

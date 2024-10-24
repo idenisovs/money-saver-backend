@@ -1,6 +1,7 @@
 export interface PaymentRecord {
   id?: number;
-  time: string;
+  date: string;
   sum: number;
   userId: number;
+  createdAt: Date;
 }
