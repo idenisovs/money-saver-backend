@@ -1,5 +1,5 @@
 import { Summary, Totals } from '../../../shared';
-import { daysDiff } from '../../../shared/utils';
+import getCurrentDay from './get-current-day';
 
 export default function calculateTotals(summary: Summary): Totals {
 	const totals = new Totals();
@@ -8,7 +8,7 @@ export default function calculateTotals(summary: Summary): Totals {
 
 	totals.startingSum = summary.interval.sum;
 
-	totals.currentDay = Math.ceil(daysDiff(summary.interval.start, new Date()));
+	totals.currentDay = getCurrentDay(summary.interval.start);
 
 	if (totals.currentDay > totals.days) {
 		totals.currentDay = totals.days;

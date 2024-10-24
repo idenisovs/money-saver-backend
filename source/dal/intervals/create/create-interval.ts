@@ -12,8 +12,8 @@ export default function createInterval(interval: Interval, user: User): Promise<
 		log.debug('Inserting new interval!');
 
 		const params = {
-			$start: interval.start.toISOString(),
-			$end: interval.end.toISOString(),
+			$start: interval.start,
+			$end: interval.end,
 			$sum: interval.sum,
 			$userId: user.id,
 			$latest: 1,

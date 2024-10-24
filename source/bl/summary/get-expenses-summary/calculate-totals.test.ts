@@ -2,19 +2,19 @@ import calculateTotals from './calculate-totals';
 import makeTestData from '../../../support/make-test-data';
 
 describe('calculate-totals.ts', () => {
-  beforeEach(() => {
-  });
+	beforeEach(() => {
+	});
 
-  it('returns the correct current day', () => {
-    const serverTime = new Date('2023-11-14T01:30:00.000+0300');
+	it('returns the correct current day', () => {
+		const serverTime = new Date('2023-11-14T01:30:00.000+0300');
 
-    jest.useFakeTimers().setSystemTime(serverTime);
+		jest.useFakeTimers().setSystemTime(serverTime);
 
-    const { summary } = makeTestData();
+		const {summary} = makeTestData();
 
-    const totals = calculateTotals(summary);
+		const totals = calculateTotals(summary);
 
-    expect(totals).toMatchInlineSnapshot(`
+		expect(totals).toMatchInlineSnapshot(`
 Totals {
   "currentDay": 5,
   "currentDayPercents": 0.5,
@@ -30,10 +30,10 @@ Totals {
   "startingSum": 140,
 }
 `);
-  });
+	});
 
-  afterAll(() => {
-    jest.restoreAllMocks();
-    jest.useRealTimers();
-  })
+	afterAll(() => {
+		jest.restoreAllMocks();
+		jest.useRealTimers();
+	})
 })

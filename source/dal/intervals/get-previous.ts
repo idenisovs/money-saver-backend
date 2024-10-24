@@ -22,7 +22,7 @@ export function getPrevious(interval: Interval, user: User): Promise<Interval | 
 
 	return new Promise((resolve, reject) => {
 		const props = {
-			$date: interval.start.toISOString(),
+			$date: interval.start,
 			$userId: user.id,
 		};
 

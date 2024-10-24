@@ -58,8 +58,8 @@ export function makeUser(): User {
 export function makeInterval(): Interval {
   const interval = new Interval();
 
-  interval.start = new Date('2023-11-10T00:00:00+0300');
-  interval.end = new Date('2023-11-19T23:59:59.999+0300');
+  interval.start = '2023-11-10';
+  interval.end = '2023-11-19';
   interval.sum = 140;
   interval.latest = true;
 

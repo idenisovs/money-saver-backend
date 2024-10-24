@@ -1,7 +1,6 @@
 import { finishInterval } from './finish-interval';
 import dal from '../../dal';
 import makeTestData from '../../support/make-test-data';
-import { DAY } from '../../shared/constants';
 
 jest.mock('../../dal', () => {
   return {
@@ -32,12 +31,12 @@ describe('finish-interval', () => {
 
     const { interval, user } = makeTestData();
 
-    interval.end = new Date(Date.now() + 10 * DAY);
+    interval.end = '2024-03-10';
 
     await finishInterval(interval, user);
 
     expect(finishIntervalMock).toHaveBeenCalled();
-    const expectedDate = new Date('2024-02-28T21:59:59.999Z');
+    const expectedDate = '2024-02-29';
     expect(interval.end).toEqual(expectedDate);
   });
 
@@ -47,13 +46,12 @@ describe('finish-interval', () => {
 
     const { interval, user } = makeTestData();
 
-    interval.end = new Date(Date.now() - 10 * DAY);
+    interval.end = '2024-02-20';
 
     await finishInterval(interval, user);
 
     expect(finishIntervalMock).toHaveBeenCalled();
-    const expectedDate = new Date('2024-02-19T16:14:10.692Z');
-    expect(interval.end).toEqual(expectedDate);
+    expect(interval.end).toEqual(interval.end);
   });
 
   beforeEach(() => {

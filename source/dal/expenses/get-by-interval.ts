@@ -24,8 +24,8 @@ export function getExpensesByInterval(interval: Interval, user: User): Promise<E
 		log.debug('Retrieving expenses of user <%d> by interval <%d>!', user.id, interval.id);
 
 		const params = {
-			$from: interval.start.toISOString(),
-			$till: interval.end.toISOString(),
+			$from: interval.start,
+			$till: interval.end,
 			$userId: user.id,
 		};
 

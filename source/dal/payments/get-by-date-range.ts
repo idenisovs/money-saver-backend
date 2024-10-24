@@ -12,15 +12,15 @@ sql += 'WHERE time BETWEEN $from AND $till AND userId = $userId\n';
 sql += 'ORDER BY time ASC';
 
 type DataRange = {
-	from: Date,
-	till: Date
+	from: string,
+	till: string
 };
 
 export function getByDateRange(range: DataRange, user: User): Promise<Payment[]> {
 	return new Promise((resolve, reject) => {
 		const params = {
-			$from: range.from.toISOString(),
-			$till: range.till.toISOString(),
+			$from: range.from,
+			$till: range.till,
 			$userId: user.id,
 		};
 

@@ -39,8 +39,8 @@ it('should make proper summary list', async () => {
 	]);
 
 	const interval = new Interval({
-		start: new Date('2023-09-30T00:00:00.000+03:00'),
-		end: new Date('2023-10-05T23:59:59.999+03:00'),
+		start: '2023-09-30',
+		end: '2023-10-05',
 		sum: 100,
 	});
 

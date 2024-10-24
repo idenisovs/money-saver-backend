@@ -5,17 +5,12 @@ import updateCurrentInterval from './update-current-interval';
 import finaliseCreation from './finalise-creation';
 import dal from '../../../dal';
 import { Interval, User } from '../../../shared';
-import { endOfDay, startOfDay } from '../../../shared/utils';
 
 const log = log4js.getLogger('create-interval');
 
 export async function createInterval(interval: Interval, user: User): Promise<Interval> {
-	log.debug('Trying to create interval...');
-
-	interval.start = startOfDay(new Date(interval.start), user.timezone);
-	interval.end = endOfDay(new Date(interval.end), user.timezone);
-
-	log.debug('Taking latest interval...');
+	log.debug('User <%d> is trying to create a new interval!');
+	log.trace(interval);
 
 	const latestInterval = await dal.intervals.getLatest(user);
 
