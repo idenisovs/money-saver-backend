@@ -6,7 +6,7 @@ import paymentMapper from './payment-mapper';
 
 let sql = '';
 
-sql += 'SELECT id, date, sum\n';
+sql += 'SELECT id, date, sum, createdAt\n';
 sql += 'FROM payments\n';
 sql += 'WHERE date = $date AND userId = $userId\n';
 sql += 'ORDER BY date ASC, createdAt ASC\n';
