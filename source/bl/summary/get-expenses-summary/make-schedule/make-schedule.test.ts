@@ -21,26 +21,26 @@ const getByDateRangeMock = jest.mocked(dal.payments.getByDateRange);
 it('should make proper summary list', async () => {
 	getByDateRangeMock.mockResolvedValue([
 		new Payment({
-			time: new Date('2023-09-30T08:41:39.222+03:00'),
+			date: '2023-09-30',
 			sum: 1,
 		}),
 		new Payment({
-			time: new Date('2023-10-01T11:45:57.732+03:00'),
+			date: '2023-10-01',
 			sum: 2,
 		}),
 		new Payment({
-			time: new Date('2023-10-01T23:45:57.732+03:00'),
+			date: '2023-10-01',
 			sum: 1,
 		}),
 		new Payment({
-			time: new Date('2023-10-02T01:45:57.732+03:00'),
+			date: '2023-10-02',
 			sum: 2,
 		}),
 	]);
 
 	const interval = new Interval({
-		start: new Date('2023-09-30T00:00:00.000+03:00'),
-		end: new Date('2023-10-05T23:59:59.999+03:00'),
+		start: '2023-09-30',
+		end: '2023-10-05',
 		sum: 100,
 	});
 

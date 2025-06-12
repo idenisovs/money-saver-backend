@@ -1,13 +1,15 @@
 import dal from '../../dal';
 import { User } from '../../shared';
 
-export async function getYears(user: User): Promise<number[]> {
+export async function getYears(user: User): Promise<string[]> {
 	const intervals = await dal.intervals.getAll(user);
 
-	const years = new Set<number>();
+	const years = new Set<string>();
 
 	for (const interval of intervals) {
-		years.add(interval.start.getFullYear());
+		const [year] = interval.start.split('-');
+
+		years.add(year);
 	}
 
 	return Array.from(years);

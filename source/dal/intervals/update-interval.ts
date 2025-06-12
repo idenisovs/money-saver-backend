@@ -25,8 +25,8 @@ export function updateInterval(interval: Interval, user: User): Promise<void> {
 			$id: interval.id,
 			$userId: user.id,
 			$sum: interval.sum,
-			$start: interval.start.toISOString(),
-			$end: interval.end.toISOString(),
+			$start: interval.start,
+			$end: interval.end,
 			$latest: interval.latest
 		};
 
