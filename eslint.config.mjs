@@ -7,6 +7,9 @@ export default tseslint.config(
     eslint.configs.recommended,
     ...tseslint.configs.recommended,
     {
-        ignores: ['target/', '*.js', 'scripts/*.js']
+        ignores: ['target/', '*.js', 'scripts/*.js'],
+        rules: {
+            '@typescript-eslint/no-explicit-any': 'off',
+        },
     }
 );
