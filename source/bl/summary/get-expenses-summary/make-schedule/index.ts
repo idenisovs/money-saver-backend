@@ -1,11 +1,11 @@
+import { DateTime } from 'luxon';
+
 import {
 	Interval, User, DailyExpensesOverview,
 } from '../../../../shared';
 import dal from '../../../../dal';
 import getPaymentsByDate from './get-payments-by-date';
 import calculatePaymentsSum from './calculate-payments-sum';
-import { daysDiff } from '../../../../shared/utils';
-import { DateTime } from 'luxon';
 
 export default async function makeSchedule(interval: Interval, user: User): Promise<DailyExpensesOverview[]> {
 	const schedule: DailyExpensesOverview[] = [];
@@ -16,9 +16,8 @@ export default async function makeSchedule(interval: Interval, user: User): Prom
 	}, user);
 
 	let currentDate = interval.start;
-	const days = daysDiff(interval.start, interval.end);
 
-	for (let idx = 0; idx < days; idx++) {
+	for (let idx = 0; idx < interval.length; idx++) {
 		const dailyPayments = getPaymentsByDate(payments, currentDate);
 
 		schedule.push(new DailyExpensesOverview({
