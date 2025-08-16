@@ -7,7 +7,7 @@ import dal from '../../dal';
 
 const log = log4js.getLogger('intervals');
 
-export function getIntervalsByRange(query: ParsedQs, user: User): Promise<Interval[]> {
+export function getByRange(query: ParsedQs, user: User): Promise<Interval[]> {
 	log.debug('Requesting intervals by range');
 	log.trace(query);
 

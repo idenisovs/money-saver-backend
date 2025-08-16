@@ -3,7 +3,8 @@ import log4js from 'log4js';
 
 import { Interval, User } from '../../shared';
 import dal from '../../dal';
-import { getIntervalsByRange } from './get-intervals-by-range';
+import { getByRange } from './get-by-range';
+import { getByDate } from './get-by-date';
 
 const log = log4js.getLogger('query-intervals');
 
@@ -22,15 +23,13 @@ export async function queryIntervals(req: Request): Promise<Interval[]> {
 	}
 
 	if ('date' in req.query) {
-		const result = await dal.intervals.getByDate({
-			date: String(req.query.date),
-		}, user);
-
-		return [result];
+		const date = String(req.query.date);
+		const interval = await getByDate(date, user);
+		return [interval];
 	}
 
 	if ('from' in req.query || 'till' in req.query) {
-		return getIntervalsByRange(req.query, user);
+		return getByRange(req.query, user);
 	}
 
 	log.debug('No query params defined, returning list of all intervals...');
