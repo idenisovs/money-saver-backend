@@ -1,13 +1,13 @@
 import log4js from 'log4js';
+import { ParsedQs } from 'qs';
 
 import { Interval, User } from '../../shared';
 import { IntervalQuery } from '../../dal/intervals/get-by-boundary';
 import dal from '../../dal';
-import { ParsedQs } from 'qs';
 
 const log = log4js.getLogger('intervals');
 
-export function getByRange(query: ParsedQs, user: User): Promise<Interval[]> {
+export function getIntervalsByRange(query: ParsedQs, user: User): Promise<Interval[]> {
 	log.debug('Requesting intervals by range');
 	log.trace(query);
 

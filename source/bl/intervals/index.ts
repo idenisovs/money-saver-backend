@@ -6,3 +6,4 @@ export { updateInterval as update } from './update-interval';
 export { validateInterval as validate } from './validate-interval';
 export { getPreviousInterval as getPrevious } from './get-previous-interval';
 export { finishInterval as finish } from './finish-interval';
+export { getIntervalsByRange as getByRange } from './get-intervals-by-range';
