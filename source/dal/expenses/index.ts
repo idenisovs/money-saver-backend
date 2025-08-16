@@ -1,1 +1,1 @@
-export { getExpensesByInterval as getByInterval } from './get-by-interval';
+export { getExpensesByIntervalDaily as getByIntervalDaily } from './get-by-interval-daily';

@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import getExpensesByInterval from './get-by-interval';
+
+import getExpensesByIntervalDaily from './get-by-interval-daily';
 
 const expenses = Router();
 
-expenses.get('/', getExpensesByInterval);
+expenses.get('/', getExpensesByIntervalDaily);
 
 export default expenses;
