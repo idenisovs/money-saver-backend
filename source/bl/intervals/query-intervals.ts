@@ -3,7 +3,7 @@ import log4js from 'log4js';
 
 import { Interval, User } from '../../shared';
 import dal from '../../dal';
-import { IntervalQuery } from '../../dal/intervals/get-by-boundary';
+import { getByRange } from './get-by-range';
 
 const log = log4js.getLogger('query-intervals');
 
@@ -29,22 +29,8 @@ export async function queryIntervals(req: Request): Promise<Interval[]> {
 		return [result];
 	}
 
-	const { from, till } = req.query;
-
-	if (from || till) {
-		log.debug('Taking interval by boundary: from %s to %s', from, till);
-
-		const query: IntervalQuery = {};
-
-		if (from) {
-			query.from = from as string;
-		}
-
-		if (till) {
-			query.till = till as string;
-		}
-
-		return dal.intervals.getByBoundary(query, user);
+	if ('from' in req.query || 'till' in req.query) {
+		return getByRange(req.query, user);
 	}
 
 	log.debug('No query params defined, returning list of all intervals...');

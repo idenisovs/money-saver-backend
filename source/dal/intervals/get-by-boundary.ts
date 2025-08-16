@@ -7,31 +7,33 @@ import intervalMapper from './interval-mapper';
 
 const log = log4js.getLogger('get-by-boundary');
 
-let sql = '';
+const sql = `
+	select id, start, end, sum, latest
+	from intervals
+	where
+		start >= $from
+		and start <= $till
+		and userId = $userId
+	order by start desc
+`;
 
-sql += 'SELECT id, start, end, sum, latest\n';
-sql += 'FROM intervals\n ';
-sql += 'WHERE\n';
-sql += 'start >= $from\n';
-sql += 'AND start <= $till\n';
-sql += 'AND userId = $userId\n';
-sql += 'ORDER BY start DESC';
-
-export type IntervalQuery = {
-  from?: string,
-  till?: string
-};
+export type IntervalQuery = Partial<{
+  from: string,
+  till: string
+}>;
 
 export function getByBoundary(query: IntervalQuery, user: User): Promise<Interval[]> {
-	return new Promise((resolve, reject) => {
-		log.trace(query);
+	const { promise, resolve, reject } = Promise.withResolvers<Interval[]>()
 
-		const params = {
-			$from: query.from,
-			$till: query.till,
-			$userId: user.id,
-		};
+	log.trace(query);
 
-		db.all(sql, params, done<IntervalRecord, Interval>(resolve, reject, intervalMapper));
-	});
+	const params = {
+		$from: query.from,
+		$till: query.till,
+		$userId: user.id,
+	};
+
+	db.all(sql, params, done<IntervalRecord, Interval>(resolve, reject, intervalMapper));
+
+	return promise;
 }
