@@ -9,3 +9,4 @@ export { finishInterval as finish } from './finish-interval';
 export { getByRange as getByRange } from './get-by-range';
 export { getByDate } from './get-by-date';
 export { getByTimestamp } from './get-by-timestamp';
+export { getYearlyIntervals } from './get-yearly-intervals';
