@@ -3,14 +3,14 @@ import states from 'http-status';
 import log4js from 'log4js';
 import bl from '../../bl';
 
-const log = log4js.getLogger('get-intervals');
+const log = log4js.getLogger('intervals');
 
 export default async function getIntervals(req: Request, res: Response) {
-	log.debug('User request arrived!');
+	log.debug('User requested getIntervals!');
 	log.trace(req.query);
 
 	try {
-		const intervals = await bl.intervals.get(req);
+		const intervals = await bl.intervals.query(req);
 
 		log.trace(intervals);
 
