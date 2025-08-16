@@ -28,7 +28,10 @@ export async function queryIntervals(req: Request): Promise<Interval[]> {
 	}
 
 	if ('from' in req.query || 'till' in req.query) {
-		return getByRange(req.query, user);
+		return getByRange({
+			from: req.query.from ? String(req.query.from) : null,
+			till: req.query.till ? String(req.query.till) : null,
+		}, user);
 	}
 
 	log.debug('No query params is defined, returning list of all intervals.');
