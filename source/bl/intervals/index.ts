@@ -8,3 +8,4 @@ export { getPreviousInterval as getPrevious } from './get-previous-interval';
 export { finishInterval as finish } from './finish-interval';
 export { getByRange as getByRange } from './get-by-range';
 export { getByDate } from './get-by-date';
+export { getByTimestamp } from './get-by-timestamp';
