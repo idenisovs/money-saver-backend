@@ -51,7 +51,7 @@ Accept: application/json
 GET http://localhost:9001/api/intervals/2/previous
 Accept: application/json
 
-###
+### getYearlyIntervals
 
 GET http://localhost:9001/api/intervals/years/2025
 Accept: application/json

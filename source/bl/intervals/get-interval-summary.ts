@@ -5,5 +5,6 @@ export default async function getIntervalSummary(interval: Interval, user: User)
 	const summary = new IntervalSummary();
 	summary.interval = interval;
 	summary.expenses.total = await dal.expenses.getByIntervalTotal(interval, user);
+	summary.expenses.average = summary.expenses.total / summary.interval.length;
 	return summary;
 }
