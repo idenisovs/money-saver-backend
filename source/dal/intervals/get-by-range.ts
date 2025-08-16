@@ -22,7 +22,9 @@ export type IntervalQuery = Partial<{
   till: string
 }>;
 
-export function getByBoundary(query: IntervalQuery, user: User): Promise<Interval[]> {
+export function getByRange(query: IntervalQuery, user: User): Promise<Interval[]> {
+	log.debug('Requesting intervals by range %s - %s!', query.from, query.till);
+
 	const { promise, resolve, reject } = Promise.withResolvers<Interval[]>()
 
 	log.trace(query);
