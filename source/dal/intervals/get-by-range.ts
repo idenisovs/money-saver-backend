@@ -4,6 +4,7 @@ import { Interval, User } from '../../shared';
 import done from '../done';
 import IntervalRecord from './interval-record';
 import intervalMapper from './interval-mapper';
+import { IntervalQuery } from './IntervalQuery';
 
 const log = log4js.getLogger('get-by-boundary');
 
@@ -16,11 +17,6 @@ const sql = `
 		and userId = $userId
 	order by start desc
 `;
-
-export type IntervalQuery = Partial<{
-  from: string,
-  till: string
-}>;
 
 export function getByRange(query: IntervalQuery, user: User): Promise<Interval[]> {
 	log.debug('Requesting intervals by range %s - %s!', query.from, query.till);

@@ -1,7 +1,7 @@
 import log4js from 'log4js';
 
 import { Interval, User } from '../../shared';
-import { IntervalQuery } from '../../dal/intervals/get-by-range';
+import { IntervalQuery } from '../../dal/intervals';
 import dal from '../../dal';
 
 const log = log4js.getLogger('intervals');
