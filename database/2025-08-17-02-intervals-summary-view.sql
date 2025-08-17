@@ -1,4 +1,4 @@
-create view intervals_summary as
+create view interval_summaries as
 with intervals_base as (
     select
         i.id,
