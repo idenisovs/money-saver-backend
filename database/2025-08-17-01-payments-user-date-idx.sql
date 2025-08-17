@@ -1,0 +1,1 @@
+create index if not exists payments_user_date_idx on payments(userId, date);
