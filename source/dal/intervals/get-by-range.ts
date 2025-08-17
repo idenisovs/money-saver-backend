@@ -1,4 +1,5 @@
 import log4js from 'log4js';
+
 import db from '../db';
 import { Interval, User } from '../../shared';
 import done from '../done';
@@ -6,7 +7,7 @@ import IntervalRecord from './interval-record';
 import intervalMapper from './interval-mapper';
 import { IntervalQuery } from './IntervalQuery';
 
-const log = log4js.getLogger('get-by-boundary');
+const log = log4js.getLogger('intervals');
 
 const sql = `
 	select id, start, end, sum, latest
@@ -23,13 +24,13 @@ export function getByRange(query: IntervalQuery, user: User): Promise<Interval[]
 
 	const { promise, resolve, reject } = Promise.withResolvers<Interval[]>()
 
-	log.trace(query);
-
 	const params = {
 		$from: query.from,
 		$till: query.till,
 		$userId: user.id,
 	};
+
+	log.trace(params);
 
 	db.all(sql, params, done<IntervalRecord, Interval>(resolve, reject, intervalMapper));
 
