@@ -1,4 +1,3 @@
-/* eslint-disable import/first */
 global.basedir = __dirname;
 
 import path from 'path';
