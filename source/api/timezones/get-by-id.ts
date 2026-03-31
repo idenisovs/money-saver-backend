@@ -5,17 +5,18 @@ import dal from '../../dal';
 const log = log4js.getLogger('timezones');
 
 export default function getById(req: Request, res: Response) {
-  const timezoneId = req.params.timezoneId;
+    const timezoneParts = req.params.timezoneId as string[];
+    const timezoneId = timezoneParts.join('/');
 
-  log.debug('User requested timezone %s', timezoneId);
+    log.debug('User requested timezone %s', timezoneId);
 
-  const timezone = dal.timezones.getById(timezoneId);
+    const timezone = dal.timezones.getById(timezoneId);
 
-  if (!timezone) {
+    if (timezone) {
+        return res.json(timezone);
+    }
+
     res.status(404).json({
-      error: 'NOT_FOUND'
+        error: 'NOT_FOUND'
     });
-  }
-
-  res.json(timezone);
 }

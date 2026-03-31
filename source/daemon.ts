@@ -10,7 +10,6 @@ dotenv.config({
 
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
 
 import log4js from './support/log4js';
 import passport from './support/passport';
@@ -24,7 +23,6 @@ const app = express();
 
 log.info('Starting application...');
 
-app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(session());
 app.use(passport.initialize());
@@ -44,7 +42,7 @@ app.use(express.static(staticPath));
 
 const indexFile = path.join(staticPath, 'index.html');
 
-app.get('/*', (req: Request, res: Response) => res.sendFile(indexFile));
+app.get('/*splat', (_: Request, res: Response) => res.sendFile(indexFile));
 
 log.debug('Static content enabled!');
 

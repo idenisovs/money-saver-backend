@@ -4,7 +4,7 @@ import dal from '../../dal';
 import { User } from '../../shared';
 
 export default async function getIntervalById(req: Request, res: Response) {
-	const intervalId = parseInt(req.params.id);
+	const intervalId = parseInt(req.params.id as string);
 
 	try {
 		const interval = await dal.intervals.getById(intervalId, req.user as User);

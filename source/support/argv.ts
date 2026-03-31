@@ -1,8 +1,10 @@
 import yargs from 'yargs';
 import { Arguments } from './arguments';
 
-export default yargs
-	.usage('Launch Money Saver daemon')
+export default
+	yargs()
+	.scriptName('money-saver')
+	.usage('$0 [options]')
 	.options({
 		port: {
 			type: 'number', default: 9001, alias: 'p', describe: 'Select port to listen',

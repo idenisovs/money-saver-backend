@@ -10,11 +10,10 @@ const log = log4js.getLogger('session');
 function makeMemcachedStore(): Store {
 	const MemcachedStore = ConnectMemcached(session);
 
-	return new MemcachedStore({
-		hosts: ['127.0.0.1:11211'],
-		secret: process.env.MEMCACHED_KEY || uuid(),
-		prefix: 'ms',
-	});
+	const hosts = ['127.0.0.1:11211'];
+	const secret = process.env.MEMCACHED_KEY || uuid();
+
+	return new MemcachedStore({ hosts, secret });
 }
 
 export default function createSession() {

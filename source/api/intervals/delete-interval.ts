@@ -4,7 +4,7 @@ import bl from '../../bl';
 import { User } from '../../shared';
 
 export default async function deleteInterval(req: Request, res: Response) {
-	const intervalId = parseInt(req.params.id);
+	const intervalId = parseInt(req.params.id as string);
 	const user = req.user as User;
 
 	try {

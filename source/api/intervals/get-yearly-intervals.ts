@@ -7,7 +7,7 @@ import { IntervalSummary, User } from '../../shared';
 const log = log4js.getLogger('intervals');
 
 export default async function getYearlyIntervals(req: Request, res: Response) {
-	const year = req.params.year;
+	const year = req.params.year as string;
 	const user = req.user as User;
 
 	log.info('User requested getYearlyIntervals for year %s!', year);
