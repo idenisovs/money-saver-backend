@@ -1,8 +1,9 @@
 import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 import { Arguments } from './arguments';
 
 export default
-	yargs()
+	yargs(hideBin(process.argv))
 	.scriptName('money-saver')
 	.usage('$0 [options]')
 	.options({
