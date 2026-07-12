@@ -36,9 +36,9 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^6.0.0",
-    "body-parser": "^2.2.2",
+    "body-parser": "^2.3.0",
     "connect-memcached": "^3.0.0",
-    "dotenv": "^17.3.1",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "express-session": "^1.19.0",
     "http-status": "^2.1.0",
@@ -50,7 +50,7 @@
     "passport-local": "^1.0.0",
     "sqlite3": "^6.0.1",
     "timezones.json": "^1.7.2",
-    "uuid": "^13.0.0",
+    "uuid": "^14.0.1",
     "yargs": "^18.0.0"
   },
   "devDependencies": {
@@ -59,21 +59,21 @@
     "@types/connect-memcached": "^1.0.3",
     "@types/cookie-parser": "^1.4.10",
     "@types/express": "^5.0.6",
-    "@types/express-session": "^1.18.2",
+    "@types/express-session": "^1.19.0",
     "@types/jest": "^30.0.0",
-    "@types/luxon": "^3.7.1",
+    "@types/luxon": "^3.7.2",
     "@types/memcached": "^2.2.10",
     "@types/ms": "^2.1.0",
-    "@types/node": "^24.12.0",
+    "@types/node": "^24.13.3",
     "@types/passport": "^1.0.17",
     "@types/passport-local": "^1.0.38",
     "@types/sqlite3": "^5.1.0",
     "@types/uuid": "^11.0.0",
     "@types/yargs": "^17.0.35",
-    "eslint": "^10.1.0",
-    "jest": "^30.3.0",
-    "ts-jest": "^29.4.6",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.58.0"
+    "eslint": "^10.7.0",
+    "jest": "^30.4.2",
+    "ts-jest": "^29.4.11",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.63.0"
   }
 }
