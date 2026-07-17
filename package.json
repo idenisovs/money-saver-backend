@@ -67,13 +67,16 @@
     "@types/node": "^24.13.3",
     "@types/passport": "^1.0.17",
     "@types/passport-local": "^1.0.38",
-    "@types/sqlite3": "^5.1.0",
-    "@types/uuid": "^11.0.0",
     "@types/yargs": "^17.0.35",
     "eslint": "^10.7.0",
     "jest": "^30.4.2",
     "ts-jest": "^29.4.11",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.63.0"
+  },
+  "allowScripts": {
+    "sqlite3@6.0.1": true,
+    "bcrypt@6.0.0": true,
+    "unrs-resolver@1.12.2": true
   }
 }
