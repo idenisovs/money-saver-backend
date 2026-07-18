@@ -35,7 +35,7 @@
   "author": "Ilya Denisov",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^6.0.0",
+    "argon2": "^0.44.0",
     "body-parser": "^2.3.0",
     "connect-memcached": "^3.0.0",
     "dotenv": "^17.4.2",
@@ -55,7 +55,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/bcrypt": "^6.0.0",
     "@types/connect-memcached": "^1.0.3",
     "@types/cookie-parser": "^1.4.10",
     "@types/express": "^5.0.6",
@@ -76,7 +75,7 @@
   },
   "allowScripts": {
     "sqlite3@6.0.1": true,
-    "bcrypt@6.0.0": true,
+    "argon2@0.44.0": true,
     "unrs-resolver@1.12.2": true
   }
 }

@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import argon2 from 'argon2';
 import log4js from 'log4js';
 import dal from '../../dal';
 
@@ -18,14 +18,10 @@ export function auth(username: string, password: string, done: Function) {
 
 		user = userRecord;
 
-		bcrypt.compare(password, user.password, validatePassword);
+		argon2.verify(user.password, password).then(validatePassword).catch(fail);
 	}
 
-	function validatePassword(error: Error | undefined, passValid: boolean) {
-		if (error) {
-			return fail(error);
-		}
-
+	function validatePassword(passValid: boolean) {
 		if (!passValid) {
 			return reject();
 		}

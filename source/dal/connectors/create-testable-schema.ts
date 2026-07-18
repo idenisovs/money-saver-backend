@@ -1,14 +1,14 @@
-import bcrypt from 'bcrypt';
+import argon2 from 'argon2';
 import log4js from 'log4js';
 import { Database } from 'sqlite3';
 
 const log = log4js.getLogger('db');
 
-export default function createTestableSchema(db: Database): Promise<void> {
+export default async function createTestableSchema(db: Database): Promise<void> {
 	log.debug('Generating hashes!');
 
-	const hash1 = bcrypt.hashSync('demo1', 2);
-	const hash2 = bcrypt.hashSync('uBRrv7kyH', 2);
+	const hash1 = await argon2.hash('demo1');
+	const hash2 = await argon2.hash('uBRrv7kyH');
 
 	const sql = {
 		users: 'CREATE TABLE users ( id INTEGER PRIMARY KEY ON CONFLICT ROLLBACK AUTOINCREMENT UNIQUE ON CONFLICT ROLLBACK, login TEXT UNIQUE ON CONFLICT ROLLBACK NOT NULL ON CONFLICT ROLLBACK, password TEXT NOT NULL ON CONFLICT ROLLBACK, email TEXT, timezone NUMERIC NOT NULL ON CONFLICT ROLLBACK DEFAULT (0), language NUMERIC NOT NULL ON CONFLICT ROLLBACK DEFAULT(0), last DATE DEFAULT(0));',
