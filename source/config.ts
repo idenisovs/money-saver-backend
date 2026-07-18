@@ -9,6 +9,7 @@ function readEnvVar<T>(name: string, convertFn: (value: string) => T): T | undef
 }
 
 const config = {
+    PORT: readEnvVar('PORT', Number),
     SESSION_KEY: readEnvVar('SESSION_KEY', String),
     MEMCACHED_KEY: readEnvVar('MEMCACHED_KEY', String)
 };

@@ -10,6 +10,7 @@ dotenv.config({
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 
+import config from './config';
 import log4js from './support/log4js';
 import passport from './support/passport';
 import argv from './support/argv';
@@ -45,7 +46,7 @@ app.get('/*splat', (_: Request, res: Response) => res.sendFile(indexFile));
 
 log.debug('Static content enabled!');
 
-const PORT = argv.port || process.env.PORT || 9001;
+const PORT = config.PORT || argv.port || 9001;
 
 app.listen(PORT, () => {
 	log.info('Application is up and running on http://localhost:%s', PORT);

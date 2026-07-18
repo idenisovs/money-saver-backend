@@ -10,7 +10,9 @@ export default
 		port: {
 			type: 'number', default: 9001, alias: 'p', describe: 'Select port to listen',
 		},
-		database: { type: 'string', alias: 'b', describe: 'Select database to work with' },
+		database: {
+			type: 'string', alias: 'b', describe: 'Select database to work with'
+		},
 		memcached: {
 			type: 'boolean', default: false, alias: 'm', describe: 'Enabled memcached support',
 		},
@@ -26,5 +28,7 @@ export default
 			alias: 't',
 			describe: 'Set log level to TRACE, extra verbosity level.',
 		},
-		testable: { type: 'boolean', default: false, describe: 'Run daemon in Testable mode' },
+		testable: {
+			type: 'boolean', default: false, describe: 'Run daemon in Testable mode'
+		},
 	}).argv as Arguments;
