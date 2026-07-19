@@ -1,0 +1,34 @@
+POST http://localhost:9001:9001/api/auth
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "password": "demo1"
+}
+
+### get local props
+
+GET http://localhost:9001/api/properties
+Accept: application/json
+
+### get properties
+
+GET https://localhost:9001/api/properties
+Accept: application/json
+
+### update password
+
+PUT http://localhost:9001/api/properties
+Content-Type: application/json
+
+{
+    "email": "i.denisovs@gmail.com",
+    "password": {
+        "current": "demo1",
+        "primary": "demo1",
+        "confirm": "demo1",
+        "hash": ""
+    },
+    "timezone": "Europe/Riga",
+    "language": "en"
+}

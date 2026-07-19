@@ -19,3 +19,6 @@ GET http://localhost:9001/api/auth
 Accept: application/json
 
 ###
+
+GET http://localhost:9001/api/auth/logout
+Accept: application/json
