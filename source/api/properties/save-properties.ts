@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import http from 'http-status';
 import log4js from 'log4js';
+
 import { Properties, User } from '../../shared';
 import bl from '../../bl';
 
@@ -18,11 +19,13 @@ export default async function saveProperties(req: Request, res: Response) {
 		user.password = properties.password.hash;
 		user.email = properties.email;
 		user.timezone = properties.timezone;
+
+		res.send();
 	} catch (e) {
 		const { message } = e as Error;
 
 		if (message && message.match(/^PROPERTIES_/)) {
-			res.status(http.BAD_REQUEST).json(e);
+			res.status(http.BAD_REQUEST).json(message);
 		} else {
 			res.status(http.INTERNAL_SERVER_ERROR).json(e);
 		}
