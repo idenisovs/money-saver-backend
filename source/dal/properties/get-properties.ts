@@ -2,12 +2,12 @@ import db from '../db';
 import { Properties, User } from '../../shared';
 import PropertiesRecord from './properties-record';
 
-const sql = 'SELECT password, email, timezone, language FROM users WHERE id = $userId ';
+const sql = 'SELECT password, email, timezone, language FROM users WHERE id = $userId';
 
 export function getProperties(user: User): Promise<Properties> {
 	return new Promise((resolve, reject) => {
 		const params = {
-			userId: user.id,
+			$userId: user.id,
 		};
 
 		db.get(sql, params, (err: Error, result: PropertiesRecord) => {
