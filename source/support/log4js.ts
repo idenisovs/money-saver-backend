@@ -1,38 +1,42 @@
 import log4js from 'log4js';
-import argv from './argv';
+import config from '../config';
 
-const levels = ['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'off'];
+const LOG_LEVELS = ['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'off'];
 
-let verbosity = 'off';
+function resolveLogLevel(): string {
+	if (config.TRACE) {
+		return 'trace';
+	}
 
-if (process.env.LOGLEVEL && levels.indexOf(process.env.LOGLEVEL.trim().toLowerCase())) {
-	verbosity = process.env.LOGLEVEL.trim().toLowerCase();
+	if (config.DEBUG) {
+		return 'debug';
+	}
+
+	if (config.VERBOSE) {
+		return 'info';
+	}
+
+	const envLevel = config.LOGLEVEL?.trim().toLowerCase();
+
+	if (envLevel && LOG_LEVELS.includes(envLevel)) {
+		return envLevel;
+	}
+
+	return 'off';
 }
 
-if (argv.verbose) {
-	verbosity = 'info';
-}
+const level = resolveLogLevel();
 
-if (argv.debug) {
-	verbosity = 'debug';
-}
-
-if (argv.trace) {
-	verbosity = 'trace';
-}
-
-const config = {
+log4js.configure({
 	appenders: {
 		console: { type: 'console' },
 	},
 	categories: {
-		default: { appenders: ['console'], level: verbosity },
+		default: { appenders: ['console'], level },
 	},
-};
+});
 
-log4js.configure(config);
-
-if (verbosity === 'trace') {
+if (level === 'trace') {
 	log4js.getLogger('log').warn('Running in extra verbosity level!');
 }
 

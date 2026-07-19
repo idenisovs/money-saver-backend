@@ -8,27 +8,26 @@ export default
 	.usage('$0 [options]')
 	.options({
 		port: {
-			type: 'number', default: 9001, alias: 'p', describe: 'Select port to listen',
+			type: 'number', alias: 'p', describe: 'Select port to listen',
 		},
 		database: {
 			type: 'string', alias: 'b', describe: 'Select database to work with'
 		},
 		memcached: {
-			type: 'boolean', default: false, alias: 'm', describe: 'Enable memcached support',
+			type: 'boolean', alias: 'm', describe: 'Enable memcached support',
 		},
 		verbose: {
-			type: 'boolean', default: false, alias: 'v', describe: 'Run in Verbose mode',
+			type: 'boolean', alias: 'v', describe: 'Run in Verbose mode',
 		},
 		debug: {
-			type: 'boolean', default: false, alias: 'd', describe: 'Set log level to DEBUG',
+			type: 'boolean', alias: 'd', describe: 'Set log level to DEBUG',
 		},
 		trace: {
 			type: 'boolean',
-			default: false,
 			alias: 't',
 			describe: 'Set log level to TRACE, extra verbosity level.',
 		},
 		testable: {
-			type: 'boolean', default: false, describe: 'Run daemon in Testable mode'
+			type: 'boolean', describe: 'Run daemon in Testable mode'
 		},
 	}).argv as Arguments;

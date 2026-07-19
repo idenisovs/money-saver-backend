@@ -2,7 +2,6 @@ import session, { SessionOptions, Store } from 'express-session';
 import ConnectMemcached from 'connect-memcached';
 
 import log4js from 'log4js';
-import argv from './argv';
 import config from '../config';
 
 const log = log4js.getLogger('session');
@@ -31,7 +30,7 @@ export default function createSession() {
         saveUninitialized: true,
     };
 
-    if (argv.memcached || process.env.MEMCACHED === 'true') {
+    if (config.MEMCACHED) {
         options.store = makeMemcachedStore();
     } else {
         log.warn('Memcached Session Store is not enabled, using MemoryStore instead!');

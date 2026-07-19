@@ -1,14 +1,13 @@
 import log4js from 'log4js';
 import sqlite3 from 'sqlite3';
 
-import argv from '../support/argv';
+import config from '../config';
 import * as connectors from './connectors';
 
 const log = log4js.getLogger('db');
 
 export default function determineConnector(): sqlite3.Database {
-	const databaseMode = process.env.DATABASE_MODE ? process.env.DATABASE_MODE : argv.testable;
-	const databaseType = databaseMode ? 'testable' : 'sqlite';
+	const databaseType = config.TESTABLE ? 'testable' : 'sqlite';
 
 	log.debug('Determined database type: %s!', databaseType);
 
