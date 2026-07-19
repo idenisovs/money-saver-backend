@@ -26,7 +26,6 @@ Start the backend server with:
 npm run start
 ```
 
-
 By default, the server will run on the port specified in your `.env` file (e.g. http://localhost:9001).
 
 ## Frontend
@@ -35,7 +34,7 @@ To use **Money Saver** with a graphical interface, run the [Money Saver Frontend
 
 ## Configuration
 
-The backend is configured through the `.env` file. The `.env` file should be placed in same directory where the `daemon.js` file lives, typically, it is the `target/` directory.
+The backend is configured through the `.env` file. The `.env` file should be placed in same directory where the `daemon.js` file lives, typically, it is the `target/` directory. For example see the [.env.example](.env.example) file.
 
 The `.env` file supports following options:
 
@@ -46,3 +45,23 @@ The `.env` file supports following options:
 - `MEMCACHED` — set to `true` to enable **Memcached** support in Money Saver. It is allowing to store user sessions between reboots of **daemon**
 - `MEMCACHED_KEY` — secret key for **Memcached** session storage
 - `SESSION_KEY` — secret key for user session storage
+
+## Command Line Options
+
+Some options can additionally be passed through the command line. A command line option, when passed, **overrides** the corresponding value from the `.env` file. This is intended mostly for development purposes.
+
+The following options are available:
+
+- `--port`, `-p` — port the server listens on (overrides `PORT`)
+- `--database`, `-b` — path to the **SQLite3** database file (overrides `DATABASE`)
+- `--memcached`, `-m` — enable **Memcached** support (overrides `MEMCACHED`)
+- `--verbose`, `-v` — run in verbose mode, sets the log level to `INFO`
+- `--debug`, `-d` — set the log level to `DEBUG`
+- `--trace`, `-t` — set the log level to `TRACE`, extra verbosity level
+- `--testable` — run the daemon in testable mode
+
+For example:
+
+```bash
+npm run start -- --port 9005 --debug
+```
