@@ -14,7 +14,7 @@ export default
 			type: 'string', alias: 'b', describe: 'Select database to work with'
 		},
 		memcached: {
-			type: 'boolean', default: false, alias: 'm', describe: 'Enabled memcached support',
+			type: 'boolean', default: false, alias: 'm', describe: 'Enable memcached support',
 		},
 		verbose: {
 			type: 'boolean', default: false, alias: 'v', describe: 'Run in Verbose mode',
