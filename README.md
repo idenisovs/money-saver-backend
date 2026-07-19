@@ -13,8 +13,10 @@ This repository contains the source code and supporting materials for the backen
 2. Navigate to `target` directory and set the values within `.env` file:
    - `PORT` — e.g. `9001`;
    - `DATABASE` — path to the **SQLite3** database file, e.g. `/var/databases/finance.db`
-   - `LOGLEVEL` — one of the log levels supported by [log4js](https://github.com/log4js-node/log4js-node), such as `INFO`, `DEBUG`, or `TRACE`
+   - `LOGGING` — one of the log levels supported by [log4js](https://github.com/log4js-node/log4js-node), such as `INFO`, `DEBUG`, or `TRACE`
    - `MEMCACHED` — set to `true` if you want to store the user sessions in **Memcached**.
+
+That is a minimal set to run.
 
 ## Run
 

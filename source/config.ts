@@ -24,7 +24,7 @@ const config = {
     VERBOSE: argv.verbose ?? false,
     DEBUG: argv.debug ?? false,
     TRACE: argv.trace ?? false,
-    LOGLEVEL: readEnvVar('LOGLEVEL', String),
+    LOGGING: readEnvVar('LOGGING', String),
     SESSION_KEY: readEnvVar('SESSION_KEY', String),
     MEMCACHED_KEY: readEnvVar('MEMCACHED_KEY', String),
 };

@@ -16,7 +16,7 @@ function resolveLogLevel(): string {
 		return 'info';
 	}
 
-	const envLevel = config.LOGLEVEL?.trim().toLowerCase();
+	const envLevel = config.LOGGING?.trim().toLowerCase();
 
 	if (envLevel && LOG_LEVELS.includes(envLevel)) {
 		return envLevel;
