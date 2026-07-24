@@ -14,6 +14,7 @@ import config from './config';
 import log4js from './support/log4js';
 import passport from './support/passport';
 import session from './support/session';
+import setupGracefulShutdown from './support/shutdown';
 import api from './api';
 
 const log = log4js.getLogger('daemon');
@@ -45,6 +46,8 @@ app.get('/*splat', (_: Request, res: Response) => res.sendFile(indexFile));
 
 log.debug('Static content enabled!');
 
-app.listen(config.PORT, config.HOST, () => {
+const server = app.listen(config.PORT, config.HOST, () => {
 	log.info('Application is up and running on http://%s:%s', config.HOST, config.PORT);
 });
+
+setupGracefulShutdown(server);

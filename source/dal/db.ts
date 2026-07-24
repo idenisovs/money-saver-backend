@@ -1,13 +1,10 @@
-import exitHandler from './connectors/sqlite-exit-handler';
+import closeDatabase from './connectors/close-database';
 import determineConnector from './determine-connector';
 
-function connect() {
-  const connector = determineConnector();
+const connector = determineConnector();
 
-  process.on('exit', exitHandler(connector));
-  process.on('SIGINT', exitHandler(connector));
-
-  return connector;
+export function closeDb(): Promise<void> {
+  return closeDatabase(connector);
 }
 
-export default connect();
+export default connector;
