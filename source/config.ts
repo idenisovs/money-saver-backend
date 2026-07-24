@@ -18,6 +18,7 @@ function readEnvVar<T>(name: string, convertFn: ConvertFn<T>): T | undefined {
 
 const config = {
     PORT: argv.port ?? readEnvVar('PORT', Number) ?? 9001,
+    HOST: argv.host ?? readEnvVar('HOST', String) ?? 'localhost',
     DATABASE: argv.database ?? readEnvVar('DATABASE', String),
     MEMCACHED: argv.memcached ?? readEnvVar('MEMCACHED', toBoolean) ?? false,
     TESTABLE: argv.testable ?? readEnvVar('DATABASE_MODE', toBoolean) ?? false,

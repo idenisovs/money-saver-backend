@@ -45,6 +45,6 @@ app.get('/*splat', (_: Request, res: Response) => res.sendFile(indexFile));
 
 log.debug('Static content enabled!');
 
-app.listen(config.PORT, () => {
-	log.info('Application is up and running on http://localhost:%s', config.PORT);
+app.listen(config.PORT, config.HOST, () => {
+	log.info('Application is up and running on http://%s:%s', config.HOST, config.PORT);
 });

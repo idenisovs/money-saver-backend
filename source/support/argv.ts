@@ -10,6 +10,9 @@ export default
 		port: {
 			type: 'number', alias: 'p', describe: 'Select port to listen',
 		},
+		host: {
+			type: 'string', describe: 'Select host to bind to',
+		},
 		database: {
 			type: 'string', alias: 'b', describe: 'Select database to work with'
 		},

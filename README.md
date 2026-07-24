@@ -44,6 +44,7 @@ The `.env` file supports following options:
 
 - `TZ` — timezone for the application, e.g. `UTC`
 - `PORT` — port the server listens on, e.g. `9001`
+- `HOST` — host the server binds to, e.g. `localhost` (default: `localhost`)
 - `DATABASE` — path to the **SQLite3** database file, e.g. `/var/databases/finance.db`
 - `LOGGING` — one of the log levels supported by [log4js](https://github.com/log4js-node/log4js-node), such as `INFO`,
   `DEBUG`, or `TRACE`
@@ -67,6 +68,7 @@ corresponding value from the `.env` file. This is intended mostly for developmen
 The following options are available:
 
 - `--port`, `-p` — port the server listens on (overrides `PORT`)
+- `--host` — host the server binds to (overrides `HOST`)
 - `--database`, `-b` — path to the **SQLite3** database file (overrides `DATABASE`)
 - `--memcached`, `-m` — enable **Memcached** support (overrides `MEMCACHED`)
 - `--verbose`, `-v` — run in verbose mode, sets the log level to `INFO`
