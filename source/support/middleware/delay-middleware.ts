@@ -9,6 +9,6 @@ export function delay(ms = 1000) {
 
 		log.warn('Delay middleware in %s %s for %d ms!', method, originalUrl, ms);
 
-		setTimeout(next, ms);
+		setTimeout(() => next(), ms);
 	};
 }
